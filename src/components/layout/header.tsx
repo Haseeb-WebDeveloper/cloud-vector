@@ -2,22 +2,22 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { 
-  Menu, 
-  X, 
-  ChevronDown, 
-  ChevronUp, 
-  Users, 
-  Code, 
-  Shield, 
-  FileText, 
-  DollarSign, 
-  Phone, 
+import {
+  Menu,
+  X,
+  ChevronDown,
+  ChevronUp,
+  Users,
+  Code,
+  Shield,
+  FileText,
+  DollarSign,
+  Phone,
   Info,
   BarChart3,
   BookOpen,
   Settings,
-  Monitor
+  Monitor,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -215,7 +215,7 @@ export default function Header() {
                     <div className="flex ">
                       {/* Left Column - Description */}
                       <div className="space-y-10 bg-muted/50 border-r-[1px] p-5 w-full">
-                        <h3 className="font-semibold text-sm uppercase tracking-wide">
+                        <h3 className="font-semibold text-sm uppercase tracking-widest">
                           {item.title}
                         </h3>
                         <p className="text-sm w-full">
@@ -238,9 +238,9 @@ export default function Header() {
                               handleSubItemHover(subItem.title)
                             }
                           >
-                            <subItem.icon className="w-5 h-5  transition-colors" />
+                            <subItem.icon className="w-5 h-5 transition-colors" />
                             <div>
-                              <div className="text-nowrap pr-4 font-medium text-sm  transition-colors">
+                              <div className="text-nowrap pr-4 tracking-widest text-sm  transition-colors">
                                 {subItem.title}
                               </div>
                             </div>
@@ -256,7 +256,16 @@ export default function Header() {
 
           {/* Desktop CTA Button */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Button size="sm">Get Started</Button>
+            <button className="group cursor-pointer flex items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 py-2.5 rounded-full text-sm">
+              Get Started
+              <Image
+                src="/icons/arrow-right.svg"
+                alt="Arrow right"
+                width={350}
+                height={350}
+                className="w-fit h-5 group-hover:translate-x-2 transition-all duration-300"
+              />
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -291,7 +300,7 @@ export default function Header() {
                               >
                                 <subItem.icon className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
                                 <div>
-                                  <div className="font-medium text-sm group-hover:text-primary transition-colors">
+                                  <div className="font-medium tracking-widest text-sm group-hover:text-primary transition-colors">
                                     {subItem.title}
                                   </div>
                                   <div className="text-xs mt-1">
@@ -306,17 +315,17 @@ export default function Header() {
                             href={item.href}
                             className="flex items-start space-x-3 p-3 rounded-md hover:bg-muted/50 transition-colors group"
                           >
-                              {item.title === "Pricing" ? (
-                                <DollarSign className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
-                              ) : item.title === "Contact Us" ? (
-                                <Phone className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
-                              ) : item.title === "About Us" ? (
-                                <Info className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
-                              ) : (
-                                <Settings className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
-                              )}
+                            {item.title === "Pricing" ? (
+                              <DollarSign className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
+                            ) : item.title === "Contact Us" ? (
+                              <Phone className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
+                            ) : item.title === "About Us" ? (
+                              <Info className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
+                            ) : (
+                              <Settings className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
+                            )}
                             <div>
-                              <div className="font-medium text-sm group-hover:text-primary transition-colors">
+                              <div className="font-medium tracking-widest text-sm group-hover:text-primary transition-colors">
                                 {item.title}
                               </div>
                               <div className="text-xs mt-1">
@@ -341,7 +350,16 @@ export default function Header() {
                   <Button variant="outline" className="w-full">
                     Sign In
                   </Button>
-                  <Button className="w-full">Get Started</Button>
+                  <button className="group cursor-pointer flex items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 py-2.5 rounded-full text-sm">
+                    Get Started
+                    <Image
+                      src="/icons/arrow-right.svg"
+                      alt="Arrow right"
+                      width={350}
+                      height={350}
+                      className="w-fit h-5 group-hover:translate-x-2 transition-all duration-300"
+                    />
+                  </button>
                 </div>
               </div>
             </SheetContent>

@@ -3,6 +3,166 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Matte Font Family */
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Thinitalic.woff2') format('woff2');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Extralight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Extralightitalic.woff2') format('woff2');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Lightitalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Mediumitalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Semibolditalic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Bolditalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Extrabold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Extrabolditalic.woff2') format('woff2');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+ 
+}
+
+@font-face {
+  font-family: 'Matte';
+  src: url('/font/Matte-Blackitalic.woff2') format('woff2');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+ 
+}
+
 :root {
   --background: #f8fafc;
   --foreground: #1e293b;
@@ -38,6 +198,7 @@
   --sidebar-ring: #6366f1;
   --font-bricol: "Bricolage Grotesque", sans-serif;;
   --font-dm-sans: "DM Sans", sans-serif;
+  --font-matte: "Matte", sans-serif;
   --font-serif: Merriweather, serif;
   --font-mono: JetBrains Mono, monospace;
   --radius: 0.5rem;
@@ -88,6 +249,7 @@
   --sidebar-ring: #ff9900;
   --font-bricol: "Bricolage Grotesque", sans-serif;
   --font-dm-sans: "DM Sans", sans-serif;
+  --font-matte: "Matte", sans-serif;
   --font-serif: Merriweather, serif;
   --font-mono: JetBrains Mono, monospace;
   --radius: 0.5rem;
@@ -137,6 +299,7 @@
 
   --font-bricol: var(--font-bricol);
   --font-dm-sans: var(--font-dm-sans);
+  --font-matte: var(--font-matte);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
 
@@ -160,7 +323,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-dm-sans;
+    @apply bg-background text-foreground font-matte tracking-wider;
   }
 }
 
@@ -205,3 +368,19 @@
 .text-rotate-space {
   white-space: pre;
 }
+
+
+
+
+/* Hide default sidebar from whole website */
+html, body, * {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+

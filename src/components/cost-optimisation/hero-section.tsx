@@ -1,28 +1,29 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import RotatingText from "@/components/ui/rotated-text";
+import AnimatedTextCycle from "@/components/ui/text-cycle";
 import { Calendar, MessageCircle } from "lucide-react";
 import Image from "next/image";
 
 export default function CostOptimisationHeroSection() {
-  const rotatingTexts = ["Cost", "Size", "Configuration", "Purchase Plan"];
+  const rollingTexts = ["Cost", "Size", "Configuration", "Purchase Plan"];
 
   return (
     <div className="min-h-screen pt-24 bg-background">
       <div className="container mx-auto px-4 py-16">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-10">
           {/* Left Side - Text Content */}
-          <div className="space-y-8 w-full max-w-2xl">
+          <div className="space-y-8 w-full max-w-3xl">
             {/* Main Heading */}
             <div className="space-y-4">
-              <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-                Stop Overpaying AWS <br /> Unlock Savings Up to 68%
+              <h1 className="text-4xl lg:text-6xl text-foreground leading-tight">
+                Stop Overpaying AWS Unlock{" "}
+                <span className="text-primary"> Savings Up to 68%</span>
               </h1>
             </div>
 
             {/* Subheadline */}
-            <p className="text-xl  font-medium">
+            <p className="text-xl  font-light">
               All-in-one cloud cost optimisation
             </p>
 
@@ -30,37 +31,39 @@ export default function CostOptimisationHeroSection() {
             <div className="space-y-2">
               <div className="flex flex-wrap items-center gap-2 text-lg">
                 <span>Optimize</span>
-                <div className="underline flex items-center">
-                  <RotatingText
-                    texts={rotatingTexts}
-                    className="text-lg"
-                    rotationInterval={2000}
-                    splitBy="words"
-                    mainClassName="text-primary"
-                  />
-                </div>
+                <AnimatedTextCycle
+                  words={rollingTexts}
+                  interval={3000}
+                  className="text-lg"
+                  showProgressBar={true}
+                />
                 <span>of your AWS Infrastructure</span>
               </div>
             </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold"
-              >
-                <Calendar className="w-5 h-5" />
-                Schedule a Free Audit
-              </Button>
+              <button className="group cursor-pointer flex items-center gap-2 bg-primary/10 text-foreground border border-primary/50 hover:pr-6 hover:border-primary/70 hover:bg-primary/20 transition-all duration-300 px-5 py-2.5 rounded-full">
+                Book a call
+                <Image
+                  src="/icons/arrow-right.svg"
+                  alt="Arrow right"
+                  width={150}
+                  height={150}
+                  className="w-fit h-6 group-hover:translate-x-2 transition-all duration-300"
+                />
+              </button>
 
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 text-lg font-semibold"
-              >
-                <MessageCircle className="w-5 h-5" />
-                Chat on WhatsApp
-              </Button>
+              <button className="group cursor-pointer flex items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 py-2.5 rounded-full">
+                Whatsapp Us
+                <Image
+                  src="/icons/arrow-right.svg"
+                  alt="Arrow right"
+                  width={150}
+                  height={150}
+                  className="w-fit h-6 group-hover:translate-x-2 transition-all duration-300"
+                />
+              </button>
             </div>
           </div>
 
