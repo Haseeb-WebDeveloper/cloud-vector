@@ -11,7 +11,7 @@ export default function CostOptimisationHeroSection() {
   return (
     <div className="min-h-screen pt-24 bg-background">
       <div className="container mx-auto px-4 py-16">
-        <div className="flex justify-between items-center gap-10">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
           {/* Left Side - Text Content */}
           <div className="space-y-8 w-full max-w-3xl">
             {/* Main Heading */}
@@ -43,7 +43,7 @@ export default function CostOptimisationHeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button className="group cursor-pointer flex items-center gap-2 bg-primary/10 text-foreground border border-primary/50 hover:pr-6 hover:border-primary/70 hover:bg-primary/20 transition-all duration-300 px-5 py-2.5 rounded-full">
+              <button className="group cursor-pointer flex justify-center items-center gap-2 bg-primary/10 text-foreground border border-primary/50 hover:pr-6 hover:border-primary/70 hover:bg-primary/20 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
                 Book a call
                 <Image
                   src="/icons/arrow-right.svg"
@@ -54,7 +54,7 @@ export default function CostOptimisationHeroSection() {
                 />
               </button>
 
-              <button className="group cursor-pointer flex items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 py-2.5 rounded-full">
+              <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
                 Whatsapp Us
                 <Image
                   src="/icons/arrow-right.svg"

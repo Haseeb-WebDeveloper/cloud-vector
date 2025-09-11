@@ -277,7 +277,7 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full h-full">
-              <div className="flex flex-col space-y-6 mt-6 px-4">
+              <div className="flex flex-col space-y-6 mt-20 px-4">
                 {/* Mobile Navigation */}
                 <Accordion
                   type="single"
@@ -291,7 +291,7 @@ export default function Header() {
                       </AccordionTrigger>
                       <AccordionContent>
                         {item.hasDropdown ? (
-                          <div className="space-y-2 pl-4">
+                          <div className="space-y-2">
                             {item.submenu?.map((subItem) => (
                               <Link
                                 key={subItem.title}

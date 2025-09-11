@@ -3,18 +3,122 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Boxes,
-  FileText,
+  Briefcase,
   Users,
-  Newspaper,
-  Handshake,
-  Star,
   Cloud,
   Settings,
   DollarSign,
   BookOpen,
+  FileText,
   UserCircle,
+  Phone,
+  Shield,
+  BarChart3,
+  Globe,
+  Newspaper,
+  Lock,
+  Info,
 } from "lucide-react";
+
+const footerColumns = [
+  {
+    title: "Solutions",
+    icon: Briefcase,
+    items: [
+      {
+        icon: BarChart3,
+        href: "/solutions/finance",
+        label: "For Finance",
+        desc: "Optimize cloud spend and reporting for finance teams.",
+      },
+      {
+        icon: Shield,
+        href: "/solutions/cxos",
+        label: "For CXOs",
+        desc: "Strategic insights and governance for leadership.",
+      },
+      {
+        icon: Cloud,
+        href: "/solutions/cloud-engineers",
+        label: "For Cloud Engineers",
+        desc: "Tools and automation for cloud engineering teams.",
+      },
+    ],
+  },
+  {
+    title: "Product",
+    icon: Settings,
+    items: [
+      {
+        icon: FileText,
+        href: "/product/log-guardia",
+        label: "Log Guardia",
+        desc: "Secure, monitor, and analyze your cloud logs.",
+      },
+      {
+        icon: Users,
+        href: "/product/effdog",
+        label: "EffDog",
+        desc: "Automate and optimize data workflows.",
+      },
+      {
+        icon: DollarSign,
+        href: "/pricing",
+        label: "Pricing",
+        desc: "Flexible plans for every team and use case.",
+      },
+    ],
+  },
+  {
+    title: "Company",
+    icon: UserCircle,
+    items: [
+      {
+        icon: Phone,
+        href: "/contact",
+        label: "Contact",
+        desc: "Get in touch with our team.",
+      },
+      {
+        icon: FileText,
+        href: "/terms",
+        label: "Terms and Conditions",
+        desc: "Read our terms and conditions.",
+      },
+      {
+        icon: Lock,
+        href: "/privacy-policy",
+        label: "Privacy Policy",
+        desc: "How we handle your data and privacy.",
+      },
+      {
+        icon: Info,
+        href: "/about",
+        label: "About",
+        desc: "Learn more about CloudVictor.",
+      },
+    ],
+  },
+  {
+    title: "Resources",
+    icon: BookOpen,
+    items: [
+      {
+        icon: Globe,
+        href: "/case-studies",
+        label: "Case Studies",
+        desc: "See how others succeed with CloudVictor.",
+      },
+      {
+        icon: Newspaper,
+        href: "/blog",
+        label: "Blog",
+        desc: "Insights, news, and best practices.",
+      },
+    ],
+  },
+ 
+];
 
 export default function Footer() {
   return (
@@ -35,9 +139,8 @@ export default function Footer() {
                 />
               </Link>
             </div>
-            
             {/* Subscription Box */}
-            <div className="border bg-foreground/5 rounded-lg p-6">
+            <div className="border bg-foreground/5 rounded-lg p-4">
               <p className=" text-center mb-4">
                 Stay current with all things CloudVictor
               </p>
@@ -48,150 +151,30 @@ export default function Footer() {
           </div>
 
           {/* Right Section - Navigation Columns */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-20 flex-1">
-            {/* Product Column */}
-            <div className="space-y-6 min-w-[280px]">
-              <h3 className="text-sm text-foreground/70">Product</h3>
-              <div className="space-y-5">
-                <div className="flex items-start gap-3 opacity-80 hover:opacity-100 group cursor-pointer">
-                  <div className="w-10 h-10 flex-shrink-0 mt-1 bg-foreground/5 group-hover:bg-foreground/10 p-2 transition rounded-full text-foreground/90 group-hover:text-foreground">
-                    <Cloud className="w-full h-full" />
-                  </div>
-                  <div>
-                    <Link href="/product/overview" className="block transition-colors">
-                      Overview
-                    </Link>
-                    <p className="text-xs mt-1">
-                      The only cloud optimization tool built for data engineers
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 opacity-80 hover:opacity-100 group cursor-pointer">
-                  <div className="w-10 h-10 flex-shrink-0 mt-1 bg-foreground/5 group-hover:bg-foreground/10 p-2 transition rounded-full text-foreground/90 group-hover:text-foreground">
-                    <Settings className="w-full h-full" />
-                  </div>
-                  <div>
-                    <Link href="/product/log-guardia" className="block transition-colors">
-                      Log Guardia
-                    </Link>
-                    <p className="text-xs mt-1">
-                      Build a connector for any data source under the sun
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 opacity-80 hover:opacity-100 group cursor-pointer">
-                  <div className="w-10 h-10 flex-shrink-0 mt-1 bg-foreground/5 group-hover:bg-foreground/10 p-2 transition rounded-full text-foreground/90 group-hover:text-foreground">
-                    <Boxes className="w-full h-full" />
-                  </div>
-                  <div>
-                    <Link href="/product/effdog" className="block transition-colors">
-                      EffDog
-                    </Link>
-                    <p className="text-xs mt-1">
-                      Integrate any existing data tool for any data source
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 opacity-80 hover:opacity-100 group cursor-pointer">
-                  <div className="w-10 h-10 flex-shrink-0 mt-1 bg-foreground/5 group-hover:bg-foreground/10 p-2 transition rounded-full text-foreground/90 group-hover:text-foreground">
-                    <DollarSign className="w-full h-full" />
-                  </div>
-                  <div>
-                    <Link href="/pricing" className="block transition-colors">
-                      Pricing
-                    </Link>
-                    <p className="text-xs mt-1">
-                      Connectors for 600+ sources and destinations
-                    </p>
-                  </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-20 flex-1">
+            {footerColumns.map((col) => (
+              <div className="space-y-6 min-w-[220px]" key={col.title}>
+                <h3 className="text-sm text-foreground/70 flex items-center gap-2">
+                  {col.title}
+                </h3>
+                <div className="space-y-5">
+                  {col.items.map((item) => (
+                    <div
+                      className="flex items-start gap-3 opacity-80 hover:opacity-100 group cursor-pointer"
+                      key={item.href}
+                    >
+                      <item.icon className="w-5 h-5 flex-shrink-0 mt-1 " />
+                      <div>
+                        <Link href={item.href} className="block transition-colors text-sm">
+                          {item.label}
+                        </Link>
+                        <p className="text-xs mt-1 font-light">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-
-            {/* Resources Column */}
-            <div className="space-y-6 min-w-[280px]">
-              <h3 className="text-sm text-foreground/70">Resources</h3>
-              <div className="space-y-5">
-                <div className="flex items-start gap-3 opacity-80 hover:opacity-100 group cursor-pointer">
-                  <div className="w-10 h-10 flex-shrink-0 mt-1 bg-foreground/5 group-hover:bg-foreground/10 p-2 transition rounded-full text-foreground/90 group-hover:text-foreground">
-                    <BookOpen className="w-full h-full" />
-                  </div>
-                  <div>
-                    <Link href="/documentation" className="block transition-colors">
-                      Documentation
-                    </Link>
-                    <p className="text-xs mt-1">
-                      Learn how to use CloudVictor and where to get started
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 opacity-80 hover:opacity-100 group cursor-pointer">
-                  <div className="w-10 h-10 flex-shrink-0 mt-1 bg-foreground/5 group-hover:bg-foreground/10 p-2 transition rounded-full text-foreground/90 group-hover:text-foreground">
-                    <Users className="w-full h-full" />
-                  </div>
-                  <div>
-                    <Link href="/community" className="block transition-colors">
-                      Community
-                    </Link>
-                    <p className="text-xs mt-1">
-                      Join 5,500+ data professionals on Slack and GitHub
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 opacity-80 hover:opacity-100 group cursor-pointer">
-                  <div className="w-10 h-10 flex-shrink-0 mt-1 bg-foreground/5 group-hover:bg-foreground/10 p-2 transition rounded-full text-foreground/90 group-hover:text-foreground">
-                    <Newspaper className="w-full h-full" />
-                  </div>
-                  <div>
-                    <Link href="/blog" className="block transition-colors">
-                      Blog
-                    </Link>
-                    <p className="text-xs mt-1">
-                      Stay up to date on CloudVictor & data engineering
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 opacity-80 hover:opacity-100 group cursor-pointer">
-                  <div className="w-10 h-10 flex-shrink-0 mt-1 bg-foreground/5 group-hover:bg-foreground/10 p-2 transition rounded-full text-foreground/90 group-hover:text-foreground">
-                    <Handshake className="w-full h-full" />
-                  </div>
-                  <div>
-                    <Link href="/partners" className="block transition-colors">
-                      Partners
-                    </Link>
-                    <p className="text-xs mt-1">
-                      Bring in help to build connectors and take CloudVictor into production
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Company Column */}
-            <div className="space-y-6 min-w-[280px]">
-              <h3 className="text-sm text-foreground/70">Company</h3>
-              <div className="space-y-5">
-                <div className="flex items-start gap-3 opacity-80 hover:opacity-100 group cursor-pointer">
-                  <div className="w-10 h-10 flex-shrink-0 mt-1 bg-foreground/5 group-hover:bg-foreground/10 p-2 transition rounded-full text-foreground/90 group-hover:text-foreground">
-                    <UserCircle className="w-full h-full" />
-                  </div>
-                  <div>
-                    <Link href="/about" className="block transition-colors">
-                      About
-                    </Link>
-                    <p className="text-xs mt-1">
-                      CloudVictor is an open source project by Arch
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 

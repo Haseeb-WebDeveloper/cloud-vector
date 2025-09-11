@@ -202,7 +202,7 @@ export default function StepsSection() {
 
             {/* Right Image Placeholder */}
             <div className="flex justify-center">
-             <Image src="/test.png" alt="Steps Section" width={500} height={500} />
+             <Image src="/test.png" alt="Steps Section" width={500} height={500} className="rounded-2xl" />
             </div>
           </div>
         </div>

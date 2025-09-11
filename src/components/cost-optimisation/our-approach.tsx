@@ -82,7 +82,7 @@ export default function OurApproachSection() {
           <h2 className="text-4xl lg:text-6xl font-light text-foreground mb-6 leading-[1.2] max-w-3xl mx-auto">
             Our Unique Approach to Cloud Cost Optimization
           </h2>
-          <p className="text-xl text-muted-foreground mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground mx-auto leading-relaxed max-w-2xl">
             Our method optimizes efficiency at every level so that your savings
             scale with your business, not your costs.
           </p>

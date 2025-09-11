@@ -34,7 +34,7 @@ export default function ClientSectionV2() {
         </div>
 
         {/* Micro-Metrics */}
-        <div className="flex gap-16 mb-4 justify-center items-center">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 mb-4 justify-center items-center">
           <p className="text-lg font-medium border-b">
             <span className="font-bold text-2xl">12+</span> Years in Amazon/AWS
           </p>
