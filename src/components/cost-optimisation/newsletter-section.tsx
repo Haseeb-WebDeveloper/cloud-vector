@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CheckCircle } from "lucide-react";
+import Image from "next/image";
 
 export default function NewsletterSection() {
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ export default function NewsletterSection() {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <div className="flex justify-center mb-6">
-              <CheckCircle className="w-16 h-16 text-primary" />
+              <Image src="/icons/check.svg" alt="Check Circle" width={64} height={64} className="w-16 h-16 text-primary" />
             </div>
             <h2 className="text-3xl lg:text-4xl text-foreground mb-4">
               Thanks for opting in!
@@ -59,22 +59,22 @@ export default function NewsletterSection() {
 
           {/* Newsletter Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <div className="flex flex-col gap-3 max-w-md mx-auto">
               <Input
                 type="email"
                 placeholder="Enter your email."
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 h-12 text-center sm:text-left"
+                className="flex-1 h-12 p-3 rounded-lg focus:outline-none focus:ring-0 text-center sm:text-left"
                 required
               />
-              <Button
+              <button
                 type="submit"
                 disabled={isLoading || !email}
-                className="h-12 px-8 bg-primary hover:bg-primary/90 text-primary-foreground"
+                className="cursor-pointer py-3 px-8 bg-foreground text-background hover:bg-foreground/90  rounded-lg"
               >
                 {isLoading ? "Sending..." : "Send Me Cloud Tips."}
-              </Button>
+              </button>
             </div>
             
             {/* Trust Builder */}

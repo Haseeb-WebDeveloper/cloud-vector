@@ -7,6 +7,7 @@ import StepsSection from "@/components/cost-optimisation/steps-section";
 import OurApproachSection from "@/components/cost-optimisation/our-approach";
 import TestimonialsSection from "@/components/cost-optimisation/testimonials";
 import NewsletterSection from "@/components/cost-optimisation/newsletter-section";
+import { HelpSection } from "@/components/help-section";
 
 export default function CostOptimisation() {
   return (
@@ -19,7 +20,7 @@ export default function CostOptimisation() {
       <StepsSection />
       <TestimonialsSection />
       <OurApproachSection />
-      <NewsletterSection />
+     
     </div>
   );
 }

@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import NewsletterSection from "@/components/cost-optimisation/newsletter-section";
+import { HelpSection } from "@/components/help-section";
 
 const bricol = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -34,6 +36,8 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Header />
           {children}
+          <NewsletterSection />
+          <HelpSection />
           <Footer />
         </ThemeProvider>
       </body>
