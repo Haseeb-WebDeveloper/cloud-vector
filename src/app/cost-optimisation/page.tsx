@@ -8,6 +8,7 @@ import OurApproachSection from "@/components/cost-optimisation/our-approach";
 import TestimonialsSection from "@/components/cost-optimisation/testimonials";
 import NewsletterSection from "@/components/cost-optimisation/newsletter-section";
 import { HelpSection } from "@/components/help-section";
+import GetStartedSection from "@/components/cost-optimisation/get-started-section";
 
 export default function CostOptimisation() {
   return (
@@ -17,10 +18,10 @@ export default function CostOptimisation() {
       <ClientSectionV2 />
       <IndustryFactsSection />
       <RootCaseSection />
-      <StepsSection />
       <TestimonialsSection />
       <OurApproachSection />
-     
+      <GetStartedSection />
+      <StepsSection />
     </div>
   );
 }

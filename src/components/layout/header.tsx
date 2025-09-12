@@ -62,7 +62,7 @@ const navigationData = [
         title: "Effdog",
         description: "Advanced efficiency monitoring and optimization platform",
         icon: Monitor,
-        href: "#effdog",
+        href: "#cloud-victor",
       },
       {
         title: "Log Guardia",

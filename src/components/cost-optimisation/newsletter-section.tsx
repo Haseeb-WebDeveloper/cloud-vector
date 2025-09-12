@@ -25,7 +25,7 @@ export default function NewsletterSection() {
 
   if (isSubmitted) {
     return (
-      <section className="py-20 bg-gradient-to-br from-primary/5 to-primary/10">
+      <section className="py-32 bg-gradient-to-br from-foreground/5 to-foreground/10">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <div className="flex justify-center mb-6">
@@ -44,7 +44,7 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary/5 to-primary/10">
+    <section className="py-32 bg-gradient-to-br from-foreground/5 to-foreground/10">
       <div className="container mx-auto px-4">
         <div className="mx-auto text-center">
           {/* Heading */}

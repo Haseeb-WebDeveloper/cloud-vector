@@ -24,84 +24,88 @@ export const HelpSection = () => {
     <section className="py-20 px-4 bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Main Title */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-muted-foreground mb-4">
-            We're here to help
+        <div className="text-center mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-muted-foreground mb-2">
+            We are here to help
           </h2>
+          <p className="text-lg md:text-xl text-muted-foreground/80 max-w-3xl mx-auto">
+            Explore how much you’re really overpaying and how fast we can fix it.
+          </p>
         </div>
 
         {/* Three Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* SUPPORT Section */}
-          <SpotlightCard className="h-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+          {/* Column 1 - Quick Chat */}
+          <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
             <div className="flex flex-col gap-6 justify-between h-full">
               <div>
                 <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                  SUPPORT
+                  Quick Chat
                 </h3>
-                <h4 className="text-2xl font-bold text-muted-foreground">
-                  Let's talk
+                <h4 className="text-2xl font-bold text-muted-foreground mb-2">
+                  Stuck with Rising Bills?
                 </h4>
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                  Have questions or need assistance? Contact us for expert
-                  advice and tailored solutions. We're here to help!
+                <p className="mt-2 text-muted-foreground leading-relaxed">
+                  AWS overcharges you quietly every month, often <span className="font-semibold text-primary">30-68% waste</span> hiding in plain sight.<br />
+                  Let’s talk. Get answers instantly.
                 </p>
               </div>
-              <div className="flex gap-3">
-                <button className="cursor-pointer w-full bg-foreground/5 px-6 py-3 rounded-lg font-medium hover:bg-foreground/10 transition-colors">
-                  Contact us
-                </button>
-                <button className="flex items-center justify-center cursor-pointer w-full bg-foreground/5 px-6 py-3 rounded-lg font-medium hover:bg-foreground/10 transition-colors">
+              <div>
+                <a
+                  href="https://wa.me/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center cursor-pointer w-full bg-foreground/5 px-6 py-3 rounded-lg font-medium hover:bg-foreground/10 transition-colors"
+                >
                   <WhatsAppIcon />
-                  Whatsapp
-                </button>
+                  Chat on WhatsApp
+                </a>
               </div>
             </div>
           </SpotlightCard>
 
-          {/* CONTACT Section */}
-          <SpotlightCard className="h-full">
+          {/* Column 2 – Free Audit Call */}
+          <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
             <div className="flex flex-col gap-6 justify-between h-full">
               <div>
                 <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                  CONTACT
+                  Free Audit Call
                 </h3>
-                <h4 className="text-2xl font-bold text-muted-foreground">
-                  Schedule a call
+                <h4 className="text-2xl font-bold text-muted-foreground mb-2">
+                  Curious How Much You Can Save?
                 </h4>
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                  Schedule a call with our team to get personalized demos,
-                  expert guidance. We're here to help you make the most of our
-                  services!
+                <p className="mt-2 text-muted-foreground leading-relaxed">
+                  In 20 minutes, we’ll scan your account and show you exactly where &amp; how much you are overspending.<br />
+                  Verified directly on your AWS bill. No fluff, just numbers.
                 </p>
               </div>
               <div>
                 <button className="cursor-pointer w-full bg-foreground/5 px-6 py-3 rounded-lg font-medium hover:bg-foreground/10 transition-colors">
-                  Book a call
+                  Schedule a Free Audit
                 </button>
               </div>
             </div>
           </SpotlightCard>
 
-          {/* JOIN EFFDOG Section */}
-          <SpotlightCard className="h-full">
+          {/* Column 3 – Risk-Free Start */}
+          <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
             <div className="flex flex-col gap-6 justify-between h-full">
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">
-                  JOIN EFFDOG
+                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                  Risk-Free Start
                 </h3>
-                <p className="text-2xl font-bold bg-gradient-to-r from-foreground/90 to-primary bg-clip-text text-transparent">
-                  Start now, no strings attached
-                </p>
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                  Experience our services with no commitments. Get started today
-                  and see how we can make a difference for your
-                  business—completely risk-free!
+                <h4 className="text-2xl font-bold text-muted-foreground mb-2">
+                  No Savings? No Fee. Risk-Free
+                </h4>
+                <p className="mt-2 text-muted-foreground leading-relaxed">
+                  With 12+ years building AWS services at Amazon, we know where waste hides.<br />
+                  Try our risk-free offering: <span className="font-semibold text-primary">3-Month 100% ROI Guarantee.</span><br />
+                  Sustained savings, zero performance risk.
                 </p>
               </div>
               <div>
                 <button className="cursor-pointer w-full bg-gradient-to-r from-foreground/10 to-primary/40 px-6 py-3 rounded-lg font-medium hover:to-primary/50 transition-all duration-300">
-                  Start saving now for free!
+                  Start Saving Today.
                 </button>
               </div>
             </div>

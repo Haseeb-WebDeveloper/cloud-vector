@@ -51,14 +51,15 @@ const footerColumns = [
     items: [
       {
         icon: FileText,
-        href: "/product/log-guardia",
-        label: "Log Guardia",
+        
+        href: "/product/cloud-victor",
+        label: "Cloud Victor",
         desc: "Secure, monitor, and analyze your cloud logs.",
       },
       {
         icon: Users,
-        href: "/product/effdog",
-        label: "EffDog",
+        href: "/product/cloud-victor",
+        label: "Cloud Victor",
         desc: "Automate and optimize data workflows.",
       },
       {

@@ -43,7 +43,7 @@ export default function CostOptimisationHeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button className="group cursor-pointer flex justify-center items-center gap-2 bg-primary/10 text-foreground border border-primary/50 hover:pr-6 hover:border-primary/70 hover:bg-primary/20 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
+              <button className="group cursor-pointer flex justify-center items-center gap-2 bg-primary/60 text-foreground border border-primary/50 hover:pr-6 hover:border-primary/70 hover:bg-primary/70 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
                 Book a call
                 <Image
                   src="/icons/arrow-right.svg"
