@@ -161,7 +161,7 @@ export default function Footer() {
                 <div className="space-y-5">
                   {col.items.map((item) => (
                     <div
-                      className="flex items-start gap-3 opacity-80 hover:opacity-100 group cursor-pointer"
+                      className="flex items-start gap-3 opacity-80 hover:text-primary group cursor-pointer"
                       key={item.href}
                     >
                       <item.icon className="w-5 h-5 flex-shrink-0 mt-1 " />

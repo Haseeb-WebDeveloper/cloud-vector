@@ -256,7 +256,7 @@ export default function Header() {
 
           {/* Desktop CTA Button */}
           <div className="hidden lg:flex items-center space-x-4">
-            <button className="group cursor-pointer flex items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 py-2.5 rounded-full text-sm">
+            {/* <button className="group cursor-pointer flex items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 py-2.5 rounded-full text-sm">
               Get Started
               <Image
                 src="/icons/arrow-right.svg"
@@ -265,7 +265,7 @@ export default function Header() {
                 height={350}
                 className="w-fit h-5 group-hover:translate-x-2 transition-all duration-300"
               />
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile Menu Button */}
@@ -347,10 +347,7 @@ export default function Header() {
 
                 {/* Mobile CTA Buttons */}
                 <div className="flex flex-col space-y-3 pt-4 border-t">
-                  <Button variant="outline" className="w-full">
-                    Sign In
-                  </Button>
-                  <button className="group cursor-pointer flex items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 py-2.5 rounded-full text-sm">
+                  {/* <button className="group cursor-pointer flex items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 py-2.5 rounded-full text-sm">
                     Get Started
                     <Image
                       src="/icons/arrow-right.svg"
@@ -359,7 +356,7 @@ export default function Header() {
                       height={350}
                       className="w-fit h-5 group-hover:translate-x-2 transition-all duration-300"
                     />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </SheetContent>

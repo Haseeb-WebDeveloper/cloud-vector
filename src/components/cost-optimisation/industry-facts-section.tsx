@@ -5,6 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
+
 interface IndustryFact {
   id: number;
   fact: string;
@@ -16,35 +17,35 @@ interface IndustryFact {
 const industryFacts: IndustryFact[] = [
   {
     id: 1,
-    fact: "Organizations waste up to 30% of their cloud spend due to underutilized resources and poor governance.",
+    fact: "Organizations waste up to <span class=\"text-[#FF8703] font-semibold\">30%</span> of their cloud spend due to underutilized resources and poor governance.",
     source: "Gartner",
     report: "How to Identify and Reduce Public Cloud Waste 2024",
     image: "/test.avif",
   },
   {
     id: 2,
-    fact: "Approximately 35% of cloud spend is wasted due to overprovisioning, unused resources, and inefficient architecture.",
+    fact: "Approximately <span class=\"text-[#FF8703] font-semibold\">35%</span> of cloud spend is wasted due to overprovisioning, unused resources, and inefficient architecture.",
     source: "McKinsey & Company",
     report: "Cloud's trillion-dollar prize is up for grabs. Report",
     image: "/test.avif",
   },
   {
     id: 3,
-    fact: "82% of global organizations struggle with more than 10% of their cloud spend being wasted, and 38% experience more than 30% wastage.",
+    fact: "82% of global organizations struggle with more than <span class=\"text-[#FF8703] font-semibold\">10%</span> of their cloud spend being wasted, and 38% experience more than <span class=\"text-[#FF8703] font-semibold\">30%</span> wastage.",
     source: "Everest Group",
     report: "Cloud Waste Survey 2024",
     image: "/test.avif",
   },
   {
     id: 4,
-    fact: "More than three-quarters (78%) of enterprises estimate that 21–50% of their cloud spend is wasted, with preventable mistakes costing some organizations over $50,000 per month.",
+    fact: "More than three-quarters <span class=\"text-[#FF8703] font-semibold\">(78%)</span> of enterprises estimate that <span class=\"text-[#FF8703] font-semibold\">21–50%</span> of their cloud spend is wasted, with preventable mistakes costing some organizations over $50,000 per month.",
     source: "Omdia",
     report: "State of Cloud Usage Optimization 2024",
     image: "/test.avif",
   },
   {
     id: 5,
-    fact: "Integrating cloud cost management practices (FinOps) into engineering processes could unlock nearly $120 billion in value.",
+    fact: "Integrating cloud cost management practices (FinOps) into engineering processes could unlock nearly <span class=\"text-[#FF8703] font-semibold\">$120 billion</span> in value.",
     source: "McKinsey & Company",
     report:
       "Everything Is Better as Code: Using FinOps to Manage Cloud Costs 2025",
@@ -57,7 +58,7 @@ export default function IndustryFactsSection() {
     loop: true,
     duration: 20,
     startIndex: 0,
-    align: "start", // Add this to ensure proper alignment
+    align: "start",
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
@@ -132,14 +133,14 @@ export default function IndustryFactsSection() {
   const handleMouseLeave = () => setIsPlaying(true);
 
   return (
-    <div className="pt-32 pb-36">
+    <div className="mb-32">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center pb-16">
-          <h2 className="text-4xl lg:text-6xl font-light text-foreground mb-8">
+        <div className="text-center pb-12">
+          <h2 className="text-4xl lg:text-6xl font-semibold text-foreground mb-8">
             Cloud Spending & Waste is Escalating Fast
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-2xl text-foreground/90 max-w-3xl mx-auto">
             Industry Facts quantifying the problem.
           </p>
         </div>
@@ -153,65 +154,73 @@ export default function IndustryFactsSection() {
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {industryFacts.map((fact, index) => (
-                <div key={fact.id} className="flex-[0_0_100%] min-w-0 px-4">
-                  <div className="grid lg:grid-cols-2 gap-12 items-center h-full">
+                <div key={fact.id} className="flex-[0_0_100%] min-w-0 px-4 h-fit">
+                  <div className="flex flex-col md:flex-row gap-12 h-fit"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  >
                     {/* Left Side - Text Content */}
-                    <div className="flex flex-col justify-center">
-                      <p className="text-xl lg:text-3xl text-foreground leading-relaxed mb-8 font-light">
-                        {" "}
-                        "{fact.fact}"
-                      </p>
+                    <div className="flex flex-col ">
+                      {/* 
+                        Don't wrap a <div> inside a <p> (invalid HTML).
+                        Instead, just use <p> with dangerouslySetInnerHTML.
+                      */}
+                      <p
+                        className="text-xl lg:text-3xl text-foreground leading-relaxed mb-8 font-light"
+                        dangerouslySetInnerHTML={{ __html: fact.fact }}
+                      />
 
                       <div className="space-y-3">
-                        <p className="font-semibold text-foreground text-lg">
+                        <p className="font-semibold text-[#FF8703] text-2xl">
                           {fact.source}
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-lg text-foreground/90">
                           {fact.report}
                         </p>
                       </div>
                     </div>
 
                     {/* Right Side - Image */}
-                    <div className="flex justify-center items-center">
-                      <div className="relative w-full h-96 lg:h-[300px] overflow-hidden">
+                    <div className="flex flex-col justify-center items-center  min-w-1/2 w-full h-full">
+                      <div className="relative w-full h-full overflow-hidden rounded-lg">
                         <Image
                           src={fact.image}
                           alt={`Cloud Cost Optimization - ${fact.source}`}
-                          fill
-                          className="object-cover"
+                          width={500}
+                          height={500}
+                          className="object-cover h-full w-full rounded-lg"
                           priority={index === 0}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
+                      </div>
+
+                      {/* Progress Indicators */}
+                      <div className="flex justify-center mt-6 space-x-2">
+                        {scrollSnaps.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => scrollTo(index)}
+                            className={cn(
+                              "h-1.5 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer relative overflow-hidden",
+                              index === selectedIndex
+                                ? "w-16 bg-[#c8c8c2]"
+                                : "w-8 bg-[#c8c8c2]/90"
+                            )}
+                          >
+                            {index === selectedIndex && (
+                              <div
+                                className="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-75 ease-linear"
+                                style={{ width: `${progress}%` }}
+                              />
+                            )}
+                          </button>
+                        ))}
                       </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Progress Indicators */}
-          <div className="flex justify-center mt-6 space-x-2">
-            {scrollSnaps.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => scrollTo(index)}
-                className={cn(
-                  "h-2 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer relative overflow-hidden",
-                  index === selectedIndex
-                    ? "bg-slate-200 dark:bg-slate-600 w-16"
-                    : "w-4 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-600"
-                )}
-              >
-                {index === selectedIndex && (
-                  <div
-                    className="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-75 ease-linear"
-                    style={{ width: `${progress}%` }}
-                  />
-                )}
-              </button>
-            ))}
           </div>
 
           {/* Slide Counter */}

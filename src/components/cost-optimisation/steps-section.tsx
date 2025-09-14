@@ -11,6 +11,7 @@ import {
   FileCheck,
 } from "lucide-react";
 import Image from "next/image";
+import CheckIcon from "@/components/check";
 
 interface Step {
   id: number;
@@ -134,7 +135,7 @@ export default function StepsSection() {
     steps.find((step) => step.id === currentStep) || steps[0];
 
   return (
-    <section className="py-20">
+    <section className="pb-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -182,16 +183,16 @@ export default function StepsSection() {
 
         {/* Main Content Panel */}
         <div className="rounded-2xl p-8 md:p-12 bg-foreground/5">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="flex flex-col lg:flex-row gap-12">
             {/* Left Content */}
             <div className="space-y-6">
-              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6  pl-8">
                 {currentStepData.headline}
               </h3>
               <ul className="space-y-4">
                 {currentStepData.points.map((point, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <Image src="/icons/check.svg" alt="Steps Section" width={20} height={20} />
+                    <CheckIcon className="min-w-5 min-h-5" />
                     <span className="text-foreground/95 leading-relaxed">
                       {point}
                     </span>
@@ -201,8 +202,14 @@ export default function StepsSection() {
             </div>
 
             {/* Right Image Placeholder */}
-            <div className="flex justify-center">
-             <Image src="/test.png" alt="Steps Section" width={500} height={500} className="rounded-2xl" />
+            <div className="w-fit lg:h-[500px]">
+              <Image
+                src="/test.png"
+                alt="Steps Section"
+                width={500}
+                height={500}
+                className="rounded-2xl object-cover w-full h-full"
+              />
             </div>
           </div>
         </div>

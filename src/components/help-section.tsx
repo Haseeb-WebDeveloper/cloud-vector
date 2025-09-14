@@ -45,8 +45,8 @@ export const HelpSection = () => {
                 <h4 className="text-2xl font-bold text-muted-foreground mb-2">
                   Stuck with Rising Bills?
                 </h4>
-                <p className="mt-2 text-muted-foreground leading-relaxed">
-                  AWS overcharges you quietly every month, often <span className="font-semibold text-primary">30-68% waste</span> hiding in plain sight.<br />
+                <p className="mt-2 text-foreground/90 leading-relaxed">
+                  AWS overcharges you quietly every month, often <span className="font-bold bg-gradient-to-r from-primary to-primary via-primary text-transparent bg-clip-text">30-68% waste</span> hiding in plain sight.<br />
                   Let’s talk. Get answers instantly.
                 </p>
               </div>
@@ -74,7 +74,7 @@ export const HelpSection = () => {
                 <h4 className="text-2xl font-bold text-muted-foreground mb-2">
                   Curious How Much You Can Save?
                 </h4>
-                <p className="mt-2 text-muted-foreground leading-relaxed">
+                <p className="mt-2 text-foreground/90 leading-relaxed">
                   In 20 minutes, we’ll scan your account and show you exactly where &amp; how much you are overspending.<br />
                   Verified directly on your AWS bill. No fluff, just numbers.
                 </p>
@@ -97,14 +97,14 @@ export const HelpSection = () => {
                 <h4 className="text-2xl font-bold text-muted-foreground mb-2">
                   No Savings? No Fee. Risk-Free
                 </h4>
-                <p className="mt-2 text-muted-foreground leading-relaxed">
+                <p className="mt-2 text-foreground/90 leading-relaxed">
                   With 12+ years building AWS services at Amazon, we know where waste hides.<br />
-                  Try our risk-free offering: <span className="font-semibold text-primary">3-Month 100% ROI Guarantee.</span><br />
+                  Try our risk-free offering: <span className="font-bold bg-gradient-to-r from-primary to-primary via-primary text-transparent bg-clip-text">3-Month 100% ROI Guarantee.</span><br />
                   Sustained savings, zero performance risk.
                 </p>
               </div>
               <div>
-                <button className="cursor-pointer w-full bg-gradient-to-r from-foreground/10 to-primary/40 px-6 py-3 rounded-lg font-medium hover:to-primary/50 transition-all duration-300">
+                <button className="cursor-pointer w-full bg-gradient-to-r from-secondary to-primary/90 px-6 py-3 rounded-lg font-medium hover:to-primary transition-all duration-300">
                   Start Saving Today.
                 </button>
               </div>

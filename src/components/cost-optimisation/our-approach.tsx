@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import CheckIcon from "@/components/check";
 
 interface ApproachStep {
   id: number;
@@ -75,14 +76,14 @@ const approachSteps: ApproachStep[] = [
 
 export default function OurApproachSection() {
   return (
-    <div className="bg-gradient-to-br from-background via-background to-primary/5 py-24">
+    <div className="bg-gradient-to-br from-background via-background to-primary/5 mb-32">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center pb-16">
-          <h2 className="text-4xl lg:text-6xl font-light text-foreground mb-6 leading-[1.2] max-w-3xl mx-auto">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-foreground mb-6 leading-[1.2] max-w-3xl mx-auto">
             Our Unique Approach to Cloud Cost Optimization
           </h2>
-          <p className="text-xl text-muted-foreground mx-auto leading-relaxed max-w-2xl">
+          <p className="text-xl text-foreground/80 mx-auto leading-relaxed max-w-2xl">
             Our method optimizes efficiency at every level so that your savings
             scale with your business, not your costs.
           </p>
@@ -124,7 +125,7 @@ export default function OurApproachSection() {
                     </div>
                   )}
 
-                  <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                  <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
                     {/* Text Content */}
                     <div
                       className={cn(
@@ -132,11 +133,11 @@ export default function OurApproachSection() {
                         step.isReversed ? "lg:order-2" : "lg:order-1"
                       )}
                     >
-                      <div className="space-y-4">
-                        <h3 className="text-3xl lg:text-4xl font-light text-foreground">
+                      <div className="space-y-4 pl-8">
+                        <h3 className="text-3xl lg:text-4xl text-foreground font-semibold">
                           {step.heading}
                         </h3>
-                        <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
+                        <p className="text-foreground/80 leading-relaxed">
                           {step.oneLiner}
                         </p>
                       </div>
@@ -145,10 +146,11 @@ export default function OurApproachSection() {
                         {step.details.map((detail, detailIndex) => (
                           <li
                             key={detailIndex}
-                            className="flex items-start gap-3"
+                            className="flex items-start gap-3 text-lg"
                           >
-                            <div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0" />
-                            <span className="text-muted-foreground leading-relaxed">
+                            {/* Modern Check Icon */}
+                            <CheckIcon className="w-6 h-6 mt-1 flex-shrink-0 text-primary" />
+                            <span className="leading-relaxed">
                               {detail}
                             </span>
                           </li>
@@ -159,7 +161,7 @@ export default function OurApproachSection() {
                     {/* Image */}
                     <div
                       className={cn(
-                        "flex-1 max-w-md lg:max-w-lg z-10",
+                        "flex-1 w-full z-10",
                         step.isReversed ? "lg:order-1" : "lg:order-2"
                       )}
                     >

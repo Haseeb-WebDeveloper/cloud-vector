@@ -1,8 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import AnimatedTextCycle from "@/components/ui/text-cycle";
-import { Calendar, MessageCircle } from "lucide-react";
 import Image from "next/image";
 
 export default function CostOptimisationHeroSection() {
@@ -16,25 +14,23 @@ export default function CostOptimisationHeroSection() {
           <div className="space-y-8 w-full max-w-3xl">
             {/* Main Heading */}
             <div className="space-y-4">
-              <h1 className="text-4xl lg:text-6xl text-foreground leading-tight">
+              <h1 className="text-4xl lg:text-6xl text-foreground leading-tight font-semibold">
                 Stop Overpaying AWS Unlock{" "}
                 <span className="text-primary"> Savings Up to 68%</span>
               </h1>
             </div>
 
             {/* Subheadline */}
-            <p className="text-xl  font-light">
-              All-in-one cloud cost optimisation
-            </p>
+            <p className="text-3xl text-foreground/90">All-in-one cloud cost optimisation</p>
 
             {/* Animated Text Section */}
             <div className="space-y-2">
-              <div className="flex flex-wrap items-center gap-2 text-lg">
+              <div className="flex flex-wrap items-center gap-2 text-3xl ">
                 <span>Optimize</span>
                 <AnimatedTextCycle
                   words={rollingTexts}
                   interval={3000}
-                  className="text-lg"
+                  className="text-3xl text-primary"
                   showProgressBar={true}
                 />
                 <span>of your AWS Infrastructure</span>

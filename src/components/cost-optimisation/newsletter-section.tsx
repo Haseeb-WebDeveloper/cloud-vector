@@ -25,7 +25,7 @@ export default function NewsletterSection() {
 
   if (isSubmitted) {
     return (
-      <section className="py-32 bg-gradient-to-br from-foreground/5 to-foreground/10">
+      <section className="py-32 bg-[#252F3E]">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <div className="flex justify-center mb-6">
@@ -44,11 +44,11 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section className="py-32 bg-gradient-to-br from-foreground/5 to-foreground/10">
+    <section className="py-32 bg-[#252F3E]">
       <div className="container mx-auto px-4">
         <div className="mx-auto text-center">
           {/* Heading */}
-          <h2 className="text-3xl lg:text-4xl text-foreground mb-4">
+          <h2 className="text-3xl lg:text-4xl text-foreground mb-4 font-semibold">
             Stop Letting AWS Eat All Your Profits.
           </h2>
           
@@ -65,13 +65,13 @@ export default function NewsletterSection() {
                 placeholder="Enter your email."
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 h-12 p-3 rounded-lg focus:outline-none focus:ring-0 text-center sm:text-left"
+                className="flex-1 h-12 p-3 rounded-lg focus:outline-none focus:ring-0 text-center placeholder:text-center sm:text-left"
                 required
               />
               <button
                 type="submit"
                 disabled={isLoading || !email}
-                className="cursor-pointer py-3 px-8 bg-foreground text-background hover:bg-foreground/90  rounded-lg"
+                className="cursor-pointer py-3 px-8 bg-primary text-background hover:bg-primary/90 font-semibold rounded-lg"
               >
                 {isLoading ? "Sending..." : "Send Me Cloud Tips."}
               </button>

@@ -9,40 +9,40 @@ import {
 } from "@/components/ui/marquee";
 
 const partnerLogos = [
-  { name: "Mayo Clinic", src: "/logo/client-1.webp", alt: "Mayo Clinic" },
-  { name: "Cisco", src: "/logo/client-1.webp", alt: "Cisco" },
-  { name: "TIME", src: "/logo/client-1.webp", alt: "TIME" },
-  { name: "DLA Piper", src: "/logo/client-1.webp", alt: "DLA Piper" },
+  { name: "Mayo Clinic", src: "/clients/1.png", alt: "Mayo Clinic" },
+  { name: "Cisco", src: "/clients/2.png", alt: "Cisco" },
+  { name: "TIME", src: "/clients/3.png", alt: "TIME" },
+  { name: "DLA Piper", src: "/clients/4.png", alt: "DLA Piper" },
   {
     name: "Global Atlantic",
-    src: "/logo/client-1.webp",
+    src: "/clients/5.png",
     alt: "Global Atlantic",
   },
-  { name: "Howard Hughes", src: "/logo/client-1.webp", alt: "Howard Hughes" },
-  { name: "Cengage", src: "/logo/client-1.webp", alt: "Cengage" },
+  { name: "Howard Hughes", src: "/clients/6.png", alt: "Howard Hughes" },
+  { name: "Cengage", src: "/clients/7.png", alt: "Cengage" },
 ];
 
 export default function ClientSectionV2() {
   return (
-    <div className="py-20  bg-foreground/[0.02]">
+    <div className="py-20 mt-4 mb-32  bg-[#252f3e]">
       <div className=" mx-auto px-4">
         {/* Main Text */}
         <div className="text-center pb-12">
-          <h2 className="text-4xl lg:text-5xl font-light text-foreground mb-4">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-foreground mb-4">
             Proven Savings. Real Impact
           </h2>
         </div>
 
         {/* Micro-Metrics */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 mb-4 justify-center items-center">
-          <p className="text-lg font-medium border-b">
-            <span className="font-bold text-2xl">12+</span> Years in Amazon/AWS
+          <p className="text-lg font-medium border-b-2 border-primary">
+            <span className="font-bold text-3xl text-primary">12+</span> Years in Amazon/AWS
           </p>
-          <p className="text-lg font-medium border-b">
-            <span className="font-bold text-2xl">$60M+</span> Annual Savings
+          <p className="text-lg font-medium border-b-2 border-primary">
+            <span className="font-bold text-3xl text-primary">$60M+</span> Annual Savings
           </p>
-          <p className="text-lg font-medium border-b">
-            Up to <span className="font-bold text-2xl">68%</span> Annual Savings
+          <p className="text-lg font-medium border-b-2 border-primary">
+            Up to <span className="font-bold text-3xl text-primary">68%</span> Annual Savings
           </p>
         </div>
 
@@ -61,8 +61,8 @@ export default function ClientSectionV2() {
                     <Image
                       src={logo.src}
                       alt={logo.alt}
-                      width={160}
-                      height={80}
+                      width={300}
+                      height={150}
                       className="w-full h-full object-contain transition-opacity duration-300"
                     />
                   </div>
