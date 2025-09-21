@@ -2,6 +2,7 @@
 
 import AnimatedTextCycle from "@/components/ui/text-cycle";
 import Image from "next/image";
+import CarAnimation from "./car-animation";
 
 export default function CostOptimisationHeroSection() {
   const rollingTexts = ["Cost", "Size", "Configuration", "Purchase Plan"];
@@ -74,6 +75,8 @@ export default function CostOptimisationHeroSection() {
           </div>
         </div>
       </div>
+
+      <CarAnimation />
     </div>
   );
 }

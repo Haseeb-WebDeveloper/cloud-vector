@@ -1,18 +1,17 @@
-import Link from "next/link";
+import ClientSectionV2 from "@/components/cost-optimisation/client-section-v2";
+import TestimonialsSection from "@/components/cost-optimisation/testimonials";
+import HomeHeroSection from "@/components/home/hero";
+import FAQSection from "@/components/faq-section";
+import GetStartedSection from "@/components/cost-optimisation/get-started-section";
 
 export default function Home() {
   return (
     <>
-      <div className="min-h-screen pt-24 bg-background">
-        <div className="container mx-auto px-4 py-16">
-          <Link
-            href="/cost-optimisation"
-            className="text-foreground leading-tight"
-          >
-            Cost Optimisation
-          </Link>
-        </div>
-      </div>
+      <HomeHeroSection />
+      <ClientSectionV2 />
+      <GetStartedSection />
+      <TestimonialsSection />
+      <FAQSection />
   </>
   );
 }

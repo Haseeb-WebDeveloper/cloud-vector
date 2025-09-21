@@ -137,19 +137,22 @@ export default function AnimatedTextCycle({
             {words[currentIndex]}
           </motion.span>
         </AnimatePresence>
-      </motion.span>
 
-      {/* Progress Bar */}
-      {showProgressBar && (
-        <div className="w-full h-[1px] bg-gray-200/30 rounded-full overflow-hidden -mt-1">
-          <motion.div
-            className="h-full bg-primary rounded-full"
-            initial={{ width: "0%" }}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.05, ease: "linear" }}
-          />
-        </div>
-      )}
+        {/* Progress Bar */}
+        {showProgressBar && (
+          <div 
+            className="h-[1px] bg-gray-200/30 rounded-full overflow-hidden -mt-1"
+            style={{ width: "100%" }}
+          >
+            <motion.div
+              className="h-full bg-primary rounded-full"
+              initial={{ width: "0%" }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.05, ease: "linear" }}
+            />
+          </div>
+        )}
+      </motion.span>
     </div>
   );
 } 
