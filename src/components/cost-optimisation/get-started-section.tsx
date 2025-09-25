@@ -10,11 +10,14 @@ export default function GetStartedSection() {
       <div className="container mx-auto px-4 h-full">
         <div className="mx-auto h-full">
           {/* Main Banner */}
-          <div className="relative bg-gradient-to-br from-primary/5 via-primary/10 to-primary/15 rounded-2xl px-12 pt-24 pb-20 overflow-hidden bg-[#8CB0E4]"
-         
-          
+          <div className="relative rounded-2xl px-12 pt-24 pb-20 overflow-hidden "
+          style={{
+            backgroundImage: "url('/cta-bg.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "top",
+            backgroundRepeat: "no-repeat",
+          }}
           >
-
             {/* Content */}
             <div className="relative z-10 text-center">
               {/* Logo */}
@@ -28,34 +31,33 @@ export default function GetStartedSection() {
               </div>
 
               {/* Heading */}
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-[#252F3E]">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6 ">
                 Get Started with Cloud Victor
               </h2>
 
               {/* Body Text */}
-              <p className="text-lg lg:text-xl mb-8 max-w-2xl mx-auto text-[#252F3E]/90">
+              <p className="text-lg lg:text-xl mb-8 max-w-2xl mx-auto">
                 Discover how we can help you optimize your AWS spend and
                 maximize your profits.
               </p>
 
               {/* Chips */}
               <div className="flex flex-wrap justify-center gap-3 mb-8">
-                <div className="flex items-center gap-2 text-background border border-foreground rounded-full px-4 py-2 text-sm font-medium">
+                <div className="flex items-center gap-2  border border-foreground rounded-full px-4 py-2 text-sm font-medium">
                   <div className="p-2 rounded-full bg-primary">
-                  <BadgePercent className="w-5 h-5 text-background" />
-
+                    <BadgePercent className="w-5 h-5 " />
                   </div>
                   No Savings, No Fee
                 </div>
-                <div className="flex items-center gap-2 text-background border border-foreground rounded-full px-4 py-2 text-sm font-medium">
+                <div className="flex items-center gap-2  border border-foreground rounded-full px-4 py-2 text-sm font-medium">
                   <div className="p-2 rounded-full bg-primary">
-                  <ShieldCheck className="w-5 h-5 text-background" />
+                    <ShieldCheck className="w-5 h-5 " />
                   </div>
                   3-Month 100% ROI Guarantee
                 </div>
-                <div className="flex items-center gap-2 text-background border border-foreground rounded-full px-4 py-2 text-sm font-medium">
+                <div className="flex items-center gap-2  border border-foreground rounded-full px-4 py-2 text-sm font-medium">
                   <div className="p-2 rounded-full bg-primary">
-                  <Receipt className="w-5 h-5 text-background" />
+                    <Receipt className="w-5 h-5 " />
                   </div>
                   Savings Verified on AWS Bill
                 </div>
@@ -91,4 +93,4 @@ export default function GetStartedSection() {
       </div>
     </div>
   );
-} 
+}

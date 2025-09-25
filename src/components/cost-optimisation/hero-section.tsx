@@ -8,7 +8,7 @@ export default function CostOptimisationHeroSection() {
   const rollingTexts = ["Cost", "Size", "Configuration", "Purchase Plan"];
 
   return (
-    <div className="min-h-screen pt-24 bg-background">
+    <div className="min-h-screen pt-24 bg-gradient-to-b from-background to-primary/5">
       <div className="container mx-auto px-4 py-16">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
           {/* Left Side - Text Content */}

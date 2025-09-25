@@ -20,9 +20,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PhaseOne Partners",
+  title: "CloudVictor",
   description:
-    "Connecting businesses with the right investors through strategic deal origination.",
+    "CloudVictor is a platform that helps businesses optimize their cloud spend and reporting.",
 };
 
 export default function RootLayout({

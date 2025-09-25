@@ -24,8 +24,8 @@ const partnerLogos = [
 
 export default function ClientSectionV2() {
   return (
-    <div className="py-20 mb-32  bg-[#252f3e]">
-      <div className=" mx-auto px-4">
+    <div className="py-20 mb-32 ">
+      <div className=" bg-[#252f3e] rounded-2xl container mx-auto px-4 py-24 ">
         {/* Main Text */}
         <div className="text-center pb-12">
           <h2 className="text-4xl lg:text-5xl font-semibold text-foreground mb-4">
