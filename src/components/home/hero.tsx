@@ -35,7 +35,7 @@ export default function HomeHeroSection() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button className="group cursor-pointer flex justify-center items-center gap-2 bg-primary/60 text-foreground border border-primary/50 hover:pr-6 hover:border-primary/70 hover:bg-primary/70 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
+            <button className="group cursor-pointer flex justify-center items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-500 hover:bg-gradient-to-l text-neutral-900 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
               Book a call
               <Image
                 src="/icons/arrow-right.svg"
@@ -46,7 +46,7 @@ export default function HomeHeroSection() {
               />
             </button>
 
-            <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
+            <button className="group cursor-pointer flex justify-center items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-500 hover:bg-gradient-to-l text-neutral-900 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
               Whatsapp Us
               <Image
                 src="/icons/arrow-right.svg"

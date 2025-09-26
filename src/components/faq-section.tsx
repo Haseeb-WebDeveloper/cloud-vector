@@ -60,21 +60,25 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="py-16 bg-background">
+    <section className="bg-background">
       <div className="max-w-4xl mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            Frequently Asked Questions
+        <div className="text-center mb-10">
+          <h2 className="text-4xl lg:text-5xl font-extrabold leading-tight mb-3">
+            <span className="block bg-gradient-to-r from-[#ff7a18] via-[#ff9a44] to-[#ffd166] bg-clip-text text-transparent">Frequently Asked</span>
+            <span className="block text-foreground">Questions</span>
           </h2>
+          <p className="text-muted-foreground">
+            Everything you need to know about Cloud Victor's services
+          </p>
         </div>
 
         {/* FAQ Items */}
-        <div className="space-y-4">
+        <div className="space-y-5">
           {faqData.map((faq, index) => (
             <motion.div
               key={index}
-              className="bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
+              className="bg-card border border-border rounded-2xl overflow-hidden shadow-[0_10px_25px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.14)] transition-shadow duration-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
@@ -82,21 +86,23 @@ export default function FAQSection() {
               {/* Question Button */}
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-muted/50 transition-colors duration-200"
+                className="group w-full px-6 py-5 text-left flex items-center justify-between hover:bg-muted/40 transition-colors duration-200"
               >
-                <span className="text-foreground font-medium pr-4">
+                <span className="text-foreground font-medium pr-4 transition-colors duration-200 group-hover:text-[#F59E0B]">
                   {faq.question}
                 </span>
                 <motion.div
-                  animate={{ rotate: openIndex === index ? 45 : 0 }}
+                  animate={{ rotate: openIndex === index ? 90 : 0 }}
                   transition={{ duration: 0.2 }}
                   className="flex-shrink-0"
                 >
-                  {openIndex === index ? (
-                    <Minus className="w-5 h-5 text-foreground" />
-                  ) : (
-                    <Plus className="w-5 h-5 text-foreground" />
-                  )}
+                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#F59E0B] shadow-sm">
+                    {openIndex === index ? (
+                      <Minus className="w-4 h-4 text-[#1a1207]" />
+                    ) : (
+                      <Plus className="w-4 h-4 text-[#1a1207]" />
+                    )}
+                  </span>
                 </motion.div>
               </button>
 
@@ -110,7 +116,7 @@ export default function FAQSection() {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-4 pt-2 border-t border-border">
+                    <div className="px-6 pb-5 pt-2 border-t border-border">
                       <p className="text-muted-foreground leading-relaxed">
                         {faq.answer}
                       </p>

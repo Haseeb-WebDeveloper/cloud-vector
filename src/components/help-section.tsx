@@ -21,7 +21,16 @@ const WhatsAppIcon = () => (
 
 export const HelpSection = () => {
   return (
-    <section className="py-20 px-4 bg-background">
+    <section
+      className="py-20 px-4"
+      style={{
+        backgroundImage:
+          "radial-gradient(1200px 600px at 10% 10%, rgba(140,176,228,0.06), transparent 12%), radial-gradient(800px 400px at 90% 90%, rgba(255,153,0,0.04), transparent 12%), linear-gradient(180deg, #252F3E, #1D1D1B)",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundColor: "#1D1D1B",
+      }}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Main Title */}
         <div className="text-center mb-4">
@@ -55,7 +64,7 @@ export const HelpSection = () => {
                   href="https://wa.me/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center cursor-pointer w-full bg-foreground/5 px-6 py-3 rounded-lg font-medium hover:bg-foreground/10 transition-colors"
+                  className="flex items-center justify-center cursor-pointer w-full bg-gradient-to-r from-amber-400 to-orange-500 hover:bg-gradient-to-l px-6 py-3 rounded-lg font-medium text-neutral-900 transition-all duration-300"
                 >
                   <WhatsAppIcon />
                   Chat on WhatsApp
@@ -80,7 +89,7 @@ export const HelpSection = () => {
                 </p>
               </div>
               <div>
-                <button className="cursor-pointer w-full bg-foreground/5 px-6 py-3 rounded-lg font-medium hover:bg-foreground/10 transition-colors">
+                <button className="cursor-pointer w-full bg-gradient-to-r from-amber-400 to-orange-500 hover:bg-gradient-to-l px-6 py-3 rounded-lg font-medium text-neutral-900 transition-all duration-300">
                   Schedule a Free Audit
                 </button>
               </div>
@@ -104,7 +113,7 @@ export const HelpSection = () => {
                 </p>
               </div>
               <div>
-                <button className="cursor-pointer w-full bg-gradient-to-r from-secondary to-primary/90 px-6 py-3 rounded-lg font-medium hover:to-primary transition-all duration-300">
+                <button className="cursor-pointer w-full bg-gradient-to-r from-amber-400 to-orange-500 hover:bg-gradient-to-l px-6 py-3 rounded-lg font-medium text-neutral-900 transition-all duration-300">
                   Start Saving Today.
                 </button>
               </div>

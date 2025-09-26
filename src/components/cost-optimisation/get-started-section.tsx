@@ -10,7 +10,7 @@ export default function GetStartedSection() {
       <div className="container mx-auto px-4 h-full">
         <div className="mx-auto h-full">
           {/* Main Banner */}
-          <div className="relative rounded-2xl px-12 pt-24 pb-20 overflow-hidden "
+          <div className="relative rounded-2xl px-12 pt-8 pb-8 border border-primary  overflow-hidden "
           style={{
             backgroundImage: "url('/cta-bg.jpg')",
             backgroundSize: "cover",
@@ -25,18 +25,18 @@ export default function GetStartedSection() {
                 <Image
                   src="/logo/cloudVictor-logo-Icon.png"
                   alt="Cloud Victor Logo"
-                  width={100}
-                  height={100}
+                  width={70}
+                  height={70}
                 />
               </div>
 
               {/* Heading */}
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 ">
+              <h2 className="text-4xl lg:text-4xl font-bold mb-6 ">
                 Get Started with Cloud Victor
               </h2>
 
               {/* Body Text */}
-              <p className="text-lg lg:text-xl mb-8 max-w-2xl mx-auto">
+              <p className="text-lg lg:text-xl mb-8 max-w-xl mx-auto">
                 Discover how we can help you optimize your AWS spend and
                 maximize your profits.
               </p>
@@ -65,7 +65,7 @@ export default function GetStartedSection() {
 
               {/* Call to Action Button */}
               <div className="  flex flex-col sm:flex-row gap-4 pt-4 pb-10 w-full justify-center items-center">
-                <button className="group cursor-pointer flex justify-center items-center gap-2 bg-primary text-background border border-primary/50 hover:pr-6 hover:border-primary transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
+                <button className="group cursor-pointer flex justify-center items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-500 hover:bg-gradient-to-l text-neutral-900 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
                   Book a call
                   <Image
                     src="/icons/arrow-right.svg"
@@ -76,7 +76,7 @@ export default function GetStartedSection() {
                   />
                 </button>
 
-                <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70  transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
+                <button className="group cursor-pointer flex justify-center items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-500 hover:bg-gradient-to-l text-neutral-900  transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
                   Whatsapp Us
                   <Image
                     src="/icons/arrow-right.svg"

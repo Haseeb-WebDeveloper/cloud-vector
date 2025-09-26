@@ -145,7 +145,7 @@ export default function Footer() {
               <p className=" text-center mb-4">
                 Stay current with all things CloudVictor
               </p>
-              <button className="cursor-pointer w-full border  rounded-lg px-4 py-2 transition-colors">
+              <button className="cursor-pointer w-full bg-gradient-to-r from-amber-400 to-orange-500 hover:bg-gradient-to-l text-neutral-900 rounded-lg px-4 py-2 transition-all duration-300">
                 Subscribe
               </button>
             </div>

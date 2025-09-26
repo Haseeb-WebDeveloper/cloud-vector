@@ -203,7 +203,7 @@ export default function IndustryFactsSection() {
                             className={cn(
                               "h-1.5 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer relative overflow-hidden",
                               index === selectedIndex
-                                ? "w-16 bg-[#c8c8c2]"
+                                ? "w-16 bg-gradient-to-r from-amber-400 to-orange-500"
                                 : "w-8 bg-[#c8c8c2]/90"
                             )}
                           >

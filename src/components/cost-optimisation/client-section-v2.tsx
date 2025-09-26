@@ -24,17 +24,17 @@ const partnerLogos = [
 
 export default function ClientSectionV2() {
   return (
-    <div className="py-20 mb-32 ">
+    <div className="py-10 mb-16 ">
       <div className=" bg-[#252f3e] rounded-2xl container mx-auto px-4 py-24 ">
         {/* Main Text */}
         <div className="text-center pb-12">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-foreground mb-4">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-foreground ">
             Proven Savings. Real Impact
           </h2>
         </div>
 
         {/* Micro-Metrics */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 mb-4 justify-center items-center">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 justify-center items-center">
           <p className="text-lg font-medium border-b-2 border-primary">
             <span className="font-bold text-3xl text-primary">12+</span> Years in Amazon/AWS
           </p>

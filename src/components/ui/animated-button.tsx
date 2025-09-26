@@ -103,7 +103,7 @@ export default function AnimatedButton({
       <button
         ref={buttonRef}
         onClick={onClick}
-        className={`group cursor-pointer flex items-center gap-3 bg-background text-foreground border py-2.5 px-4 rounded-full hover:bg-foreground/10 transition-colors duration-300 relative overflow-hidden ${className}`}
+        className={`group cursor-pointer flex items-center gap-3 bg-gradient-to-r from-amber-400 to-orange-500 hover:bg-gradient-to-l text-neutral-900 py-2.5 px-4 rounded-full transition-all duration-300 relative overflow-hidden ${className}`}
       >
         <span 
           ref={textRef}
