@@ -176,11 +176,7 @@ export default function TestimonialsSection() {
                   key={testimonial.id}
                   className="flex-[0_0_100%] min-w-0 h-fit"
                 >
-                  <div
-                    className="bg-card rounded-3xl shadow-2xl p-8 lg:p-12 border border-border"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
+                  <div className="bg-card rounded-3xl shadow-2xl p-8 lg:p-12 border border-border">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                       {/* Left Side - Content */}
                       <div className="space-y-8">
@@ -236,6 +232,8 @@ export default function TestimonialsSection() {
                           {scrollSnaps.map((_, idx) => (
                             <button
                               key={idx}
+                              onMouseEnter={handleMouseEnter}
+                              onMouseLeave={handleMouseLeave}
                               onClick={() => scrollTo(idx)}
                               className={cn(
                                 "h-2 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer relative overflow-hidden",

@@ -10,13 +10,15 @@ export default function GetStartedSection() {
       <div className="container mx-auto px-4 h-full">
         <div className="mx-auto h-full">
           {/* Main Banner */}
-          <div className="relative rounded-2xl px-12 pt-24 pb-20 overflow-hidden "
-          style={{
-            backgroundImage: "url('/cta-bg.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "top",
-            backgroundRepeat: "no-repeat",
-          }}
+          <div
+            className="relative rounded-3xl px-12 pt-24 pb-20 overflow-hidden"
+            style={{
+              backgroundImage: "url('/cta-bg.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "top",
+              backgroundRepeat: "no-repeat",
+              boxShadow: "0 2px 40px 0 rgba(255, 153, 0, 0.521), 0 1.5px 2px 0 rgba(255, 153, 0, 0.521)"
+            }}
           >
             {/* Content */}
             <div className="relative z-10 text-center">
@@ -43,21 +45,21 @@ export default function GetStartedSection() {
 
               {/* Chips */}
               <div className="flex flex-wrap justify-center gap-3 mb-8">
-                <div className="flex items-center gap-2  border border-foreground rounded-full px-4 py-2 text-sm font-medium">
-                  <div className="p-2 rounded-full bg-primary">
-                    <BadgePercent className="w-5 h-5 " />
+                <div className="group flex items-center gap-2 border border-foreground rounded-full px-4 py-2 text-sm font-medium">
+                  <div className="p-2 rounded-full bg-primary group-hover:bg-foreground transition-colors duration-200">
+                    <BadgePercent className="w-5 h-5 text-background group-hover:text-primary transition-colors duration-200" />
                   </div>
                   No Savings, No Fee
                 </div>
-                <div className="flex items-center gap-2  border border-foreground rounded-full px-4 py-2 text-sm font-medium">
-                  <div className="p-2 rounded-full bg-primary">
-                    <ShieldCheck className="w-5 h-5 " />
+                <div className="group flex items-center gap-2 border border-foreground rounded-full px-4 py-2 text-sm font-medium">
+                  <div className="p-2 rounded-full bg-primary group-hover:bg-foreground transition-colors duration-200">
+                    <ShieldCheck className="w-5 h-5 text-background group-hover:text-primary transition-colors duration-200" />
                   </div>
                   3-Month 100% ROI Guarantee
                 </div>
-                <div className="flex items-center gap-2  border border-foreground rounded-full px-4 py-2 text-sm font-medium">
-                  <div className="p-2 rounded-full bg-primary">
-                    <Receipt className="w-5 h-5 " />
+                <div className="group flex items-center gap-2 border border-foreground rounded-full px-4 py-2 text-sm font-medium">
+                  <div className="p-2 rounded-full bg-primary group-hover:bg-foreground transition-colors duration-200">
+                    <Receipt className="w-5 h-5 text-background group-hover:text-primary transition-colors duration-200" />
                   </div>
                   Savings Verified on AWS Bill
                 </div>

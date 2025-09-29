@@ -395,3 +395,11 @@ body::-webkit-scrollbar,
 
 
 
+/* Gradient Background */
+.gradient-background {
+  background: linear-gradient(to right, #ff9900, #e85409);
+}
+
+.box-shadow-large {
+  box-shadow: rgba(150, 97, 0, 0.438) 0px 10px 36px 0px, rgba(255, 255, 255, 0.06) 0px 0px 0px 1px;
+}

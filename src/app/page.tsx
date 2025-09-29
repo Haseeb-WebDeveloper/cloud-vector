@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <>
       <HomeHeroSection />
-      <ChartPieDonutText />
+      {/* <ChartPieDonutText /> */}
       <ClientSectionV2 />
-      <AnimatedSections/>
+      {/* <AnimatedSections/> */}
       <GetStartedSection />
       <TestimonialsSection />
       <FAQSection />

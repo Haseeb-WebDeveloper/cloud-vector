@@ -64,8 +64,8 @@ export default function FAQSection() {
       <div className="max-w-4xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            Frequently Asked Questions
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent max-w-md mx-auto leading-[140%]">
+            Frequently Asked <span className="text-foreground">Questions</span>
           </h2>
         </div>
 
@@ -74,7 +74,7 @@ export default function FAQSection() {
           {faqData.map((faq, index) => (
             <motion.div
               key={index}
-              className="bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
+              className="bg-card border border-border overflow-hidden shadow-[0_1px_5px_0_rgba(255,153,0,0.521)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.900)] rounded-xl transition-shadow duration-200 cursor-pointer group"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
@@ -84,18 +84,18 @@ export default function FAQSection() {
                 onClick={() => toggleFAQ(index)}
                 className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-muted/50 transition-colors duration-200"
               >
-                <span className="text-foreground font-medium pr-4">
+                <span className="text-foreground hover:text-primary font-medium pr-4">
                   {faq.question}
                 </span>
                 <motion.div
-                  animate={{ rotate: openIndex === index ? 45 : 0 }}
+                  // animate={{ rotate: openIndex === index ? 90 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className="flex-shrink-0"
+                  className="flex-shrink-0 bg-primary rounded-full p-2"
                 >
                   {openIndex === index ? (
-                    <Minus className="w-5 h-5 text-foreground" />
+                    <Minus className="w-5 h-5 text-background" />
                   ) : (
-                    <Plus className="w-5 h-5 text-foreground" />
+                    <Plus className="w-5 h-5 text-background" />
                   )}
                 </motion.div>
               </button>

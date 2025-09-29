@@ -145,7 +145,7 @@ export default function Footer() {
               <p className=" text-center mb-4">
                 Stay current with all things CloudVictor
               </p>
-              <button className="cursor-pointer w-full border  rounded-lg px-4 py-2 transition-colors">
+              <button className="cursor-pointer w-full border bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] rounded-lg px-4 py-2 transition-colors">
                 Subscribe
               </button>
             </div>
@@ -158,10 +158,10 @@ export default function Footer() {
                 <h3 className="text-sm text-foreground/70 flex items-center gap-2">
                   {col.title}
                 </h3>
-                <div className="space-y-5">
+                <div className="space-y-3">
                   {col.items.map((item) => (
                     <div
-                      className="flex items-start gap-3 opacity-80 hover:text-primary group cursor-pointer"
+                      className="flex items-start gap-3 opacity-80 hover:text-primary group cursor-pointer border border-transparent hover:border-foreground/10 hover:bg-muted/50 rounded-lg p-3"
                       key={item.href}
                     >
                       <item.icon className="w-5 h-5 flex-shrink-0 mt-1 " />
