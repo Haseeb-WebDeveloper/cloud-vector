@@ -12,7 +12,7 @@ export default function Home() {
       <HomeHeroSection />
       {/* <ChartPieDonutText /> */}
       <ClientSectionV2 />
-      {/* <AnimatedSections/> */}
+      <AnimatedSections/>
       <GetStartedSection />
       <TestimonialsSection />
       <FAQSection />

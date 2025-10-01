@@ -25,9 +25,12 @@ interface StatData {
 }
 
 const AnimatedSections: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const leftColumnRef = useRef<HTMLDivElement>(null);
   const offersRef = useRef<HTMLDivElement[]>([]);
-  const ringsRef = useRef<SVGCircleElement[]>([]);
+  const statsSectionRef = useRef<HTMLDivElement>(null);
+  const circleImageRef = useRef<HTMLDivElement>(null);
+  const [currentStep, setCurrentStep] = useState(1);
 
   const offers: OfferData[] = [
     {
@@ -118,21 +121,20 @@ const AnimatedSections: React.FC = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Pin the left column
-    ScrollTrigger.create({
-      trigger: leftColumnRef.current,
+    // Pin the left column only for the duration of the offer section
+    const pinTrigger = ScrollTrigger.create({
+      trigger: sectionRef.current,
       start: "top top",
       end: "bottom bottom",
-      pin: true,
+      pin: leftColumnRef.current,
       pinSpacing: false,
     });
 
     // Create scroll-triggered animations for each offer
     offers.forEach((_, index) => {
       const offerElement = offersRef.current[index];
-      const ringElement = ringsRef.current[index];
 
-      if (offerElement && ringElement) {
+      if (offerElement) {
         // Animate offer card opacity and scale
         ScrollTrigger.create({
           trigger: offerElement,
@@ -145,25 +147,13 @@ const AnimatedSections: React.FC = () => {
               duration: 0.5,
               ease: "power2.out"
             });
-            // Highlight corresponding ring
-            gsap.to(ringElement, {
-              strokeWidth: 12,
-              stroke: colors[index] || "white",
-              duration: 0.5,
-              ease: "power2.out"
-            });
+            // Update step image
+            setCurrentStep(index + 1);
           },
           onLeave: () => {
             gsap.to(offerElement, {
               opacity: 0.5,
               scale: 1,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-            // Reset ring
-            gsap.to(ringElement, {
-              strokeWidth: 10,
-              stroke: "white",
               duration: 0.3,
               ease: "power2.out"
             });
@@ -175,13 +165,8 @@ const AnimatedSections: React.FC = () => {
               duration: 0.5,
               ease: "power2.out"
             });
-            // Highlight corresponding ring
-            gsap.to(ringElement, {
-              strokeWidth: 12,
-              stroke: colors[index] || "white",
-              duration: 0.5,
-              ease: "power2.out"
-            });
+            // Update step image
+            setCurrentStep(index + 1);
           },
           onLeaveBack: () => {
             gsap.to(offerElement, {
@@ -190,17 +175,76 @@ const AnimatedSections: React.FC = () => {
               duration: 0.3,
               ease: "power2.out"
             });
-            // Reset ring
-            gsap.to(ringElement, {
-              strokeWidth: 10,
-              stroke: "white",
-              duration: 0.3,
-              ease: "power2.out"
-            });
           }
         });
       }
     });
+
+    // Create animation for circle image when entering stats section
+    if (statsSectionRef.current && circleImageRef.current) {
+      // Wait for next tick to ensure all elements are rendered
+      setTimeout(() => {
+        const circleElement = circleImageRef.current;
+        const statsSectionElement = statsSectionRef.current;
+        
+        if (!circleElement || !statsSectionElement) return;
+        
+        // Get the initial position of the circle (when it's in the first section)
+        const initialRect = circleElement.getBoundingClientRect();
+        const initialCenterX = initialRect.left + initialRect.width / 2;
+        const initialCenterY = initialRect.top + initialRect.height / 2;
+        
+        // Get the stats section position
+        const statsRect = statsSectionElement.getBoundingClientRect();
+        const targetCenterX = statsRect.left + statsRect.width / 2;
+        const targetCenterY = statsRect.top + statsRect.height / 2;
+        
+        // Calculate the translation needed
+        const translateX = targetCenterX - initialCenterX;
+        const translateY = targetCenterY - initialCenterY;
+        
+        // Reset the circle position to its original state
+        gsap.set(circleElement, {
+          x: 0,
+          y: 0,
+          scale: 1
+        });
+        
+        // Create the scroll-triggered animation with better positioning
+        ScrollTrigger.create({
+          trigger: statsSectionRef.current,
+          start: "top center",
+          end: "center center",
+          scrub: 1,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            
+            // Use easeOut for smoother animation
+            const easedProgress = gsap.parseEase("power2.out")(progress);
+            
+            // Smooth interpolation for position and scale
+            const currentX = translateX * easedProgress;
+            const currentY = translateY * easedProgress;
+            const currentScale = 1 + (0.3 * easedProgress);
+            
+            // Apply transformations
+            gsap.set(circleElement, {
+              x: currentX,
+              y: currentY,
+              scale: currentScale
+            });
+          },
+          onRefresh: () => {
+            // Reset position when refresh happens
+            gsap.set(circleElement, {
+              x: 0,
+              y: 0,
+              scale: 1
+            });
+          }
+        });
+      }, 100);
+    }
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
@@ -210,119 +254,42 @@ const AnimatedSections: React.FC = () => {
   return (
     <div className="relative">
       {/* Section 1 - What We Offer */}
-      <section className="min-h-screen py-20 bg-foreground/5">
+      <section ref={sectionRef} className="min-h-screen py-20 bg-foreground/5">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            {/* Left Column - Circle Image with Pie Chart - PINNED */}
+            {/* Left Column - Circle Image with Step Images - PINNED */}
             <div ref={leftColumnRef} className="flex items-center justify-center w-full h-[500px] ">
               <div className="relative flex items-center justify-center w-full h-full aspect-square bg-primary/10">
-                {/* SVG Pie Chart Ring - behind the image, bigger than the image */}
-                <svg
-                  className="absolute inset-0 z-0"
-                  width="30rem"
-                  height="30rem"
-                  viewBox="0 0 20 20"
-                  style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}
+                {/* Step Images - behind the circle image, bigger in size */}
+                {[1, 2, 3, 4, 5].map((step) => (
+                  <div
+                    key={step}
+                    className={`absolute inset-0 z-0 flex items-center justify-center transition-opacity duration-500 ${
+                      currentStep === step ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
+                    <Image
+                      src={`/home-page/step-${step}.png`}
+                      alt={`Step ${step}`}
+                      width={400}
+                      height={400}
+                      className="object-contain w-[25rem] h-[25rem]"
+                    />
+                  </div>
+                ))}
+                {/* Central Circle Image */}
+                <div 
+                  ref={circleImageRef}
+                  className="z-10 object-contain w-[15.6rem] h-[15.6rem] absolute"
                 >
-                  <circle r="5" cx="10" cy="10" fill="bisque" />
-                  {/* 5 equal parts: each arc is 20% of the circle, so 6.28/5 = 1.256 radians, circumference = 2πr = 31.4159 */}
-                  <circle
-                    ref={(el) => { if (el) ringsRef.current[0] = el; }}
-                    r="5"
-                    cx="10"
-                    cy="10"
-                    fill="transparent"
-                    stroke="#3730a3"
-                    strokeWidth="10"
-                    strokeDasharray="6.283 31.415"
-                    strokeDashoffset="0"
+                  <Image
+                    src="/home-page/circle.png"
+                    alt="circle"
+                    width={320}
+                    height={320}
+                    className="object-contain w-full h-full"
                   />
-                  <circle
-                    ref={(el) => { if (el) ringsRef.current[1] = el; }}
-                    r="5"
-                    cx="10"
-                    cy="10"
-                    fill="transparent"
-                    stroke="#3730a3"
-                    strokeWidth="10"
-                    strokeDasharray="6.283 31.415"
-                    strokeDashoffset="-6.283"
-                  />
-                  <circle
-                    ref={(el) => { if (el) ringsRef.current[2] = el; }}
-                    r="5"
-                    cx="10"
-                    cy="10"
-                    fill="transparent"
-                    stroke="#3730a3"
-                    strokeWidth="10"
-                    strokeDasharray="6.283 31.415"
-                    strokeDashoffset="-12.566"
-                  />
-                  <circle
-                    ref={(el) => { if (el) ringsRef.current[3] = el; }}
-                    r="5"
-                    cx="10"
-                    cy="10"
-                    fill="transparent"
-                    stroke="#3730a3"
-                    strokeWidth="10"
-                    strokeDasharray="6.283 31.415"
-                    strokeDashoffset="-18.849"
-                  />
-                  <circle
-                    ref={(el) => { if (el) ringsRef.current[4] = el; }}
-                    r="5"
-                    cx="10"
-                    cy="10"
-                    fill="transparent"
-                    stroke="#3730a3"
-                    strokeWidth="10"
-                    strokeDasharray="6.283 31.415"
-                    strokeDashoffset="-25.132"
-                  />
-                  {/* Curved text labels following the ring */}
-                  <defs>
-                    <path id="path1" d="M 15,10 A 5,5 0 0,1 10,5" fill="none" />
-                    <path id="path2" d="M 10,5 A 5,5 0 0,1 5,10" fill="none" />
-                    <path id="path3" d="M 5,10 A 5,5 0 0,1 10,15" fill="none" />
-                    <path id="path4" d="M 10,15 A 5,5 0 0,1 15,10" fill="none" />
-                    <path id="path5" d="M 15,10 A 5,5 0 0,1 10,5" fill="none" />
-                  </defs>
-                  
-                  <text fontSize="0.8" fill="#3730a3" textAnchor="middle" fontWeight="bold">
-                    <textPath href="#path1" startOffset="50%">
-                      Cost Optimization
-                    </textPath>
-                  </text>
-                  <text fontSize="0.8" fill="#3730a3" textAnchor="middle" fontWeight="bold">
-                    <textPath href="#path2" startOffset="50%">
-                      Cloud Security
-                    </textPath>
-                  </text>
-                  <text fontSize="0.8" fill="#3730a3" textAnchor="middle" fontWeight="bold">
-                    <textPath href="#path3" startOffset="50%">
-                      Cloud Architecture
-                    </textPath>
-                  </text>
-                  <text fontSize="0.8" fill="#3730a3" textAnchor="middle" fontWeight="bold">
-                    <textPath href="#path4" startOffset="50%">
-                      DevOps Enablement
-                    </textPath>
-                  </text>
-                  <text fontSize="0.8" fill="#3730a3" textAnchor="middle" fontWeight="bold">
-                    <textPath href="#path5" startOffset="50%">
-                      LogGuardia
-                    </textPath>
-                  </text>
-                </svg>
-                <Image
-                  src="/circle.png"
-                  alt="circle"
-                  width={320}
-                  height={320}
-                  className="z-10 object-contain w-[20rem] h-[20rem]"
-                />
+                </div>
               </div>
             </div>
             {/* Right Column - Offers */}
@@ -330,7 +297,9 @@ const AnimatedSections: React.FC = () => {
               {offers.map((offer, index) => (
                 <div
                   key={offer.id}
-                  ref={(el) => { if (el) offersRef.current[index] = el; }}
+                  ref={(el) => {
+                    if (el) offersRef.current[index] = el;
+                  }}
                   data-offer-id={index}
                   className={`bg-gradient-to-br from-primary/10 to-secondary/20 rounded-r-2xl p-10 flex items-center transition-all duration-500 ${
                     index === 0 ? "opacity-100" : "opacity-50"
@@ -368,7 +337,10 @@ const AnimatedSections: React.FC = () => {
         </div>
       </section>
       {/* Section 2 - Stats */}
-      <section className="min-h-screen bg-gradient-to-br from-slate-800 via-gray-900 to-slate-900 py-20 relative overflow-hidden">
+      <section 
+        ref={statsSectionRef}
+        className="min-h-screen z-[-1] relative py-32 bg-red-950"
+      >
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-6">
@@ -379,11 +351,7 @@ const AnimatedSections: React.FC = () => {
             </p>
           </div>
           {/* Stats arranged around center */}
-          <div className="relative">
-            {/* Central circle space */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-80 h-80 rounded-full bg-gradient-to-br from-purple-600/20 to-cyan-600/20 backdrop-blur-xl border border-white/10" />
-            </div>
+          <div className="relative h-[500px] flex items-center justify-center">
             {/* Stats cards */}
             <div className="relative grid grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {stats.map((stat, index) => {
@@ -399,7 +367,7 @@ const AnimatedSections: React.FC = () => {
                   <div
                     key={index}
                     data-stat-id={index}
-                    className={`${positions[index]} opacity-0`}
+                    className={`${positions[index]} opacity-100`}
                   >
                     <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:bg-white/15">
                       <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-2">
@@ -412,11 +380,6 @@ const AnimatedSections: React.FC = () => {
               })}
             </div>
           </div>
-        </div>
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
         </div>
       </section>
     </div>
