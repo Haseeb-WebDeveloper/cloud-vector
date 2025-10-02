@@ -3,6 +3,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  Check,
+  PiggyBank,
+  Percent,
+  Rocket,
+  ShieldCheck,
+  TrendingUp,
+  Users,
+  Clock,
+  Award,
+  BadgeCheck,
+  Server,
+  LifeBuoy,
+} from "lucide-react";
 import Image from "next/image";
 
 // Register GSAP plugins
@@ -14,7 +28,11 @@ interface OfferData {
   id: number;
   headline: string;
   tagline: string;
-  features: string[];
+  subTagline?: string;
+  features: {
+    icon: React.ReactNode;
+    text: string;
+  }[];
   title: string;
   value: number;
 }
@@ -22,6 +40,7 @@ interface OfferData {
 interface StatData {
   value: string;
   label: string;
+  icon: React.ReactNode;
 }
 
 const AnimatedSections: React.FC = () => {
@@ -30,226 +49,252 @@ const AnimatedSections: React.FC = () => {
   const offersRef = useRef<HTMLDivElement[]>([]);
   const statsSectionRef = useRef<HTMLDivElement>(null);
   const circleImageRef = useRef<HTMLDivElement>(null);
+  const targetPositionRef = useRef<HTMLDivElement>(null);
   const [currentStep, setCurrentStep] = useState(1);
 
   const offers: OfferData[] = [
     {
       id: 1,
-      title: "Cost Optimization",
-      headline: "Reduce Spend. Maintain Performance.",
+      title: "Cost & Performance Optimization",
+      headline: "Use less of cloud and pay less for it",
       tagline:
-        "Unlock 40–70% savings with precision rightsizing, smarter purchase plans, and continuous optimization.",
+        "Unlock 40–70% savings with data-backed rightsizing, autoscaling, and smarter purchase plans, continuously optimized as you grow.",
       features: [
-        "Exhaustive Audit → Every dollar tracked, every inefficiency exposed.",
-        "Fast Fixes → Rightsizing, reconfiguring, and optimizations delivered in weeks.",
-        "Guaranteed ROI → 100% return in 3 months, with savings that scale as you grow.",
+        {
+          icon: <Clock size={25} />,
+          text: "Fast Fixes → Rightsize, Reconfigure, Smarter Purchase Plans delivered in, a few days. One-time Outcome-based Fees. No subscription.",
+        },
+        {
+          icon: <TrendingUp size={25} />,
+          text: "Guaranteed ROI → 100% return in 3 months, with sustained savings that scale as you grow.",
+        },
+        {
+          icon: <Check size={25} />,
+          text: "Exhaustive Audit → Every dollar tracked, every AWS Service Covered.",
+        },
       ],
       value: 1,
     },
     {
       id: 2,
-      title: "LogGuardia Security",
-      headline: "Security That Never Switches Off.",
-      tagline:
-        "Enterprise-grade protection and compliance, monitored 24/7 — so your team builds while we guard.",
+      title: "LogGuardia – Security (InfoSec as a Service)",
+      headline: "24x7 InfoSec Team",
+      tagline: "Your team builds in peace while we guard.",
+      subTagline: "Enterprise-grade Infrastructure Protection & Compliance",
       features: [
-        "Continuous Monitoring → Real-time scans catch misconfigurations before they spread.",
-        "Compliance-First → SOC2, HIPAA, PCI-DSS, GDPR, and CIS enforced by design.",
-        "Intruder Defense → Instant alerts on suspicious activity, internal or external.",
+        {
+          icon: <BadgeCheck size={25} />,
+          text: "Compliance-First → SOC2, HIPAA, PCI-DSS, GDPR, and CIS enforced by Design.",
+        },
+        {
+          icon: <Award size={25} />,
+          text: "Intruder Defense → Instant alerts on suspicious activity. Internal or External. We stand Guard for you!",
+        },
+        {
+          icon: <ShieldCheck size={25} />,
+          text: "Continuous Monitoring → Real-time scans catch security holes before they are exploited.",
+        },
       ],
       value: 1,
     },
     {
       id: 3,
-      title: "Cloud Architecture",
-      headline: "Built Right. Ready to Scale.",
+      title: "Operational Excellence",
+      headline: "100% Uptime That Builds Trust",
       tagline:
-        "Architectures tailored for your workloads — resilient, efficient, and engineered to scale like Amazon's own systems.",
+        "IaC & CI/CD backed Serverless Containerized Architectures. Just like Amazon's own systems. Tailored for You.",
       features: [
-        "Tailored Blueprints → Cloud designs aligned with your performance, security, and compliance needs.",
-        "Next-Gen Foundations → Serverless, containers, and AWS-native services built in.",
-        "Proven Reliability → 80+ production launches across SaaS, FinTech, and enterprise workloads.",
+        {
+          icon: <Rocket size={25} />,
+          text: "Tailored Launchpad → Cloud designs aligned with your performance, security, and compliance needs. Cost-Efficient, Security-Compliant, Performant, Resilient, and Scalable By Design",
+        },
+        {
+          icon: <Check size={25} />,
+          text: "Proven Reliability → 80+ production launches across 300+ AWS Accounts across SaaS, FinTech, and enterprise workloads.",
+        },
+        {
+          icon: <Server size={25} />,
+          text: "Next-Gen Foundations → Serverless, Containerized, and AWS-native By Design.",
+        },
       ],
       value: 1,
     },
     {
       id: 4,
-      title: "Migration & Modernization",
-      headline: "Transform Legacy. Embrace Cloud.",
-      tagline:
-        "Seamless migration strategies that modernize your infrastructure without disrupting operations.",
+      title: "Resilience and disaster recovery",
+      headline: "Lightning-fast Customer Experience.",
+      tagline: "Disaster Resistant with Automated Recovery",
       features: [
-        "Zero-Downtime Migrations → Phased approach ensures continuous operations during transition.",
-        "Legacy Modernization → Transform monoliths into scalable, cloud-native architectures.",
-        "Risk Mitigation → Comprehensive testing and rollback strategies protect your business.",
+        {
+          icon: <LifeBuoy size={25} />,
+          text: "Self-Healing Architecture.",
+        },
+        {
+          icon: <Rocket size={25} />,
+          text: "Blue/Green Deployments with Automated Rollbacks.",
+        },
+        {
+          icon: <ShieldCheck size={25} />,
+          text: "Automated Cross-Account Backups for Disaster Recovery.",
+        },
       ],
       value: 1,
     },
     {
       id: 5,
-      title: "24/7 Support",
-      headline: "Always On. Always Available.",
-      tagline:
-        "Round-the-clock expert support ensuring your cloud infrastructure runs smoothly at all times.",
+      title: "Performance",
+      headline: "Daily Releases on Autopilot",
+      tagline: "Fluid Customer Experience. Higher Retention. Higher Revenue.",
       features: [
-        "Instant Response → Critical issues addressed within minutes, not hours.",
-        "Proactive Monitoring → Issues detected and resolved before they impact your business.",
-        "Expert Team → AWS-certified professionals with 12+ years of cloud experience.",
+        {
+          icon: <TrendingUp size={25} />,
+          text: "Upto 70% faster page/app loads.",
+        },
+        {
+          icon: <Users size={25} />,
+          text: "25% increase in customer NPS.",
+        },
+        {
+          icon: <Award size={25} />,
+          text: "Higher Revenue through improved performance.",
+        },
       ],
       value: 1,
     },
   ];
 
+  // Assign Lucide icons to stats
   const stats: StatData[] = [
-    { value: "$60M+", label: "Savings delivered" },
-    { value: "68%", label: "Max cost reduction" },
-    { value: "80+", label: "Production launches" },
-    { value: "15+", label: "Compliance standards" },
-    { value: "100%", label: "ROI in 3 months" },
-    { value: "12+", label: "Years at Amazon/AWS" },
-  ];
-
-  // Using Tailwind chart colors
-  const colors = [
-    "hsl(var(--chart-1))",
-    "hsl(var(--chart-2))",
-    "hsl(var(--chart-3))",
-    "hsl(var(--chart-4))",
-    "hsl(var(--chart-5))",
+    {
+      value: "$60M+",
+      label: "Savings delivered",
+      icon: <PiggyBank size={48} className="text-primary" />,
+    },
+    {
+      value: "68%",
+      label: "Max cost reduction",
+      icon: <Percent size={48} className="text-primary" />,
+    },
+    {
+      value: "80+",
+      label: "Production launches",
+      icon: <Rocket size={48} className="text-primary" />,
+    },
+    {
+      value: "15+",
+      label: "Compliance standards",
+      icon: <ShieldCheck size={48} className="text-primary" />,
+    },
+    {
+      value: "100%",
+      label: "ROI in 3 months",
+      icon: <TrendingUp size={48} className="text-primary" />,
+    },
+    {
+      value: "12+",
+      label: "Years at Amazon/AWS",
+      icon: <Users size={48} className="text-primary" />,
+    },
   ];
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Pin the left column only for the duration of the offer section
-    const pinTrigger = ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top top",
-      end: "bottom bottom",
-      pin: leftColumnRef.current,
-      pinSpacing: false,
-    });
+    const ctx = gsap.context(() => {
+      // Pin the left column
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        pin: leftColumnRef.current,
+        pinSpacing: false,
+      });
 
-    // Create scroll-triggered animations for each offer
-    offers.forEach((_, index) => {
-      const offerElement = offersRef.current[index];
+      // Animate offers
+      offers.forEach((_, index) => {
+        const offerElement = offersRef.current[index];
+        if (offerElement) {
+          ScrollTrigger.create({
+            trigger: offerElement,
+            start: "top 80%",
+            end: "bottom 20%",
+            onEnter: () => {
+              gsap.to(offerElement, {
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out",
+              });
+              setCurrentStep(index + 1);
+            },
+            onLeave: () => {
+              gsap.to(offerElement, {
+                opacity: 0.5,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+            },
+            onEnterBack: () => {
+              gsap.to(offerElement, {
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out",
+              });
+              setCurrentStep(index + 1);
+            },
+            onLeaveBack: () => {
+              gsap.to(offerElement, {
+                opacity: 0.5,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+            },
+          });
+        }
+      });
 
-      if (offerElement) {
-        // Animate offer card opacity and scale
-        ScrollTrigger.create({
-          trigger: offerElement,
-          start: "top 80%",
-          end: "bottom 20%",
-          onEnter: () => {
-            gsap.to(offerElement, {
-              opacity: 1,
-              scale: 1.05,
-              duration: 0.5,
-              ease: "power2.out"
-            });
-            // Update step image
-            setCurrentStep(index + 1);
+      // Circle animation - PROPER GSAP TIMELINE APPROACH
+      if (circleImageRef.current && targetPositionRef.current) {
+        const circle = circleImageRef.current;
+        const target = targetPositionRef.current;
+
+        // Create a timeline
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: statsSectionRef.current,
+            start: "top center",
+            end: "center center",
+            scrub: 1,
           },
-          onLeave: () => {
-            gsap.to(offerElement, {
-              opacity: 0.5,
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out"
-            });
+        });
+
+        // Use GSAP's built-in position tracking with quickSetter for performance
+        tl.to(circle, {
+          x: () => {
+            const circleRect = circle.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+            return (
+              targetRect.left +
+              targetRect.width / 2 -
+              (circleRect.left + circleRect.width / 2)
+            );
           },
-          onEnterBack: () => {
-            gsap.to(offerElement, {
-              opacity: 1,
-              scale: 1.05,
-              duration: 0.5,
-              ease: "power2.out"
-            });
-            // Update step image
-            setCurrentStep(index + 1);
+          y: () => {
+            const circleRect = circle.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+            return (
+              targetRect.top +
+              targetRect.height / 2 -
+              (circleRect.top + circleRect.height / 2)
+            );
           },
-          onLeaveBack: () => {
-            gsap.to(offerElement, {
-              opacity: 0.5,
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          }
+          scale: 1.3,
+          ease: "power2.out",
         });
       }
     });
 
-    // Create animation for circle image when entering stats section
-    if (statsSectionRef.current && circleImageRef.current) {
-      // Wait for next tick to ensure all elements are rendered
-      setTimeout(() => {
-        const circleElement = circleImageRef.current;
-        const statsSectionElement = statsSectionRef.current;
-        
-        if (!circleElement || !statsSectionElement) return;
-        
-        // Get the initial position of the circle (when it's in the first section)
-        const initialRect = circleElement.getBoundingClientRect();
-        const initialCenterX = initialRect.left + initialRect.width / 2;
-        const initialCenterY = initialRect.top + initialRect.height / 2;
-        
-        // Get the stats section position
-        const statsRect = statsSectionElement.getBoundingClientRect();
-        const targetCenterX = statsRect.left + statsRect.width / 2;
-        const targetCenterY = statsRect.top + statsRect.height / 2;
-        
-        // Calculate the translation needed
-        const translateX = targetCenterX - initialCenterX;
-        const translateY = targetCenterY - initialCenterY;
-        
-        // Reset the circle position to its original state
-        gsap.set(circleElement, {
-          x: 0,
-          y: 0,
-          scale: 1
-        });
-        
-        // Create the scroll-triggered animation with better positioning
-        ScrollTrigger.create({
-          trigger: statsSectionRef.current,
-          start: "top center",
-          end: "center center",
-          scrub: 1,
-          onUpdate: (self) => {
-            const progress = self.progress;
-            
-            // Use easeOut for smoother animation
-            const easedProgress = gsap.parseEase("power2.out")(progress);
-            
-            // Smooth interpolation for position and scale
-            const currentX = translateX * easedProgress;
-            const currentY = translateY * easedProgress;
-            const currentScale = 1 + (0.3 * easedProgress);
-            
-            // Apply transformations
-            gsap.set(circleElement, {
-              x: currentX,
-              y: currentY,
-              scale: currentScale
-            });
-          },
-          onRefresh: () => {
-            // Reset position when refresh happens
-            gsap.set(circleElement, {
-              x: 0,
-              y: 0,
-              scale: 1
-            });
-          }
-        });
-      }, 100);
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, [colors]);
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div className="relative">
@@ -258,9 +303,12 @@ const AnimatedSections: React.FC = () => {
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             {/* Left Column - Circle Image with Step Images - PINNED */}
-            <div ref={leftColumnRef} className="flex items-center justify-center w-full h-[500px] ">
-              <div className="relative flex items-center justify-center w-full h-full aspect-square bg-primary/10">
-                {/* Step Images - behind the circle image, bigger in size */}
+            <div
+              ref={leftColumnRef}
+              className="flex items-center justify-center w-full h-[500px]"
+            >
+              <div className="relative flex items-center justify-center w-full h-full aspect-square">
+                {/* Step Images */}
                 {[1, 2, 3, 4, 5].map((step) => (
                   <div
                     key={step}
@@ -269,7 +317,7 @@ const AnimatedSections: React.FC = () => {
                     }`}
                   >
                     <Image
-                      src={`/home-page/step-${step}.png`}
+                      src={`/home-page/${step}.png`}
                       alt={`Step ${step}`}
                       width={400}
                       height={400}
@@ -278,7 +326,7 @@ const AnimatedSections: React.FC = () => {
                   </div>
                 ))}
                 {/* Central Circle Image */}
-                <div 
+                <div
                   ref={circleImageRef}
                   className="z-10 object-contain w-[15.6rem] h-[15.6rem] absolute"
                 >
@@ -288,12 +336,13 @@ const AnimatedSections: React.FC = () => {
                     width={320}
                     height={320}
                     className="object-contain w-full h-full"
+                    quality={100}
                   />
                 </div>
               </div>
             </div>
             {/* Right Column - Offers */}
-            <div className="space-y-20">
+            <div className="space-y-32">
               {offers.map((offer, index) => (
                 <div
                   key={offer.id}
@@ -301,31 +350,41 @@ const AnimatedSections: React.FC = () => {
                     if (el) offersRef.current[index] = el;
                   }}
                   data-offer-id={index}
-                  className={`bg-gradient-to-br from-primary/10 to-secondary/20 rounded-r-2xl p-10 flex items-center transition-all duration-500 ${
-                    index === 0 ? "opacity-100" : "opacity-50"
-                  }`}
+                  className={`transition-all duration-500 `}
                 >
                   <div className="transition-all duration-300 w-full">
-                    <div className="mb-6">
-                      <h3 className="text-4xl font-bold mb-4">
-                        {offer.headline}
-                      </h3>
-                      <p className="text-xl leading-relaxed">{offer.tagline}</p>
-                    </div>
-                    <div className="space-y-4">
+                    {/* Headline */}
+                    <h3 className="text-4xl font-bold mb-4 ">
+                      {offer.headline}
+                    </h3>
+
+                    {/* Tagline */}
+                    <p className="text-xl leading-relaxed mb-2 text-foreground/90">
+                      {offer.tagline}
+                    </p>
+
+                    {/* SubTagline if exists */}
+                    {offer.subTagline && (
+                      <p className="text-lg mb-8 text-foreground/80">
+                        {offer.subTagline}
+                      </p>
+                    )}
+
+                    {/* Three Feature Boxes */}
+                    <div className="grid md:grid-cols-2 gap-2 mt-8">
                       {offer.features.map((feature, featureIndex) => (
                         <div
                           key={featureIndex}
-                          className="flex items-start space-x-3 transition-all duration-300"
+                          className="w-fit p-5 bg-foreground/5 rounded"
                         >
-                          <Image
-                            src="/icons/check.svg"
-                            alt="check"
-                            width={16}
-                            height={16}
-                            className=""
-                          />
-                          <p className="leading-relaxed">{feature}</p>
+                          <div className="flex gap-4">
+                            <div className="bg-primary/10 rounded-full p-2 w-fit h-fit">
+                              {feature.icon}
+                            </div>
+                            <p className="text-sm leading-relaxed text-foreground/90">
+                              {feature.text}
+                            </p>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -337,13 +396,13 @@ const AnimatedSections: React.FC = () => {
         </div>
       </section>
       {/* Section 2 - Stats */}
-      <section 
+      <section
         ref={statsSectionRef}
-        className="min-h-screen z-[-1] relative py-32 bg-red-950"
+        className="min-h-screen z-[-1] relative py-32"
       >
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-6">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent  mb-6">
               Results That Speak Volumes
             </h2>
             <p className="text-xl text-gray-300">
@@ -352,33 +411,59 @@ const AnimatedSections: React.FC = () => {
           </div>
           {/* Stats arranged around center */}
           <div className="relative h-[500px] flex items-center justify-center">
-            {/* Stats cards */}
-            <div className="relative grid grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {stats.map((stat, index) => {
-                const positions = [
-                  "col-span-1 md:col-start-1 md:row-start-1", // Top left
-                  "col-span-1 md:col-start-3 md:row-start-1", // Top right
-                  "col-span-1 md:col-start-1 md:row-start-2", // Middle left
-                  "col-span-1 md:col-start-3 md:row-start-2", // Middle right
-                  "col-span-1 md:col-start-1 md:row-start-3", // Bottom left
-                  "col-span-1 md:col-start-3 md:row-start-3", // Bottom right
-                ];
-                return (
-                  <div
-                    key={index}
-                    data-stat-id={index}
-                    className={`${positions[index]} opacity-100`}
-                  >
-                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                      <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-2">
-                        {stat.value}
+            <div className="flex gap-10 justify-center items-center">
+              {/* 2nd half stats */}
+              <div className="flex flex-col gap-4">
+                {stats.slice(0, 3).map((stat, index) => {
+                  return (
+                    <div
+                      key={index}
+                      data-stat-id={index}
+                      className={`opacity-100 shadow px-4 py-6 rounded-xl border-bl`}
+                    >
+                      <div className="flex gap-4 items-center">
+                        <div className="mb-2 flex-shrink-0">{stat.icon}</div>
+                        <div>
+                          <p className="text-4xl md:text-5xl font-bold">
+                            {stat.value}
+                          </p>
+                          <p className="text-lg font-medium">{stat.label}</p>
+                        </div>
                       </div>
-                      <div className="text-lg font-medium">{stat.label}</div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
+              <div
+                ref={targetPositionRef}
+                className="w-[400px] h-[400px] "
+              ></div>
+
+              {/* Last half stats */}
+              <div className="flex flex-col gap-4">
+                {stats.slice(3, 6).map((stat, index) => {
+                  return (
+                    <div
+                      key={index}
+                      data-stat-id={index}
+                      className={`opacity-100 shadow px-4 py-6 rounded-xl`}
+                    >
+                      <div className="flex gap-4 items-center">
+                        <div className="mb-2 flex-shrink-0">{stat.icon}</div>
+                        <div>
+                          <p className="text-4xl md:text-5xl font-bold">
+                            {stat.value}
+                          </p>
+                          <p className="text-lg font-medium">{stat.label}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
+
+            {/* Invisible target position marker at center */}
           </div>
         </div>
       </section>
