@@ -22,28 +22,32 @@ const partnerLogos = [
   { name: "Cengage", src: "/clients/7.png", alt: "Cengage" },
 ];
 
-export default function ClientSectionV2() {
+
+
+export default function ClientSectionV2({title, stats}: {title: string, stats: {title: string, description: string}[]}) {
   return (
     <div className="py-20 mb-32 ">
       <div className=" bg-[#252f3e] rounded-2xl container mx-auto px-4 py-24 ">
         {/* Main Text */}
-        <div className="text-center pb-12">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-foreground mb-4">
-            Proven Savings. Real Impact
+        <div className="text-center pb-6">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-foreground mb-4 max-w-4xl mx-auto leading-tight">
+            {title}
           </h2>
         </div>
 
         {/* Micro-Metrics */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 mb-4 justify-center items-center">
-          <p className="text-lg font-medium border-b-2 border-primary">
-            <span className="font-bold text-3xl text-primary">12+</span> Years in Amazon/AWS
-          </p>
-          <p className="text-lg font-medium border-b-2 border-primary">
-            <span className="font-bold text-3xl text-primary">$60M+</span> Annual Savings
-          </p>
-          <p className="text-lg font-medium border-b-2 border-primary">
-            Up to <span className="font-bold text-3xl text-primary">68%</span> Annual Savings
-          </p>
+        <div className="flex flex-col lg:flex-row flex-wrap gap-1  mb-4 justify-center items-center">
+          {stats?.map((stat, index) => (
+            <p
+              className="text-lg font-medium border border-primary/30 text-nowrap bg-primary/10  hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 px-4 py-2"
+              key={index}
+            >
+              <span className="font-bold text-3xl text-primary text-nowrap">
+                {stat.title}
+              </span>{" "}
+              {stat.description}
+            </p>
+          ))}
         </div>
 
         {/* Partner Logos Marquee */}

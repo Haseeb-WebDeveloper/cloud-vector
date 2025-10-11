@@ -37,7 +37,7 @@ interface OfferData {
   value: number;
 }
 
-interface StatData {
+export interface StatData {
   value: string;
   label: string;
   icon: React.ReactNode;

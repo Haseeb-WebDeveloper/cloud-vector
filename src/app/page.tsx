@@ -7,12 +7,29 @@ import AnimatedSections from "@/components/animated";
 import { ChartPieDonutText } from "@/components/ui/pie-chart";
 
 export default function Home() {
+  const stats = [
+    {
+      title: "12+",
+      description: "Years in Amazon/AWS",
+    },
+
+    {
+      title: "$60M+",
+      description: "Annual Savings",
+    },
+
+    {
+      title: "68%",
+      description: "Annual Savings",
+    },
+  ];
+
   return (
     <>
       <HomeHeroSection />
       {/* <ChartPieDonutText /> */}
-      <ClientSectionV2 />
-      <AnimatedSections/>
+      <ClientSectionV2 title="Proven Savings. Real Impact" stats={stats} />
+      <AnimatedSections />
       <GetStartedSection />
       <TestimonialsSection />
       <FAQSection />

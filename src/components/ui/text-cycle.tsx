@@ -1,5 +1,7 @@
+"use client";
+
 import * as React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
 interface AnimatedTextCycleProps {
@@ -16,29 +18,30 @@ export default function AnimatedTextCycle({
   showProgressBar = false,
 }: AnimatedTextCycleProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [width, setWidth] = useState("auto");
+  const [width, setWidth] = useState(0);
   const [progress, setProgress] = useState(0);
   const measureRef = useRef<HTMLDivElement>(null);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Get the width of the current word
-  useEffect(() => {
+  // Get the width of the current word - use useLayoutEffect to measure before paint
+  useLayoutEffect(() => {
     if (measureRef.current) {
       const elements = measureRef.current.children;
       if (elements.length > currentIndex) {
-        // Add a small buffer (10px) to prevent text wrapping
-        const newWidth = elements[currentIndex].getBoundingClientRect().width;
-        setWidth(`${newWidth}px`);
+        // Force a reflow to ensure accurate measurement
+        const element = elements[currentIndex] as HTMLElement;
+        const newWidth = element.offsetWidth;
+        setWidth(newWidth);
       }
     }
-  }, [currentIndex]);
+  }, [currentIndex, words]);
 
   // Progress bar animation
   useEffect(() => {
     if (!showProgressBar) return;
 
     setProgress(0);
-    
+
     if (progressIntervalRef.current) {
       clearInterval(progressIntervalRef.current);
     }
@@ -69,6 +72,7 @@ export default function AnimatedTextCycle({
   }, [interval, words.length]);
 
   // Container animation for the whole word
+  // Ensure only y (vertical) animation, NO x translation at all
   const containerVariants = {
     hidden: { 
       y: -20,
@@ -101,48 +105,72 @@ export default function AnimatedTextCycle({
       <div 
         ref={measureRef} 
         aria-hidden="true"
-        className="absolute opacity-0 pointer-events-none"
-        style={{ visibility: "hidden" }}
+        style={{ 
+          position: "absolute",
+          visibility: "hidden",
+          pointerEvents: "none",
+          whiteSpace: "nowrap"
+        }}
       >
         {words.map((word, i) => (
-          <span key={i} className={` ${className}`}>
+          <span key={i} className={className} style={{ display: "inline-block" }}>
             {word}
           </span>
         ))}
       </div>
 
-      {/* Visible animated word */}
-      <motion.span 
-        className="relative inline-block"
-        animate={{ 
-          width,
-          transition: { 
-            type: "spring",
-            stiffness: 150,
-            damping: 15,
-            mass: 1.2,
-          }
-        }}
-      >
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.span
-            key={currentIndex}
-            className={`inline-block  ${className}`}
-            variants={containerVariants as Variants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            style={{ whiteSpace: "nowrap" }}
-          >
-            {words[currentIndex]}
-          </motion.span>
-        </AnimatePresence>
+      {/* Visible animated word container */}
+      <div className="relative inline-block">
+        <motion.div
+          className="relative overflow-hidden"
+          animate={{ 
+            width: width,
+            transition: { 
+              type: "spring",
+              stiffness: 200,
+              damping: 20,
+              mass: 1,
+            }
+          }}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={currentIndex}
+              className={`inline-block ${className}`}
+              variants={containerVariants as Variants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              style={{ 
+                whiteSpace: "nowrap",
+                position: "absolute",
+                left: 0,
+                top: 4
+              }}
+            >
+              {words[currentIndex]}
+            </motion.span>
+          </AnimatePresence>
 
-        {/* Progress Bar */}
+          {/* Invisible spacer to maintain height */}
+          <span className={`inline-block ${className} invisible`} style={{ whiteSpace: "nowrap" }}>
+            {words[currentIndex]}
+          </span>
+        </motion.div>
+
+        {/* Progress Bar - Outside the width-animated container */}
         {showProgressBar && (
-          <div 
-            className="h-[1px] bg-gray-200/30 rounded-full overflow-hidden -mt-1"
-            style={{ width: "100%" }}
+          <motion.div 
+            className="h-[1px] bg-gray-200/30 rounded-full overflow-hidden mt-0.5"
+            animate={{ 
+              width: width,
+              transition: { 
+                type: "spring",
+                stiffness: 200,
+                damping: 20,
+                mass: 1,
+              }
+            }}
           >
             <motion.div
               className="h-full bg-primary rounded-full"
@@ -150,9 +178,9 @@ export default function AnimatedTextCycle({
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.05, ease: "linear" }}
             />
-          </div>
+          </motion.div>
         )}
-      </motion.span>
+      </div>
     </div>
   );
-} 
+}

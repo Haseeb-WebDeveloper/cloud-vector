@@ -34,7 +34,7 @@ import Image from "next/image";
 const navigationData = [
   {
     title: "Solutions",
-    href: "#",
+    href: "/",
     hasDropdown: true,
     submenu: [
       {
@@ -42,7 +42,7 @@ const navigationData = [
         description:
           "Strategic technology leadership solutions designed for Chief Technology Officers",
         icon: Users,
-        href: "#ctos",
+        href: "/for-cto",
       },
       {
         title: "For Engineers",

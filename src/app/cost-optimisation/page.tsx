@@ -11,10 +11,17 @@ import GetStartedSection from "@/components/cost-optimisation/get-started-sectio
 
 
 export default function CostOptimisation() {
+
+  const stats = [
+    { title: "12+", description: "Years in Amazon/AWS" },
+    { title: "$60M+", description: "Annual Savings" },
+    { title: "68%", description: "Annual Savings" },
+  ];
+
   return (
     <div>
       <CostOptimisationHeroSection />
-      <ClientSectionV2 />
+      <ClientSectionV2 title="Proven Savings. Real Impact" stats={stats} />
       <IndustryFactsSection />
       <RootCaseSection />
       <TestimonialsSection />
