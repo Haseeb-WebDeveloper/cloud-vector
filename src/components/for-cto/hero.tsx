@@ -19,7 +19,8 @@ export default function HomeHeroSection() {
           {/* Main Heading with Animated Text */}
           <div className="w-full">
             <h1 className="text-4xl lg:text-6xl text-foreground leading-tight font-semibold">
-              You focus on innovation,<br /> we take care of the cloud
+              You focus on innovation,
+              <br /> we take care of the cloud
             </h1>
           </div>
 
@@ -35,7 +36,7 @@ export default function HomeHeroSection() {
               charge.
             </p>
           </div>
-          
+
           <div className="w-full mt-4">
             <h1 className="text-2xl text-foreground leading-tight font-semibold flex items-center gap-2 justify-center w-fit mx-auto">
               Your AWS infra engineered for
@@ -50,7 +51,6 @@ export default function HomeHeroSection() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-10">
-           
             <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
               Whatsapp Us
               <Image
@@ -73,7 +73,6 @@ export default function HomeHeroSection() {
               />
             </button>
 
-          
             <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
               Sign up
               <Image

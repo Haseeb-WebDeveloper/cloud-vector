@@ -3,8 +3,9 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import CheckIcon from "@/components/check";
+import { approachSteps } from "@/data/constant";
 
-interface ApproachStep {
+export interface ApproachStep {
   id: number;
   heading: string;
   oneLiner: string;
@@ -12,67 +13,6 @@ interface ApproachStep {
   image: string;
   isReversed?: boolean;
 }
-
-const approachSteps: ApproachStep[] = [
-  {
-    id: 1,
-    heading: "Exhaustive Analysis",
-    oneLiner: "Across every AWS service to surface hidden waste",
-    details: [
-      "Identify idle, misconfigured, and overprovisioned resources.",
-      "Analyze workload requirements & resource configurations.",
-    ],
-    image: "/test.png",
-  },
-  {
-    id: 2,
-    heading: "Lean Resources",
-    oneLiner: "Right Size/Optimally Configure each resource",
-    details: [
-      "Align resource configuration with workload requirement.",
-      "Configuration/Size optimized at individual resource level. E.g.",
-      "EC2, RDS, Sagemaker Instance Type & Instance Size.",
-      "Storage Class & Life cycle policies of your S3 data.",
-    ],
-    image: "/test.png",
-    isReversed: true,
-  },
-  {
-    id: 3,
-    heading: "Lean Scale your resources",
-    oneLiner:
-      "Deliver the same customer experience with fewer, fully-utilised resources.",
-    details: [
-      "Adjust your auto-scaling policies to minimum required while maintaining the same level of customer experience.",
-      "Calculate and deploy the optimal number of resources, not more.",
-      "Consolidate clusters/machines to remove excess hardware.",
-    ],
-    image: "/test.png",
-  },
-  {
-    id: 4,
-    heading: "Pay the Lowest Possible Price for AWS",
-    oneLiner: "Balance commitment & discount for best price.",
-    details: [
-      "Analyse every purchase option & your planned usage.",
-      "Purchase commitment strategy engineered for maximum ROI with minimum commitment risk.",
-      "We analyze 1000's of Reserved Instances, Savings Plans, and Private Pricing options for you.",
-    ],
-    image: "/test.png",
-    isReversed: true,
-  },
-  {
-    id: 5,
-    heading: "Sustained Savings, Guaranteed.",
-    oneLiner: "Sustained monthly savings verified on Your Bill.",
-    details: [
-      "Transparent verification with your AWS account's Cost Explorer and CUR data.",
-      "Guardrails ensure that we (& you) are alarmed if costs are creeping back over time.",
-      "100% ROI in 3 months - guaranteed.",
-    ],
-    image: "/test.png",
-  },
-];
 
 export default function OurApproachSection() {
   return (
@@ -92,7 +32,7 @@ export default function OurApproachSection() {
         {/* Approach Steps */}
         <div className="relative">
           <div className="space-y-16 lg:space-y-[230px]">
-            {approachSteps.map((step, index) => (
+            {approachSteps.map((step, index) =>  (
               <div
                 key={step.id}
                 className={cn(
@@ -150,9 +90,7 @@ export default function OurApproachSection() {
                           >
                             {/* Modern Check Icon */}
                             <CheckIcon className="w-6 h-6 mt-1 flex-shrink-0 text-primary" />
-                            <span className="leading-relaxed">
-                              {detail}
-                            </span>
+                            <span className="leading-relaxed">{detail}</span>
                           </li>
                         ))}
                       </ul>

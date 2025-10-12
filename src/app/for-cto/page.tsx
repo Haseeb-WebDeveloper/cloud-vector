@@ -11,6 +11,8 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
+import HowWeSolve from "@/components/for-cto/how-we-solve";
+import HowItWorks from "@/components/for-cto/how-it-works";
 
 export default function ForCTO() {
   const LogoStats = [
@@ -66,6 +68,8 @@ export default function ForCTO() {
       />
       <TestimonialsSection />
       <Stats stats={SocialStats} />
+      <HowWeSolve />
+      <HowItWorks />
     </>
   );
 }
