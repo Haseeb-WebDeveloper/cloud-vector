@@ -28,7 +28,6 @@ export default function AnimatedTextCycle({
     if (measureRef.current) {
       const elements = measureRef.current.children;
       if (elements.length > currentIndex) {
-        // Force a reflow to ensure accurate measurement
         const element = elements[currentIndex] as HTMLElement;
         const newWidth = element.offsetWidth;
         setWidth(newWidth);
@@ -71,8 +70,7 @@ export default function AnimatedTextCycle({
     return () => clearInterval(timer);
   }, [interval, words.length]);
 
-  // Container animation for the whole word
-  // Ensure only y (vertical) animation, NO x translation at all
+  // Animation variants
   const containerVariants = {
     hidden: { 
       y: -20,
@@ -99,33 +97,41 @@ export default function AnimatedTextCycle({
     },
   };
 
+  // THE KEY CHANGE: Wrap all top-level containers in overflow-x-visible and NO width setting on page
+  // Also, fix the width handling logic to never set an explicit (potentially huge) width on parent containers
+
   return (
-    <div className="inline-block">
+    <div className="inline-block align-middle" style={{ verticalAlign: "middle", maxWidth: "100%" }}>
       {/* Hidden measurement div with all words rendered */}
       <div 
-        ref={measureRef} 
+        ref={measureRef}
         aria-hidden="true"
-        style={{ 
+        style={{
           position: "absolute",
           visibility: "hidden",
           pointerEvents: "none",
-          whiteSpace: "nowrap"
+          whiteSpace: "nowrap",
+          left: 0,
+          top: 0,
+          maxWidth: "100%",
+          overflow: "hidden",
         }}
       >
         {words.map((word, i) => (
-          <span key={i} className={className} style={{ display: "inline-block" }}>
+          <span key={i} className={className} style={{ display: "inline-block", maxWidth: "100%" }}>
             {word}
           </span>
         ))}
       </div>
 
       {/* Visible animated word container */}
-      <div className="relative inline-block">
+      <div className="relative inline-block align-middle" style={{ verticalAlign: "middle", maxWidth: "100%", overflowX: "visible" }}>
         <motion.div
           className="relative overflow-hidden"
-          animate={{ 
-            width: width,
-            transition: { 
+          style={{ maxWidth: "100%" }}
+          animate={{
+            width: width > 0 ? Math.min(width, window?.innerWidth || 1600) : "auto",
+            transition: {
               type: "spring",
               stiffness: 200,
               damping: 20,
@@ -141,30 +147,41 @@ export default function AnimatedTextCycle({
               initial="hidden"
               animate="visible"
               exit="exit"
-              style={{ 
+              style={{
                 whiteSpace: "nowrap",
                 position: "absolute",
                 left: 0,
-                top: 4
+                top: 4,
+                maxWidth: "100%",
+                overflowX: "visible",
               }}
             >
               {words[currentIndex]}
             </motion.span>
           </AnimatePresence>
 
-          {/* Invisible spacer to maintain height */}
-          <span className={`inline-block ${className} invisible`} style={{ whiteSpace: "nowrap" }}>
+          {/* Invisible spacer to maintain height and linebox, but not cause overflow */}
+          <span
+            className={`inline-block ${className} invisible`}
+            style={{
+              whiteSpace: "nowrap",
+              maxWidth: "100%",
+              overflowX: "visible",
+              display: "inline-block",
+            }}
+          >
             {words[currentIndex]}
           </span>
         </motion.div>
 
         {/* Progress Bar - Outside the width-animated container */}
         {showProgressBar && (
-          <motion.div 
+          <motion.div
             className="h-[1px] bg-gray-200/30 rounded-full overflow-hidden mt-0.5"
-            animate={{ 
-              width: width,
-              transition: { 
+            style={{ maxWidth: "100%" }}
+            animate={{
+              width: width > 0 ? Math.min(width, window?.innerWidth || 1600) : "auto",
+              transition: {
                 type: "spring",
                 stiffness: 200,
                 damping: 20,

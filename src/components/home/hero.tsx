@@ -15,7 +15,7 @@ export default function HomeHeroSection() {
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="flex flex-col items-center text-center space-y-8 max-w-5xl mx-auto">
           {/* Main Heading with Animated Text */}
-          <div className="space-y-4 w-full">
+          <div className="space-y-4 w-full overflow-hidden">
             <h1 className="text-4xl lg:text-6xl text-foreground leading-tight font-semibold">
               Turn AWS Into a Strategic Advantage With <br />
               <AnimatedTextCycle

@@ -43,7 +43,7 @@ export default function HomeHeroSection() {
               <AnimatedTextCycle
                 words={animatedTexts}
                 interval={4000}
-                className="text-2xl w-fit text-primary leading-tight font-semibold pt-1"
+                className="text-2xl w-fit text-primary leading-tight font-semibold pb-1"
                 showProgressBar={true}
               />
             </h1>
