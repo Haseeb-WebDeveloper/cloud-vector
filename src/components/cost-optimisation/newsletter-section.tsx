@@ -58,10 +58,6 @@ export default function NewsletterSection() {
     <section className="py-20">
       <div
         className="max-w-6xl mx-auto px-4  lg:px-24 py-24 bg-[#332211] rounded-2xl box-shadow-large"
-        // style={{
-        //   boxShadow:
-        //     "0 0px 20px 0 rgba(255, 153, 0, 0.721)",
-        // }}
       >
         <div className="max-w-2xl mx-auto">
           {/* Newsletter Form Container */}

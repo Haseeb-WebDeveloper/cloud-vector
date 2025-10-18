@@ -5,11 +5,16 @@ import Image from "next/image";
 import CheckIcon from "@/components/check";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { tabsData, TabData, FeatureStep } from "@/data/constant";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function HowItWorks() {
   const [activeTab, setActiveTab] = useState("cost");
   const [isSticky, setIsSticky] = useState(false);
+  const stepsContainerRef = useRef<HTMLDivElement>(null);
 
   // Handle sticky behavior
   useEffect(() => {
@@ -24,6 +29,51 @@ export default function HowItWorks() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Animate feature step images
+  useEffect(() => {
+    if (!stepsContainerRef.current) return;
+
+    const leftImages = stepsContainerRef.current.querySelectorAll("[data-image-left]");
+    const rightImages = stepsContainerRef.current.querySelectorAll("[data-image-right]");
+
+    // Animate each image individually with its own ScrollTrigger
+    leftImages.forEach((image) => {
+      gsap.set(image, { x: -100, opacity: 0 });
+      
+      gsap.to(image, {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: image,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+
+    rightImages.forEach((image) => {
+      gsap.set(image, { x: 100, opacity: 0 });
+      
+      gsap.to(image, {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: image,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, [activeTab]);
 
   const currentTabData = tabsData.find(tab => tab.id === activeTab) || tabsData[0];
 
@@ -78,15 +128,15 @@ export default function HowItWorks() {
                 </div>
 
                 {/* Benefits Section */}
-                <div className="bg-foreground/5 p-6 sm:p-8 lg:p-12 rounded-2xl">
-                  <h4 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center mb-6 sm:mb-8">
+                <div className="max-w-6xl mx-auto px-4  lg:px-24 py-20 bg-[#332211] rounded-2xl box-shadow-large">
+                  <h4 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center mb-6 md:mb-8 lg:mb-12">
                     Unlock the Benefits of Cloud
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {tab.benefits.map((benefit, index) => (
                       <div
                         key={index}
-                        className="flex items-start gap-3 p-3 sm:p-4 bg-background/50 rounded-lg"
+                        className="flex items-start gap-3 p-3 sm:p-4 bg-foreground/5 rounded-lg"
                       >
                         <CheckIcon className="w-4 h-4 sm:w-5 sm:h-5 mt-1 flex-shrink-0 text-primary" />
                         <span className="text-xs sm:text-sm leading-relaxed">{benefit}</span>
@@ -96,7 +146,7 @@ export default function HowItWorks() {
                 </div>
 
                 {/* Feature Steps */}
-                <div className="relative">
+                <div className="relative" ref={stepsContainerRef}>
                   <div className="space-y-12 sm:space-y-16 lg:space-y-[230px]">
                     {tab.features.map((step, index) => (
                       <div
@@ -165,6 +215,7 @@ export default function HowItWorks() {
                                 "flex-1 w-full z-10",
                                 step.isReversed ? "lg:order-1" : "lg:order-2"
                               )}
+                              {...(step.isReversed ? { "data-image-left": true } : { "data-image-right": true })}
                             >
                               <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl bg-muted">
                                 <Image

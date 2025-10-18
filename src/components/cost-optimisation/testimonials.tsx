@@ -162,7 +162,7 @@ export default function TestimonialsSection() {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center pb-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-foreground max-w-3xl mx-auto leading-[1.2]">
+          <h2 className="text-4xl lg:text-5xl font-semibold max-w-3xl mx-auto leading-[1.2] bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent ">
             Results Our Customers Count On, Month After Month
           </h2>
         </div>
@@ -174,15 +174,15 @@ export default function TestimonialsSection() {
               {testimonials.map((testimonial, index) => (
                 <div
                   key={testimonial.id}
-                  className="flex-[0_0_100%] min-w-0 h-fit"
+                  className="flex-[0_0_100%] min-w-0 h-fit px-8"
                 >
                   <div className="bg-card rounded-3xl shadow-2xl p-8 lg:p-12 border border-border">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 ">
                       {/* Left Side - Content */}
                       <div className="space-y-8">
                         {/* Quote */}
                         <div className="relative">
-                          <p className="text-xl lg:text-2xl text-foreground leading-relaxed font-light relative z-10">
+                          <p className="text-xl text-foreground leading-relaxed font-light relative z-10">
                             {testimonial.quote}
                           </p>
                         </div>
@@ -219,7 +219,7 @@ export default function TestimonialsSection() {
                           <div className="text-6xl lg:text-7xl font-bold mb-2">
                             {testimonial.savings}
                           </div>
-                          <div className="text-xl font-medium opacity-90">
+                          <div className="text-xl font-medium opacity-90 text-nowrap">
                             Cost Reduction
                           </div>
                           <div className="text-sm opacity-75 mt-2">

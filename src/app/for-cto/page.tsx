@@ -30,32 +30,32 @@ export default function ForCTO() {
     {
       value: "$60M+",
       label: "Savings delivered",
-      icon: <PiggyBank size={48} className="text-primary" />,
+      icon: <PiggyBank size={40} className="text-primary" />,
     },
     {
       value: "68%",
       label: "Max cost reduction",
-      icon: <Percent size={48} className="text-primary" />,
+      icon: <Percent size={40} className="text-primary" />,
     },
     {
       value: "80+",
       label: "Production launches",
-      icon: <Rocket size={48} className="text-primary" />,
+      icon: <Rocket size={40} className="text-primary" />,
     },
     {
       value: "15+",
       label: "Compliance standards",
-      icon: <ShieldCheck size={48} className="text-primary" />,
+      icon: <ShieldCheck size={40} className="text-primary" />,
     },
     {
       value: "100%",
       label: "ROI in 3 months",
-      icon: <TrendingUp size={48} className="text-primary" />,
+      icon: <TrendingUp size={40} className="text-primary" />,
     },
     {
       value: "12+",
       label: "Years at Amazon/AWS",
-      icon: <Users size={48} className="text-primary" />,
+      icon: <Users size={40} className="text-primary" />,
     },
   ];
 

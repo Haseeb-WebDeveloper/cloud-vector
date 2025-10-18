@@ -19,8 +19,8 @@ export default function HomeHeroSection() {
           {/* Main Heading with Animated Text */}
           <div className="w-full">
             <h1 className="text-4xl lg:text-6xl text-foreground leading-tight font-semibold">
-              You focus on innovation,
-              <br /> we take care of the cloud
+              You focus on <span className="bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent ">innovation,</span>
+              <br /> we take care of the <span className="bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent ">cloud</span>
             </h1>
           </div>
 
@@ -64,17 +64,6 @@ export default function HomeHeroSection() {
 
             <button className="group cursor-pointer flex justify-center items-center gap-2 bg-primary/60 text-foreground border border-primary/50 hover:pr-6 hover:border-primary/70 hover:bg-primary/70 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
               Book a call
-              <Image
-                src="/icons/arrow-right.svg"
-                alt="Arrow right"
-                width={150}
-                height={150}
-                className="w-fit h-6 group-hover:translate-x-2 transition-all duration-300"
-              />
-            </button>
-
-            <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
-              Sign up
               <Image
                 src="/icons/arrow-right.svg"
                 alt="Arrow right"

@@ -1,7 +1,53 @@
+"use client";
 import { StatData } from "../animated";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Stats({ stats }: { stats: StatData[] }) {
+  const statsContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (statsContainerRef.current) {
+      const leftBoxes = statsContainerRef.current.querySelectorAll("[data-stat-left]");
+      const rightBoxes = statsContainerRef.current.querySelectorAll("[data-stat-right]");
+      
+      // Set initial state
+      gsap.set(leftBoxes, { x: -100, scale: 1.5, opacity: 0 });
+      gsap.set(rightBoxes, { x: 100, scale: 1.5, opacity: 0 });
+
+      // Create timeline with ScrollTrigger
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: statsContainerRef.current,
+          start: "top bottom",
+          end: "bottom bottom",
+          scrub:1,
+        },
+      });
+
+      // Animate left boxes
+      tl.to(leftBoxes, {
+        x: 0,
+        scale: 1,
+        opacity: 1,
+        stagger: 0.15,
+        ease: "none",
+      }, 0);
+
+      // Animate right boxes
+      tl.to(rightBoxes, {
+        x: 0,
+        scale: 1,
+        opacity: 1,
+        stagger: 0.15,
+        ease: "none",
+      }, 0);
+    }
+  }, []);
   return (
     <section className="z-[-1] relative pb-32 pt-8">
       <div className="container mx-auto px-6 max-w-7xl">
@@ -14,21 +60,22 @@ export default function Stats({ stats }: { stats: StatData[] }) {
           </p>
         </div>
         {/* Stats arranged around center */}
-        <div className="relative h-[500px] flex items-center justify-center">
+        <div ref={statsContainerRef} className="relative h-[500px] flex items-center justify-center">
           <div className="flex gap-10 justify-center items-center">
-            {/* 2nd half stats */}
-            <div className="flex flex-col gap-4">
+            {/* Left side stats */}
+            <div className="flex flex-col gap-8">
               {stats.slice(0, 3).map((stat, index) => {
                 return (
                   <div
                     key={index}
                     data-stat-id={index}
-                    className={`opacity-100 shadow px-4 py-6 rounded-xl border-bl`}
+                    data-stat-left
+                    className={`opacity-0 px-4 py-5 rounded-xl bg-[#941B86]/[15%]`}
                   >
-                    <div className="flex gap-4 items-center">
-                      <div className="mb-2 flex-shrink-0">{stat.icon}</div>
+                    <div className="flex gap-4 ">
+                      <div className="flex-shrink-0">{stat.icon}</div>
                       <div>
-                        <p className="text-4xl md:text-5xl font-bold">
+                        <p className="text-3xl md:text-4xl font-bold leading-[100%]">
                           {stat.value}
                         </p>
                         <p className="text-lg font-medium">{stat.label}</p>
@@ -44,24 +91,25 @@ export default function Stats({ stats }: { stats: StatData[] }) {
                 alt="circle"
                 width={320}
                 height={320}
-                className="object-contain w-full h-full"
+                className="object-contain w-full h-full drop-shadow-[0_0_60px_rgba(255,151,0,0.4)]"
                 quality={100}
               />
             </div>
 
-            {/* Last half stats */}
-            <div className="flex flex-col gap-4">
+            {/* Right side stats */}
+            <div className="flex flex-col gap-8">
               {stats.slice(3, 6).map((stat, index) => {
                 return (
                   <div
                     key={index}
                     data-stat-id={index}
-                    className={`opacity-100 shadow px-4 py-6 rounded-xl`}
+                    data-stat-right
+                    className={`opacity-0 px-4 py-5 rounded-xl bg-[#941B86]/[15%]`}
                   >
-                    <div className="flex gap-4 items-center">
-                      <div className="mb-2 flex-shrink-0">{stat.icon}</div>
+                    <div className="flex gap-4 ">
+                      <div className="flex-shrink-0">{stat.icon}</div>
                       <div>
-                        <p className="text-4xl md:text-5xl font-bold">
+                        <p className="text-3xl md:text-4xl font-bold leading-[100%]">
                           {stat.value}
                         </p>
                         <p className="text-lg font-medium">{stat.label}</p>
