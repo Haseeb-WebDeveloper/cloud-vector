@@ -43,11 +43,11 @@ export default function ClientSectionV2({
         </div>
 
         {/* Micro-Metrics */}
-        <div className="flex flex-col lg:flex-row flex-wrap gap-1  mb-4 justify-center items-center">
+        <div className="flex flex-col lg:flex-row flex-wrap gap-3  mb-4 justify-center items-center ">
           {stats?.map((stat, index) => (
             <p
               key={index}
-              className={`text-lg font-medium border border-primary/30 text-nowrap bg-primary/10 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 px-4 py-2 ${
+              className={`hover:scale-105 text-lg font-medium border border-primary/30 text-nowrap bg-primary/10 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 px-4 py-2 ${
                 hoveredIndex !== null && hoveredIndex !== index
                   ? "opacity-50"
                   : "opacity-100"
