@@ -2,6 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface PainPoint {
   id: number;
@@ -253,8 +256,52 @@ export default function HowWeSolve() {
     };
   }, []);
 
+  // Animate cards on scroll
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const painCards = painPointRefs.current.filter(card => card !== null);
+    const solutionCards = solutionRefs.current.filter(card => card !== null);
+
+    // Set initial state for all cards
+    gsap.set(painCards, { x: -100, opacity: 0 });
+    gsap.set(solutionCards, { x: 100, opacity: 0 });
+
+    // Create timeline with ScrollTrigger - animation plays independently once triggered
+    const tl = gsap.timeline({
+      paused: true,
+      defaults: { ease: "power3.out" }
+    });
+
+    // Add animations to timeline
+    tl.to(painCards, {
+      x: 0,
+      opacity: 1,
+      duration: 1,
+      stagger: 0.12,
+    }, 0)
+    .to(solutionCards, {
+      x: 0,
+      opacity: 1,
+      duration: 1,
+      stagger: 0.12,
+    }, 0);
+
+    // Create ScrollTrigger that just plays the timeline once
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top 80%",
+      onEnter: () => tl.play(),
+      once: true,
+    });
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   return (
-    <section id="how-we-solve" className="py-20 bg-foreground/[0.02]">
+    <section id="how-we-solve" className="pb-20">
       <div className="container mx-auto px-4 w-full">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">

@@ -24,79 +24,38 @@ const footerColumns = [
   {
     title: "Solutions",
     icon: Briefcase,
+    defaultDesc: "Helping leaders win every cloud battle",
     items: [
       {
-        icon: BarChart3,
-        href: "/solutions/finance",
-        label: "For Finance",
-        desc: "Optimize cloud spend and reporting for finance teams.",
-      },
-      {
         icon: Shield,
-        href: "/solutions/cxos",
-        label: "For CXOs",
-        desc: "Strategic insights and governance for leadership.",
+        href: "/solutions/ctos",
+        label: "For CTOs",
+        desc: "Cost Efficiency, Performance, 24x7 Security, Monitoring, Disaster Recovery.",
       },
       {
         icon: Cloud,
-        href: "/solutions/cloud-engineers",
-        label: "For Cloud Engineers",
-        desc: "Tools and automation for cloud engineering teams.",
+        href: "/solutions/engineers",
+        label: "For Engineers",
+        desc: "Build faster with cost-efficient, reliable AWS architecture building blocks.",
       },
     ],
   },
   {
-    title: "Product",
+    title: "Products",
     icon: Settings,
+    defaultDesc: "Purpose-built self-service solutions for AWS Cost efficiency & security",
     items: [
       {
-        icon: FileText,
-        
-        href: "/product/cloud-victor",
-        label: "Cloud Victor",
-        desc: "Secure, monitor, and analyze your cloud logs.",
+        icon: BarChart3,
+        href: "/products/finops",
+        label: "FINOPS",
+        desc: "Slash AWS bills by up to 68%, 100% Guaranteed ROI in 3 months.",
       },
       {
-        icon: Users,
-        href: "/product/cloud-victor",
-        label: "Cloud Victor",
-        desc: "Automate and optimize data workflows.",
-      },
-      {
-        icon: DollarSign,
-        href: "/pricing",
-        label: "Pricing",
-        desc: "Flexible plans for every team and use case.",
-      },
-    ],
-  },
-  {
-    title: "Company",
-    icon: UserCircle,
-    items: [
-      {
-        icon: Phone,
-        href: "/contact",
-        label: "Contact",
-        desc: "Get in touch with our team.",
-      },
-      {
-        icon: FileText,
-        href: "/terms",
-        label: "Terms and Conditions",
-        desc: "Read our terms and conditions.",
-      },
-      {
-        icon: Lock,
-        href: "/privacy-policy",
-        label: "Privacy Policy",
-        desc: "How we handle your data and privacy.",
-      },
-      {
-        icon: Info,
-        href: "/about",
-        label: "About",
-        desc: "Learn more about CloudVictor.",
+        icon: Shield,
+        href: "/products/secops",
+        label: "SECOPS",
+        desc: "InfoSec Team As a Service.",
       },
     ],
   },
@@ -108,17 +67,40 @@ const footerColumns = [
         icon: Globe,
         href: "/case-studies",
         label: "Case Studies",
-        desc: "See how others succeed with CloudVictor.",
+      },
+      {
+        icon: Users,
+        href: "/community",
+        label: "Community",
       },
       {
         icon: Newspaper,
         href: "/blog",
         label: "Blog",
-        desc: "Insights, news, and best practices.",
       },
     ],
   },
- 
+  {
+    title: "Company",
+    icon: UserCircle,
+    items: [
+      {
+        icon: DollarSign,
+        href: "/pricing",
+        label: "Pricing",
+      },
+      {
+        icon: Phone,
+        href: "/contact",
+        label: "Contact Us",
+      },
+      {
+        icon: Info,
+        href: "/about",
+        label: "About Us",
+      },
+    ],
+  },
 ];
 
 export default function Footer() {
@@ -129,7 +111,7 @@ export default function Footer() {
           {/* Left Section - Logo and Subscription Box */}
           <div className="flex-shrink-0 lg:w-60">
             {/* Logo */}
-            <div className="mb-8">
+            <div className="mb-6">
               <Link href="/" className="flex items-center space-x-2">
                 <Image
                   src="/logo/cloudVictor-horizantal-logo-text.png"
@@ -164,12 +146,14 @@ export default function Footer() {
                       className="flex items-start gap-3 opacity-80 hover:text-primary group cursor-pointer border border-transparent hover:border-foreground/10 hover:bg-muted/50 rounded-lg p-3"
                       key={item.href}
                     >
-                      <item.icon className="w-5 h-5 flex-shrink-0 mt-1 " />
+                    <div className="flex items-center justify-center p-2 bg-primary/10 rounded-full aspect-square">
+                    <item.icon className="aspect-square w-5 h-5 flex-shrink-0  text-primary " />
+                    </div>
                       <div>
                         <Link href={item.href} className="block transition-colors text-sm">
                           {item.label}
                         </Link>
-                        <p className="text-xs mt-1 font-light">{item.desc}</p>
+                        <p className="text-xs mt-1 font-light">{col.defaultDesc}</p>
                       </div>
                     </div>
                   ))}

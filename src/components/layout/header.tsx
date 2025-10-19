@@ -35,40 +35,44 @@ const navigationData = [
   {
     title: "Solutions",
     href: "/",
+    description:
+      "Helping leaders win every cloud battle",
     hasDropdown: true,
     submenu: [
       {
         title: "For CTOs",
         description:
-          "Strategic technology leadership solutions designed for Chief Technology Officers",
+          "Cost Efficiency, Performance, 24x7 Security, Monitoring, Disaster Recovery.",
         icon: Users,
         href: "/for-cto",
       },
       {
         title: "For Engineers",
         description:
-          "Development tools and resources tailored for engineering teams",
+          "Build faster with cost-efficient, reliable AWS architecture building blocks.",
         icon: Code,
         href: "#engineers",
       },
     ],
   },
   {
-    title: "Product",
+    title: "Products",
     href: "#",
     hasDropdown: true,
+    description:
+      "Purpose-built self-service solutions for AWS Cost efficiency & security",
     submenu: [
       {
-        title: "Effdog",
-        description: "Advanced efficiency monitoring and optimization platform",
-        icon: Monitor,
-        href: "#cloud-victor",
+        title: "FINOPS",
+        description: "Slash AWS bills by up to 68%, 100% Guaranteed ROI in 3 months.",
+        icon: DollarSign,
+        href: "#finops",
       },
       {
-        title: "Log Guardia",
-        description: "Comprehensive logging and security monitoring solution",
+        title: "SECOPS",
+        description: "InfoSec Team As a Service.",
         icon: Shield,
-        href: "#log-guardia",
+        href: "#secops",
       },
     ],
   },
@@ -76,6 +80,8 @@ const navigationData = [
     title: "Resources",
     href: "#",
     hasDropdown: true,
+    description:
+      "Insights, success stories, and community resources",
     submenu: [
       {
         title: "Case Studies",
@@ -84,10 +90,16 @@ const navigationData = [
         href: "#case-studies",
       },
       {
-        title: "Blogs",
+        title: "Community",
+        description: "Join our community of cloud professionals",
+        icon: Users,
+        href: "#community",
+      },
+      {
+        title: "Blog",
         description: "Latest insights, tutorials, and industry trends",
         icon: BookOpen,
-        href: "#blogs",
+        href: "#blog",
       },
     ],
   },
@@ -157,6 +169,10 @@ export default function Header() {
     setHoveredSubItem(subItemTitle);
   };
 
+  const handleSubItemLeave = () => {
+    setHoveredSubItem(null);
+  };
+
   // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
@@ -169,10 +185,10 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b-[1px] border-foreground/10 bg-background/95 backdrop-blur-md  ",
         isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b-[1px] border-foreground/10 py-5"
-          : "bg-transparent py-6"
+          ? "py-5"
+          : "py-6 "
       )}
     >
       <div className="container mx-auto px-4">
@@ -208,7 +224,7 @@ export default function Header() {
                 {/* Desktop Dropdown */}
                 {item.hasDropdown && hoveredItem === item.title && (
                   <div
-                    className="absolute top-10 left-1/2 transform -translate-x-1/2 mt-2 min-w-[450px] bg-background border rounded-lg shadow-lg animate-in fade-in-0 zoom-in-95 duration-200"
+                    className="absolute top-10 left-1/2 transform -translate-x-1/2 mt-2 min-w-[450px] bg-background border rounded-lg shadow-lg animate-in fade-in-0 zoom-in-95 duration-200 z-[300]"
                     onMouseEnter={handleDropdownMouseEnter}
                     onMouseLeave={handleDropdownMouseLeave}
                   >
@@ -223,7 +239,7 @@ export default function Header() {
                             ? item.submenu?.find(
                                 (sub) => sub.title === hoveredSubItem
                               )?.description
-                            : item.submenu?.[0]?.description}
+                            : item.description}
                         </p>
                       </div>
 
@@ -237,6 +253,7 @@ export default function Header() {
                             onMouseEnter={() =>
                               handleSubItemHover(subItem.title)
                             }
+                            onMouseLeave={handleSubItemLeave}
                           >
                             <subItem.icon className="w-5 h-5 transition-colors" />
                             <div>
@@ -279,71 +296,53 @@ export default function Header() {
             <SheetContent side="right" className="w-full h-full">
               <div className="flex flex-col space-y-6 mt-20 px-4">
                 {/* Mobile Navigation */}
-                <Accordion
-                  type="single"
-                  collapsible
-                  className="w-full space-y-2"
-                >
-                  {navigationData.map((item) => (
-                    <AccordionItem key={item.title} value={item.title}>
-                      <AccordionTrigger className="text-left">
-                        {item.title}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        {item.hasDropdown ? (
-                          <div className="space-y-2">
-                            {item.submenu?.map((subItem) => (
-                              <Link
-                                key={subItem.title}
-                                href={subItem.href}
-                                className="flex items-start space-x-3 p-3 rounded-md hover:bg-muted/50 transition-colors group"
-                              >
-                                <subItem.icon className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
-                                <div>
-                                  <div className="font-medium tracking-widest text-sm group-hover:text-primary transition-colors">
-                                    {subItem.title}
+                <div className="w-full space-y-2">
+                  {navigationData.map((item) =>
+                    item.hasDropdown ? (
+                      <Accordion
+                        key={item.title}
+                        type="single"
+                        collapsible
+                        className="w-full"
+                      >
+                        <AccordionItem value={item.title}>
+                          <AccordionTrigger className="text-left">
+                            {item.title}
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="space-y-2">
+                              {item.submenu?.map((subItem) => (
+                                <Link
+                                  key={subItem.title}
+                                  href={subItem.href}
+                                  className="flex items-start space-x-3 p-3 rounded-md hover:bg-muted/50 transition-colors group"
+                                >
+                                  <subItem.icon className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
+                                  <div>
+                                    <div className="font-medium tracking-widest text-sm group-hover:text-primary transition-colors">
+                                      {subItem.title}
+                                    </div>
+                                    <div className="text-xs mt-1">
+                                      {subItem.description}
+                                    </div>
                                   </div>
-                                  <div className="text-xs mt-1">
-                                    {subItem.description}
-                                  </div>
-                                </div>
-                              </Link>
-                            ))}
-                          </div>
-                        ) : (
-                          <Link
-                            href={item.href}
-                            className="flex items-start space-x-3 p-3 rounded-md hover:bg-muted/50 transition-colors group"
-                          >
-                            {item.title === "Pricing" ? (
-                              <DollarSign className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
-                            ) : item.title === "Contact Us" ? (
-                              <Phone className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
-                            ) : item.title === "About Us" ? (
-                              <Info className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
-                            ) : (
-                              <Settings className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
-                            )}
-                            <div>
-                              <div className="font-medium tracking-widest text-sm group-hover:text-primary transition-colors">
-                                {item.title}
-                              </div>
-                              <div className="text-xs mt-1">
-                                {item.title === "Pricing"
-                                  ? "View our flexible pricing plans and choose what works for you"
-                                  : item.title === "Contact Us"
-                                    ? "Get in touch with our team for support and inquiries"
-                                    : item.title === "About Us"
-                                      ? "Learn more about our company, mission, and values"
-                                      : "Learn more about this section"}
-                              </div>
+                                </Link>
+                              ))}
                             </div>
-                          </Link>
-                        )}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    ) : (
+                      <Link
+                        key={item.title}
+                        href={item.href}
+                        className="flex items-center p-3 rounded-md hover:bg-muted/50 transition-colors group font-medium text-base"
+                      >
+                        {item.title}
+                      </Link>
+                    )
+                  )}
+                </div>
 
                 {/* Mobile CTA Buttons */}
                 <div className="flex flex-col space-y-3 pt-4 border-t">

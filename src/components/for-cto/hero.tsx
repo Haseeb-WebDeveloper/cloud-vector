@@ -62,7 +62,7 @@ export default function HomeHeroSection() {
               />
             </button>
 
-            <button className="group cursor-pointer flex justify-center items-center gap-2 bg-primary/60 text-foreground border border-primary/50 hover:pr-6 hover:border-primary/70 hover:bg-primary/70 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
+            <button className="group cursor-pointer flex justify-center items-center gap-2 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] text-foreground border border-primary/50 hover:pr-6 hover:border-primary/70 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
               Book a call
               <Image
                 src="/icons/arrow-right.svg"

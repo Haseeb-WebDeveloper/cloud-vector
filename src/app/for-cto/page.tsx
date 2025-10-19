@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import HowWeSolve from "@/components/for-cto/how-we-solve";
 import HowItWorks from "@/components/for-cto/how-it-works";
+import GetStartedSection from "@/components/cost-optimisation/get-started-section";
 
 export default function ForCTO() {
   const LogoStats = [
@@ -66,10 +67,11 @@ export default function ForCTO() {
         title="Real Impact. Don’t take it from us. Hear it from them."
         stats={LogoStats}
       />
-      <TestimonialsSection />
-      <Stats stats={SocialStats} />
       <HowWeSolve />
       <HowItWorks />
+      <Stats stats={SocialStats} />
+       <GetStartedSection />
+      <TestimonialsSection />
     </>
   );
 }

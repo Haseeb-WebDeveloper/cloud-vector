@@ -94,7 +94,7 @@ export default function NewsletterSection() {
                 <button
                   type="submit"
                   disabled={isLoading || !email}
-                  className="cursor-pointer px-6 py-3 bg-[#FF8C00] text-white hover:bg-[#FF8C00]/90 font-semibold rounded-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="cursor-pointer px-6 py-3 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] text-white font-semibold rounded-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? "Sending..." : "Subscribe →"}
                 </button>

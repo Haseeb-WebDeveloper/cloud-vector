@@ -34,13 +34,15 @@ export default function HowItWorks() {
   useEffect(() => {
     if (!stepsContainerRef.current) return;
 
-    const leftImages = stepsContainerRef.current.querySelectorAll("[data-image-left]");
-    const rightImages = stepsContainerRef.current.querySelectorAll("[data-image-right]");
+    const leftImages =
+      stepsContainerRef.current.querySelectorAll("[data-image-left]");
+    const rightImages =
+      stepsContainerRef.current.querySelectorAll("[data-image-right]");
 
     // Animate each image individually with its own ScrollTrigger
     leftImages.forEach((image) => {
       gsap.set(image, { x: -100, opacity: 0 });
-      
+
       gsap.to(image, {
         x: 0,
         opacity: 1,
@@ -56,7 +58,7 @@ export default function HowItWorks() {
 
     rightImages.forEach((image) => {
       gsap.set(image, { x: 100, opacity: 0 });
-      
+
       gsap.to(image, {
         x: 0,
         opacity: 1,
@@ -71,36 +73,45 @@ export default function HowItWorks() {
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [activeTab]);
 
-  const currentTabData = tabsData.find(tab => tab.id === activeTab) || tabsData[0];
+  const currentTabData =
+    tabsData.find((tab) => tab.id === activeTab) || tabsData[0];
 
   return (
-    <div className="py-32 max-w-7xl mx-auto px-4">
+    <div className="py-32">
       <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 max-w-4xl mx-auto leading-tight">
         From Architecture to Automation - One Partner, Total Control
       </h2>
-      
+
       {/* Sticky Tabs Navigation */}
-      <div 
+      <div
         id="sticky-tabs"
         className={cn(
-          "sticky top-[73px] py-2 z-50 bg-background transition-all duration-300",
+          `sticky top-[73px] py-8 border-y-[1px] border-foreground/10 z-20 w-full bg-clip-padding backdrop-blur-xl bg-background/70 transition-all duration-300`,
+
         )}
       >
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className=" w-fit mx-auto flex flex-wrap h-auto bg-background gap-2 justify-center items-center">
+          <TabsList className=" w-fit mx-auto flex flex-wrap h-auto bg-transparent gap-2 justify-center items-center">
             {tabsData.map((tab) => (
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className={`cursor-pointer  w-fit mx-auto flex items-center gap-1 px-4 py-3 text-xs sm:text-sm font-medium rounded-full transition-all duration-200 border`}
+                className={cn(
+                  `cursor-pointer  w-fit mx-auto flex items-center gap-1 px-4 py-3 text-xs sm:text-sm font-medium rounded-full transition-all duration-200`,
+                  
+                )}
               >
                 {tab.icon}
-                <span className="text-xs text-center leading-tight hidden sm:block">{tab.label}</span>
-                <span className="text-xs text-center leading-tight sm:hidden">{tab.label.split(' ')[0]}</span>
+                <span className="text-xs text-center leading-tight hidden sm:block">
+                  {tab.label}
+                </span>
+                <span className="text-xs text-center leading-tight sm:hidden">
+                  {tab.label.split(" ")[0]}
+                </span>
               </TabsTrigger>
             ))}
           </TabsList>
@@ -108,12 +119,12 @@ export default function HowItWorks() {
       </div>
 
       {/* Tab Content */}
-      <div className="mt-12">
+      <div className="mt-12 max-w-7xl mx-auto   px-4">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           {tabsData.map((tab) => (
-            <TabsContent 
-              key={tab.id} 
-              value={tab.id} 
+            <TabsContent
+              key={tab.id}
+              value={tab.id}
               className="mt-0 data-[state=active]:animate-in data-[state=active]:fade-in-0 data-[state=active]:duration-500"
             >
               <div className="space-y-16 animate-in fade-in-0 duration-500">
@@ -139,7 +150,9 @@ export default function HowItWorks() {
                         className="flex items-start gap-3 p-3 sm:p-4 bg-foreground/5 rounded-lg"
                       >
                         <CheckIcon className="w-4 h-4 sm:w-5 sm:h-5 mt-1 flex-shrink-0 text-primary" />
-                        <span className="text-xs sm:text-sm leading-relaxed">{benefit}</span>
+                        <span className="text-xs sm:text-sm leading-relaxed">
+                          {benefit}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -203,7 +216,9 @@ export default function HowItWorks() {
                                     className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg"
                                   >
                                     <CheckIcon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 mt-1 flex-shrink-0 text-primary" />
-                                    <span className="leading-relaxed">{detail}</span>
+                                    <span className="leading-relaxed">
+                                      {detail}
+                                    </span>
                                   </li>
                                 ))}
                               </ul>
@@ -212,10 +227,12 @@ export default function HowItWorks() {
                             {/* Image */}
                             <div
                               className={cn(
-                                "flex-1 w-full z-10",
+                                "flex-1 w-full z-[5]",
                                 step.isReversed ? "lg:order-1" : "lg:order-2"
                               )}
-                              {...(step.isReversed ? { "data-image-left": true } : { "data-image-right": true })}
+                              {...(step.isReversed
+                                ? { "data-image-left": true }
+                                : { "data-image-right": true })}
                             >
                               <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl bg-muted">
                                 <Image

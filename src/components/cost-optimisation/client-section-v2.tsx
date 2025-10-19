@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import React, { useState } from "react";
 import {
   Marquee,
   MarqueeContent,
@@ -22,9 +23,15 @@ const partnerLogos = [
   { name: "Cengage", src: "/clients/7.png", alt: "Cengage" },
 ];
 
+export default function ClientSectionV2({
+  title,
+  stats,
+}: {
+  title: string;
+  stats: { title: string; description: string }[];
+}) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-
-export default function ClientSectionV2({title, stats}: {title: string, stats: {title: string, description: string}[]}) {
   return (
     <div className="py-20 mb-32 ">
       <div className=" bg-[#252f3e] rounded-2xl container mx-auto px-4 py-24 ">
@@ -39,8 +46,14 @@ export default function ClientSectionV2({title, stats}: {title: string, stats: {
         <div className="flex flex-col lg:flex-row flex-wrap gap-1  mb-4 justify-center items-center">
           {stats?.map((stat, index) => (
             <p
-              className="text-lg font-medium border border-primary/30 text-nowrap bg-primary/10  hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 px-4 py-2"
               key={index}
+              className={`text-lg font-medium border border-primary/30 text-nowrap bg-primary/10 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 px-4 py-2 ${
+                hoveredIndex !== null && hoveredIndex !== index
+                  ? "opacity-50"
+                  : "opacity-100"
+              }`}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               <span className="font-bold text-3xl text-primary text-nowrap">
                 {stat.title}
