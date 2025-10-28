@@ -1,7 +1,11 @@
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import { TypedObject } from "@portabletext/types";
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity/client";
+import React from "react";
+import MediaBlock from "./media-block";
+import CenterTextBlock from "./center-text-block";
+import TextImageBlock from "./text-image-block";
+import ImageCarouselBlock from "./image-carousel-block";
 
 interface RichEditorProps {
   content: TypedObject | TypedObject[] | any;
@@ -19,31 +23,31 @@ export default function RichEditor({ content }: RichEditorProps) {
           className="editor-content my-[0.5vw] rounded-lg shadow-md object-cover w-full h-auto aspect-video object-center"
         />
       ),
-      //   mediaBlock: ({ value }: any) => {
-      //     return (
-      //       <div className='editor-content media'>
-      //         <MediaBlock value={value} />
-      //       </div>
-      //     )
-      //   },
-      //   howItWorks: ({ value }: any) => {
-      //     return <HowItWorks value={value} />
-      //   },
-      //   titleBlock: ({ value }: any) => {
-      //     return <TitleBlock value={value} />
-      //   },
-      //   fileBlock: ({ value }: any) => {
-      //     return <FileBlock value={value} />
-      //   },
-      //   centerTextBlock: ({ value }: any) => {
-      //     return <CenterTextBlock value={value} />
-      //   },
-      //   textImageBlock: ({ value }: any) => {
-      //     return <TextImageBlock value={value} />
-      //   },
-      //   imageCarouselBlock: ({ value }: any) => {
-      //     return <ImageCarouselBlock value={value} />
-      //   }
+      mediaBlock: ({ value }: any) => {
+        return (
+          <div className="editor-content media">
+            <MediaBlock value={value} />
+          </div>
+        );
+      },
+      // howItWorks: ({ value }: any) => {
+      //   return <HowItWorks value={value} />
+      // },
+      // titleBlock: ({ value }: any) => {
+      //   return <TitleBlock value={value} />
+      // },
+      // fileBlock: ({ value }: any) => {
+      //   return <FileBlock value={value} />
+      // },
+      centerTextBlock: ({ value }: any) => {
+        return <CenterTextBlock value={value} />;
+      },
+      textImageBlock: ({ value }: any) => {
+        return <TextImageBlock value={value} />;
+      },
+      imageCarouselBlock: ({ value }: any) => {
+        return <ImageCarouselBlock value={value} />;
+      },
     },
     block: {
       h1: ({ children }) => (
@@ -51,20 +55,37 @@ export default function RichEditor({ content }: RichEditorProps) {
           {children}
         </h1>
       ),
-      h2: ({ children }) => {
-        const text = Array.isArray(children)
-          ? children.join("")
-          : String(children || "");
-        const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-        return (
-          <h2
-            id={id}
-            className="editor-content text-[7vw] md:text-[3.5vw] font-semibold mb-[3vw] md:mb-[0.8vw] leading-[130%]"
-          >
-            {children}
-          </h2>
-        );
-      },
+      h2: (() => {
+        const toSlug = (input: string): string => {
+          const trimmed = (input || "").trim();
+          if (!trimmed) return "section";
+          const normalized = trimmed
+            .normalize("NFKD")
+            .replace(/\p{Diacritic}+/gu, "");
+          const safe = normalized.replace(/[^\p{Letter}\p{Number}\s-]/gu, "");
+          const collapsed = safe
+            .replace(/[\s_-]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+          return collapsed || "section";
+        };
+        return ({ children, value }: any) => {
+          const text = Array.isArray(children)
+            ? children.join("")
+            : String(children || "");
+          const baseId = toSlug(text).toLowerCase();
+          const keySuffix =
+            typeof value?._key === "string" ? `-${value._key.slice(0, 6)}` : "";
+          const id = `${baseId}${keySuffix}`;
+          return (
+            <h2
+              id={id}
+              className="editor-content text-[7vw] md:text-[3.5vw] font-semibold mb-[3vw] md:mb-[0.8vw] leading-[130%]"
+            >
+              {children}
+            </h2>
+          );
+        };
+      })(),
       h3: ({ children }) => (
         <h3 className="editor-content text-[6vw] md:text-[2.3vw] font-medium mb-[3vw] md:mb-[0.8vw] leading-[130%]">
           {children}

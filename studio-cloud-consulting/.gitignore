@@ -37,3 +37,4 @@
 # But not these files/folders
 !.gitignore
 !schemaTypes/
+!schemaTypes/**
