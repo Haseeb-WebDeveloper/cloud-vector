@@ -403,3 +403,38 @@ body::-webkit-scrollbar,
 .box-shadow-large {
   box-shadow: rgba(150, 97, 0, 0.438) 0px 10px 36px 0px, rgba(255, 255, 255, 0.06) 0px 0px 0px 1px;
 }
+.box-shadow-large-purple {
+  box-shadow: rgba(128, 0, 128, 0.438) 0px 10px 36px 0px, rgba(255, 255, 255, 0.06) 0px 0px 0px 1px;
+}
+
+/* Animated Glow Effects */
+@keyframes glow-slow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1) translate(-10px, 10px);
+  }
+}
+
+@keyframes glow-slow-delayed {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1) translate(10px, -10px);
+  }
+}
+
+.animate-glow-slow {
+  animation: glow-slow 8s ease-in-out infinite;
+}
+
+.animate-glow-slow-delayed {
+  animation: glow-slow-delayed 8s ease-in-out infinite;
+  animation-delay: 2s;
+}

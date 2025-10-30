@@ -18,6 +18,7 @@ import {
   LifeBuoy,
 } from "lucide-react";
 import Image from "next/image";
+import { SpotlightCard } from "./ui/spolight-card";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -48,6 +49,7 @@ const AnimatedSections: React.FC = () => {
   const leftColumnRef = useRef<HTMLDivElement>(null);
   const offersRef = useRef<HTMLDivElement[]>([]);
   const statsSectionRef = useRef<HTMLDivElement>(null);
+  const statsContainerRef = useRef<HTMLDivElement>(null);
   const circleImageRef = useRef<HTMLDivElement>(null);
   const targetPositionRef = useRef<HTMLDivElement>(null);
   const [currentStep, setCurrentStep] = useState(1);
@@ -61,15 +63,15 @@ const AnimatedSections: React.FC = () => {
         "Unlock 40–70% savings with data-backed rightsizing, autoscaling, and smarter purchase plans, continuously optimized as you grow.",
       features: [
         {
-          icon: <Clock size={25} />,
+          icon: <Clock size={20} />,
           text: "Fast Fixes → Rightsize, Reconfigure, Smarter Purchase Plans delivered in, a few days. One-time Outcome-based Fees. No subscription.",
         },
         {
-          icon: <TrendingUp size={25} />,
+          icon: <TrendingUp size={20} />,
           text: "Guaranteed ROI → 100% return in 3 months, with sustained savings that scale as you grow.",
         },
         {
-          icon: <Check size={25} />,
+          icon: <Check size={20} />,
           text: "Exhaustive Audit → Every dollar tracked, every AWS Service Covered.",
         },
       ],
@@ -77,85 +79,107 @@ const AnimatedSections: React.FC = () => {
     },
     {
       id: 2,
-      title: "LogGuardia – Security (InfoSec as a Service)",
-      headline: "24x7 InfoSec Team",
-      tagline: "Your team builds in peace while we guard.",
-      subTagline: "Enterprise-grade Infrastructure Protection & Compliance",
+      title: "Cost & Performance Optimization",
+      headline: "Use less of cloud and pay less for it",
+      tagline:
+        "Unlock 40–70% savings with data-backed rightsizing, autoscaling, and smarter purchase plans, continuously optimized as you grow.",
       features: [
         {
-          icon: <BadgeCheck size={25} />,
-          text: "Compliance-First → SOC2, HIPAA, PCI-DSS, GDPR, and CIS enforced by Design.",
+          icon: <Clock size={20} />,
+          text: "Fast Fixes → Rightsize, Reconfigure, Smarter Purchase Plans delivered in, a few days. One-time Outcome-based Fees. No subscription.",
         },
         {
-          icon: <Award size={25} />,
-          text: "Intruder Defense → Instant alerts on suspicious activity. Internal or External. We stand Guard for you!",
+          icon: <TrendingUp size={20} />,
+          text: "Guaranteed ROI → 100% return in 3 months, with sustained savings that scale as you grow.",
         },
         {
-          icon: <ShieldCheck size={25} />,
-          text: "Continuous Monitoring → Real-time scans catch security holes before they are exploited.",
+          icon: <Check size={20} />,
+          text: "Exhaustive Audit → Every dollar tracked, every AWS Service Covered.",
         },
       ],
       value: 1,
     },
     {
       id: 3,
-      title: "Operational Excellence",
-      headline: "100% Uptime That Builds Trust",
-      tagline:
-        "IaC & CI/CD backed Serverless Containerized Architectures. Just like Amazon's own systems. Tailored for You.",
+      title: "LogGuardia – Security (InfoSec as a Service)",
+      headline: "24x7 InfoSec Team",
+      tagline: "Your team builds in peace while we guard.",
+      subTagline: "Enterprise-grade Infrastructure Protection & Compliance",
       features: [
         {
-          icon: <Rocket size={25} />,
-          text: "Tailored Launchpad → Cloud designs aligned with your performance, security, and compliance needs. Cost-Efficient, Security-Compliant, Performant, Resilient, and Scalable By Design",
+          icon: <BadgeCheck size={20} />,
+          text: "Compliance-First → SOC2, HIPAA, PCI-DSS, GDPR, and CIS enforced by Design.",
         },
         {
-          icon: <Check size={25} />,
-          text: "Proven Reliability → 80+ production launches across 300+ AWS Accounts across SaaS, FinTech, and enterprise workloads.",
+          icon: <Award size={20} />,
+          text: "Intruder Defense → Instant alerts on suspicious activity. Internal or External. We stand Guard for you!",
         },
         {
-          icon: <Server size={25} />,
-          text: "Next-Gen Foundations → Serverless, Containerized, and AWS-native By Design.",
+          icon: <ShieldCheck size={20} />,
+          text: "Continuous Monitoring → Real-time scans catch security holes before they are exploited.",
         },
       ],
       value: 1,
     },
     {
       id: 4,
-      title: "Resilience and disaster recovery",
-      headline: "Lightning-fast Customer Experience.",
-      tagline: "Disaster Resistant with Automated Recovery",
+      title: "Operational Excellence",
+      headline: "100% Uptime That Builds Trust",
+      tagline:
+        "IaC & CI/CD backed Serverless Containerized Architectures. Just like Amazon's own systems. Tailored for You.",
       features: [
         {
-          icon: <LifeBuoy size={25} />,
-          text: "Self-Healing Architecture.",
+          icon: <Rocket size={20} />,
+          text: "Tailored Launchpad → Cloud designs aligned with your performance, security, and compliance needs. Cost-Efficient, Security-Compliant, Performant, Resilient, and Scalable By Design",
         },
         {
-          icon: <Rocket size={25} />,
-          text: "Blue/Green Deployments with Automated Rollbacks.",
+          icon: <Check size={20} />,
+          text: "Proven Reliability → 80+ production launches across 300+ AWS Accounts across SaaS, FinTech, and enterprise workloads.",
         },
         {
-          icon: <ShieldCheck size={25} />,
-          text: "Automated Cross-Account Backups for Disaster Recovery.",
+          icon: <Server size={20} />,
+          text: "Next-Gen Foundations → Serverless, Containerized, and AWS-native By Design.",
         },
       ],
       value: 1,
     },
     {
       id: 5,
+      title: "Resilience and disaster recovery",
+      headline: "Lightning-fast Customer Experience.",
+      tagline: "Disaster Resistant with Automated Recovery",
+      features: [
+        {
+          icon: <LifeBuoy size={20} />,
+          text: "Self-Healing Architecture.",
+        },
+        {
+          icon: <Rocket size={20} />,
+          text: "Blue/Green Deployments with Automated Rollbacks.",
+        },
+        {
+          icon: <ShieldCheck size={20} />,
+          text: "Automated Cross-Account Backups for Disaster Recovery.",
+        },
+      ],
+      value: 1,
+    },
+    {
+      id: 6,
       title: "Performance",
       headline: "Daily Releases on Autopilot",
       tagline: "Fluid Customer Experience. Higher Retention. Higher Revenue.",
       features: [
         {
-          icon: <TrendingUp size={25} />,
+          icon: <TrendingUp size={20} />,
           text: "Upto 70% faster page/app loads.",
         },
         {
-          icon: <Users size={25} />,
+          icon: <Users size={20} />,
           text: "25% increase in customer NPS.",
         },
         {
-          icon: <Award size={25} />,
+          icon: <Award size={20} />,
           text: "Higher Revenue through improved performance.",
         },
       ],
@@ -210,10 +234,11 @@ const AnimatedSections: React.FC = () => {
         pinSpacing: false,
       });
 
-      // Animate offers
+      // Animate offers - synced with image changes
       offers.forEach((_, index) => {
         const offerElement = offersRef.current[index];
         if (offerElement) {
+          // Opacity animation
           ScrollTrigger.create({
             trigger: offerElement,
             start: "top 80%",
@@ -224,7 +249,6 @@ const AnimatedSections: React.FC = () => {
                 duration: 0.5,
                 ease: "power2.out",
               });
-              setCurrentStep(index + 1);
             },
             onLeave: () => {
               gsap.to(offerElement, {
@@ -239,7 +263,6 @@ const AnimatedSections: React.FC = () => {
                 duration: 0.5,
                 ease: "power2.out",
               });
-              setCurrentStep(index + 1);
             },
             onLeaveBack: () => {
               gsap.to(offerElement, {
@@ -248,6 +271,15 @@ const AnimatedSections: React.FC = () => {
                 ease: "power2.out",
               });
             },
+          });
+
+          // Image change trigger - when offer reaches center of viewport
+          ScrollTrigger.create({
+            trigger: offerElement,
+            start: "top center",
+            end: "bottom center",
+            onEnter: () => setCurrentStep(index + 1),
+            onEnterBack: () => setCurrentStep(index + 1),
           });
         }
       });
@@ -291,15 +323,69 @@ const AnimatedSections: React.FC = () => {
           ease: "power2.out",
         });
       }
+
+      // Stats cards animation (bidirectional) - ONLY animation, no circle changes
+      if (statsContainerRef.current) {
+        const leftBoxes =
+          statsContainerRef.current.querySelectorAll("[data-stat-left]");
+        const rightBoxes =
+          statsContainerRef.current.querySelectorAll("[data-stat-right]");
+
+        // Set initial state
+        gsap.set(leftBoxes, { x: -100, scale: 1.5, opacity: 0 });
+        gsap.set(rightBoxes, { x: 100, scale: 1.5, opacity: 0 });
+
+        // Create timeline with ScrollTrigger
+        const statsTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: statsContainerRef.current,
+            start: "top bottom",
+            end: "bottom bottom",
+            scrub: 1,
+          },
+        });
+
+        // Animate left boxes
+        statsTl.to(
+          leftBoxes,
+          {
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            stagger: 0.15,
+            ease: "none",
+          },
+          0
+        );
+
+        // Animate right boxes
+        statsTl.to(
+          rightBoxes,
+          {
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            stagger: 0.15,
+            ease: "none",
+          },
+          0
+        );
+      }
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [offers.length]); // depends on offers.length in case offer count changes
+
+  // Create step images for all offers (1 image per offer)
+  const stepImageIndices = Array.from({ length: offers.length }, (_, i) => i + 1);
 
   return (
-    <div className="relative">
+    <div className="relative  bg-foreground/5 pt-20">
+      <h2 className="text-center max-w-5xl mx-auto text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent  mb-6">
+        Optimize. Secure. Scale — AWS Done Right.
+      </h2>
       {/* Section 1 - What We Offer */}
-      <section ref={sectionRef} className="min-h-screen py-20 bg-foreground/5">
+      <section ref={sectionRef} className="min-h-screen py-20 ">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             {/* Left Column - Circle Image with Step Images - PINNED */}
@@ -309,7 +395,8 @@ const AnimatedSections: React.FC = () => {
             >
               <div className="relative flex items-center justify-center w-full h-full aspect-square">
                 {/* Step Images */}
-                {[1, 2, 3, 4, 5].map((step) => (
+                {stepImageIndices.map((step) => (
+                  console.log(step),
                   <div
                     key={step}
                     className={`absolute inset-0 z-0 flex items-center justify-center transition-opacity duration-500 ${
@@ -317,7 +404,7 @@ const AnimatedSections: React.FC = () => {
                     }`}
                   >
                     <Image
-                      src={`/home-page/${step}.png`}
+                      src={`/home-page/${(step - 1)}.png`}  // of step will be 1 the image will 0.png
                       alt={`Step ${step}`}
                       width={400}
                       height={400}
@@ -371,21 +458,21 @@ const AnimatedSections: React.FC = () => {
                     )}
 
                     {/* Three Feature Boxes */}
-                    <div className="grid md:grid-cols-2 gap-2 mt-8">
+                    <div className="grid md:grid-cols-2 gap-4 mt-8">
                       {offer.features.map((feature, featureIndex) => (
-                        <div
+                        <SpotlightCard
                           key={featureIndex}
-                          className="w-fit p-5 bg-foreground/5 rounded"
+                          className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-6"
                         >
-                          <div className="flex gap-4">
-                            <div className="bg-primary/10 rounded-full p-2 w-fit h-fit">
+                          <div className="space-y-4">
+                            <div className="bg-primary/30 rounded-full p-3 w-fit h-fit flex-shrink-0">
                               {feature.icon}
                             </div>
                             <p className="text-sm leading-relaxed text-foreground/90">
                               {feature.text}
                             </p>
                           </div>
-                        </div>
+                        </SpotlightCard>
                       ))}
                     </div>
                   </div>
@@ -410,21 +497,25 @@ const AnimatedSections: React.FC = () => {
             </p>
           </div>
           {/* Stats arranged around center */}
-          <div className="relative h-[500px] flex items-center justify-center">
+          <div
+            ref={statsContainerRef}
+            className="relative h-[500px] flex items-center justify-center"
+          >
             <div className="flex gap-10 justify-center items-center">
-              {/* 2nd half stats */}
-              <div className="flex flex-col gap-4">
+              {/* Left side stats */}
+              <div className="flex flex-col gap-8">
                 {stats.slice(0, 3).map((stat, index) => {
                   return (
                     <div
                       key={index}
                       data-stat-id={index}
-                      className={`opacity-100 shadow px-4 py-6 rounded-xl border-bl`}
+                      data-stat-left
+                      className={`opacity-0 px-4 py-5 rounded-xl bg-[#941B86]/[15%]`}
                     >
-                      <div className="flex gap-4 items-center">
-                        <div className="mb-2 flex-shrink-0">{stat.icon}</div>
+                      <div className="flex gap-4">
+                        <div className="flex-shrink-0">{stat.icon}</div>
                         <div>
-                          <p className="text-4xl md:text-5xl font-bold">
+                          <p className="text-3xl md:text-4xl font-bold leading-[100%]">
                             {stat.value}
                           </p>
                           <p className="text-lg font-medium">{stat.label}</p>
@@ -439,19 +530,20 @@ const AnimatedSections: React.FC = () => {
                 className="w-[400px] h-[400px] "
               ></div>
 
-              {/* Last half stats */}
-              <div className="flex flex-col gap-4">
+              {/* Right side stats */}
+              <div className="flex flex-col gap-8">
                 {stats.slice(3, 6).map((stat, index) => {
                   return (
                     <div
                       key={index}
                       data-stat-id={index}
-                      className={`opacity-100 shadow px-4 py-6 rounded-xl`}
+                      data-stat-right
+                      className={`opacity-0 px-4 py-5 rounded-xl bg-[#941B86]/[15%]`}
                     >
-                      <div className="flex gap-4 items-center">
-                        <div className="mb-2 flex-shrink-0">{stat.icon}</div>
+                      <div className="flex gap-4">
+                        <div className="flex-shrink-0">{stat.icon}</div>
                         <div>
-                          <p className="text-4xl md:text-5xl font-bold">
+                          <p className="text-3xl md:text-4xl font-bold leading-[100%]">
                             {stat.value}
                           </p>
                           <p className="text-lg font-medium">{stat.label}</p>

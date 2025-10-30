@@ -256,7 +256,7 @@ export default function HowWeSolve() {
     };
   }, []);
 
-  // Animate cards on scroll
+  // Animate cards on scroll (bidirectional)
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -267,33 +267,29 @@ export default function HowWeSolve() {
     gsap.set(painCards, { x: -100, opacity: 0 });
     gsap.set(solutionCards, { x: 100, opacity: 0 });
 
-    // Create timeline with ScrollTrigger - animation plays independently once triggered
+    // Create timeline with ScrollTrigger using scrub for bidirectional animation
     const tl = gsap.timeline({
-      paused: true,
-      defaults: { ease: "power3.out" }
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        end: "top 30%",
+        scrub: 1,
+      },
     });
 
     // Add animations to timeline
     tl.to(painCards, {
       x: 0,
       opacity: 1,
-      duration: 1,
       stagger: 0.12,
+      ease: "none",
     }, 0)
     .to(solutionCards, {
       x: 0,
       opacity: 1,
-      duration: 1,
       stagger: 0.12,
+      ease: "none",
     }, 0);
-
-    // Create ScrollTrigger that just plays the timeline once
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: "top 80%",
-      onEnter: () => tl.play(),
-      once: true,
-    });
 
     return () => {
       tl.kill();

@@ -39,19 +39,19 @@ export default function HowItWorks() {
     const rightImages =
       stepsContainerRef.current.querySelectorAll("[data-image-right]");
 
-    // Animate each image individually with its own ScrollTrigger
+    // Animate each image individually with its own ScrollTrigger (bidirectional)
     leftImages.forEach((image) => {
       gsap.set(image, { x: -100, opacity: 0 });
 
       gsap.to(image, {
         x: 0,
         opacity: 1,
-        duration: 1,
-        ease: "power2.out",
+        ease: "none",
         scrollTrigger: {
           trigger: image,
           start: "top 80%",
-          toggleActions: "play none none none",
+          end: "top 40%",
+          scrub: 1,
         },
       });
     });
@@ -62,12 +62,12 @@ export default function HowItWorks() {
       gsap.to(image, {
         x: 0,
         opacity: 1,
-        duration: 1,
-        ease: "power2.out",
+        ease: "none",
         scrollTrigger: {
           trigger: image,
           start: "top 80%",
-          toggleActions: "play none none none",
+          end: "top 40%",
+          scrub: 1,
         },
       });
     });
@@ -82,7 +82,7 @@ export default function HowItWorks() {
 
   return (
     <div className="py-32">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 max-w-4xl mx-auto leading-tight">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 max-w-4xl mx-auto leading-tight bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent ">
         From Architecture to Automation - One Partner, Total Control
       </h2>
 

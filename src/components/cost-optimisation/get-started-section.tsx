@@ -3,6 +3,7 @@
 import { Check, BadgePercent, Receipt, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import { SpotlightCard } from "../ui/spolight-card";
+import { GradientButton } from "@/components/ui/gradient-button";
 
 export default function GetStartedSection() {
   return (
@@ -67,16 +68,16 @@ export default function GetStartedSection() {
 
               {/* Call to Action Button */}
               <div className="  flex flex-col sm:flex-row gap-4 pt-4 pb-10 w-full justify-center items-center">
-                <button className="group cursor-pointer flex justify-center items-center gap-2 bg-primary text-background border border-primary/50 hover:pr-6 hover:border-primary transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
+                <GradientButton>
                   Book a call
                   <Image
                     src="/icons/arrow-right.svg"
                     alt="Arrow right"
                     width={150}
                     height={150}
-                    className="invert w-fit h-6 group-hover:translate-x-2 transition-all duration-300"
+                    className="w-fit h-6 group-hover:translate-x-2 transition-all duration-300"
                   />
-                </button>
+                </GradientButton>
 
                 <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70  transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
                   Whatsapp Us

@@ -2,6 +2,7 @@
 
 import AnimatedTextCycle from "@/components/ui/text-cycle";
 import Image from "next/image";
+import { GradientButton } from "@/components/ui/gradient-button";
 
 export default function HomeHeroSection() {
   const animatedTexts = [
@@ -62,7 +63,7 @@ export default function HomeHeroSection() {
               />
             </button>
 
-            <button className="group cursor-pointer flex justify-center items-center gap-2 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] text-foreground border border-primary/50 hover:pr-6 hover:border-primary/70 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
+            <GradientButton>
               Book a call
               <Image
                 src="/icons/arrow-right.svg"
@@ -71,7 +72,7 @@ export default function HomeHeroSection() {
                 height={150}
                 className="w-fit h-6 group-hover:translate-x-2 transition-all duration-300"
               />
-            </button>
+            </GradientButton>
           </div>
         </div>
       </div>

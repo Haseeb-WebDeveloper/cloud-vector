@@ -70,7 +70,9 @@ export default function ForCTO() {
       <HowWeSolve />
       <HowItWorks />
       <Stats stats={SocialStats} />
-       <GetStartedSection />
+      <div className=" mx-auto px-6 lg:px-12 max-w-7xl">
+        <GetStartedSection />
+      </div>
       <TestimonialsSection />
     </>
   );

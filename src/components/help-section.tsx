@@ -25,7 +25,7 @@ export const HelpSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Main Title */}
         <div className="text-center mb-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-muted-foreground mb-2">
+          <h2 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent">
             We are here to help
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground/80 max-w-3xl mx-auto">

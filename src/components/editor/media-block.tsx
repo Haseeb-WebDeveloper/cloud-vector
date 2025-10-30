@@ -112,7 +112,7 @@ export default function MediaBlock({ value }: { value: MediaBlockValue }) {
                     href={fileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                    className="inline-block px-4 py-2 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] text-white rounded-lg transition-all duration-300"
                   >
                     Download File
                   </a>
@@ -184,7 +184,7 @@ export default function MediaBlock({ value }: { value: MediaBlockValue }) {
                     href={fileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block px-[4vw] py-[2vw] bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                    className="inline-block px-[4vw] py-[2vw] bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] text-white rounded-lg transition-all duration-300"
                   >
                     Download File
                   </a>

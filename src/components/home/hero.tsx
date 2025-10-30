@@ -2,6 +2,7 @@
 
 import AnimatedTextCycle from "@/components/ui/text-cycle";
 import Image from "next/image";
+import { GradientButton } from "@/components/ui/gradient-button";
 
 export default function HomeHeroSection() {
   const animatedTexts = [
@@ -35,7 +36,7 @@ export default function HomeHeroSection() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button className="group cursor-pointer flex justify-center items-center gap-2 bg-primary/60 text-foreground border border-primary/50 hover:pr-6 hover:border-primary/70 hover:bg-primary/70 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
+            <GradientButton>
               Book a call
               <Image
                 src="/icons/arrow-right.svg"
@@ -44,7 +45,7 @@ export default function HomeHeroSection() {
                 height={150}
                 className="w-fit h-6 group-hover:translate-x-2 transition-all duration-300"
               />
-            </button>
+            </GradientButton>
 
             <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
               Whatsapp Us

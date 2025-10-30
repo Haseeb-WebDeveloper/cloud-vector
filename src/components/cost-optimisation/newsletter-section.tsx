@@ -27,8 +27,8 @@ export default function NewsletterSection() {
   if (isSubmitted) {
     return (
       <section className="py-20">
-        <div className="max-w-6xl mx-auto px-4 py-24 bg-[#332211] rounded-2xl box-shadow-large">
-          <div className="max-w-2xl mx-auto text-center">
+        <div className="relative max-w-6xl mx-auto px-4 py-24 bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 rounded-2xl box-shadow-large overflow-hidden">
+          <div className="relative max-w-2xl mx-auto text-center z-10">
             <div className="flex justify-center mb-6">
               <div className="w-16 h-16 bg-[#FF9900] rounded-full flex items-center justify-center">
                 <Image
@@ -56,10 +56,8 @@ export default function NewsletterSection() {
 
   return (
     <section className="py-20">
-      <div
-        className="max-w-6xl mx-auto px-4  lg:px-24 py-24 bg-[#332211] rounded-2xl box-shadow-large"
-      >
-        <div className="max-w-2xl mx-auto">
+      <div className="relative max-w-6xl mx-auto px-4 lg:px-24 py-24 bg-gradient-to-bl from-secondary/30 via-secondary/10 to-secondary/30 rounded-2xl box-shadow-large-purple overflow-hidden">
+        <div className="relative max-w-2xl mx-auto z-10">
           {/* Newsletter Form Container */}
           <div className="text-center">
             {/* Email Icon */}
@@ -88,7 +86,7 @@ export default function NewsletterSection() {
                   placeholder="Enter your email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 h-12 p-3 rounded-lg bg-[#221100] border-0 text-white placeholder:text-[#AAAAAA] focus:outline-none focus:ring-0"
+                  className="border border-secondary flex-1 h-12 p-3 rounded-lg bg-secondary  text-white placeholder:text-[#AAAAAA] focus:outline-none focus:ring-0"
                   required
                 />
                 <button

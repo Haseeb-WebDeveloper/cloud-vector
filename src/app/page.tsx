@@ -30,7 +30,11 @@ export default function Home() {
       {/* <ChartPieDonutText /> */}
       <ClientSectionV2 title="Proven Savings. Real Impact" stats={stats} />
       <AnimatedSections />
-      <GetStartedSection />
+      <div>
+        <div className="mx-auto px-6 lg:px-8 max-w-7xl">
+          <GetStartedSection />
+        </div>
+      </div>
       <TestimonialsSection />
       <FAQSection />
     </>
