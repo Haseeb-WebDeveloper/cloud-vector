@@ -103,7 +103,7 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
             aria-label="Share on LinkedIn"
           >
             <div
-              className={`absolute inset-0 bg-[#3626C1] rounded-full transition-all duration-300 ease-out ${
+              className={`absolute inset-0 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 rounded-full transition-all duration-300 ease-out ${
                 hoveredButton === "linkedin" ? "scale-100" : "scale-0"
               }`}
             ></div>
@@ -138,7 +138,7 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
             aria-label="Share on Facebook"
           >
             <div
-              className={`absolute inset-0 bg-[#3626C1] rounded-full transition-all duration-300 ease-out ${
+              className={`absolute inset-0 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 rounded-full transition-all duration-300 ease-out ${
                 hoveredButton === "facebook" ? "scale-100" : "scale-0"
               }`}
             ></div>
@@ -173,7 +173,7 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
             aria-label="Share on X (formerly Twitter)"
           >
             <div
-              className={`absolute inset-0 bg-[#3626C1] rounded-full transition-all duration-300 ease-out ${
+              className={`absolute inset-0 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 rounded-full transition-all duration-300 ease-out ${
                 hoveredButton === "twitter" ? "scale-100" : "scale-0"
               }`}
             ></div>
@@ -214,7 +214,7 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
             aria-label="Copy link to clipboard"
           >
             <div
-              className={`absolute inset-0 bg-[#3626C1] rounded-full transition-all duration-300 ease-out ${
+              className={`absolute inset-0 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 rounded-full transition-all duration-300 ease-out ${
                 hoveredButton === "copy" ? "scale-100" : "scale-0"
               }`}
             ></div>

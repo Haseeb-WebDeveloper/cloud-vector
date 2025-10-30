@@ -19,40 +19,40 @@ const AnimatedQuoteButton: React.FC<AnimatedQuoteButtonProps> = ({
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`cursor-pointer relative overflow-hidden bg-[#3626C1] px-[1.1vw] py-[1.1vw] rounded-full text-foreground font-medium transition-all duration-300 ease-out group ${className}`}
+      className={`cursor-pointer relative overflow-hidden bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 px-[1.1vw] py-[1.1vw] rounded-full text-foreground font-medium transition-all duration-300 ease-out group ${className}`}
     >
       {/* Content container */}
       <div className=" flex items-center justify-between gap-3 w-full ">
         {/* Text that moves up on hover (like category button) */}
         <div className="relative overflow-hidden text-center w-full">
           <span
-            className={`block transition-all duration-300 ease-out text-[1.1vw] ${
+            className={`block transition-all duration-300 ease-out text-[1vw] ${
               isHovered
                 ? "text-foreground -translate-y-full"
                 : "text-foreground translate-y-0"
             }`}
           >
-            Request a Quote
+            Start Saving Now!
           </span>
           <span
-            className={`text-[1.1vw] absolute top-0 left-1/2 -translate-x-1/2 block w-full text-center transition-all duration-300 ease-out ${
+            className={`text-[1vw] absolute top-0 left-1/2 -translate-x-1/2 block w-full text-center transition-all duration-300 ease-out ${
               isHovered
                 ? "text-foreground translate-y-0"
                 : "text-foreground translate-y-full"
             }`}
           >
-            Request a Quote
+            Start Saving Now!
           </span>
         </div>
 
         {/* Icon container with fixed rounded background */}
         <div className="absolute top-1/2 right-[0.5vw] -translate-y-1/2 w-fit h-fit rounded-full flex items-center justify-center overflow-hidden border border-foreground">
           <div className="relative bg-foreground aspect-square rounded-full flex items-center justify-center">
-          <div
-            className={`absolute inset-0 bg-[#3626C1] rounded-full transition-all duration-300 ease-out ${
-              isHovered ? "scale-100" : "scale-0"
-            }`}
-          ></div>
+            <div
+              className={`absolute inset-0 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 rounded-full transition-all duration-300 ease-out ${
+                isHovered ? "scale-100" : "scale-0"
+              }`}
+            ></div>
             {/* First icon - goes right on hover  */}
             <Image
               src="/icons/send.svg"

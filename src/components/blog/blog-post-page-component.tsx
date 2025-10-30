@@ -247,13 +247,13 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
                   <div className="lg:sticky lg:top-[8vw] space-y-4">
                     {/* Table of Contents */}
                     {headings.length > 0 && (
-                      <div className="relative hidden lg:block p-6 lg:p-[2vw] border border-foreground/20 rounded-2xl">
-                        <h4 className="text-lg sm:text-xl md:text-[1.5vw] font-light text-foreground mb-4 sm:mb-6 md:mb-[2vw] uppercase">
+                      <div className="relative hidden lg:block px-6 pt-6 md:px-[1.8vw] md:pt-[1.8vw] border border-foreground/20 rounded-2xl">
+                        <h4 className="text-lg sm:text-xl md:text-[1.2vw] font-light text-foreground mb-4 sm:mb-6 md:mb-[1vw] uppercase">
                           Table of Contents
                         </h4>
                         <div
                           data-lenis-prevent
-                          className="z-10 h-48 md:h-[18vw] overflow-y-auto space-y-2 sm:space-y-3 md:space-y-[1vw]"
+                          className="z-10 overflow-y-auto md:h-[15vw] space-y-2 sm:space-y-3 md:space-y-[0.5vw] pb-[3vw]"
                         >
                           {headings.map((heading, index) => (
                             <button
@@ -269,6 +269,9 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
                             </button>
                           ))}
                         </div>
+
+                        {/* overlay at bottom on desktop */}
+                        <div className="absolute bottom-0 left-0 w-full h-[3vw] bg-gradient-to-t from-background to-transparent"></div>
                       </div>
                     )}
 
@@ -288,6 +291,18 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
                       />
                     </div>
 
+                    {/* Static card with the title "Start Saving Now!" */}
+                    <div className="hidden lg:block w-full bg-secondary/10 rounded-2xl p-4 border">
+                      <h5 className="text-[1vw] uppercase font-medium text-foreground">
+                        Reduce your monthly AWS bill by upto (68%)
+                      </h5>
+                      <p className="text-[0.9vw] font-light text-foreground/90 mt-1">
+                        EffDog automates the tedious work of analyzing your AWS
+                        usage and optimizing it to keep your AWS monthly bills
+                        in check
+                      </p>
+                    </div>
+
                     {/* Desktop Request a Quote Button */}
                     <div className="hidden lg:block">
                       <AnimatedQuoteButton
@@ -295,7 +310,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
                           // You can add contact modal logic here
                           window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
-                        className="w-full text-[1.3vw] uppercase"
+                        className="w-full text-[1vw] uppercase"
                       />
                     </div>
                   </div>

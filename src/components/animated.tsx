@@ -391,12 +391,11 @@ const AnimatedSections: React.FC = () => {
             {/* Left Column - Circle Image with Step Images - PINNED */}
             <div
               ref={leftColumnRef}
-              className="flex items-center justify-center w-full h-[500px]"
+              className="flex items-center justify-center w-full h-[40vw]"
             >
               <div className="relative flex items-center justify-center w-full h-full aspect-square">
                 {/* Step Images */}
                 {stepImageIndices.map((step) => (
-                  console.log(step),
                   <div
                     key={step}
                     className={`absolute inset-0 z-0 flex items-center justify-center transition-opacity duration-500 ${
@@ -408,14 +407,14 @@ const AnimatedSections: React.FC = () => {
                       alt={`Step ${step}`}
                       width={400}
                       height={400}
-                      className="object-contain w-[25rem] h-[25rem]"
+                      className="object-contain w-[34rem] h-[34rem]"
                     />
                   </div>
                 ))}
                 {/* Central Circle Image */}
                 <div
                   ref={circleImageRef}
-                  className="z-10 object-contain w-[15.6rem] h-[15.6rem] absolute"
+                  className="z-10 object-contain w-[20.5rem] h-[20.5rem] absolute"
                 >
                   <Image
                     src="/home-page/circle.png"
