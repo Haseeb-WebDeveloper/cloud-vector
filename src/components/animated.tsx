@@ -567,7 +567,7 @@ const AnimatedSections: React.FC = () => {
                       key={index}
                       data-stat-id={index}
                       data-stat-left
-                      className={`opacity-0 px-4 py-5 rounded-xl bg-[#941B86]/[15%]`}
+                      className={`opacity-0 px-4 py-5 rounded-xl bg-black border border-border shadow-[0_1px_5px_0_rgba(255,153,0,0.521)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.900)]`}
                     >
                       <div className="flex gap-4">
                         <div className="flex-shrink-0">{stat.icon}</div>
@@ -601,7 +601,7 @@ const AnimatedSections: React.FC = () => {
                       key={index}
                       data-stat-id={index}
                       data-stat-right
-                      className={`opacity-0 px-4 py-5 rounded-xl bg-[#941B86]/[15%]`}
+                      className={`opacity-0 px-4 py-5 rounded-xl bg-black border border-border shadow-[0_1px_5px_0_rgba(255,153,0,0.521)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.900)]`}
                     >
                       <div className="flex gap-4">
                         <div className="flex-shrink-0">{stat.icon}</div>
