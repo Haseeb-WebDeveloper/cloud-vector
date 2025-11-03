@@ -425,6 +425,16 @@ const AnimatedSections: React.FC = () => {
                     />
                   </div>
                 ))}
+                {/* Glow behind central circle image */}
+                <div
+                  className="z-10 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[24rem] h-[24rem] rounded-full"
+                  style={{
+                    boxShadow:
+                      "0 0 90px 40px rgba(255,151,0,0.3), 0 0 240px 90px rgba(232,84,9,0.18)",
+                    background:
+                      "radial-gradient(circle at 60% 40%, rgba(255,151,0,0.08) 0%, rgba(232,84,9,0.08) 90%)",
+                  }}
+                ></div>
                 {/* Central Circle Image */}
                 <div
                   ref={circleImageRef}
