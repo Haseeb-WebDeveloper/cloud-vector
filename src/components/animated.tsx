@@ -30,6 +30,7 @@ interface OfferData {
   headline: string;
   tagline: string;
   subTagline?: string;
+  afterFeaturesText?: string;
   features: {
     icon: React.ReactNode;
     text: string;
@@ -57,24 +58,29 @@ const AnimatedSections: React.FC = () => {
   const offers: OfferData[] = [
     {
       id: 1,
-      title: "Cost & Performance Optimization",
-      headline: "Use less of cloud and pay less for it",
-      tagline:
-        "Unlock 40–70% savings with data-backed rightsizing, autoscaling, and smarter purchase plans, continuously optimized as you grow.",
+      title: "Run cloud the way Amazon does",
+      headline: "Run cloud the way Amazon does -",
+      tagline: "Use less of cloud and pay less for it.",
       features: [
         {
+          icon: <ShieldCheck size={20} />,
+          text: "With 24x7 InfoSec Team",
+        },
+        {
+          icon: <BadgeCheck size={20} />,
+          text: "100% Uptime That Builds Trust",
+        },
+        {
+          icon: <Rocket size={20} />,
+          text: "Lightning-fast Customer Experience",
+        },
+        {
           icon: <Clock size={20} />,
-          text: "Fast Fixes → Rightsize, Reconfigure, Smarter Purchase Plans delivered in, a few days. One-time Outcome-based Fees. No subscription.",
-        },
-        {
-          icon: <TrendingUp size={20} />,
-          text: "Guaranteed ROI → 100% return in 3 months, with sustained savings that scale as you grow.",
-        },
-        {
-          icon: <Check size={20} />,
-          text: "Exhaustive Audit → Every dollar tracked, every AWS Service Covered.",
+          text: "Daily Releases on Autopilot.",
         },
       ],
+      afterFeaturesText:
+        "Five pillars, one mission - Make your cloud work BETTER for YOU!.",
       value: 1,
     },
     {
@@ -464,40 +470,58 @@ const AnimatedSections: React.FC = () => {
                       </p>
                     )}
 
-                    {/* Three Feature Boxes */}
-                    <div className="grid md:grid-cols-2 gap-4 mt-8">
-                      {offer.features.map((feature, featureIndex) => (
-                        <SpotlightCard
-                          key={featureIndex}
-                          className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-6"
-                        >
-                          <div className="space-y-4">
-                            <div className="bg-primary/30 rounded-full p-3 w-fit h-fit flex-shrink-0">
-                              {feature.icon}
+                    {/* Features: bullets for first step, boxes for others */}
+                    {offer.id === 1 ? (
+                      <ul className="mt-8 list-disc pl-6 space-y-2 text-foreground/90">
+                        {offer.features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="text-base">
+                            {feature.text}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <div className="grid md:grid-cols-2 gap-4 mt-8">
+                        {offer.features.map((feature, featureIndex) => (
+                          <SpotlightCard
+                            key={featureIndex}
+                            className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-6"
+                          >
+                            <div className="space-y-4">
+                              <div className="bg-primary/30 rounded-full p-3 w-fit h-fit flex-shrink-0">
+                                {feature.icon}
+                              </div>
+                              {(() => {
+                                const parts = String(feature.text).split("→");
+                                const heading = parts[0]?.trim();
+                                const description = parts
+                                  .slice(1)
+                                  .join("→")
+                                  .trim();
+                                return (
+                                  <div className="space-y-1">
+                                    {heading && (
+                                      <p className="text-sm font-bold text-primary">
+                                        {heading}
+                                      </p>
+                                    )}
+                                    {description && (
+                                      <p className="text-sm leading-relaxed text-foreground/90">
+                                        {description}
+                                      </p>
+                                    )}
+                                  </div>
+                                );
+                              })()}
                             </div>
-                            {(() => {
-                              const parts = String(feature.text).split("→");
-                              const heading = parts[0]?.trim();
-                              const description = parts.slice(1).join("→").trim();
-                              return (
-                                <div className="space-y-1">
-                                  {heading && (
-                                    <p className="text-sm font-bold text-foreground/90">
-                                      {heading}
-                                    </p>
-                                  )}
-                                  {description && (
-                                    <p className="text-sm leading-relaxed text-foreground/90">
-                                      {description}
-                                    </p>
-                                  )}
-                                </div>
-                              );
-                            })()}
-                          </div>
-                        </SpotlightCard>
-                      ))}
-                    </div>
+                          </SpotlightCard>
+                        ))}
+                      </div>
+                    )}
+                    {offer.afterFeaturesText && (
+                      <p className="mt-6 text-base leading-relaxed text-foreground/90">
+                        {offer.afterFeaturesText}
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}
