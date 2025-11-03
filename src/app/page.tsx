@@ -31,7 +31,7 @@ export default function Home() {
       <ClientSectionV2 title="Proven Savings. Real Impact" stats={stats} />
       <AnimatedSections />
       <div>
-        <div className="mx-auto px-6 lg:px-8 max-w-7xl">
+        <div className="mx-auto px-6 lg:px-8 max-w-7xl pt-40 pb-12">
           <GetStartedSection />
         </div>
       </div>

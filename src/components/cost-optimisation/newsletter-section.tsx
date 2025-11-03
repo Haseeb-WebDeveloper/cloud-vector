@@ -56,7 +56,7 @@ export default function NewsletterSection() {
 
   return (
     <section className="py-20">
-      <div className="relative max-w-6xl mx-auto px-4 lg:px-24 py-24 bg-gradient-to-bl from-secondary/30 via-secondary/10 to-secondary/30 rounded-2xl box-shadow-large-purple overflow-hidden">
+      <div className="relative max-w-6xl mx-auto px-4 lg:px-24 py-24 bg-gradient-to-bl from-secondary/[45%] via-secondary/10 to-secondary/[30%] rounded-2xl box-shadow-large-purple overflow-hidden">
         <div className="relative max-w-2xl mx-auto z-10">
           {/* Newsletter Form Container */}
           <div className="text-center">

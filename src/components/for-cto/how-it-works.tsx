@@ -14,7 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function HowItWorks() {
   const [activeTab, setActiveTab] = useState("cost");
   const [isSticky, setIsSticky] = useState(false);
-  const stepsContainerRef = useRef<HTMLDivElement>(null);
+  const tabContainerRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
   // Handle sticky behavior
   useEffect(() => {
@@ -30,20 +30,21 @@ export default function HowItWorks() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Animate feature step images
-  useEffect(() => {
-    if (!stepsContainerRef.current) return;
+  // Store ScrollTrigger instances for proper cleanup
+  const scrollTriggerRefs = useRef<gsap.core.Tween[]>([]);
 
-    const leftImages =
-      stepsContainerRef.current.querySelectorAll("[data-image-left]");
-    const rightImages =
-      stepsContainerRef.current.querySelectorAll("[data-image-right]");
+  // Helper function to initialize animations for a specific container
+  const initializeAnimations = (container: HTMLDivElement) => {
+    // Only query images within this specific container
+    const leftImages = container.querySelectorAll("[data-image-left]");
+    const rightImages = container.querySelectorAll("[data-image-right]");
 
     // Animate each image individually with its own ScrollTrigger (bidirectional)
     leftImages.forEach((image) => {
+      // Reset to initial state first
       gsap.set(image, { x: -100, opacity: 0 });
 
-      gsap.to(image, {
+      const tween = gsap.to(image, {
         x: 0,
         opacity: 1,
         ease: "none",
@@ -54,12 +55,15 @@ export default function HowItWorks() {
           scrub: 1,
         },
       });
+      
+      scrollTriggerRefs.current.push(tween);
     });
 
     rightImages.forEach((image) => {
+      // Reset to initial state first
       gsap.set(image, { x: 100, opacity: 0 });
 
-      gsap.to(image, {
+      const tween = gsap.to(image, {
         x: 0,
         opacity: 1,
         ease: "none",
@@ -70,10 +74,56 @@ export default function HowItWorks() {
           scrub: 1,
         },
       });
+      
+      scrollTriggerRefs.current.push(tween);
     });
 
+    // Refresh ScrollTrigger to recalculate positions after a brief delay
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+  };
+
+  // Animate feature step images - re-initialize when tab changes
+  useEffect(() => {
+    // Clean up previous ScrollTriggers created by this component only
+    scrollTriggerRefs.current.forEach((tween) => {
+      const scrollTrigger = (tween as any).scrollTrigger;
+      if (scrollTrigger) {
+        scrollTrigger.kill();
+      }
+      tween.kill();
+    });
+    scrollTriggerRefs.current = [];
+
+    // Wait for active tab content to be visible
+    const activeTabContainer = tabContainerRefs.current.get(activeTab);
+    if (!activeTabContainer) {
+      // Container not yet registered, wait a bit
+      const timeout = setTimeout(() => {
+        const container = tabContainerRefs.current.get(activeTab);
+        if (container) {
+          // Check if element is actually visible
+          const rect = container.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) {
+            initializeAnimations(container);
+          }
+        }
+      }, 100);
+      return () => clearTimeout(timeout);
+    }
+
+    // Small delay to ensure Radix UI has finished showing the tab content
+    const timeout = setTimeout(() => {
+      // Verify container is visible before animating
+      const rect = activeTabContainer.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        initializeAnimations(activeTabContainer);
+      }
+    }, 50);
+
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      clearTimeout(timeout);
     };
   }, [activeTab]);
 
@@ -159,7 +209,16 @@ export default function HowItWorks() {
                 </div>
 
                 {/* Feature Steps */}
-                <div className="relative" ref={stepsContainerRef}>
+                <div
+                  className="relative"
+                  ref={(el) => {
+                    if (el) {
+                      tabContainerRefs.current.set(tab.id, el);
+                    } else {
+                      tabContainerRefs.current.delete(tab.id);
+                    }
+                  }}
+                >
                   <div className="space-y-12 sm:space-y-16 lg:space-y-[230px]">
                     {tab.features.map((step, index) => (
                       <div

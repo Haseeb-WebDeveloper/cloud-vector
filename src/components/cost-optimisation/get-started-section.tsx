@@ -11,16 +11,16 @@ export default function GetStartedSection() {
       <div className="container mx-auto px-4 h-full">
         <div className="mx-auto h-full">
           {/* Main Banner */}
-          <div
+          <SpotlightCard
             className="relative rounded-3xl px-12 pt-24 pb-20 overflow-hidden"
-            style={{
-              backgroundImage: "url('/cta-bg.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "top",
-              backgroundRepeat: "no-repeat",
-              boxShadow: "0 2px 40px 0 rgba(255, 153, 0, 0.521), 0 1.5px 2px 0 rgba(255, 153, 0, 0.521)"
-            }}
           >
+            {/* Image in background */}
+            <Image
+              src="/cta-bg.jpg"
+              alt="CTA Background"
+            fill
+              className="object-cover absolute left-0 top-0 bottom-0 right-0 "
+            />
             {/* Content */}
             <div className="relative z-10 text-center">
               {/* Logo */}
@@ -91,7 +91,7 @@ export default function GetStartedSection() {
                 </button>
               </div>
             </div>
-          </div>
+          </SpotlightCard>
         </div>
       </div>
     </div>

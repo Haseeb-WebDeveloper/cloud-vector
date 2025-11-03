@@ -137,7 +137,7 @@ export default function Footer() {
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-20 flex-1">
             {footerColumns.map((col) => (
               <div className="space-y-6 min-w-[220px]" key={col.title}>
-                <h3 className="text-sm text-foreground/70 flex items-center gap-2">
+                <h3 className="text-primary text-center flex items-center px-3 pt-2 gap-2">
                   {col.title}
                 </h3>
                 <div className="space-y-3">

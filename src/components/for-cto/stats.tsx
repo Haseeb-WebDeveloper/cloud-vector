@@ -11,45 +11,56 @@ export default function Stats({ stats }: { stats: StatData[] }) {
   const statsContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (statsContainerRef.current) {
-      const leftBoxes = statsContainerRef.current.querySelectorAll("[data-stat-left]");
-      const rightBoxes = statsContainerRef.current.querySelectorAll("[data-stat-right]");
-      
-      // Set initial state
-      gsap.set(leftBoxes, { x: -100, scale: 1.5, opacity: 0 });
-      gsap.set(rightBoxes, { x: 100, scale: 1.5, opacity: 0 });
+    if (!statsContainerRef.current) return;
 
-      // Create timeline with ScrollTrigger
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: statsContainerRef.current,
-          start: "top bottom",
-          end: "bottom bottom",
-          scrub:1,
-        },
-      });
+    const leftBoxes = statsContainerRef.current.querySelectorAll("[data-stat-left]");
+    const rightBoxes = statsContainerRef.current.querySelectorAll("[data-stat-right]");
+    
+    // Set initial state
+    gsap.set(leftBoxes, { x: -100, scale: 1.5, opacity: 0 });
+    gsap.set(rightBoxes, { x: 100, scale: 1.5, opacity: 0 });
 
-      // Animate left boxes
-      tl.to(leftBoxes, {
-        x: 0,
-        scale: 1,
-        opacity: 1,
-        stagger: 0.15,
-        ease: "none",
-      }, 0);
+    // Create timeline with ScrollTrigger
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: statsContainerRef.current,
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: 1,
+        // Add id to help identify this ScrollTrigger
+        id: "stats-section-trigger",
+      },
+    });
 
-      // Animate right boxes
-      tl.to(rightBoxes, {
-        x: 0,
-        scale: 1,
-        opacity: 1,
-        stagger: 0.15,
-        ease: "none",
-      }, 0);
-    }
+    // Animate left boxes
+    tl.to(leftBoxes, {
+      x: 0,
+      scale: 1,
+      opacity: 1,
+      stagger: 0.15,
+      ease: "none",
+    }, 0);
+
+    // Animate right boxes
+    tl.to(rightBoxes, {
+      x: 0,
+      scale: 1,
+      opacity: 1,
+      stagger: 0.15,
+      ease: "none",
+    }, 0);
+
+    // Cleanup function
+    return () => {
+      const statsTrigger = ScrollTrigger.getById("stats-section-trigger");
+      if (statsTrigger) {
+        statsTrigger.kill();
+      }
+      tl.kill();
+    };
   }, []);
   return (
-    <section className="z-[-1] relative pb-32 pt-8">
+    <section className="relative pb-32 pt-8 z-10">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent  mb-6">
