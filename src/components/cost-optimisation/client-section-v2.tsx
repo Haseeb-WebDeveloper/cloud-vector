@@ -33,7 +33,7 @@ export default function ClientSectionV2({
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="py-20 mb-32 ">
+    <div className="py-20 mb-16 ">
       <div className=" bg-[#252f3e] rounded-2xl container mx-auto px-4 py-24 ">
         {/* Main Text */}
         <div className="text-center pb-6">

@@ -27,7 +27,11 @@ export default function NewsletterSection() {
   if (isSubmitted) {
     return (
       <section className="py-20">
-        <div className="relative max-w-6xl mx-auto px-4 py-24 bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 rounded-2xl box-shadow-large overflow-hidden">
+        <div className="relative max-w-6xl mx-auto px-4 py-24 rounded-2xl box-shadow-large overflow-hidden bg-[#0b1220] ring-1 ring-white/10">
+          {/* top-right purple glow */}
+          <span className="pointer-events-none absolute -top-24 -right-16 h-[380px] w-[420px] blur-3xl opacity-50 bg-[radial-gradient(ellipse_at_center,rgba(140,128,228,0.45)_0%,rgba(140,128,228,0)_70%)]" />
+          {/* bottom-left cool glow */}
+          <span className="pointer-events-none absolute -bottom-28 -left-16 h-[360px] w-[420px] blur-3xl opacity-40 bg-[radial-gradient(ellipse_at_center,rgba(21,94,199,0.35)_0%,rgba(21,94,199,0)_70%)]" />
           <div className="relative max-w-2xl mx-auto text-center z-10">
             <div className="flex justify-center mb-6">
               <div className="w-16 h-16 bg-[#FF9900] rounded-full flex items-center justify-center">
@@ -56,7 +60,11 @@ export default function NewsletterSection() {
 
   return (
     <section className="py-20">
-      <div className="relative max-w-6xl mx-auto px-4 lg:px-24 py-24 bg-gradient-to-bl from-secondary/[45%] via-secondary/10 to-secondary/[30%] rounded-2xl box-shadow-large-purple overflow-hidden">
+      <div className="relative max-w-6xl mx-auto px-4 lg:px-24 py-24 rounded-2xl box-shadow-large-purple overflow-hidden bg-[#0b1220] ring-1 ring-white/10">
+        {/* top-right purple glow */}
+        <span className="pointer-events-none absolute -top-28 -right-20 h-[420px] w-[520px] blur-3xl opacity-50 bg-[radial-gradient(ellipse_at_center,rgba(140,128,228,0.45)_0%,rgba(140,128,228,0)_70%)]" />
+        {/* bottom-left cool glow */}
+        <span className="pointer-events-none absolute -bottom-32 -left-20 h-[420px] w-[520px] blur-3xl opacity-40 bg-[radial-gradient(ellipse_at_center,rgba(21,94,199,0.35)_0%,rgba(21,94,199,0)_70%)]" />
         <div className="relative max-w-2xl mx-auto z-10">
           {/* Newsletter Form Container */}
           <div className="text-center">

@@ -134,16 +134,23 @@ export default function IndustryFactsSection() {
 
   return (
     <div className="mb-32">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative">
         {/* Section Header */}
         <div className="text-center pb-12">
           <h2 className="text-4xl lg:text-6xl font-semibold text-foreground mb-8">
-            Cloud Spending & Waste is Escalating Fast
+            {"Cloud Spending & "}
+            <span className="bg-gradient-to-r from-[#FF8703] via-amber-300 to-[#deb2b2] bg-clip-text text-transparent">
+              Waste is Escalating Fast
+            </span>
           </h2>
-          <p className="text-2xl text-foreground/90 max-w-3xl mx-auto">
+          <p className="text-2xl text-foreground/90 max-w-3xl mx-auto pb-5">
             Industry Facts quantifying the problem.
           </p>
         </div>
+
+        {/* Glows */}
+        <div className="pointer-events-none absolute -top-8 -left-8 h-60 w-60 rounded-full  bg-[blue]/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-8 -right-8 h-60 w-60 rounded-full bg-[#FF8703]/20 blur-3xl" />
 
         {/* Embla Carousel */}
         <div
@@ -155,7 +162,7 @@ export default function IndustryFactsSection() {
             <div className="flex">
               {industryFacts.map((fact, index) => (
                 <div key={fact.id} className="flex-[0_0_100%] min-w-0 px-4 h-fit">
-                  <div className="flex flex-col md:flex-row gap-12 h-fit"
+                  <div className="flex flex-col md:flex-row gap-12 h-fit rounded-2xl border border-white/15 bg-background/20 p-6 md:p-8 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   >
@@ -193,34 +200,32 @@ export default function IndustryFactsSection() {
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       </div>
-
-                      {/* Progress Indicators */}
-                      <div className="flex justify-center mt-6 space-x-2">
-                        {scrollSnaps.map((_, index) => (
-                          <button
-                            key={index}
-                            onClick={() => scrollTo(index)}
-                            className={cn(
-                              "h-1.5 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer relative overflow-hidden",
-                              index === selectedIndex
-                                ? "w-16 bg-[#c8c8c2]"
-                                : "w-8 bg-[#c8c8c2]/90"
-                            )}
-                          >
-                            {index === selectedIndex && (
-                              <div
-                                className="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-75 ease-linear"
-                                style={{ width: `${progress}%` }}
-                              />
-                            )}
-                          </button>
-                        ))}
-                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Centered Progress Indicators */}
+          <div className="flex justify-center mt-6 space-x-2">
+            {scrollSnaps.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                className={cn(
+                  "h-1.5 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer relative overflow-hidden",
+                  index === selectedIndex ? "w-16 bg-[#c8c8c2]" : "w-8 bg-[#c8c8c2]/90"
+                )}
+              >
+                {index === selectedIndex && (
+                  <div
+                    className="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-75 ease-linear"
+                    style={{ width: `${progress}%` }}
+                  />
+                )}
+              </button>
+            ))}
           </div>
 
           {/* Slide Counter */}

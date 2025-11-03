@@ -6,10 +6,14 @@ export const SpotlightCard = ({
   children,
   className = "",
   spotlightColor = "#ff990027",
+  intensity = 0.6,
+  radiusStop = "50%",
 }: {
   children: any;
   className?: string;
   spotlightColor?: string;
+  intensity?: number; // 0..1 controls overall effect opacity
+  radiusStop?: string; // CSS length/percentage for gradient transparent stop
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -25,7 +29,7 @@ export const SpotlightCard = ({
 
   const handleFocus = () => {
     setIsFocused(true);
-    setOpacity(0.6);
+    setOpacity(intensity);
   };
 
   const handleBlur = () => {
@@ -34,7 +38,7 @@ export const SpotlightCard = ({
   };
 
   const handleMouseEnter = () => {
-    setOpacity(0.6);
+    setOpacity(intensity);
   };
 
   const handleMouseLeave = () => {
@@ -55,7 +59,7 @@ export const SpotlightCard = ({
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out z-10"
         style={{
           opacity,
-          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 50%)`,
+          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent ${radiusStop})`,
         }}
       />
       {children}

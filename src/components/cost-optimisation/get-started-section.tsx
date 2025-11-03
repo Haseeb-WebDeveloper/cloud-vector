@@ -13,6 +13,9 @@ export default function GetStartedSection() {
           {/* Main Banner */}
           <SpotlightCard
             className="relative rounded-3xl px-12 pt-24 pb-20 overflow-hidden"
+            intensity={0.85}
+            radiusStop="35%"
+            spotlightColor="#ff990066"
           >
             {/* Image in background */}
             <Image

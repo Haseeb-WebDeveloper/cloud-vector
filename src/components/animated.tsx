@@ -378,11 +378,19 @@ const AnimatedSections: React.FC = () => {
 
   // Create step images for all offers (1 image per offer)
   const stepImageIndices = Array.from({ length: offers.length }, (_, i) => i + 1);
+  const stepImages = [
+    "updated 01.png",
+    "updated 02.png",
+    "updated 03.png",
+    "updated 04.png",
+    "updated 05.png",
+    "updated 06.png",
+  ];
 
   return (
     <div className="relative  bg-foreground/5 pt-20">
       <h2 className="text-center max-w-5xl mx-auto text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent  mb-6">
-        Optimize. Secure. Scale — AWS Done Right.
+        Optimize. Secure. Accelerate, Disaster-proof, Scale — AWS Done Right.
       </h2>
       {/* Section 1 - What We Offer */}
       <section ref={sectionRef} className="min-h-screen py-20 ">
@@ -403,7 +411,7 @@ const AnimatedSections: React.FC = () => {
                     }`}
                   >
                     <Image
-                      src={`/home-page/${(step - 1)}.png`}  // of step will be 1 the image will 0.png
+                      src={`/home-page/${stepImages[step - 1]}`}
                       alt={`Step ${step}`}
                       width={400}
                       height={400}
@@ -414,10 +422,10 @@ const AnimatedSections: React.FC = () => {
                 {/* Central Circle Image */}
                 <div
                   ref={circleImageRef}
-                  className="z-10 object-contain w-[20.5rem] h-[20.5rem] absolute"
+                  className="z-20 object-contain w-[20rem] h-[20rem] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                 >
                   <Image
-                    src="/home-page/circle.png"
+                    src="/home-page/updated center middle.png"
                     alt="circle"
                     width={320}
                     height={320}
@@ -467,9 +475,25 @@ const AnimatedSections: React.FC = () => {
                             <div className="bg-primary/30 rounded-full p-3 w-fit h-fit flex-shrink-0">
                               {feature.icon}
                             </div>
-                            <p className="text-sm leading-relaxed text-foreground/90">
-                              {feature.text}
-                            </p>
+                            {(() => {
+                              const parts = String(feature.text).split("→");
+                              const heading = parts[0]?.trim();
+                              const description = parts.slice(1).join("→").trim();
+                              return (
+                                <div className="space-y-1">
+                                  {heading && (
+                                    <p className="text-sm font-bold text-foreground/90">
+                                      {heading}
+                                    </p>
+                                  )}
+                                  {description && (
+                                    <p className="text-sm leading-relaxed text-foreground/90">
+                                      {description}
+                                    </p>
+                                  )}
+                                </div>
+                              );
+                            })()}
                           </div>
                         </SpotlightCard>
                       ))}
@@ -526,7 +550,13 @@ const AnimatedSections: React.FC = () => {
               </div>
               <div
                 ref={targetPositionRef}
-                className="w-[400px] h-[400px] "
+                className="w-[400px] h-[400px] shadow-[0_0_40px_10px_rgba(255,151,0,0.35)] rounded-full bg-gradient-to-br from-[#FF9700]/50 to-[#E85409]/30"
+                style={{
+                  boxShadow:
+                    "0 0 90px 40px rgba(255,151,0,0.3), 0 0 240px 90px rgba(232,84,9,0.18)",
+                  background:
+                    "radial-gradient(circle at 60% 40%, rgba(255,151,0,0.08) 0%, rgba(232,84,9,0.08) 90%)",
+                }}
               ></div>
 
               {/* Right side stats */}

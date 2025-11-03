@@ -145,21 +145,21 @@ export default function HowItWorks() {
         )}
       >
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className=" w-fit mx-auto flex flex-wrap h-auto bg-transparent gap-2 justify-center items-center">
+          <TabsList className=" w-fit mx-auto flex flex-wrap h-auto bg-transparent gap-4 justify-center items-center">
             {tabsData.map((tab) => (
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
                 className={cn(
-                  `cursor-pointer  w-fit mx-auto flex items-center gap-1 px-4 py-3 text-xs sm:text-sm font-medium rounded-full transition-all duration-200`,
+                  `cursor-pointer  w-fit mx-auto flex items-center gap-2 px-5 py-3 text-sm sm:text-base font-medium rounded-full transition-all duration-200`,
                   
                 )}
               >
                 {tab.icon}
-                <span className="text-xs text-center leading-tight hidden sm:block">
+                <span className="text-sm text-center leading-tight hidden sm:block sm:text-base">
                   {tab.label}
                 </span>
-                <span className="text-xs text-center leading-tight sm:hidden">
+                <span className="text-sm text-center leading-tight sm:hidden">
                   {tab.label.split(" ")[0]}
                 </span>
               </TabsTrigger>

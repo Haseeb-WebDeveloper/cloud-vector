@@ -102,6 +102,54 @@ export default function StepsSection() {
   const [currentStep, setCurrentStep] = useState(1);
   const [progress, setProgress] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHoveringPanel, setIsHoveringPanel] = useState(false);
+
+  // Get primary color from CSS variables (works with Tailwind default setup)
+  function getPrimaryColor(alpha = 1) {
+    // Try CSS var, fallback to a reasonable default if not set
+    if (typeof window !== "undefined") {
+      const root = window.getComputedStyle(document.documentElement);
+      const color = root.getPropertyValue('--tw-prose-invert-links') ||
+                    root.getPropertyValue('--color-primary') ||
+                    root.getPropertyValue('--tw-color-primary') ||
+                    "#6366f1";
+      // Convert hex rgb to rgba, or use rgb functional if needed
+      // Attempt to ensure fallback to known Tailwind "primary" value, which is indigo-500 (#6366f1)
+      const hex = color.trim();
+      // If already rgba or rgb, just add alpha
+      if (hex.startsWith("rgba")) {
+        return hex.replace(/rgba\(([^)]+),\s*[\d\.]+\)/, `rgba($1,${alpha})`);
+      }
+      if (hex.startsWith("rgb")) {
+        // Add alpha if not present
+        return hex
+          .replace("rgb(", "rgba(")
+          .replace(")", `,${alpha})`);
+      }
+      // Handle hex #RRGGBB
+      if (hex.startsWith("#")) {
+        let r = 0, g = 0, b = 0;
+        if (hex.length === 7) {
+          r = parseInt(hex.slice(1, 3), 16);
+          g = parseInt(hex.slice(3, 5), 16);
+          b = parseInt(hex.slice(5, 7), 16);
+          return `rgba(${r},${g},${b},${alpha})`;
+        }
+        // Handle #RGB
+        if (hex.length === 4) {
+          r = parseInt(hex[1] + hex[1], 16);
+          g = parseInt(hex[2] + hex[2], 16);
+          b = parseInt(hex[3] + hex[3], 16);
+          return `rgba(${r},${g},${b},${alpha})`;
+        }
+      }
+      // fallback, just return the color
+      return color;
+    }
+    // SSR fallback for indigo-500
+    return `rgba(99,102,241,${alpha})`;
+  }
 
   // Auto-advance timer (5 seconds per step)
   useEffect(() => {
@@ -182,8 +230,26 @@ export default function StepsSection() {
         </div>
 
         {/* Main Content Panel */}
-        <div className="rounded-2xl p-8 md:p-12 bg-foreground/5">
-          <div className="flex flex-col lg:flex-row gap-12">
+        <div
+          className="relative overflow-hidden rounded-2xl p-8 md:p-12 bg-black"
+          onMouseMove={(e) => {
+            const target = e.currentTarget.getBoundingClientRect();
+            setMousePosition({ x: e.clientX - target.left, y: e.clientY - target.top });
+          }}
+          onMouseEnter={() => setIsHoveringPanel(true)}
+          onMouseLeave={() => setIsHoveringPanel(false)}
+        >
+          {/* Hover spotlight effect */}
+          <div
+            className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+            style={{
+              background: isHoveringPanel
+                ? `radial-gradient(220px 220px at ${mousePosition.x}px ${mousePosition.y}px, ${getPrimaryColor(0.10)}, rgba(0,0,0,0) 65%)`
+                : "transparent",
+              opacity: isHoveringPanel ? 1 : 0,
+            }}
+          />
+          <div className="relative flex flex-col lg:flex-row gap-12">
             {/* Left Content */}
             <div className="space-y-6">
               <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6  pl-8">
@@ -202,7 +268,7 @@ export default function StepsSection() {
             </div>
 
             {/* Right Image Placeholder */}
-            <div className="w-fit lg:h-[500px]">
+            <div className="w-fit lg:h[500px] lg:h-[500px]">
               <Image
                 src="/test.png"
                 alt="Steps Section"
