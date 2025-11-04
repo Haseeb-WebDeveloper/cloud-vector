@@ -98,7 +98,7 @@ export default function Stats({ stats }: { stats: StatData[] }) {
             </div>
             <div className="w-[400px] h-[400px] ">
               <Image
-                src="/home-page/circle.png"
+                src="/home-page/updated center middle.png"
                 alt="circle"
                 width={320}
                 height={320}

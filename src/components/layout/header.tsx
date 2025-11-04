@@ -99,7 +99,7 @@ const navigationData = [
         title: "Blog",
         description: "Latest insights, tutorials, and industry trends",
         icon: BookOpen,
-        href: "#blog",
+        href: "/blog",
       },
     ],
   },
