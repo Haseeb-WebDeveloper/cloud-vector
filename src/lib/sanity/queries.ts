@@ -10,34 +10,32 @@ export const getAllDigitalProductsSolutionsSlugQuery = () => `
 // Blog queries
 export const getBlogPageQuery = () => `
 *[_type == "blogPage"][0] {
-  // If editors selected posts, use those; otherwise fall back to all posts
-  "blogPosts": coalesce(
-    blogPosts[]->{
-      _id,
-      "title": title,
-      "slug": slug.current,
-      featuredImage { asset->{ url } },
-      category->{ _id, "name": name, "slug": slug.current },
-      "metaTitle": metaTitle,
-      "metaDescription": metaDescription,
-      _createdAt,
-      _updatedAt,
+  blogPosts[]->{
+    _id,
+    "title": title,
+    "slug": slug.current,
+    featuredImage {
+      asset->{
+        url
+      }
     },
-    *[_type == "blogPost"] | order(_createdAt desc) {
+    category->{
       _id,
-      "title": title,
-      "slug": slug.current,
-      featuredImage { asset->{ url } },
-      category->{ _id, "name": name, "slug": slug.current },
-      "metaTitle": metaTitle,
-      "metaDescription": metaDescription,
-      _createdAt,
-      _updatedAt,
-    }
-  ),
+      "name": name,
+      "slug": slug.current
+    },
+    "metaTitle": metaTitle,
+    "metaDescription": metaDescription,
+    _createdAt,
+    _updatedAt,
+  },
   "metaTitle": metaTitle,
   "metaDescription": metaDescription,
-  ogImage { asset->{ url } }
+  ogImage {
+    asset->{
+      url
+    }
+  }
 }
 `;
 
@@ -129,14 +127,34 @@ export const getBlogPostBySlugQuery = (slug: string) => `
       }
     },
     _type == "infoBoxesBlock" => {
-      lightBackground,
       items[]{
-        icon {
+        icon{
           asset->{
             url
           }
         },
         text
+      }
+    },
+    _type == "testimonialBlock" => {
+      text,
+      personName,
+      designation,
+      company,
+      photo{
+        asset->{
+          url
+        }
+      }
+    },
+    _type == "keyResultsBlock" => {
+      items
+    },
+    _type == "twoImagesBlock" => {
+      images[]{
+        asset->{
+          url
+        }
       }
     }
   },

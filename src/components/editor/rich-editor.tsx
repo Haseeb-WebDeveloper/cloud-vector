@@ -5,7 +5,11 @@ import React from "react";
 import MediaBlock from "./media-block";
 import CenterTextBlock from "./center-text-block";
 import TextImageBlock from "./text-image-block";
+import TwoImagesBlock from "./two-images-block";
 import ImageCarouselBlock from "./image-carousel-block";
+import InfoBoxesBlock from "./info-boxes-block";
+import TestimonialBlock from "./testimonial-block";
+import KeyResultsBlock from "./key-results-block";
 
 interface RichEditorProps {
   content: TypedObject | TypedObject[] | any;
@@ -45,8 +49,20 @@ export default function RichEditor({ content }: RichEditorProps) {
       textImageBlock: ({ value }: any) => {
         return <TextImageBlock value={value} />;
       },
+      twoImagesBlock: ({ value }: any) => {
+        return <TwoImagesBlock value={value} />;
+      },
       imageCarouselBlock: ({ value }: any) => {
         return <ImageCarouselBlock value={value} />;
+      },
+      infoBoxesBlock: ({ value }: any) => {
+        return <InfoBoxesBlock value={value} />;
+      },
+      testimonialBlock: ({ value }: any) => {
+        return <TestimonialBlock value={value} />;
+      },
+      keyResultsBlock: ({ value }: any) => {
+        return <KeyResultsBlock value={value} />;
       },
     },
     block: {

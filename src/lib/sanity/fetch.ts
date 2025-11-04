@@ -27,14 +27,11 @@ export async function getBlogPageData(): Promise<any> {
       {},
       { revalidate: IS_DEVELOPMENT ? 10 : 60 }
     );
-    // Ensure the data structure matches BlogPageType
-    // The query returns { blogPosts: [...], metaTitle: ..., metaDescription: ..., ogImage: ... }
-    return {
-      blogPosts: data?.blogPosts || [],
-      metaTitle: data?.metaTitle || "",
-      metaDescription: data?.metaDescription || "",
-      ogImage: data?.ogImage || null,
-    };
+    const count = Array.isArray((data as any)?.blogPosts)
+      ? (data as any).blogPosts.length
+      : 0;
+    console.log(`Sanity blog posts count: ${count}`);
+    return data;
   } catch (error) {
     console.error("Error fetching blog page data:", error);
     return null;

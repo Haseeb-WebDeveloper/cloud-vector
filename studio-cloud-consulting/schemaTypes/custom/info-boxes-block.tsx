@@ -6,13 +6,6 @@ export const infoBoxesBlock = defineType({
   type: 'object',
   fields: [
     defineField({
-      name: 'lightBackground',
-      title: 'Use Light Grey Background',
-      type: 'boolean',
-      initialValue: true,
-      description: 'Frontend should render this block inside a light grey container when enabled.',
-    }),
-    defineField({
       name: 'items',
       title: 'Info Boxes',
       type: 'array',

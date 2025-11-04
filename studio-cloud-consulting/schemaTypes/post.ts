@@ -59,6 +59,8 @@ export const blogPost = defineType({
         {type: 'imageCarouselBlock'},
         {type: 'mediaBlock'},
         {type: 'infoBoxesBlock'},
+        {type: 'testimonialBlock'},
+        {type: 'keyResultsBlock'},
       ],
     }),
     defineField({

@@ -8,6 +8,8 @@ import {twoImagesBlock} from './custom/two-images-block'
 import {textImageBlock} from './custom/text-image-block'
 import {mediaBlock} from './custom/media-block'
 import {infoBoxesBlock} from './custom/info-boxes-block'
+import {testimonialBlock} from './custom/testimonial-block'
+import {keyResultsBlock} from './custom/key-results-block'
 
 export const schemaTypes = [
   blogPost,
@@ -20,4 +22,6 @@ export const schemaTypes = [
   textImageBlock,
   mediaBlock,
   infoBoxesBlock,
+  testimonialBlock,
+  keyResultsBlock,
 ]
