@@ -7,6 +7,7 @@ import {imageCarouselBlock} from './custom/image-carousel-block'
 import {twoImagesBlock} from './custom/two-images-block'
 import {textImageBlock} from './custom/text-image-block'
 import {mediaBlock} from './custom/media-block'
+import {infoBoxesBlock} from './custom/info-boxes-block'
 
 export const schemaTypes = [
   blogPost,
@@ -18,4 +19,5 @@ export const schemaTypes = [
   twoImagesBlock,
   textImageBlock,
   mediaBlock,
+  infoBoxesBlock,
 ]

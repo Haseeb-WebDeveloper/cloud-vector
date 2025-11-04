@@ -26,6 +26,7 @@ export const contentBlock = defineType({
                 { type: "logosBlock" },
                 { type: "fileBlock" },
                 { type: "mediaBlock" },
+                { type: "infoBoxesBlock" },
             ],
         },
         {
@@ -49,6 +50,7 @@ export const contentBlock = defineType({
                 { type: "logosBlock" },
                 { type: "fileBlock" },
                 { type: "mediaBlock" },
+                { type: "infoBoxesBlock" },
             ],
         },
         {
@@ -72,6 +74,7 @@ export const contentBlock = defineType({
                 { type: "logosBlock" },
                 { type: "fileBlock" },
                 { type: "mediaBlock" },
+                { type: "infoBoxesBlock" },
             ],
         },
         {
@@ -95,6 +98,7 @@ export const contentBlock = defineType({
                 { type: "logosBlock" },
                 { type: "fileBlock" },
                 { type: "mediaBlock" },
+                { type: "infoBoxesBlock" },
             ],
         },
     ],

@@ -58,6 +58,7 @@ export const blogPost = defineType({
         {type: 'twoImagesBlock'},
         {type: 'imageCarouselBlock'},
         {type: 'mediaBlock'},
+        {type: 'infoBoxesBlock'},
       ],
     }),
     defineField({

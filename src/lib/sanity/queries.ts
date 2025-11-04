@@ -10,32 +10,34 @@ export const getAllDigitalProductsSolutionsSlugQuery = () => `
 // Blog queries
 export const getBlogPageQuery = () => `
 *[_type == "blogPage"][0] {
-  blogPosts[]->{
-    _id,
-    "title": title,
-    "slug": slug.current,
-    featuredImage {
-      asset->{
-        url
-      }
-    },
-    category->{
+  // If editors selected posts, use those; otherwise fall back to all posts
+  "blogPosts": coalesce(
+    blogPosts[]->{
       _id,
-      "name": name,
-      "slug": slug.current
+      "title": title,
+      "slug": slug.current,
+      featuredImage { asset->{ url } },
+      category->{ _id, "name": name, "slug": slug.current },
+      "metaTitle": metaTitle,
+      "metaDescription": metaDescription,
+      _createdAt,
+      _updatedAt,
     },
-    "metaTitle": metaTitle,
-    "metaDescription": metaDescription,
-    _createdAt,
-    _updatedAt,
-  },
+    *[_type == "blogPost"] | order(_createdAt desc) {
+      _id,
+      "title": title,
+      "slug": slug.current,
+      featuredImage { asset->{ url } },
+      category->{ _id, "name": name, "slug": slug.current },
+      "metaTitle": metaTitle,
+      "metaDescription": metaDescription,
+      _createdAt,
+      _updatedAt,
+    }
+  ),
   "metaTitle": metaTitle,
   "metaDescription": metaDescription,
-  ogImage {
-    asset->{
-      url
-    }
-  }
+  ogImage { asset->{ url } }
 }
 `;
 
@@ -124,6 +126,17 @@ export const getBlogPostBySlugQuery = (slug: string) => `
             url
           }
         }
+      }
+    },
+    _type == "infoBoxesBlock" => {
+      lightBackground,
+      items[]{
+        icon {
+          asset->{
+            url
+          }
+        },
+        text
       }
     }
   },
