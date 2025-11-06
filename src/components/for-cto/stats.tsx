@@ -96,7 +96,7 @@ export default function Stats({ stats }: { stats: StatData[] }) {
                 );
               })}
             </div>
-            <div className="w-[400px] h-[400px] ">
+            <div id="stats-center-target" className="w-[400px] h-[400px] ">
               <Image
                 src="/home-page/middle center one.png"
                 alt="circle"

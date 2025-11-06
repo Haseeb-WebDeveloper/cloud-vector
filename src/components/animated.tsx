@@ -16,9 +16,6 @@ import {
   BadgeCheck,
   Server,
   LifeBuoy,
-  Layers,
-  BadgePercent,
-  DollarSign
 } from "lucide-react";
 import Image from "next/image";
 import { SpotlightCard } from "./ui/spolight-card";
@@ -52,7 +49,10 @@ const AnimatedSections: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const leftColumnRef = useRef<HTMLDivElement>(null);
   const offersRef = useRef<HTMLDivElement[]>([]);
+  const statsSectionRef = useRef<HTMLDivElement>(null);
+  const statsContainerRef = useRef<HTMLDivElement>(null);
   const circleImageRef = useRef<HTMLDivElement>(null);
+  const targetPositionRef = useRef<HTMLDivElement>(null);
   const [currentStep, setCurrentStep] = useState(1);
 
   const offers: OfferData[] = [
@@ -193,29 +193,49 @@ const AnimatedSections: React.FC = () => {
     },
   ];
 
-  // Updated stats according to prompt
-
-  // Left column stats:
-  // $362k+
-  // Savings delivered
-  // 40%
-  // Avg Cost Reduction results
-  // 68%
-  // Max Cost Reduction results
-  // 80+
-  // Production launches
-
-  // Right column stats:
-  // 300+
-  // AWS accounts under management
-  // 15+
-  // Compliance standards
-  // 12+
-  // Years at Amazon/AWS
-  // 100%
-  // ROI in 3 months
-
-  
+  // Assign Lucide icons to stats
+  const stats: StatData[] = [
+    {
+      value: "$60M+",
+      label: "Savings delivered",
+      icon: <PiggyBank size={48} className="text-primary" />,
+    },
+    {
+      value: "68%",
+      label: "Max cost reduction",
+      icon: <Percent size={48} className="text-primary" />,
+    },
+    {
+      value: "80+",
+      label: "Production launches",
+      icon: <Rocket size={48} className="text-primary" />,
+    },
+    {
+      value: "15+",
+      label: "Compliance standards",
+      icon: <ShieldCheck size={48} className="text-primary" />,
+    },
+    {
+      value: "100%",
+      label: "ROI in 3 months",
+      icon: <TrendingUp size={48} className="text-primary" />,
+    },
+    {
+      value: "12+",
+      label: "Years at Amazon/AWS",
+      icon: <Users size={48} className="text-primary" />,
+    },
+    {
+      value: "100%",
+      label: "ROI in 3 months",
+      icon: <TrendingUp size={48} className="text-primary" />,
+    },
+    {
+      value: "12+",
+      label: "Years at Amazon/AWS",
+      icon: <Users size={48} className="text-primary" />,
+    },
+  ];
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -280,11 +300,97 @@ const AnimatedSections: React.FC = () => {
         }
       });
 
-      // Removed circle-to-stats and stats animation; homepage now uses the CTO Stats component.
+      // Circle animation - PROPER GSAP TIMELINE APPROACH
+      if (circleImageRef.current && targetPositionRef.current) {
+        const circle = circleImageRef.current;
+        const target = targetPositionRef.current;
+
+        // Create a timeline
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: statsSectionRef.current,
+            start: "top center",
+            end: "center center",
+            scrub: 1,
+          },
+        });
+
+        // Use GSAP's built-in position tracking with quickSetter for performance
+        tl.to(circle, {
+          x: () => {
+            const circleRect = circle.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+            return (
+              targetRect.left +
+              targetRect.width / 2 -
+              (circleRect.left + circleRect.width / 2)
+            );
+          },
+          y: () => {
+            const circleRect = circle.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+            return (
+              targetRect.top +
+              targetRect.height / 2 -
+              (circleRect.top + circleRect.height / 2)
+            );
+          },
+          scale: 1.3,
+          ease: "power2.out",
+        });
+      }
+
+      // Stats cards animation (bidirectional) - ONLY animation, no circle changes
+      if (statsContainerRef.current) {
+        const leftBoxes =
+          statsContainerRef.current.querySelectorAll("[data-stat-left]");
+        const rightBoxes =
+          statsContainerRef.current.querySelectorAll("[data-stat-right]");
+
+        // Set initial state
+        gsap.set(leftBoxes, { x: -100, scale: 1.5, opacity: 0 });
+        gsap.set(rightBoxes, { x: 100, scale: 1.5, opacity: 0 });
+
+        // Create timeline with ScrollTrigger
+        const statsTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: statsContainerRef.current,
+            start: "top bottom",
+            end: "bottom bottom",
+            scrub: 1,
+          },
+        });
+
+        // Animate left boxes
+        statsTl.to(
+          leftBoxes,
+          {
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            stagger: 0.15,
+            ease: "none",
+          },
+          0
+        );
+
+        // Animate right boxes
+        statsTl.to(
+          rightBoxes,
+          {
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            stagger: 0.15,
+            ease: "none",
+          },
+          0
+        );
+      }
     });
 
     return () => ctx.revert();
-  }, [offers.length]);
+  }, [offers.length]); // depends on offers.length in case offer count changes
 
   // Create step images for all offers (1 image per offer)
   const stepImageIndices = Array.from({ length: offers.length }, (_, i) => i + 1);
@@ -330,15 +436,15 @@ const AnimatedSections: React.FC = () => {
                 ))}
                 {/* Glow behind central circle image */}
                 <div
-                  className="z-10 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[24rem] h-[24rem] rounded-full drop-shadow-[0_0_60px_rgba(255,151,0,0.4)]"
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[24rem] h-[24rem] rounded-full"
                 ></div>
                 {/* Central Circle Image */}
                 <div
                   ref={circleImageRef}
-                  className="z-20 object-contain w-[20rem] h-[20rem] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                  className="z-10 object-contain w-[20rem] h-[20rem] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                 >
                   <Image
-                    src="/home-page/updated center middle.png"
+                    src="/home-page/middle center one.png"
                     alt="circle"
                     width={320}
                     height={320}
@@ -364,16 +470,19 @@ const AnimatedSections: React.FC = () => {
                     <h3 className="text-4xl font-bold mb-4 ">
                       {offer.headline}
                     </h3>
+
                     {/* Tagline */}
                     <p className="text-xl leading-relaxed mb-2 text-foreground/90">
                       {offer.tagline}
                     </p>
+
                     {/* SubTagline if exists */}
                     {offer.subTagline && (
                       <p className="text-lg mb-8 text-foreground/80">
                         {offer.subTagline}
                       </p>
                     )}
+
                     {/* Features: bullets for first step, boxes for others */}
                     {offer.id === 1 ? (
                       <ul className="mt-8 list-disc pl-6 space-y-2 text-foreground/90">
@@ -433,7 +542,87 @@ const AnimatedSections: React.FC = () => {
           </div>
         </div>
       </section>
-      
+      {/* Section 2 - Stats */}
+      <section
+        ref={statsSectionRef}
+        className="relative pb-32 pt-8 z-10"
+      >
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="text-center mt-20">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent">
+              Results That Speak Volumes
+            </h2>
+            <p className="text-xl text-gray-300">
+              Numbers don't lie — here's the impact we've delivered
+            </p>
+          </div>
+          {/* Stats arranged around center */}
+          <div
+            ref={statsContainerRef}
+            className="relative h-[700px] flex items-center justify-center"
+          >
+            <div className="flex gap-10 justify-center items-center">
+              {/* Left side stats */}
+              <div className="flex flex-col gap-8">
+                {stats.slice(0, 4).map((stat, index) => {
+                  return (
+                    <div
+                      key={index}
+                      data-stat-id={index}
+                      data-stat-left
+                      className={`opacity-0 px-4 py-5 rounded-3xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]`}
+                    >
+                      <div className="flex gap-4 ">
+                        <div className="flex-shrink-0">{stat.icon}</div>
+                        <div>
+                          <p className="text-3xl md:text-4xl font-bold leading-[100%]">
+                            {stat.value}
+                          </p>
+                          <p className="text-lg font-medium">{stat.label}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div
+                ref={targetPositionRef}
+                className="w-[400px] h-[400px]"
+              >
+                <div
+                  className="z-[-1] w-[400px] h-[400px] shadow-[0_0_40px_10px_rgba(255,151,0,0.35)] rounded-full bg-gradient-to-br from-[#FF9700]/50 to-[#E85409]/30"
+                ></div>
+              </div>
+
+              {/* Right side stats */}
+              <div className="flex flex-col gap-8">
+                {stats.slice(4, 8).map((stat, index) => {
+                  return (
+                    <div
+                      key={index}
+                      data-stat-id={index + 4}
+                      data-stat-right
+                      className="opacity-0 px-4 py-5 rounded-3xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]"
+                    >
+                      <div className="flex gap-4 ">
+                        <div className="flex-shrink-0">{stat.icon}</div>
+                        <div>
+                          <p className="text-3xl md:text-4xl font-bold leading-[100%]">
+                            {stat.value}
+                          </p>
+                          <p className="text-lg font-medium">{stat.label}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Invisible target position marker at center */}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
