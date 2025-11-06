@@ -25,6 +25,7 @@ export default function NewsletterSection() {
   };
 
   if (isSubmitted) {
+    // Show the thank you message after submission as described in prompt
     return (
       <section className="py-20">
         <div className="relative max-w-6xl mx-auto px-4 py-24 rounded-2xl box-shadow-large overflow-hidden bg-[#0b1220] ring-1 ring-white/10">
@@ -76,14 +77,13 @@ export default function NewsletterSection() {
             </div>
 
             {/* Heading */}
-            <h2 className="text-3xl lg:text-4xl text-white mb-4 font-bold">
-              Subscribe To Our Newsletter
+            <h2 className="text-3xl lg:text-4xl text-white mb-4 font-bold whitespace-nowrap">
+              Stop Letting AWS Eat All Your Profits.
             </h2>
 
             {/* Description */}
             <p className="text-lg text-[#CCCCCC] mb-8 leading-relaxed">
-              Get the latest AWS optimization tips, security insights, and
-              cost-saving strategies delivered to your inbox.
+              Proven strategies to slash bills, tighten security, and speed up your team.
             </p>
 
             {/* Newsletter Form */}
@@ -100,15 +100,15 @@ export default function NewsletterSection() {
                 <button
                   type="submit"
                   disabled={isLoading || !email}
-                  className="cursor-pointer px-6 py-3 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] text-white font-semibold rounded-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="cursor-pointer px-6 py-3 bg-gradient-to-r from-[#FF9900] to-[#E85409] hover:from-[#FF9900]/95 hover:to-[#E85409]/95 text-white font-semibold rounded-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
                 >
-                  {isLoading ? "Sending..." : "Subscribe →"}
+                  {isLoading ? "Sending..." : "Send Me Cloud Tips →"}
                 </button>
               </div>
 
-              {/* Disclaimer */}
-              <p className="text-sm text-[#CCCCCC]">
-                No spam. Unsubscribe anytime. We respect your privacy.
+              {/* New line under button as requested */}
+              <p className="text-sm text-[#CCCCCC] mt-2">
+                No spam. Just proven AWS strategies you can apply right away.
               </p>
             </form>
           </div>

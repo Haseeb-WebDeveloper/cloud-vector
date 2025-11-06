@@ -6,9 +6,12 @@ import { GradientButton } from "@/components/ui/gradient-button";
 
 export default function HomeHeroSection() {
   const animatedTexts = [
-    "40-70% Cost Savings.",
-    "Always-On Security.",
-    "Future-Ready Architecture.",
+    "40–70% Cost Savings",
+    "Always-On Security",
+    "Tailored Launchpad",
+    "Performance at Scale",
+    "Lightning-Fast Dev Delivery",
+    "Disaster-Proof Resilience",
   ];
 
   return (
@@ -18,7 +21,7 @@ export default function HomeHeroSection() {
           {/* Main Heading with Animated Text */}
           <div className="space-y-4 w-full overflow-hidden">
             <h1 className="text-4xl lg:text-6xl text-foreground leading-tight font-semibold">
-              Turn AWS Into a Strategic Advantage With <br />
+            Turn your AWS into your weapon With <br />
               <AnimatedTextCycle
                 words={animatedTexts}
                 interval={4000}

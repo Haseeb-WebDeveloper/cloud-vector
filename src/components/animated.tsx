@@ -16,6 +16,8 @@ import {
   BadgeCheck,
   Server,
   LifeBuoy,
+  DollarSign,
+  BarChart3,
 } from "lucide-react";
 import Image from "next/image";
 import { SpotlightCard } from "./ui/spolight-card";
@@ -33,7 +35,9 @@ interface OfferData {
   afterFeaturesText?: string;
   features: {
     icon: React.ReactNode;
-    text: string;
+    text?: string;
+    // Optional multi-point list rendered inside the box
+    points?: string[];
   }[];
   title: string;
   value: number;
@@ -59,24 +63,28 @@ const AnimatedSections: React.FC = () => {
     {
       id: 1,
       title: "Run cloud the way Amazon does",
-      headline: "Run cloud the way Amazon does -",
-      tagline: "Use less of cloud and pay less for it.",
+      headline: "Run cloud the way Amazon does",
+      tagline: "",
       features: [
         {
+          icon: <PiggyBank size={20} />,
+          text: "Use less of cloud and pay less for it →",
+        },
+        {
           icon: <ShieldCheck size={20} />,
-          text: "With 24x7 InfoSec Team",
+          text: "24x7 InfoSec Team →",
         },
         {
           icon: <BadgeCheck size={20} />,
-          text: "100% Uptime That Builds Trust",
+          text: "100% Uptime That Builds Trust →",
         },
         {
           icon: <Rocket size={20} />,
-          text: "Lightning-fast Customer Experience",
+          text: "Lightning-fast Customer Experience →",
         },
         {
           icon: <Clock size={20} />,
-          text: "Daily Releases on Autopilot.",
+          text: "Daily Releases on Autopilot. →",
         },
       ],
       afterFeaturesText:
@@ -88,63 +96,70 @@ const AnimatedSections: React.FC = () => {
       title: "Cost & Performance Optimization",
       headline: "Use less of cloud and pay less for it",
       tagline:
-        "Unlock 40–70% savings with data-backed rightsizing, autoscaling, and smarter purchase plans, continuously optimized as you grow.",
+        "Unlock 40–70% savings with our data-backed approach, continuously optimized as you grow.",
       features: [
         {
+          icon: <Check size={20} />,
+          text: "Exhaustive Audit → Every dollar tracked.\nEvery AWS Service Covered.",
+        },
+        {
           icon: <Clock size={20} />,
-          text: "Fast Fixes → Rightsize, Reconfigure, Smarter Purchase Plans delivered in, a few days. One-time Outcome-based Fees. No subscription.",
+          text: "Fast Fixes → Rightsize, Reconfigure, Smarter Purchase Plans.\nMinimal code change.",
+        },
+        {
+          icon: <DollarSign size={20} />,
+          text: "Success-Based Fees → One-time outcome-based Fees.\nNo recurring subscription.",
         },
         {
           icon: <TrendingUp size={20} />,
-          text: "Guaranteed ROI → 100% return in 3 months, with sustained savings that scale as you grow.",
-        },
-        {
-          icon: <Check size={20} />,
-          text: "Exhaustive Audit → Every dollar tracked, every AWS Service Covered.",
+          text: "Guaranteed ROI → 100% ROI in 3 months by Design.\nSustained savings that scale as you grow.",
         },
       ],
       value: 1,
     },
     {
       id: 3,
-      title: "LogGuardia – Security (InfoSec as a Service)",
-      headline: "24x7 InfoSec Team",
-      tagline: "Your team builds in peace while we guard.",
-      subTagline: "Enterprise-grade Infrastructure Protection & Compliance",
-      features: [
-        {
-          icon: <BadgeCheck size={20} />,
-          text: "Compliance-First → SOC2, HIPAA, PCI-DSS, GDPR, and CIS enforced by Design.",
-        },
-        {
-          icon: <Award size={20} />,
-          text: "Intruder Defense → Instant alerts on suspicious activity. Internal or External. We stand Guard for you!",
-        },
-        {
-          icon: <ShieldCheck size={20} />,
-          text: "Continuous Monitoring → Real-time scans catch security holes before they are exploited.",
-        },
-      ],
-      value: 1,
-    },
-    {
-      id: 4,
-      title: "Operational Excellence",
+      title: "Devops",
       headline: "100% Uptime That Builds Trust",
       tagline:
         "IaC & CI/CD backed Serverless Containerized Architectures. Just like Amazon's own systems. Tailored for You.",
       features: [
         {
           icon: <Rocket size={20} />,
-          text: "Tailored Launchpad → Cloud designs aligned with your performance, security, and compliance needs. Cost-Efficient, Security-Compliant, Performant, Resilient, and Scalable By Design",
+          text: "Tailored Launchpad → Aligned with your needs.\nPerformance, Security, and Compliance",
         },
         {
           icon: <Check size={20} />,
-          text: "Proven Reliability → 80+ production launches across 300+ AWS Accounts across SaaS, FinTech, and enterprise workloads.",
+          text: "Performance, Security, and Compliance → Amazon's Best Practices built-in By Design\nCost-Efficient\nSecurity-Compliant\nScalable",
         },
         {
           icon: <Server size={20} />,
-          text: "Next-Gen Foundations → Serverless, Containerized, and AWS-native By Design.",
+          text: "Next-Gen Foundations →\n Serverless, Containerized\n AWS-native By Design",
+        },
+        {
+          icon: <Award size={20} />,
+          text: "Proven Reliability → 80+ production launches\nAcross 300+ AWS Accounts.\nSaaS, FinTech, and enterprise workloads.",
+        },
+      ],
+      value: 1,
+    },
+    {
+      id: 4,
+      title: "Secops",
+      headline: "24x7 InfoSec Team",
+      tagline: "Your team builds in peace while we guard.",
+      features: [
+        {
+          icon: <ShieldCheck size={20} />,
+          text: "Continuous Monitoring → Real-time scans\nCatch security gaps before exploits.",
+        },
+        {
+          icon: <BadgeCheck size={20} />,
+          text: "Compliance-First → SOC2, HIPAA, GDPR + 15 more.\nEnforced by Design.",
+        },
+        {
+          icon: <Award size={20} />,
+          text: "Intruder Defense → Instant alerts on suspicious activity. Internal or External.\nWe stand Guard for you!",
         },
       ],
       value: 1,
@@ -157,15 +172,19 @@ const AnimatedSections: React.FC = () => {
       features: [
         {
           icon: <LifeBuoy size={20} />,
-          text: "Self-Healing Architecture.",
+          text: "Self-Healing. →",
         },
         {
           icon: <Rocket size={20} />,
-          text: "Blue/Green Deployments with Automated Rollbacks.",
+          text: "Blue/Green Deployments →",
+        },
+        {
+          icon: <Clock size={20} />,
+          text: "Automated Rollbacks. →",
         },
         {
           icon: <ShieldCheck size={20} />,
-          text: "Automated Cross-Account Backups for Disaster Recovery.",
+          text: "Automated Cross-Account Backups. →",
         },
       ],
       value: 1,
@@ -186,7 +205,7 @@ const AnimatedSections: React.FC = () => {
         },
         {
           icon: <Award size={20} />,
-          text: "Higher Revenue through improved performance.",
+          text: "Avg 15% boost in revenue.",
         },
       ],
       value: 1,
@@ -196,13 +215,18 @@ const AnimatedSections: React.FC = () => {
   // Assign Lucide icons to stats
   const stats: StatData[] = [
     {
-      value: "$60M+",
+      value: "$362k+",
       label: "Savings delivered",
       icon: <PiggyBank size={48} className="text-primary" />,
     },
     {
+      value: "40%",
+      label: "Avg Cost Reduction results",
+      icon: <BarChart3 size={48} className="text-primary" />,
+    },
+    {
       value: "68%",
-      label: "Max cost reduction",
+      label: "Max Cost Reduction results",
       icon: <Percent size={48} className="text-primary" />,
     },
     {
@@ -211,16 +235,16 @@ const AnimatedSections: React.FC = () => {
       icon: <Rocket size={48} className="text-primary" />,
     },
     {
+      value: "300+",
+      label: "AWS accounts under management",
+      icon: <Server size={48} className="text-primary" />,
+    },
+    {
       value: "15+",
       label: "Compliance standards",
       icon: <ShieldCheck size={48} className="text-primary" />,
     },
     {
-      value: "100%",
-      label: "ROI in 3 months",
-      icon: <TrendingUp size={48} className="text-primary" />,
-    },
-    {
       value: "12+",
       label: "Years at Amazon/AWS",
       icon: <Users size={48} className="text-primary" />,
@@ -229,11 +253,6 @@ const AnimatedSections: React.FC = () => {
       value: "100%",
       label: "ROI in 3 months",
       icon: <TrendingUp size={48} className="text-primary" />,
-    },
-    {
-      value: "12+",
-      label: "Years at Amazon/AWS",
-      icon: <Users size={48} className="text-primary" />,
     },
   ];
 
@@ -415,7 +434,7 @@ const AnimatedSections: React.FC = () => {
             {/* Left Column - Circle Image with Step Images - PINNED */}
             <div
               ref={leftColumnRef}
-              className="flex items-center justify-center w-full h-[40vw]"
+              className="flex items-center justify-center w-full h-[40vw] z-[999]"
             >
               <div className="relative flex items-center justify-center w-full h-full aspect-square">
                 {/* Step Images */}
@@ -441,10 +460,11 @@ const AnimatedSections: React.FC = () => {
                 {/* Central Circle Image */}
                 <div
                   ref={circleImageRef}
-                  className="z-10 object-contain w-[20rem] h-[20rem] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                  className="object-contain w-[20rem] h-[20rem] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]"
+                  style={{ zIndex: 100 }}
                 >
                   <Image
-                    src="/home-page/middle center one.png"
+                    src="/home-page/middle-center-one.png"
                     alt="circle"
                     width={320}
                     height={320}
@@ -467,69 +487,73 @@ const AnimatedSections: React.FC = () => {
                 >
                   <div className="transition-all duration-300 w-full">
                     {/* Headline */}
-                    <h3 className="text-4xl font-bold mb-4 ">
+                    <h3 className="text-4xl font-bold mb-2 ">
                       {offer.headline}
                     </h3>
 
                     {/* Tagline */}
-                    <p className="text-xl leading-relaxed mb-2 text-foreground/90">
+                    {offer.tagline && (
+                      <p className="text-xl leading-relaxed mb-1 text-foreground/90">
                       {offer.tagline}
-                    </p>
+                      </p>
+                    )}
 
                     {/* SubTagline if exists */}
                     {offer.subTagline && (
-                      <p className="text-lg mb-8 text-foreground/80">
+                      <p className="text-lg mb-4 text-foreground/80">
                         {offer.subTagline}
                       </p>
                     )}
 
-                    {/* Features: bullets for first step, boxes for others */}
-                    {offer.id === 1 ? (
-                      <ul className="mt-8 list-disc pl-6 space-y-2 text-foreground/90">
-                        {offer.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="text-base">
-                            {feature.text}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <div className="grid md:grid-cols-2 gap-4 mt-8">
-                        {offer.features.map((feature, featureIndex) => (
-                          <SpotlightCard
-                            key={featureIndex}
-                            className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-6"
-                          >
-                            <div className="space-y-4">
-                              <div className="bg-primary/30 rounded-full p-3 w-fit h-fit flex-shrink-0">
-                                {feature.icon}
-                              </div>
-                              {(() => {
-                                const parts = String(feature.text).split("→");
-                                const heading = parts[0]?.trim();
-                                const description = parts
-                                  .slice(1)
-                                  .join("→")
-                                  .trim();
-                                return (
-                                  <div className="space-y-1">
+                    {/* Features as boxes for all offers */}
+                    <div className="grid md:grid-cols-2 gap-4 mt-6">
+                      {offer.features.map((feature, featureIndex) => (
+                        <SpotlightCard
+                          key={featureIndex}
+                          className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-6"
+                        >
+                          <div className="space-y-3">
+                            {(() => {
+                              const raw = String(feature.text ?? "");
+                              const parts = raw.split("→");
+                              const heading = parts[0]?.trim();
+                              const descriptionRaw = parts.slice(1).join("→").trim();
+                              const lines = descriptionRaw
+                                ? descriptionRaw.split(/\n+/).map((l) => l.trim()).filter(Boolean)
+                                : [];
+                              const hasList = lines.length > 1;
+                              return (
+                                <div className="space-y-2">
+                                  <div className="flex items-center gap-3">
+                                    <div className="bg-primary/30 rounded-full p-3 w-fit h-fit flex-shrink-0">
+                                      {feature.icon}
+                                    </div>
                                     {heading && (
                                       <p className="text-sm font-bold text-primary">
                                         {heading}
                                       </p>
                                     )}
-                                    {description && (
-                                      <p className="text-sm leading-relaxed text-foreground/90">
-                                        {description}
-                                      </p>
-                                    )}
                                   </div>
-                                );
-                              })()}
-                            </div>
-                          </SpotlightCard>
-                        ))}
-                      </div>
-                    )}
+                                  {hasList ? (
+                                    <ul className="text-sm leading-relaxed text-foreground/90 list-disc pl-5 space-y-1">
+                                      {lines.map((line, i) => (
+                                        <li key={i}>{line}</li>
+                                      ))}
+                                    </ul>
+                                  ) : (
+                                    descriptionRaw && (
+                                      <p className="text-sm leading-relaxed text-foreground/90">
+                                        {descriptionRaw}
+                                      </p>
+                                    )
+                                  )}
+                                </div>
+                              );
+                            })()}
+                          </div>
+                        </SpotlightCard>
+                      ))}
+                    </div>
                     {offer.afterFeaturesText && (
                       <p className="mt-6 text-base leading-relaxed text-foreground/90">
                         {offer.afterFeaturesText}
@@ -549,10 +573,10 @@ const AnimatedSections: React.FC = () => {
       >
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="text-center mt-20">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent z-[-100]">
               Results That Speak Volumes
             </h2>
-            <p className="text-xl text-gray-300">
+            <p className="text-xl text-gray-300 z-[-10]">
               Numbers don't lie — here's the impact we've delivered
             </p>
           </div>

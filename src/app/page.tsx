@@ -6,6 +6,7 @@ import FAQSection from "@/components/faq-section";
 import GetStartedSection from "@/components/cost-optimisation/get-started-section";
 import AnimatedSections from "@/components/animated";
 import Stats from "@/components/for-cto/stats";
+import CaseStudySection from "@/components/home/case-study-section";
 import { ChartPieDonutText } from "@/components/ui/pie-chart";
 import { PiggyBank, BarChart3, Percent, Rocket, Server, ShieldCheck, Users, TrendingUp } from "lucide-react";
   
@@ -85,6 +86,7 @@ export default function Home() {
       </div>
       <TestimonialsSection />
       <FAQSection />
+      <CaseStudySection />
     </>
   );
 }
