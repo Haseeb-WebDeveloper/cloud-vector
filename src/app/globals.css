@@ -438,3 +438,95 @@ body::-webkit-scrollbar,
   animation: glow-slow-delayed 8s ease-in-out infinite;
   animation-delay: 2s;
 }
+
+/* HubSpot Form Styling */
+.hubspot-form-container {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+}
+/* HubSpot Form Labels - White Color */
+.hubspot-form-container label {
+  color: #fff !important;
+}
+
+/* HubSpot Form Input Fields - Primary Color with Glow */
+.hubspot-form-container input[type="text"],
+.hubspot-form-container input[type="email"],
+.hubspot-form-container input[type="tel"],
+.hubspot-form-container input[type="number"],
+.hubspot-form-container textarea,
+.hubspot-form-container select {
+  background-color: var(--primary) !important;
+  border: 2px solid var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 0 var(--primary);
+}
+
+.hubspot-form-container input[type="text"]:focus,
+.hubspot-form-container input[type="email"]:focus,
+.hubspot-form-container input[type="tel"]:focus,
+.hubspot-form-container input[type="number"]:focus,
+.hubspot-form-container textarea:focus,
+.hubspot-form-container select:focus {
+  outline: none;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px var(--primary),
+              0 0 0 6px rgba(255, 255, 255, 0.1),
+              0 0 20px var(--primary),
+              0 0 40px var(--primary) !important;
+  filter: drop-shadow(0 0 8px var(--primary));
+}
+
+/* HubSpot Form Placeholder */
+.hubspot-form-container input::placeholder,
+.hubspot-form-container textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* HubSpot Form Submit Button */
+.hubspot-form-container input[type="submit"],
+.hubspot-form-container .hs-button {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border: 2px solid var(--primary) !important;
+  border-radius: 0.5rem;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 0 var(--primary);
+}
+
+.hubspot-form-container input[type="submit"]:hover,
+.hubspot-form-container .hs-button:hover {
+  box-shadow: 0 0 0 3px var(--primary),
+              0 0 0 6px rgba(255, 255, 255, 0.1),
+              0 0 20px var(--primary),
+              0 0 40px var(--primary) !important;
+  filter: drop-shadow(0 0 8px var(--primary));
+  transform: translateY(-2px);
+}
+
+/* Center align form fields */
+.hubspot-form-container .hs-form {
+  text-align: center;
+}
+
+.hubspot-form-container .hs-form-field {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+/* Error messages */
+.hubspot-form-container .hs-error-msgs label {
+  color: #ef4444 !important;
+}
+
+/* Required field indicator */
+.hubspot-form-container .hs-form-required {
+  color: var(--primary) !important;
+}

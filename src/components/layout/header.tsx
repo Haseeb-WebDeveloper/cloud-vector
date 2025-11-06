@@ -110,7 +110,7 @@ const navigationData = [
   },
   {
     title: "Contact Us",
-    href: "#contact",
+    href: "/contact-us",
     hasDropdown: false,
   },
   {

@@ -135,34 +135,34 @@ export default function RichEditor({ content }: RichEditorProps) {
         }
 
         return (
-          <p className="editor-content text-[5vw] md:text-[1.6vw] leading-[170%] md:mb-[1vw] mb-[4vw]">
+          <p className="editor-content text-[4.5vw] md:text-[1.3vw] leading-[170%] md:mb-[1vw] mb-[4vw]">
             {children}
           </p>
         );
       },
       blockquote: ({ children }) => (
-        <blockquote className="editor-content border-l-[0.25vw] border-[#433E3E] pl-[1vw] italic text-[5vw] md:text-[1.5vw] leading-[170%] md:mb-[1vw] mb-[4vw]">
+        <blockquote className="editor-content border-l-[0.25vw] border-[#433E3E] pl-[1vw] italic text-[4.5vw] md:text-[1.3vw] leading-[170%] md:mb-[1vw] mb-[4vw]">
           {children}
         </blockquote>
       ),
     },
     list: {
-      bullet: ({ children }) => <ul className="editor-content">{children}</ul>,
+      bullet: ({ children }) => <ul className="editor-content mb-[4vw] md:mb-[1vw] space-y-[2vw] md:space-y-[0.5vw]">{children}</ul>,
       number: ({ children }) => (
-        <ol className="editor-content list-decimal">{children}</ol>
+        <ol className="editor-content list-decimal mb-[4vw] md:mb-[1vw] space-y-[2vw] md:space-y-[0.5vw]">{children}</ol>
       ),
     },
     listItem: {
       bullet: ({ children }) => (
         <li className="editor-content flex items-start justify-start gap-[4vw] md:gap-[1vw] ml-0">
           <Image
-            src="/icons/tick.svg"
+            src="/icons/check.svg"
             alt="Bullet point"
             width={20}
             height={20}
-            className=" md:mr-[1vw] mt-[1vw] md:mt-[0.5vw] w-[5vw] h-[5vw] md:w-[1.5vw] md:h-[1.5vw]"
+            className="md:mr-[1vw] mt-[1vw] md:mt-[0.5vw] w-[5vw] h-[5vw] md:w-[1.5vw] md:h-[1.5vw] flex-shrink-0"
           />
-          <span className="text-[5vw] md:text-[1.6vw] leading-[170%]">
+          <span className="text-[4.5vw] md:text-[1.3vw] leading-[170%]">
             {children}
           </span>
         </li>

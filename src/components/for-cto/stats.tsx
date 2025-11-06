@@ -71,17 +71,17 @@ export default function Stats({ stats }: { stats: StatData[] }) {
           </p>
         </div>
         {/* Stats arranged around center */}
-        <div ref={statsContainerRef} className="relative h-[500px] flex items-center justify-center">
+        <div ref={statsContainerRef} className="relative h-[700px] flex items-center justify-center">
           <div className="flex gap-10 justify-center items-center">
             {/* Left side stats */}
             <div className="flex flex-col gap-8">
-              {stats.slice(0, 3).map((stat, index) => {
+              {stats.slice(0, 4).map((stat, index) => {
                 return (
                   <div
                     key={index}
                     data-stat-id={index}
                     data-stat-left
-                    className={`opacity-0 px-4 py-5 rounded-xl bg-black border border-border shadow-[0_1px_5px_0_rgba(255,153,0,0.521)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.900)]`}
+                    className={`opacity-0 px-4 py-5 rounded-3xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]`}
                   >
                     <div className="flex gap-4 ">
                       <div className="flex-shrink-0">{stat.icon}</div>
@@ -98,7 +98,7 @@ export default function Stats({ stats }: { stats: StatData[] }) {
             </div>
             <div className="w-[400px] h-[400px] ">
               <Image
-                src="/home-page/updated center middle.png"
+                src="/home-page/middle center one.png"
                 alt="circle"
                 width={320}
                 height={320}
@@ -109,13 +109,13 @@ export default function Stats({ stats }: { stats: StatData[] }) {
 
             {/* Right side stats */}
             <div className="flex flex-col gap-8">
-              {stats.slice(3, 6).map((stat, index) => {
+              {stats.slice(4, 8).map((stat, index) => {
                 return (
                   <div
                     key={index}
-                    data-stat-id={index}
+                    data-stat-id={index + 4}
                     data-stat-right
-                    className={`opacity-0 px-4 py-5 rounded-xl bg-black border border-border shadow-[0_1px_5px_0_rgba(255,153,0,0.521)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.900)]`}
+                    className="opacity-0 px-4 py-5 rounded-3xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]"
                   >
                     <div className="flex gap-4 ">
                       <div className="flex-shrink-0">{stat.icon}</div>

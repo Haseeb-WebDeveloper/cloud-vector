@@ -24,7 +24,6 @@ const footerColumns = [
   {
     title: "Solutions",
     icon: Briefcase,
-    defaultDesc: "Helping leaders win every cloud battle",
     items: [
       {
         icon: Shield,
@@ -43,19 +42,18 @@ const footerColumns = [
   {
     title: "Products",
     icon: Settings,
-    defaultDesc: "Purpose-built self-service solutions for AWS Cost efficiency & security",
     items: [
-      {
-        icon: BarChart3,
-        href: "/products/finops",
-        label: "FINOPS",
-        desc: "Slash AWS bills by up to 68%, 100% Guaranteed ROI in 3 months.",
-      },
       {
         icon: Shield,
         href: "/products/secops",
         label: "SECOPS",
-        desc: "InfoSec Team As a Service.",
+        desc: "InfoSec Team as a Service.",
+      },
+      {
+        icon: BarChart3,
+        href: "/products/finops",
+        label: "FINOPS",
+        desc: "Automated cost leak detection & one-click fixes.",
       },
     ],
   },
@@ -64,19 +62,22 @@ const footerColumns = [
     icon: BookOpen,
     items: [
       {
+        icon: DollarSign,
+        href: "/pricing",
+        label: "Pricing",
+        desc: "Transparent, result-based pricing.",
+      },
+      {
         icon: Globe,
         href: "/case-studies",
         label: "Case Studies",
-      },
-      {
-        icon: Users,
-        href: "/community",
-        label: "Community",
+        desc: "Real Teams. Real Stories. Real Numbers.",
       },
       {
         icon: Newspaper,
         href: "/blog",
-        label: "Blog",
+        label: "Blogs",
+        desc: "Everything about Cloud - Cost, Security, Performance, Disaster Recovery & IaaC insights.",
       },
     ],
   },
@@ -85,19 +86,28 @@ const footerColumns = [
     icon: UserCircle,
     items: [
       {
-        icon: DollarSign,
-        href: "/pricing",
-        label: "Pricing",
-      },
-      {
-        icon: Phone,
-        href: "/contact",
-        label: "Contact Us",
-      },
-      {
         icon: Info,
         href: "/about",
         label: "About Us",
+        desc: "Built by ex-Amazon veteran to help you run your infra the Amazon way.",
+      },
+      {
+        icon: Phone,
+        href: "/contact-us",
+        label: "Contact Us",
+        desc: "Got questions? Let's connect.",
+      },
+      {
+        icon: FileText,
+        href: "/terms",
+        label: "Terms & Conditions",
+        desc: "Our service commitment is clearly defined.",
+      },
+      {
+        icon: Lock,
+        href: "/privacy",
+        label: "Privacy Policy",
+        desc: "Your data, protected with trust.",
       },
     ],
   },
@@ -107,7 +117,7 @@ export default function Footer() {
   return (
     <footer className="pt-16 pb-8 border-t border-foreground/10">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-start gap-16">
+        <div className="flex flex-col lg:flex-row items-start gap-4">
           {/* Left Section - Logo and Subscription Box */}
           <div className="flex-shrink-0 lg:w-60">
             {/* Logo */}
@@ -153,7 +163,9 @@ export default function Footer() {
                         <Link href={item.href} className="block transition-colors text-sm">
                           {item.label}
                         </Link>
-                        <p className="text-xs mt-1 font-light">{col.defaultDesc}</p>
+                        {item.desc && (
+                          <p className="text-xs mt-1 font-light">{item.desc}</p>
+                        )}
                       </div>
                     </div>
                   ))}

@@ -10,6 +10,8 @@ import {
   ShieldCheck,
   TrendingUp,
   Users,
+  BarChart3,
+  Server,
 } from "lucide-react";
 import HowWeSolve from "@/components/for-cto/how-we-solve";
 import HowItWorks from "@/components/for-cto/how-it-works";
@@ -29,13 +31,18 @@ export default function ForCTO() {
 
   const SocialStats: StatData[] = [
     {
-      value: "$60M+",
+      value: "$362k+",
       label: "Savings delivered",
       icon: <PiggyBank size={40} className="text-primary" />,
     },
     {
+      value: "40%",
+      label: "Avg Cost Reduction results",
+      icon: <BarChart3 size={40} className="text-primary" />,
+    },
+    {
       value: "68%",
-      label: "Max cost reduction",
+      label: "Max Cost Reduction results",
       icon: <Percent size={40} className="text-primary" />,
     },
     {
@@ -44,19 +51,24 @@ export default function ForCTO() {
       icon: <Rocket size={40} className="text-primary" />,
     },
     {
+      value: "300+",
+      label: "AWS accounts under management",
+      icon: <Server size={40} className="text-primary" />,
+    },
+    {
       value: "15+",
       label: "Compliance standards",
       icon: <ShieldCheck size={40} className="text-primary" />,
     },
     {
-      value: "100%",
-      label: "ROI in 3 months",
-      icon: <TrendingUp size={40} className="text-primary" />,
-    },
-    {
       value: "12+",
       label: "Years at Amazon/AWS",
       icon: <Users size={40} className="text-primary" />,
+    },
+    {
+      value: "100%",
+      label: "ROI in 3 months",
+      icon: <TrendingUp size={40} className="text-primary" />,
     },
   ];
 

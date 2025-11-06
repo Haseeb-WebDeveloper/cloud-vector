@@ -79,123 +79,123 @@ const BlogPageComponent: React.FC<BlogPageComponentProps> = ({
   return (
     <>
       <div className="min-h-screen bg-background lg:pt-[12vw] pt-[20vh]">
-        {/* Categories and Search Section */}
-        <div className="flex flex-wrap gap-4 lg:gap-4 w-full lg:max-w-[80vw] mx-auto justify-center items-center px-6">
-          {/* Desktop Layout - Categories and Search */}
-          <div className="hidden lg:flex flex-wrap gap-[0.8vw] w-full justify-center items-center">
-            {/* Categories - Hidden when search is expanded */}
-            <div
-              className={`flex flex-wrap gap-[0.8vw] transition-all duration-300 ${
-                isSearchExpanded
-                  ? "hidden pointer-events-none scale-95"
-                  : "block"
-              }`}
-            >
-              {/* All Posts Button */}
-              <Link
-                href={`/blog`}
-                className={`cursor-pointer rounded-full px-6 py-3 border border-foreground/20 transition-all group hover:bg-foreground hover:text-background ${
-                  isMainBlogPage
-                    ? "bg-foreground text-background"
-                    : "bg-background text-foreground"
-                }`}
-              >
-                <div className="relative overflow-hidden">
-                  <span
-                    className={`uppercase text-[4.5v] lg:text-[1vw] font-light block transition-transform duration-300 group-hover:-translate-y-[200%] group-hover:text-background z-10 ${
-                      isMainBlogPage ? "text-background" : ""
-                    }`}
-                  >
-                    ALL POSTS
-                  </span>
-                  <span className="uppercase text-[4.5v] lg:text-[1vw] font-light absolute inset-0 flex items-center justify-center transition-transform duration-300 translate-y-full group-hover:translate-y-0 group-hover:text-background z-10">
-                    ALL POSTS
-                  </span>
-                </div>
-              </Link>
+        {/* Header Section - Heading and Subheading */}
+        <div className="flex flex-col items-center justify-center px-6 mb-8 lg:mb-12">
+          <h1 className="text-[8vw] lg:text-[4vw] font-medium lg:font-semibold text-foreground text-center mb-4 lg:mb-6">
+            EffDog
+          </h1>
+          <p className="text-[4vw] lg:text-[1.2vw] font-light text-foreground/80 text-center max-w-4xl">
+            Guides, news, and perspectives on the latest in cloud optimization
+          </p>
+        </div>
 
-              {/* Category Buttons */}
-              {allCategories?.map((category) => {
-                const isActiveCategory = currentCategorySlug === category.slug;
-
-                return (
-                  <Link
-                    key={category._id}
-                    href={`/blog/category/${category.slug}`}
-                    className={`cursor-pointer rounded-full px-6 py-3 border border-foreground/20 transition-all group hover:bg-foreground group-hover:text-background z-10 ${
-                      isActiveCategory
-                        ? "bg-foreground text-background"
-                        : "bg-background text-foreground"
-                    }`}
-                  >
-                    <div className="relative overflow-hidden ">
-                      <span
-                        className={`uppercase text-[4.5v] lg:text-[1vw] font-light block transition-transform duration-300 group-hover:-translate-y-[200%] group-hover:text-background z-10 ${
-                          isActiveCategory ? "text-background" : ""
-                        }`}
-                      >
-                        {category.name}
-                      </span>
-                      <span className="uppercase text-[4.5v] lg:text-[1vw] font-light absolute inset-0 flex items-center justify-center transition-transform duration-300 translate-y-full group-hover:translate-y-0 group-hover:text-background">
-                        {category.name}
-                      </span>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Desktop Search Section */}
-            <div
-              className={`flex items-center justify-center transition-all duration-300 ${
-                isSearchExpanded ? "w-full max-w-md mx-auto" : "w-auto"
-              }`}
-            >
-              <div
-                className={`flex items-center transition-all duration-300 ease-in-out ${
-                  isSearchExpanded
-                    ? "bg-foreground text-background border border-foreground/20 rounded-full px-4 py-3 w-full"
-                    : "cursor-pointer rounded-full px-6 py-3 bg-background text-foreground border border-foreground/20 group hover:bg-foreground hover:text-background"
-                }`}
-                onClick={!isSearchExpanded ? toggleSearch : undefined}
-              >
-                {isSearchExpanded ? (
-                  <>
-                    <Search size={16} className="mr-3 text-background" />
-                    <input
-                      type="text"
-                      value={searchQuery}
-                      onChange={(e) => handleSearch(e.target.value)}
-                      placeholder="I am looking for..."
-                      className="w-full bg-transparent text-background placeholder:font-light placeholder-background/50 outline-none uppercase text-[4.5vw] lg:text-[1vw] font-light"
-                      autoFocus
-                    />
-                    <button
-                      onClick={toggleSearch}
-                      className="cursor-pointer ml-3 text-background transition-colors"
-                    >
-                      <X size={16} className="text-background" />
-                    </button>
-                  </>
-                ) : (
-                  <div className="relative overflow-hidden">
-                    <span className="uppercase text-[4.5v] lg:text-[1vw] font-light flex items-center gap-2 transition-transform duration-300 group-hover:-translate-y-[200%] group-hover:text-background z-10">
-                      SEARCH
-                      <Search size={16} />
-                    </span>
-                    <span className="uppercase text-[4.5v] lg:text-[1vw] font-light absolute inset-0 flex items-center justify-center gap-2 transition-transform duration-300 translate-y-full group-hover:translate-y-0 group-hover:text-background">
-                      SEARCH
-                      <Search size={16} />
-                    </span>
-                  </div>
-                )}
-              </div>
+        {/* Search Section - Centered below subheading */}
+        <div className="flex flex-col items-center justify-center px-6 mb-8 lg:mb-12">
+          {/* Desktop Search */}
+          <div className="hidden lg:flex items-center justify-center w-full max-w-md">
+            <div className="flex items-center bg-background text-foreground border border-foreground/20 rounded-full px-4 py-3 w-full">
+              <Search size={16} className="mr-3 text-foreground/70" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                placeholder="Search by anything"
+                className="w-full bg-transparent text-foreground placeholder:font-light placeholder-foreground/50 outline-none text-[1vw] font-light"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => handleSearch("")}
+                  className="cursor-pointer ml-3 text-foreground/70 transition-colors hover:text-foreground"
+                >
+                  <X size={16} />
+                </button>
+              )}
             </div>
           </div>
 
-          {/* Mobile Layout - Filter Button and Search Input */}
-          <div className="relative lg:hidden flex items-center gap-2 w-full">
-            {/* Filter Button */}
+          {/* Mobile Search */}
+          <div className="lg:hidden w-full max-w-md">
+            <div className="flex bg-background items-center w-full border-[1px] border-foreground/90 rounded-full px-4 py-3">
+              <Search size={16} className="mr-3 text-foreground/70" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                placeholder="Search by anything"
+                className="w-full px-2 py-1 bg-transparent text-foreground placeholder-foreground/90 outline-none text-[4vw] font-light"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => handleSearch("")}
+                  className="cursor-pointer ml-2 text-foreground/70 transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Categories Section - Centered below search */}
+        <div className="flex flex-wrap gap-4 lg:gap-4 w-full lg:max-w-[80vw] mx-auto justify-center items-center px-6">
+          {/* Desktop Layout - Categories */}
+          <div className="hidden lg:flex flex-wrap gap-[0.8vw] w-full justify-center items-center">
+            {/* All Posts Button */}
+            <Link
+              href={`/blog`}
+              className={`cursor-pointer rounded-full px-6 py-3 border border-foreground/20 transition-all group hover:bg-foreground hover:text-background ${
+                isMainBlogPage
+                  ? "bg-foreground text-background"
+                  : "bg-background text-foreground"
+              }`}
+            >
+              <div className="relative overflow-hidden">
+                <span
+                  className={`uppercase text-[1vw] font-light block transition-transform duration-300 group-hover:-translate-y-[200%] group-hover:text-background z-10 ${
+                    isMainBlogPage ? "text-background" : ""
+                  }`}
+                >
+                  All
+                </span>
+                <span className="uppercase text-[1vw] font-light absolute inset-0 flex items-center justify-center transition-transform duration-300 translate-y-full group-hover:translate-y-0 group-hover:text-background z-10">
+                  All
+                </span>
+              </div>
+            </Link>
+
+            {/* Category Buttons */}
+            {allCategories?.map((category) => {
+              const isActiveCategory = currentCategorySlug === category.slug;
+
+              return (
+                <Link
+                  key={category._id}
+                  href={`/blog/category/${category.slug}`}
+                  className={`cursor-pointer rounded-full px-6 py-3 border border-foreground/20 transition-all group hover:bg-foreground group-hover:text-background z-10 ${
+                    isActiveCategory
+                      ? "bg-foreground text-background"
+                      : "bg-background text-foreground"
+                  }`}
+                >
+                  <div className="relative overflow-hidden ">
+                    <span
+                      className={`uppercase text-[1vw] font-light block transition-transform duration-300 group-hover:-translate-y-[200%] group-hover:text-background z-10 ${
+                        isActiveCategory ? "text-background" : ""
+                      }`}
+                    >
+                      {category.name}
+                    </span>
+                    <span className="uppercase text-[1vw] font-light absolute inset-0 flex items-center justify-center transition-transform duration-300 translate-y-full group-hover:translate-y-0 group-hover:text-background">
+                      {category.name}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Mobile Layout - Filter Button */}
+          <div className="relative lg:hidden flex items-center justify-center w-full">
             <div className="w-fit">
               <button
                 onClick={toggleFilterDropdown}
@@ -206,7 +206,7 @@ const BlogPageComponent: React.FC<BlogPageComponentProps> = ({
 
               {/* Filter Dropdown */}
               {isFilterDropdownOpen && (
-                <div className="absolute top-full w-full left-0 mt-2 bg-foreground border-[1px] border-foreground/90 rounded-[5vw] shadow-lg z-50 min-w-[200px]">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-foreground border-[1px] border-foreground/90 rounded-[5vw] shadow-lg z-50 min-w-[200px]">
                   <div className="p-1 space-y-1">
                     {/* All Posts Option */}
                     <Link
@@ -249,22 +249,6 @@ const BlogPageComponent: React.FC<BlogPageComponentProps> = ({
                   </div>
                 </div>
               )}
-            </div>
-
-            {/* Mobile Search Input */}
-            <div className="w-full overflow-hidden">
-              <div className="flex bg-background items-center w-full border-[1px] border-foreground/90 rounded-full px-2 py-2">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => handleSearch(e.target.value)}
-                  placeholder="I am looking for..."
-                  className="w-full px-2 py-1 bg-transparent text-foreground placeholder-foreground/90  outline-none uppercase text-[4vw] font-light"
-                />
-                <div className=" rounded-full bg-foreground p-2">
-                  <Search size={16} className="text-background" />
-                </div>
-              </div>
             </div>
           </div>
         </div>

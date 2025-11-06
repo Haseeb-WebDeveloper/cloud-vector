@@ -142,7 +142,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
             {/* Removed Breadcrumb navigation here */}
             <div className="space-y-5 md:space-y-[1vw] flex flex-col items-center text-center">
               <h1
-                className="w-full lg:max-w-[58vw] text-[7vw] lg:text-[3.9vw] font-semibold mb-7 md:mb-[3vw] leading-[120%]"
+                className="w-full lg:max-w-[58vw] text-[7vw] lg:text-[3.9vw] font-semibold mb-7 md:mb-[3vw] leading-[120%] pt-[30px] pb-[30px]"
                 style={{
                   letterSpacing: "-0.02em",
                 }}
@@ -202,17 +202,15 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
               {/* Sticky Right Sidebar */}
               <div className="w-full lg:w-[19vw] mt-6 lg:mt-0 flex-shrink-0">
                 <div
-                  className="space-y-4 hidden lg:block"
+                  className="hidden lg:block"
                   style={{ minHeight: 0 }}
                 >
-                  <div className="relative">
-                    <div
-                      className="flex flex-col gap-6 sticky top-[7.2vw] z-40"
-                      style={{
-                        maxHeight: "calc(100vh - 7.2vw - 2vw)",
-                        minHeight: 0,
-                      }}
-                    >
+                  <div
+                    className="flex flex-col gap-6 sticky top-[7.2vw] z-40"
+                    style={{
+                      maxHeight: "calc(100vh - 7.2vw - 2vw)",
+                    }}
+                  >
                       {/* Table of Contents */}
                       {headings.length > 0 && (
                         <div className="relative px-4 pt-4 md:px-[0.7vw] md:pt-[1vw] border border-foreground/20 rounded-xl bg-background/60 backdrop-blur-sm shadow-md">
@@ -278,7 +276,6 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
                           />
                         </div>
                       </div>
-                    </div>
                   </div>
                 </div>
                 {/* Social Share Buttons (Mobile) */}
@@ -303,7 +300,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
               {blogPost.relatedPosts.map((post) => (
                 <article
                   key={post._id}
-                  className={`group cursor-pointer relative transition-all duration-300 ${
+                  className={`group cursor-pointer relative transition-all duration-300 flex flex-col ${
                     hoveredPostId && hoveredPostId !== post._id
                       ? "opacity-30"
                       : "opacity-100"
@@ -311,22 +308,22 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
                   onMouseEnter={() => setHoveredPostId(post._id)}
                   onMouseLeave={() => setHoveredPostId(null)}
                 >
-                  <Link href={`/blog/${post.slug}`}>
-                    <div className="lg:max-h-[12vw] aspect-video h-fit overflow-hidden rounded-xl">
+                  <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
+                    <div className="w-full aspect-video overflow-hidden rounded-xl mb-3 flex-shrink-0">
                       <Image
                         src={post.featuredImage.asset.url}
                         alt={post.title}
                         width={1000}
                         height={1000}
-                        className="w-full h-full rounded-xl object-cover transition-all ease-in-out duration-100"
+                        className="w-full h-full rounded-xl object-cover transition-all ease-in-out duration-300 group-hover:scale-105"
                       />
                     </div>
-                    <div className="space-y-2 mt-3">
-                      <div className="flex items-center justify-between">
-                        <span className="uppercase text-[2.3vw] lg:text-[0.92vw] font-light text-foreground">
+                    <div className="flex flex-col flex-grow space-y-2 mt-auto">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="uppercase text-[2.3vw] lg:text-[0.92vw] font-light text-foreground truncate">
                           {post.category?.name || "Uncategorized"}
                         </span>
-                        <span className="uppercase text-[2.3vw] lg:text-[0.92vw] font-light text-foreground">
+                        <span className="uppercase text-[2.3vw] lg:text-[0.92vw] font-light text-foreground whitespace-nowrap flex-shrink-0">
                           {formatDayMonth(post._updatedAt)}
                         </span>
                       </div>
