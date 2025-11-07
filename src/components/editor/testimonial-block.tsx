@@ -24,17 +24,17 @@ export default function TestimonialBlock({ value }: TestimonialBlockProps) {
         {/* Left: text */}
         <div className="flex-1">
           {text && (
-            <p className="text-foreground/90 text-[5vw] md:text-[1.4vw] leading-[180%] md:leading-[170%]">
+            <p className="text-foreground/90 text-[4.5vw] md:text-[1.3vw] leading-[170%]">
               
-              “{text}”
+              "{text}"
             </p>
           )}
           <div className="mt-6 md:mt-[1.2vw]">
-            <p className="text-foreground font-medium text-[4.8vw] md:text-[1.2vw]">
+            <p className="text-foreground font-medium text-[4.5vw] md:text-[1.3vw]">
               {personName}
             </p>
             {(designation || company) && (
-              <p className="text-foreground/80 text-[4.2vw] md:text-[1vw]">
+              <p className="text-foreground/80 text-[4.5vw] md:text-[1.3vw]">
                 {[designation, company].filter(Boolean).join(", ")}
               </p>
             )}

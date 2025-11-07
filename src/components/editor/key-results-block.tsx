@@ -25,14 +25,14 @@ export default function KeyResultsBlock({ value }: KeyResultsProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-[2vw]">
         <ul className="list-disc pl-6 space-y-3 md:space-y-[0.8vw]">
           {left.map((point, i) => (
-            <li key={`l-${i}`} className="text-[4.6vw] md:text-[1.1vw] leading-[170%]">
+            <li key={`l-${i}`} className="text-[4.5vw] md:text-[1.3vw] leading-[170%]">
               {point}
             </li>
           ))}
         </ul>
         <ul className="list-disc pl-6 space-y-3 md:space-y-[0.8vw]">
           {right.map((point, i) => (
-            <li key={`r-${i}`} className="text-[4.6vw] md:text-[1.1vw] leading-[170%]">
+            <li key={`r-${i}`} className="text-[4.5vw] md:text-[1.3vw] leading-[170%]">
               {point}
             </li>
           ))}

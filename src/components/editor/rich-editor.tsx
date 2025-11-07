@@ -155,20 +155,23 @@ export default function RichEditor({ content }: RichEditorProps) {
     listItem: {
       bullet: ({ children }) => (
         <li className="editor-content flex items-start justify-start gap-[4vw] md:gap-[1vw] ml-0">
-          <Image
-            src="/icons/check.svg"
-            alt="Bullet point"
-            width={20}
-            height={20}
-            className="md:mr-[1vw] mt-[1vw] md:mt-[0.5vw] w-[5vw] h-[5vw] md:w-[1.5vw] md:h-[1.5vw] flex-shrink-0"
-          />
-          <span className="text-[4.5vw] md:text-[1.3vw] leading-[170%]">
+          <span className="flex items-center justify-center md:mr-[1vw] mt-[1vw] md:mt-[0.5vw] w-[5vw] h-[5vw] md:w-[1.5vw] md:h-[1.5vw] flex-shrink-0 rounded-full bg-primary">
+            <Image
+              src="/icons/check.svg"
+              alt="Bullet point"
+              width={20}
+              height={20}
+              className="w-[3vw] h-[3vw] md:w-[1vw] md:h-[1vw]"
+              style={{ filter: "brightness(0) invert(1)" }}
+            />
+          </span>
+          <span className="text-[4.5vw] md:text-[1.3vw] leading-[170%] text-white">
             {children}
           </span>
         </li>
       ),
       number: ({ children }) => (
-        <li className="editor-content mb-[0.063vw] text-[5vw] md:text-[2vw]">
+        <li className="editor-content mb-[0.063vw] text-[5vw] md:text-[1.3vw]">
           {children}
         </li>
       ),

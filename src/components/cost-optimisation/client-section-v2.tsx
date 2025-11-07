@@ -8,6 +8,7 @@ import {
   MarqueeItem,
   MarqueeFade,
 } from "@/components/ui/marquee";
+import { Calendar, DollarSign, TrendingUp } from "lucide-react";
 
 const partnerLogos = [
   { name: "Mayo Clinic", src: "/clients/1.png", alt: "Mayo Clinic" },
@@ -32,6 +33,20 @@ export default function ClientSectionV2({
 }) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  // Function to get icon based on title and description
+  const getIcon = (title: string, description: string) => {
+    if (description.toLowerCase().includes("years") || description.toLowerCase().includes("amazon") || description.toLowerCase().includes("aws")) {
+      return <Calendar className="w-5 h-5 stroke-2" />;
+    }
+    if (title.includes("$")) {
+      return <DollarSign className="w-5 h-5 stroke-2" />;
+    }
+    if (title.includes("%")) {
+      return <TrendingUp className="w-5 h-5 stroke-2" />;
+    }
+    return <Calendar className="w-5 h-5 stroke-2" />;
+  };
+
   return (
     <div className="py-20 mb-16 ">
       <div className=" bg-[#252f3e] rounded-2xl container mx-auto px-4 py-24 ">
@@ -45,9 +60,9 @@ export default function ClientSectionV2({
         {/* Micro-Metrics */}
         <div className="flex flex-col lg:flex-row flex-wrap gap-3  mb-4 justify-center items-center ">
           {stats?.map((stat, index) => (
-            <p
+            <div
               key={index}
-              className={`hover:scale-105 text-lg font-medium border border-primary/30 text-nowrap bg-primary/10 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 px-4 py-2 ${
+              className={`flex items-center gap-3 rounded-lg border border-gray-300/80 bg-[#0a0f1a] hover:scale-105 transition-all duration-300 px-4 py-3 ${
                 hoveredIndex !== null && hoveredIndex !== index
                   ? "opacity-50"
                   : "opacity-100"
@@ -55,11 +70,22 @@ export default function ClientSectionV2({
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <span className="font-bold text-3xl text-primary text-nowrap">
-                {stat.title}
-              </span>{" "}
-              {stat.description}
-            </p>
+              {/* Orange circular icon */}
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center">
+                <div className="text-black">
+                  {getIcon(stat.title, stat.description)}
+                </div>
+              </div>
+              {/* Text content */}
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-3xl text-primary text-nowrap">
+                  {stat.title}
+                </span>
+                <span className="text-white text-lg font-medium text-nowrap">
+                  {stat.description}
+                </span>
+              </div>
+            </div>
           ))}
         </div>
 

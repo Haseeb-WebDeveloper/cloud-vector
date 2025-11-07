@@ -40,7 +40,7 @@ export default function InfoBoxesBlock({ value }: InfoBoxesBlockProps) {
             </div>
           )}
           {item.text && (
-            <p className="text-[5vw] md:text-[1.2vw] leading-[160%] font-light text-foreground/90">
+            <p className="text-[4.5vw] md:text-[1.3vw] leading-[170%] font-light text-foreground/90">
               {item.text}
             </p>
           )}

@@ -21,10 +21,13 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [hoveredPostId, setHoveredPostId] = useState<string | null>(null);
   const [copySuccess, setCopySuccess] = useState(false);
+  const sidebarRef = useRef<HTMLElement>(null);
 
-  // STICKY sidebar observer
+  // --- Make sidebar sticky: Remove unnecessary observer scroll handling for stickiness, only keep Table of Contents intersection observer and progress bar ---
+
   const observerRef = useRef<IntersectionObserver | null>(null);
 
+  // Scroll progress bar logic
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -40,7 +43,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
             100,
             ((scrollY + viewportHeight - contentTop) /
               (contentHeight - viewportHeight)) *
-              100
+            100
           )
         );
         setScrollProgress(progress);
@@ -58,6 +61,26 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
   }, []);
 
   const headings = blogPost.content ? extractH2Headings(blogPost.content) : [];
+
+  // Apply sticky positioning only on desktop
+  useEffect(() => {
+    const applySticky = () => {
+      if (sidebarRef.current) {
+        const isDesktop = window.innerWidth >= 1024; // lg breakpoint
+        if (isDesktop) {
+          sidebarRef.current.style.position = "sticky";
+          sidebarRef.current.style.top = "5rem";
+        } else {
+          sidebarRef.current.style.position = "";
+          sidebarRef.current.style.top = "";
+        }
+      }
+    };
+
+    applySticky();
+    window.addEventListener("resize", applySticky);
+    return () => window.removeEventListener("resize", applySticky);
+  }, []);
 
   // Enable Intersection Observer for Table of Contents
   useEffect(() => {
@@ -159,134 +182,132 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
           className="w-full mx-auto max-w-[100vw] md:max-w-[100vw] xl:max-w-[90vw] px-2 sm:px-4 md:px-[1vw] pt-8 md:pt-[1vw]"
           id="content"
         >
-          <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 md:gap-[1.6vw] lg:gap-[2vw] pb-6 sm:pb-10 md:pb-[4vw] border-b-[1px] border-foreground/20">
-            <div className="w-full space-y-6 lg:space-y-[2vw] max-w-full mx-auto flex flex-col lg:flex-row gap-0">
-              {/* Content and Table of Contents */}
-              {/* Main Content */}
-              <article className="lg:flex-1 w-full min-w-0">
-                {/* Featured Image */}
-                <div className="w-full rounded-xl overflow-hidden mb-6 lg:mb-[1.7vw]">
-                  <Image
-                    src={blogPost.featuredImage.asset.url}
-                    alt={blogPost.title}
-                    width={1200}
-                    height={600}
-                    className="w-full h-auto object-cover aspect-video"
-                    priority
-                  />
-                </div>
+          <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 md:gap-[1.6vw] lg:gap-[2vw] pb-6 sm:pb-10 md:pb-[4vw] border-b-[1px] border-foreground/20 items-start">
+            {/* Main Content */}
+            <article className="lg:flex-1 w-full min-w-0">
+              {/* Featured Image */}
+              <div className="w-full rounded-xl overflow-hidden mb-6 lg:mb-[1.7vw]">
+                <Image
+                  src={blogPost.featuredImage.asset.url}
+                  alt={blogPost.title}
+                  width={1200}
+                  height={600}
+                  className="w-full h-auto object-cover aspect-video"
+                  priority
+                />
+              </div>
 
-                {/* Meta: Published Date */}
-                <div className="w-full flex items-center justify-start gap-3 md:gap-[0.6vw] mb-6">
-                  <Image
-                    src={"/icons/calendar.svg"}
-                    alt="calendar"
-                    width={100}
-                    height={100}
-                    className="w-6 h-6"
-                  />
-                  <span className="uppercase text-[3.8vw] md:text-[0.88vw] font-light">
-                    {formatDayMonth(blogPost._updatedAt)}
-                  </span>
-                </div>
+              {/* Meta: Published Date */}
+              <div className="w-full flex items-center justify-start gap-3 md:gap-[0.6vw] mb-6">
+                <Image
+                  src={"/icons/calendar.svg"}
+                  alt="calendar"
+                  width={100}
+                  height={100}
+                  className="w-6 h-6"
+                />
+                <span className="uppercase text-[3.8vw] md:text-[0.88vw] font-light">
+                  {formatDayMonth(blogPost._updatedAt)}
+                </span>
+              </div>
 
-                {/* Blog Content */}
-                {blogPost.content && (
-                  <RichEditor content={blogPost.content} />
-                )}
-              </article>
+              {/* Blog Content */}
+              {blogPost.content && (
+                <RichEditor content={blogPost.content} />
+              )}
+            </article>
 
-              {/* Vertical Divider (Desktop) */}
-              <div className="hidden lg:block w-px bg-foreground/20 mx-2" />
+            {/* Vertical Divider (Desktop) */}
+            <div className="hidden lg:block w-px bg-foreground/20 mx-2 flex-shrink-0" />
 
-              {/* Sticky Right Sidebar */}
-              <div className="w-full lg:w-[19vw] mt-6 lg:mt-0 flex-shrink-0">
-                <div
-                  className="hidden lg:block"
-                  style={{ minHeight: 0 }}
+            {/* Sticky Right Sidebar */}
+            <aside 
+              ref={sidebarRef}
+              className="w-full lg:w-[19vw] mt-6 lg:mt-0 flex-shrink-0 lg:self-start"
+              style={{
+                maxHeight: "calc(100vh - 5rem)",
+                alignSelf: "flex-start",
+              }}
+            >
+              {/* Desktop Sidebar Content */}
+              <div className="hidden lg:block">
+                <div 
+                  className="flex flex-col gap-6 z-40 w-full"
                 >
-                  <div
-                    className="flex flex-col gap-6 sticky top-[7.2vw] z-40"
-                    style={{
-                      maxHeight: "calc(100vh - 7.2vw - 2vw)",
-                    }}
-                  >
-                      {/* Table of Contents */}
-                      {headings.length > 0 && (
-                        <div className="relative px-4 pt-4 md:px-[0.7vw] md:pt-[1vw] border border-foreground/20 rounded-xl bg-background/60 backdrop-blur-sm shadow-md">
-                          <h4 className="text-[1.1vw] uppercase font-semibold text-primary/90 mb-3 tracking-wide leading-tight">
-                            Table of Contents
-                          </h4>
-                          <div
-                            data-lenis-prevent
-                            className="z-10 overflow-y-auto md:h-[13vw] max-h-[36vh] xl:max-h-[23vw] pr-1 space-y-2 custom-scrollbar text-[0.92vw] font-light"
-                          >
-                            {headings.map((heading, index) => (
-                              <button
-                                key={index}
-                                onClick={() => scrollToHeading(heading.id)}
-                                className={`cursor-pointer block w-full truncate text-left transition-colors px-1 py-1 rounded
-                                  ${
-                                    activeHeading === heading.id
-                                      ? "text-primary font-semibold bg-primary/10"
-                                      : "text-foreground/80 hover:text-primary/90"
-                                  }
+                  {/* Table of Contents */}
+                  {headings.length > 0 && (
+                    <div className="relative px-4 pt-4 md:px-[0.7vw] md:pt-[1vw] border border-foreground/20 rounded-xl bg-background/60 backdrop-blur-sm shadow-md overflow-hidden">
+                      <h4 className="text-[1.1vw] uppercase font-semibold text-primary/90 mb-3 tracking-wide leading-tight">
+                        Table of Contents
+                      </h4>
+                      <div
+                        data-lenis-prevent
+                        className="z-10 overflow-y-auto md:h-[13vw] max-h-[36vh] xl:max-h-[23vw] pr-1 space-y-2 custom-scrollbar text-[0.92vw] font-light"
+                      >
+                        {headings.map((heading, index) => (
+                          <button
+                            key={index}
+                            onClick={() => scrollToHeading(heading.id)}
+                            className={`cursor-pointer block w-full truncate text-left transition-colors px-1 py-1 rounded
+                                  ${activeHeading === heading.id
+                                ? "text-primary font-semibold bg-primary/10"
+                                : "text-foreground/80 hover:text-primary/90"
+                              }
                                 `}
-                                aria-current={activeHeading === heading.id}
-                              >
-                                <span className="opacity-50 pr-1">{index + 1}.</span>{" "}
-                                <span className="truncate inline">
-                                  {heading.text}
-                                </span>
-                              </button>
-                            ))}
-                          </div>
-                          <div className="absolute bottom-0 left-0 w-full h-[2vw] bg-gradient-to-t from-background to-transparent pointer-events-none"></div>
-                        </div>
-                      )}
-
-                      {/* Desktop Progress Bar */}
-                      <div className="w-full h-[3px] rounded-full bg-foreground/40 overflow-hidden">
-                        <div
-                          className="h-full bg-primary transition-all duration-300 ease-out"
-                          style={{ width: `${scrollProgress}%` }}
-                        />
-                      </div>
-
-                      {/* Static card with CTA */}
-                      <div>
-                        <div className="w-full bg-secondary/10 rounded-xl p-4 border text-center shadow-sm">
-                          <h2
-                            className="text-[1vw] xl:text-[1.2vw] uppercase font-bold leading-tight text-primary"
+                            aria-current={activeHeading === heading.id}
                           >
-                            Reduce your monthly AWS bill by up to <span className="text-primary/90">(68%)</span>
-                          </h2>
-                          <p className="text-[0.85vw] xl:text-[0.95vw] font-light text-foreground/90 mt-1">
-                            EffDog automates the tedious work of analyzing your AWS
-                            usage and optimizing it to keep your AWS monthly bills
-                            in check.
-                          </p>
-                        </div>
-                        <div className="mt-2">
-                          <AnimatedQuoteButton
-                            onClick={() => {
-                              window.scrollTo({ top: 0, behavior: "smooth" });
-                            }}
-                            className="w-full text-[0.92vw] uppercase"
-                          />
-                        </div>
+                            <span className="opacity-50 pr-1">{index + 1}.</span>{" "}
+                            <span className="truncate inline">
+                              {heading.text}
+                            </span>
+                          </button>
+                        ))}
                       </div>
+                      <div className="absolute bottom-0 left-0 w-full h-[2vw] bg-gradient-to-t from-background to-transparent pointer-events-none"></div>
+                    </div>
+                  )}
+
+                  {/* Desktop Progress Bar */}
+                  <div className="w-full h-[3px] rounded-full bg-foreground/40 overflow-hidden">
+                    <div
+                      className="h-full bg-primary transition-all duration-300 ease-out"
+                      style={{ width: `${scrollProgress}%` }}
+                    />
+                  </div>
+
+                  {/* Static card with CTA */}
+                  <div>
+                    <div className="w-full bg-secondary/10 rounded-xl p-4 border text-center shadow-sm">
+                      <h2
+                        className="text-[1vw] xl:text-[1.2vw] uppercase font-bold leading-tight text-primary"
+                      >
+                        Reduce your monthly AWS bill by up to <span className="text-primary/90">(68%)</span>
+                      </h2>
+                      <p className="text-[0.85vw] xl:text-[0.95vw] font-light text-foreground/90 mt-1">
+                        EffDog automates the tedious work of analyzing your AWS
+                        usage and optimizing it to keep your AWS monthly bills
+                        in check.
+                      </p>
+                    </div>
+                    <div className="mt-2">
+                      <AnimatedQuoteButton
+                        onClick={() => {
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
+                        className="w-full text-[0.92vw] uppercase"
+                      />
+                    </div>
                   </div>
                 </div>
-                {/* Social Share Buttons (Mobile) */}
-                <div className="lg:hidden">
-                  <SocialShareButtons
-                    onCopySuccess={handleCopySuccess}
-                    copySuccess={copySuccess}
-                  />
-                </div>
               </div>
-            </div>
+              {/* Social Share Buttons (Mobile) */}
+              <div className="lg:hidden">
+                <SocialShareButtons
+                  onCopySuccess={handleCopySuccess}
+                  copySuccess={copySuccess}
+                />
+              </div>
+            </aside>
           </div>
         </div>
 
@@ -300,11 +321,10 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
               {blogPost.relatedPosts.map((post) => (
                 <article
                   key={post._id}
-                  className={`group cursor-pointer relative transition-all duration-300 flex flex-col ${
-                    hoveredPostId && hoveredPostId !== post._id
+                  className={`group cursor-pointer relative transition-all duration-300 flex flex-col ${hoveredPostId && hoveredPostId !== post._id
                       ? "opacity-30"
                       : "opacity-100"
-                  }`}
+                    }`}
                   onMouseEnter={() => setHoveredPostId(post._id)}
                   onMouseLeave={() => setHoveredPostId(null)}
                 >
