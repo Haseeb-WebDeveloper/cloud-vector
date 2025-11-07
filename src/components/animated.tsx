@@ -217,42 +217,42 @@ const AnimatedSections: React.FC = () => {
     {
       value: "$362k+",
       label: "Savings delivered",
-      icon: <PiggyBank size={48} className="text-primary" />,
+      icon: <PiggyBank size={36} className="text-primary" />,
     },
     {
       value: "40%",
       label: "Avg Cost Reduction results",
-      icon: <BarChart3 size={48} className="text-primary" />,
+      icon: <BarChart3 size={36} className="text-primary" />,
     },
     {
       value: "68%",
       label: "Max Cost Reduction results",
-      icon: <Percent size={48} className="text-primary" />,
+      icon: <Percent size={36} className="text-primary" />,
     },
     {
       value: "80+",
       label: "Production launches",
-      icon: <Rocket size={48} className="text-primary" />,
+      icon: <Rocket size={36} className="text-primary" />,
     },
     {
       value: "300+",
       label: "AWS accounts under management",
-      icon: <Server size={48} className="text-primary" />,
+      icon: <Server size={36} className="text-primary" />,
     },
     {
       value: "15+",
       label: "Compliance standards",
-      icon: <ShieldCheck size={48} className="text-primary" />,
+      icon: <ShieldCheck size={36} className="text-primary" />,
     },
     {
       value: "12+",
       label: "Years at Amazon/AWS",
-      icon: <Users size={48} className="text-primary" />,
+      icon: <Users size={36} className="text-primary" />,
     },
     {
       value: "100%",
       label: "ROI in 3 months",
-      icon: <TrendingUp size={48} className="text-primary" />,
+      icon: <TrendingUp size={36} className="text-primary" />,
     },
   ];
 
@@ -440,8 +440,7 @@ const AnimatedSections: React.FC = () => {
                 ))}
                 <div
                   ref={circleImageRef}
-                  className="object-contain w-[22rem] h-[22rem] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]"
-                  style={{ zIndex: 100 }}
+                  className="object-contain w-[22vw] h-[22vw] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]"
                 >
                   <Image
                     src="/home-page/middle-center-one.png"
@@ -553,9 +552,9 @@ const AnimatedSections: React.FC = () => {
         </div>
       </section>
       {/* Section 2 - Stats */}
-      <section ref={statsSectionRef} className="relative pb-32 pt-8 z-10">
+      <section ref={statsSectionRef} className="relative pt-8 z-10">
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="text-center mt-20">
+          <div className="text-center mt-12 mb-8">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent z-[-100]">
               Results That Speak Volumes
             </h2>
@@ -566,53 +565,66 @@ const AnimatedSections: React.FC = () => {
           {/* Stats arranged around center */}
           <div
             ref={statsContainerRef}
-            className="relative h-[700px] flex items-center justify-center"
+            className="relative flex items-center justify-center pb-20"
           >
-            <div className="flex gap-10 justify-center items-center">
+            <div className="flex gap-20 justify-center items-center">
               {/* Left side stats */}
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-4">
                 {stats.slice(0, 4).map((stat, index) => {
                   return (
                     <div
                       key={index}
                       data-stat-id={index}
                       data-stat-left
-                      className={`opacity-0 px-4 py-5 rounded-3xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]`}
+                      className={`opacity-0 px-3 py-4 rounded-3xl border border-neutral-800 bg-neutral-900 shadow-[0_2px_12px_0_rgba(255,153,0,0.17)] hover:shadow-[0_3px_14px_0_rgba(255,153,0,0.39)]`}
                     >
-                      <div className="flex gap-4 ">
+                      <div className="flex gap-3 ">
                         <div className="flex-shrink-0">{stat.icon}</div>
                         <div>
-                          <p className="text-3xl md:text-4xl font-bold leading-[100%]">
+                          <p className="text-2xl md:text-3xl font-bold leading-[100%]">
                             {stat.value}
                           </p>
-                          <p className="text-lg font-medium">{stat.label}</p>
+                          <p className="text-base font-medium">{stat.label}</p>
                         </div>
                       </div>
                     </div>
                   );
                 })}
               </div>
-              <div ref={targetPositionRef} className="w-[400px] h-[400px]">
-                <div className="z-[-1] w-[400px] h-[400px] shadow-[0_0_40px_10px_rgba(255,151,0,0.35)] rounded-full bg-gradient-to-br from-[#FF9700]/50 to-[#E85409]/30"></div>
+              {/* Target position for animated circle - glow effect only */}
+              <div
+                ref={targetPositionRef}
+                className="relative flex items-center justify-center w-[22vw] h-[22vw] z-0"
+              >
+                {/* Spread shadow, more radial/faded, CTO style */}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[90px] rounded-full z-[-2] pointer-events-none"
+                  style={{
+                    background: "radial-gradient(ellipse at center, rgba(255,151,0,0.25) 0%, rgba(232,84,9,0.14) 60%, rgba(255,151,0,0.09) 100%)",
+                    filter: "blur(8px)",
+                  }}
+                ></div>
+                {/* Glow effect - the animated image will appear above this */}
+                <div className="absolute inset-0 w-[22vw] h-[22vw] rounded-full bg-gradient-to-br from-[#FF9700]/40 to-[#E85409]/30 blur-2xl"></div>
+                <div className="absolute inset-0 w-[22vw] h-[22vw] rounded-full shadow-[0_0_60px_25px_rgba(255,151,0,0.5)]"></div>
               </div>
 
               {/* Right side stats */}
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-4">
                 {stats.slice(4, 8).map((stat, index) => {
                   return (
                     <div
                       key={index}
                       data-stat-id={index + 4}
                       data-stat-right
-                      className="opacity-0 px-4 py-5 rounded-3xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]"
+                      className="opacity-0 px-3 py-4 rounded-3xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]"
                     >
-                      <div className="flex gap-4 ">
+                      <div className="flex gap-3 ">
                         <div className="flex-shrink-0">{stat.icon}</div>
                         <div>
-                          <p className="text-3xl md:text-4xl font-bold leading-[100%]">
+                          <p className="text-2xl md:text-3xl font-bold leading-[100%]">
                             {stat.value}
                           </p>
-                          <p className="text-lg font-medium">{stat.label}</p>
+                          <p className="text-base font-medium">{stat.label}</p>
                         </div>
                       </div>
                     </div>
