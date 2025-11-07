@@ -7,7 +7,7 @@ import { GradientButton } from "@/components/ui/gradient-button";
 
 export default function GetStartedSection() {
   return (
-    <div className="pb-20 bg-background">
+    <div>
       <div className="container mx-auto px-4 h-full">
         <div className="mx-auto h-full">
           {/* Main Banner */}

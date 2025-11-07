@@ -34,7 +34,7 @@ export default function Home() {
       <AnimatedSections />
       <ValueProps />
       <div>
-        <div className="mx-auto px-6 lg:px-8 max-w-7xl pt-40 pb-12">
+        <div className="mx-auto px-6 lg:px-8 max-w-7xl pt-20 bg-foreground/5 pb-18">
           <GetStartedSection />
         </div>
       </div>

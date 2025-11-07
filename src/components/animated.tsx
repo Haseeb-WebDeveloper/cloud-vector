@@ -407,7 +407,7 @@ const AnimatedSections: React.FC = () => {
   ];
 
   return (
-    <div className="relative  bg-foreground/5 pt-20">
+    <div className="relative bg-foreground/5 pt-20">
       <h2 className="text-center max-w-5xl mx-auto text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent  mb-6">
         Optimize. Secure. Accelerate, Disaster-proof, Scale — AWS Done Right.
       </h2>

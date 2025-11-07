@@ -48,8 +48,8 @@ export default function ClientSectionV2({
   };
 
   return (
-    <div className="py-20 mb-16 ">
-      <div className=" bg-[#252f3e] rounded-2xl container mx-auto px-4 py-24 ">
+    <div>
+      <div className=" bg-[#252f3e] container mx-auto px-4 py-24 ">
         {/* Main Text */}
         <div className="text-center pb-6">
           <h2 className="text-4xl lg:text-5xl font-semibold text-foreground mb-4 max-w-4xl mx-auto leading-tight">

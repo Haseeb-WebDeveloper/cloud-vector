@@ -158,10 +158,10 @@ export default function TestimonialsSection() {
   const handleMouseLeave = () => setIsPlaying(true);
 
   return (
-    <div className="bg-gradient-to-br from-background via-background to-muted pb-24 mb-32">
+    <div className="bg-gradient-to-br from-background via-background to-muted pb-24">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center pb-16">
+        <div className="text-center pb-8 pt-10">
           <h2 className="text-4xl lg:text-5xl font-semibold max-w-3xl mx-auto leading-[1.2] bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent ">
             Results Our Customers Count On, Month After Month
           </h2>

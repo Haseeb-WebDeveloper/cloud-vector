@@ -38,7 +38,7 @@ export default async function CaseStudySection() {
   }
 
   return (
-    <section className="py-20 lg:py-32">
+    <section className="pt-10 bg-foreground/5">
       <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
