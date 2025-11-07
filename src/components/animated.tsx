@@ -269,52 +269,33 @@ const AnimatedSections: React.FC = () => {
         pinSpacing: false,
       });
 
-      // Animate offers - synced with image changes
+      // Image change trigger - updates as soon as content enters from bottom
       offers.forEach((_, index) => {
         const offerElement = offersRef.current[index];
         if (offerElement) {
-          // Opacity animation
+          // Image changes immediately when content enters from bottom
           ScrollTrigger.create({
             trigger: offerElement,
-            start: "top 80%",
-            end: "bottom 20%",
+            start: "top bottom",
+            end: "bottom top",
             onEnter: () => {
-              gsap.to(offerElement, {
-                opacity: 1,
-                duration: 0.5,
-                ease: "power2.out",
-              });
-            },
-            onLeave: () => {
-              gsap.to(offerElement, {
-                opacity: 0.5,
-                duration: 0.3,
-                ease: "power2.out",
-              });
+              // Scrolling down - set to current section
+              setCurrentStep(index + 1);
             },
             onEnterBack: () => {
-              gsap.to(offerElement, {
-                opacity: 1,
-                duration: 0.5,
-                ease: "power2.out",
-              });
+              // Scrolling up - entering this section, set to current
+              setCurrentStep(index + 1);
             },
             onLeaveBack: () => {
-              gsap.to(offerElement, {
-                opacity: 0.5,
-                duration: 0.3,
-                ease: "power2.out",
-              });
+              // Scrolling up - leaving this section, set to previous section
+              if (index > 0) {
+                setCurrentStep(index);
+              } else {
+                setCurrentStep(1);
+              }
             },
-          });
-
-          // Image change trigger - when offer reaches center of viewport
-          ScrollTrigger.create({
-            trigger: offerElement,
-            start: "top center",
-            end: "bottom center",
-            onEnter: () => setCurrentStep(index + 1),
-            onEnterBack: () => setCurrentStep(index + 1),
+            // Ensure immediate state update for perfect sync
+            once: false,
           });
         }
       });
@@ -412,14 +393,17 @@ const AnimatedSections: React.FC = () => {
   }, [offers.length]); // depends on offers.length in case offer count changes
 
   // Create step images for all offers (1 image per offer)
-  const stepImageIndices = Array.from({ length: offers.length }, (_, i) => i + 1);
+  const stepImageIndices = Array.from(
+    { length: offers.length },
+    (_, i) => i + 1
+  );
   const stepImages = [
-    "updated 01.png",
-    "updated 02.png",
-    "updated 03.png",
-    "updated 04.png",
-    "updated 05.png",
-    "updated 06.png",
+    "updated-01.png",
+    "updated-02.png",
+    "updated-03.png",
+    "updated-04.png",
+    "updated-05.png",
+    "updated-06.png",
   ];
 
   return (
@@ -434,33 +418,29 @@ const AnimatedSections: React.FC = () => {
             {/* Left Column - Circle Image with Step Images - PINNED */}
             <div
               ref={leftColumnRef}
-              className="flex items-center justify-center w-full h-[40vw] z-[999]"
+              className="flex items-center justify-center w-full h-[calc(100vh-6rem)] z-[999]"
             >
               <div className="relative flex items-center justify-center w-full h-full aspect-square">
                 {/* Step Images */}
                 {stepImageIndices.map((step) => (
                   <div
                     key={step}
-                    className={`absolute inset-0 z-0 flex items-center justify-center transition-opacity duration-500 ${currentStep === step ? "opacity-100" : "opacity-0"
-                      }`}
+                    className={`absolute inset-0 z-0 flex items-center justify-center transition-opacity duration-300 ${
+                      currentStep === step ? "opacity-100" : "opacity-0"
+                    }`}
                   >
                     <Image
                       src={`/home-page/${stepImages[step - 1]}`}
                       alt={`Step ${step}`}
                       width={400}
                       height={400}
-                      className="object-contain w-[34rem] h-[34rem]"
+                      className="object-contain w-full h-full"
                     />
                   </div>
                 ))}
-                {/* Glow behind central circle image */}
-                <div
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[24rem] h-[24rem] rounded-full"
-                ></div>
-                {/* Central Circle Image */}
                 <div
                   ref={circleImageRef}
-                  className="object-contain w-[20rem] h-[20rem] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]"
+                  className="object-contain w-[22rem] h-[22rem] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]"
                   style={{ zIndex: 100 }}
                 >
                   <Image
@@ -475,7 +455,7 @@ const AnimatedSections: React.FC = () => {
               </div>
             </div>
             {/* Right Column - Offers */}
-            <div className="space-y-32">
+            <div className="space-y-100">
               {offers.map((offer, index) => (
                 <div
                   key={offer.id}
@@ -494,7 +474,7 @@ const AnimatedSections: React.FC = () => {
                     {/* Tagline */}
                     {offer.tagline && (
                       <p className="text-xl leading-relaxed mb-1 text-foreground/90">
-                      {offer.tagline}
+                        {offer.tagline}
                       </p>
                     )}
 
@@ -517,9 +497,15 @@ const AnimatedSections: React.FC = () => {
                               const raw = String(feature.text ?? "");
                               const parts = raw.split("→");
                               const heading = parts[0]?.trim();
-                              const descriptionRaw = parts.slice(1).join("→").trim();
+                              const descriptionRaw = parts
+                                .slice(1)
+                                .join("→")
+                                .trim();
                               const lines = descriptionRaw
-                                ? descriptionRaw.split(/\n+/).map((l) => l.trim()).filter(Boolean)
+                                ? descriptionRaw
+                                    .split(/\n+/)
+                                    .map((l) => l.trim())
+                                    .filter(Boolean)
                                 : [];
                               const hasList = lines.length > 1;
                               return (
@@ -567,10 +553,7 @@ const AnimatedSections: React.FC = () => {
         </div>
       </section>
       {/* Section 2 - Stats */}
-      <section
-        ref={statsSectionRef}
-        className="relative pb-32 pt-8 z-10"
-      >
+      <section ref={statsSectionRef} className="relative pb-32 pt-8 z-10">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="text-center mt-20">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent z-[-100]">
@@ -609,13 +592,8 @@ const AnimatedSections: React.FC = () => {
                   );
                 })}
               </div>
-              <div
-                ref={targetPositionRef}
-                className="w-[400px] h-[400px]"
-              >
-                <div
-                  className="z-[-1] w-[400px] h-[400px] shadow-[0_0_40px_10px_rgba(255,151,0,0.35)] rounded-full bg-gradient-to-br from-[#FF9700]/50 to-[#E85409]/30"
-                ></div>
+              <div ref={targetPositionRef} className="w-[400px] h-[400px]">
+                <div className="z-[-1] w-[400px] h-[400px] shadow-[0_0_40px_10px_rgba(255,151,0,0.35)] rounded-full bg-gradient-to-br from-[#FF9700]/50 to-[#E85409]/30"></div>
               </div>
 
               {/* Right side stats */}
