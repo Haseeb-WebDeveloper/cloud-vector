@@ -6,7 +6,7 @@ import { GradientButton } from "@/components/ui/gradient-button";
 
 export default function HomeHeroSection() {
   const animatedTexts = [
-    "40–70% Cost Savings",
+    "40-70% Cost Savings",
     "Always-On Security",
     "Tailored Launchpad",
     "Performance at Scale",
@@ -33,8 +33,7 @@ export default function HomeHeroSection() {
 
           {/* Subheading */}
           <p className="text-xl text-foreground/90 max-w-xl leading-relaxed">
-            Efficient resources, cost-smart plans, and architectures built like
-            Amazon does.
+          Trusted by 15+ customers, driving $362K+ in yearly savings with 13+ years of AWS and Amazon expertise.
           </p>
 
           {/* CTA Buttons */}

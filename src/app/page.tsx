@@ -10,6 +10,11 @@ import { ChartPieDonutText } from "@/components/ui/pie-chart";
   
 export default function Home() {
   const stats = [
+
+    {
+      title: "10+",
+      description: "Companies",
+    },
     {
       title: "12+",
       description: "Years in Amazon/AWS",
@@ -34,13 +39,13 @@ export default function Home() {
       <AnimatedSections />
       <ValueProps />
       <div>
-        <div className="mx-auto px-6 lg:px-8 max-w-7xl pt-20 bg-foreground/5 pb-18">
+        <div className="mx-auto px-6 lg:px-8 max-w-7xl pt-20 bg-background pb-18">
           <GetStartedSection />
         </div>
       </div>
       <TestimonialsSection />
-      <FAQSection />
       <CaseStudySection />
+      <FAQSection />
     </>
   );
 }

@@ -60,7 +60,7 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section className="py-20 bg-foreground/5">
+    <section className="py-20 bg-background">
       <div className="relative max-w-6xl mx-auto px-4 lg:px-24 py-24 rounded-2xl box-shadow-large-purple overflow-hidden bg-[#0b1220] ring-1 ring-white/10">
         {/* top-right purple glow */}
         <span className="pointer-events-none absolute -top-28 -right-20 h-[420px] w-[520px] blur-3xl opacity-50 bg-[radial-gradient(ellipse_at_center,rgba(140,128,228,0.45)_0%,rgba(140,128,228,0)_70%)]" />

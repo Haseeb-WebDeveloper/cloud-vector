@@ -37,7 +37,7 @@ const cards = [
 
 export default function ValueProps() {
   return (
-    <section className="px-6 lg:px-8 bg-foreground/5">
+    <section className="px-6 lg:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-10 pt-10 md:mb-16">
           We are Different!

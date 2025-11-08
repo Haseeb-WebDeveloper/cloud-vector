@@ -113,7 +113,12 @@ export default function ContactUsPage() {
     <main className="pt-28 bg-background">
       <section className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
         <div className="flex flex-col items-center text-center gap-8 max-w-4xl mx-auto">
-          <h1 className="text-4xl lg:text-6xl font-semibold text-foreground">
+          <h1
+            className="text-4xl lg:text-6xl font-semibold bg-gradient-to-r from-primary via-primary to-white bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(90deg, var(--primary) 70%, #fff 100%)",
+            }}
+          >
             We want to hear from you!
           </h1>
 
@@ -201,7 +206,9 @@ export default function ContactUsPage() {
       <section className="mx-auto max-w-4xl px-6 lg:px-8 py-16">
         <div className="bg-foreground/5 rounded-2xl p-8 lg:p-12 flex flex-col items-center gap-8">
           <div className="text-center">
-            <h2 className="text-3xl lg:text-4xl font-semibold text-foreground mb-4">
+            <h2
+              className="text-3xl lg:text-4xl font-semibold mb-4 bg-gradient-to-r from-primary via-primary/80 to-white/60 text-transparent bg-clip-text"
+            >
               Get in Touch
             </h2>
             <p className="text-base lg:text-lg text-foreground/90 max-w-2xl">

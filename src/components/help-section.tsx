@@ -13,7 +13,7 @@ export const HelpSection = () => {
             We are here to help
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground/80 max-w-3xl mx-auto">
-            Explore how much you’re really overpaying and how fast we can fix it.
+          Discover how much you’re overspending, where your risks are, and how we can accelerate your time to prod with cloud native solutions.
           </p>
         </div>
 
@@ -23,15 +23,12 @@ export const HelpSection = () => {
           <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
             <div className="flex flex-col gap-6 justify-between h-full">
               <div>
-                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                  Quick Chat
-                </h3>
+                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">Quick Chat</h3>
                 <h4 className="text-2xl font-bold text-muted-foreground mb-2">
-                  Stuck with Rising Bills?
+                  Let's Talk
                 </h4>
                 <p className="mt-2 text-foreground/90 leading-relaxed">
-                  AWS overcharges you quietly every month, often <span className="font-bold bg-gradient-to-r from-primary to-primary via-primary text-transparent bg-clip-text">30-68% waste</span> hiding in plain sight.<br />
-                  Let’s talk. Get answers instantly.
+                  Got questions about your cloud costs, security, or scaling? Our experts are here to give you clear answers and tailored guidance.
                 </p>
               </div>
               <div>
@@ -56,11 +53,10 @@ export const HelpSection = () => {
                   Free Audit Call
                 </h3>
                 <h4 className="text-2xl font-bold text-muted-foreground mb-2">
-                  Curious How Much You Can Save?
+                Schedule a Call
                 </h4>
                 <p className="mt-2 text-foreground/90 leading-relaxed">
-                  In 20 minutes, we’ll scan your account and show you exactly where &amp; how much you are overspending.<br />
-                  Verified directly on your AWS bill. No fluff, just numbers.
+                Book a free call with our team to explore cost optimisation opportunities, security improvements, or architecture reviews — tailored to your cloud journey.
                 </p>
               </div>
               <div>
@@ -86,12 +82,10 @@ export const HelpSection = () => {
                   Risk-Free Start
                 </h3>
                 <h4 className="text-2xl font-bold text-muted-foreground mb-2">
-                  No Savings? No Fee. Risk-Free
+                Start Smart, No Strings Attached
                 </h4>
                 <p className="mt-2 text-foreground/90 leading-relaxed">
-                  With 12+ years building AWS services at Amazon, we know where waste hides.<br />
-                  Try our risk-free offering: <span className="font-bold bg-gradient-to-r from-primary to-primary via-primary text-transparent bg-clip-text">3-Month 100% ROI Guarantee.</span><br />
-                  Sustained savings, zero performance risk.
+                Experience Cloud Victor with zero risk. Begin with a free audit and see how we can help you save, secure, and scale your cloud - with results verified on your AWS bill.
                 </p>
               </div>
               <div>

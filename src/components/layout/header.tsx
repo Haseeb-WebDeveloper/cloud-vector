@@ -115,7 +115,7 @@ const navigationData = [
   },
   {
     title: "About Us",
-    href: "#about",
+    href: "/about-us",
     hasDropdown: false,
   },
 ];

@@ -49,7 +49,7 @@ export default function GetStartedSection() {
               {/* Chips */}
               <div className="flex flex-wrap justify-center gap-2.5 mb-6">
                 <div className="group flex items-center gap-2 border border-foreground rounded-full px-3.5 py-1.5 text-sm font-medium">
-                  <div className="p-1.5 rounded-full bg-primary group-hover:bg-foreground transition-colors duration-200">
+                  <div className="p-1.5 rounded-full bg-primary group-hover:bg-background transition-colors duration-200">
                     <BadgePercent className="w-4 h-4 text-background group-hover:text-primary transition-colors duration-200" />
                   </div>
                   No Savings, No Fee
