@@ -297,10 +297,10 @@ export default function HowWeSolve() {
   }, []);
 
   return (
-    <section id="how-we-solve" className="pb-20">
+    <section id="how-we-solve">
       <div className="container mx-auto px-4 w-full">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 pt-16">
             How We Solve Your
             <span className="text-primary"> Challenges</span>
           </h2>

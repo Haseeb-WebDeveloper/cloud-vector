@@ -9,7 +9,7 @@ export default function GetStartedSection() {
   return (
     <div>
       <div className="container mx-auto px-4 h-full">
-        <div className="mx-auto h-full">
+        <div className="mx-auto max-w-7xl h-full">
           {/* Main Banner */}
           <SpotlightCard
             className="relative rounded-3xl px-8 pt-16 pb-14 overflow-hidden"
@@ -49,7 +49,7 @@ export default function GetStartedSection() {
               {/* Chips */}
               <div className="flex flex-wrap justify-center gap-2.5 mb-6">
                 <div className="group flex items-center gap-2 border border-foreground rounded-full px-3.5 py-1.5 text-sm font-medium">
-                  <div className="p-1.5 rounded-full bg-primary group-hover:bg-background transition-colors duration-200">
+                  <div className="p-1.5 rounded-full bg-primary group-hover:bg- transition-colors duration-200">
                     <BadgePercent className="w-4 h-4 text-background group-hover:text-primary transition-colors duration-200" />
                   </div>
                   No Savings, No Fee

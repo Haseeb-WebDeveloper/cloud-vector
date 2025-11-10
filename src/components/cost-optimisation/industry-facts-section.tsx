@@ -136,14 +136,14 @@ export default function IndustryFactsSection() {
     <div className="mb-32">
       <div className="container mx-auto px-4 relative">
         {/* Section Header */}
-        <div className="text-center pb-12">
-          <h2 className="text-4xl lg:text-6xl font-semibold text-foreground mb-8">
+        <div className="text-center pb-16">
+          <h2 className="text-4xl lg:text-6xl font-semibold text-foreground pt-18">
             {"Cloud Spending & "}
             <span className="bg-gradient-to-r from-[#FF8703] via-amber-300 to-[#deb2b2] bg-clip-text text-transparent">
               Waste is Escalating Fast
             </span>
           </h2>
-          <p className="text-2xl text-foreground/90 max-w-3xl mx-auto pb-5">
+          <p className="text-2xl text-foreground/90 max-w-3xl mx-auto pt-6">
             Industry Facts quantifying the problem.
           </p>
         </div>

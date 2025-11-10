@@ -66,7 +66,7 @@ const navigationData = [
         title: "FINOPS",
         description: "Slash AWS bills by up to 68%, 100% Guaranteed ROI in 3 months.",
         icon: DollarSign,
-        href: "#finops",
+        href: "/cost-optimisation",
       },
       {
         title: "SECOPS",

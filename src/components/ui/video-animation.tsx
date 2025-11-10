@@ -157,7 +157,7 @@ export default function VideoAnimation() {
   };
 
   return (
-    <section className="pb-40 -pt-6">
+    <section className="pb-24 pt-6">
       <div
         ref={containerRef}
         className="relative max-w-5xl mx-auto h-fit group overflow-hidden"

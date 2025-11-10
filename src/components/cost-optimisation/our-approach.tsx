@@ -99,7 +99,7 @@ export default function OurApproachSection() {
     <div className="bg-gradient-to-br from-background via-background to-primary/5 mb-32">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center pb-16">
+        <div className="text-center pt-16 pb-16">
           <h2 className="text-4xl lg:text-5xl font-semibold bg-gradient-to-r from-primary via-primary/80 to-white/60 bg-clip-text text-transparent mb-6 leading-[1.2] max-w-3xl mx-auto">
             Our Unique Approach to Cloud Cost Optimization
           </h2>

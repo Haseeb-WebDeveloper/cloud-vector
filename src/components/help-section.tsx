@@ -5,7 +5,7 @@ import { MessageCircle, CalendarClock, BadgeDollarSign } from "lucide-react";
 
 export const HelpSection = () => {
   return (
-    <section className="py-20 px-4 bg-background">
+    <section className="py-10  px-4 bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Main Title */}
         <div className="text-center mb-4">

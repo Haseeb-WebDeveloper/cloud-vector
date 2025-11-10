@@ -60,10 +60,10 @@ export default function Stats({ stats }: { stats: StatData[] }) {
     };
   }, []);
   return (
-    <section className="relative pb-32 pt-8 z-10">
+    <section className="relative pb-10 z-10">
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent  mb-6">
+        <div className="text-center">
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent pb-4">
             Results That Speak Volumes
           </h2>
           <p className="text-xl text-gray-300">
@@ -74,19 +74,19 @@ export default function Stats({ stats }: { stats: StatData[] }) {
         <div ref={statsContainerRef} className="relative h-[700px] flex items-center justify-center">
           <div className="flex gap-10 justify-center items-center">
             {/* Left side stats */}
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4">
               {stats.slice(0, 4).map((stat, index) => {
                 return (
                   <div
                     key={index}
                     data-stat-id={index}
                     data-stat-left
-                    className={`opacity-0 px-4 py-5 rounded-3xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]`}
+                    className={`opacity-0 px-4 py-5 rounded-2xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]`}
                   >
                     <div className="flex gap-4 ">
                       <div className="flex-shrink-0">{stat.icon}</div>
                       <div>
-                        <p className="text-3xl md:text-4xl font-bold leading-[100%]">
+                        <p className="text-2xl md:text-4xl font-bold leading-[100%]">
                           {stat.value}
                         </p>
                         <p className="text-lg font-medium">{stat.label}</p>
@@ -108,19 +108,19 @@ export default function Stats({ stats }: { stats: StatData[] }) {
             </div>
 
             {/* Right side stats */}
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4">
               {stats.slice(4, 8).map((stat, index) => {
                 return (
                   <div
                     key={index}
                     data-stat-id={index + 4}
                     data-stat-right
-                    className="opacity-0 px-4 py-5 rounded-3xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]"
+                    className="opacity-0 px-4 py-5 rounded-2xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]"
                   >
                     <div className="flex gap-4 ">
                       <div className="flex-shrink-0">{stat.icon}</div>
                       <div>
-                        <p className="text-3xl md:text-4xl font-bold leading-[100%]">
+                        <p className="text-2xl md:text-4xl font-bold leading-[100%]">
                           {stat.value}
                         </p>
                         <p className="text-lg font-medium">{stat.label}</p>

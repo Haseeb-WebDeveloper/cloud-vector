@@ -63,7 +63,7 @@ export default function AboutUsPage() {
       <JoinTeamSection />
 
       {/* Get Started Section */}
-      <div className="bg-background py-16 px-16">
+      <div className="bg-background py-16 px-">
         <GetStartedSection />
       </div>
     </main>

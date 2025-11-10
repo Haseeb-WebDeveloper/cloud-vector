@@ -183,11 +183,11 @@ export default function StepsSection() {
     steps.find((step) => step.id === currentStep) || steps[0];
 
   return (
-    <section className="pb-32">
+    <section>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl pt-16 md:text-5xl font-bold mb-4">
             How do we do it?
           </h2>
           <p className="text-xl max-w-3xl mx-auto">
@@ -231,7 +231,7 @@ export default function StepsSection() {
 
         {/* Main Content Panel */}
         <div
-          className="relative overflow-hidden rounded-2xl p-8 md:p-12 bg-black"
+          className="relative overflow-hidden rounded-2xl p-8 md:p-12 bg-neutral-900"
           onMouseMove={(e) => {
             const target = e.currentTarget.getBoundingClientRect();
             setMousePosition({ x: e.clientX - target.left, y: e.clientY - target.top });

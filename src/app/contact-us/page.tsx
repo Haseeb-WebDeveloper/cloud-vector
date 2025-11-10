@@ -109,6 +109,10 @@ export default function ContactUsPage() {
     "Upto 69% Monthly Bill Reduction",
   ];
 
+  // Gradient classes for the CTA buttons
+  const gradientButtonClass =
+    "bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] text-white border-0 shadow-none";
+
   return (
     <main className="pt-28 bg-background">
       <section className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
@@ -153,50 +157,56 @@ export default function ContactUsPage() {
 
           {/* CTAs in One Line with Icons on Left */}
           <div className="flex flex-row flex-wrap justify-center items-center gap-4 pt-6 w-full">
-            {/* Book a call - White Button */}
+            {/* Book a call - Gradient Button */}
             <Link
               href="#talk-to-architect"
-              className="group cursor-pointer flex items-center gap-3 bg-white text-black border border-foreground/10 hover:border-foreground/30 transition-all duration-300 px-5 py-3 rounded-full"
+              className={`group cursor-pointer flex items-center gap-3 px-5 py-3 rounded-full border-none shadow-none text-white ${gradientButtonClass} transition-all duration-300`}
+              style={{ textDecoration: 'none' }}
             >
               <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-foreground/10">
                 <VideoIcon />
               </div>
-              <span className="text-black font-medium">Book a call</span>
+              <span className="font-medium">Book a call</span>
             </Link>
 
-            {/* Whatsapp - White Button */}
+            {/* Whatsapp - Gradient Button */}
             <a
               href="https://wa.me/919625596336"
               target="_blank"
               rel="noreferrer"
-              className="group cursor-pointer flex items-center gap-3 bg-white text-black border border-foreground/10 hover:border-foreground/30 transition-all duration-300 px-5 py-3 rounded-full"
+              className={`group cursor-pointer flex items-center gap-3 px-5 py-3 rounded-full border-none shadow-none text-white ${gradientButtonClass} transition-all duration-300`}
+              style={{ textDecoration: 'none' }}
             >
               <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-foreground/10">
                 <WhatsAppIcon />
               </div>
-              <span className="text-black font-medium">Whatsapp us</span>
+              <span className="font-medium">Whatsapp us</span>
             </a>
 
-            {/* Call - White Circular Button with Text */}
+            {/* Call - Circular Gradient Button with Text */}
             <a
               href="tel:+919625596336"
-              className="group cursor-pointer flex items-center gap-3"
+              className="group cursor-pointer flex items-center gap-3 text-white"
+              style={{ textDecoration: "none" }}
             >
-              <div className="w-12 h-12 rounded-full bg-white border border-foreground/10 flex items-center justify-center hover:border-foreground/30 transition-all duration-300">
-                <PhoneIcon />
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center border-none shadow-none ${gradientButtonClass} transition-all duration-300`}>
+                {/* Ensure icon is white */}
+                <PhoneIcon color="white" />
               </div>
-              <span className="text-primary underline font-medium">+91-96255-96336</span>
+              <span className="underline font-medium text-white">+91-96255-96336</span>
             </a>
 
-            {/* Email - White Circular Button with Text */}
+            {/* Email - Circular Gradient Button with Text */}
             <a
               href="mailto:prateek@cloudvictor.com"
-              className="group cursor-pointer flex items-center gap-3"
+              className="group cursor-pointer flex items-center gap-3 text-white"
+              style={{ textDecoration: "none" }}
             >
-              <div className="w-12 h-12 rounded-full bg-white border border-foreground/10 flex items-center justify-center hover:border-foreground/30 transition-all duration-300">
-                <EmailIcon />
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center border-none shadow-none ${gradientButtonClass} transition-all duration-300`}>
+                {/* Ensure icon is white */}
+                <EmailIcon color="white" />
               </div>
-              <span className="text-primary underline font-medium">prateek@cloudvictor.com</span>
+              <span className="underline font-medium text-white">prateek@cloudvictor.com</span>
             </a>
           </div>
         </div>
