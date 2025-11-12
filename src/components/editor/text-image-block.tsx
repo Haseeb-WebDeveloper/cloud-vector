@@ -28,12 +28,12 @@ export default function TextImageBlock({ value }: any) {
     }, [value.height]);
 
     const tagStyles: { [key: string]: string } = {
-        h1: "leading-[130%] text-[7vw] md:text-[2.3vw] font-medium mb-[8vw] md:mb-[1.8vw]",
-        h2: "leading-[130%] text-[7vw] md:text-[2.3vw] font-medium mb-[8vw] md:mb-[1.8vw]",
-        h3: "leading-[130%] text-[7vw] md:text-[2.3vw] font-medium mb-[8vw] md:mb-[1.8vw]",
-        h4: "leading-[130%] text-[7vw] md:text-[2.3vw] font-medium mb-[8vw] md:mb-[1.8vw]",
-        h5: "leading-[130%] text-[7vw] md:text-[2.3vw] font-medium mb-[8vw] md:mb-[1.8vw]",
-        h6: "leading-[130%] text-[5vw] md:text-[1.6vw] font-medium mb-[3vw] md:mb-[0.8vw]",
+        h1: "leading-[130%] text-[7vw] md:text-[2.3vw] font-medium mb-[8vw] md:mb-[1.8vw] text-primary",
+        h2: "leading-[130%] text-[7vw] md:text-[2.3vw] font-medium mb-[8vw] md:mb-[1.8vw] text-primary",
+        h3: "leading-[130%] text-[7vw] md:text-[2.3vw] font-medium mb-[8vw] md:mb-[1.8vw] text-primary",
+        h4: "leading-[130%] text-[7vw] md:text-[2.3vw] font-medium mb-[8vw] md:mb-[1.8vw] text-primary",
+        h5: "leading-[130%] text-[7vw] md:text-[2.3vw] font-medium mb-[8vw] md:mb-[1.8vw] text-primary",
+        h6: "leading-[130%] text-[5vw] md:text-[1.6vw] font-medium mb-[3vw] md:mb-[0.8vw] text-primary",
         p: "leading-[170%] text-[4.5vw] md:text-[1.3vw] md:mb-[1vw] mb-[4vw]",
         FirstLi: "leading-[170%] text-[4.5vw] md:text-[1.3vw] md:mt-[2vw] mt-[4vw] md:mb-[0.5vw] mb-[2vw] flex items-start",
         li: "leading-[170%] text-[4.5vw] md:text-[1.3vw] md:mb-[0.5vw] mb-[2vw] flex items-start",

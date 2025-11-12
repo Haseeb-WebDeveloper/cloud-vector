@@ -95,8 +95,8 @@ export const tabsData: TabData[] = [
     id: "cost",
     label: "Reduce AWS Costs",
     icon: <DollarSign className="w-5 h-5" />,
-    heading: "Use less of cloud & pay less for it",
-    oneLiner: "Verified Savings. Zero Trade-offs.",
+    heading: "",
+    oneLiner: "",
     benefits: [
       "Bill-Verified Savings.",
       "Data-backed resource-level proof.",
@@ -170,8 +170,8 @@ export const tabsData: TabData[] = [
     id: "security",
     label: "Secure my Infra",
     icon: <Shield className="w-5 h-5" />,
-    heading: "InfoSec team as a Service",
-    oneLiner: "Not just Audit-Day, but Continuous proven Compliance",
+    heading: "",
+    oneLiner: "",
     benefits: [
       "Continuous Perimeter Monitoring. What? Why? When? Where? How to fix?",
       "Continuous Breach Detection. What? When? Who? Where?",
@@ -235,9 +235,8 @@ export const tabsData: TabData[] = [
     id: "automation",
     label: "Automate my releases",
     icon: <Zap className="w-5 h-5" />,
-    heading: "Free up Dev team bandwidth & Lower Risk",
-    oneLiner:
-      "Multi-account CI/CD Pipeline with IaC, Integ Tests & audit trails",
+    heading: "",
+    oneLiner: "",
     benefits: [
       "Paved Roads (IaC): Reusable components (VPC, IAM, DNS, DBs).",
       "System & Business Metrics Dashboards inside your AWS account.",
@@ -309,8 +308,8 @@ export const tabsData: TabData[] = [
     id: "disaster",
     label: "Disaster-Proof my infra",
     icon: <AlertTriangle className="w-5 h-5" />,
-    heading: "Infrastructure that works. No matter what happens!",
-    oneLiner: "Multi-AZ architecture ensures 100% uptime.",
+    heading: "",
+    oneLiner: "",
     benefits: [
       "Automated Database & ElasticSearch Backups & Recovery.",
       "Automated Cross Account S3 backups.",
@@ -366,8 +365,8 @@ export const tabsData: TabData[] = [
     id: "ux",
     label: "Improve Customer UX",
     icon: <Users className="w-5 h-5" />,
-    heading: "Customer UX that delights & boosts revenue!",
-    oneLiner: "57% improved page/app loads.",
+    heading: "",
+    oneLiner: "",
     benefits: [
       "Increased Customer Retention & Revenue Boosts",
       "Auto-scaling that responds in seconds.",

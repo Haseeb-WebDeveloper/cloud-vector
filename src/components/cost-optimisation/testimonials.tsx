@@ -168,7 +168,11 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Embla Carousel */}
-        <div className="relative cursor-grab w-full">
+        <div 
+          className="relative cursor-grab w-full"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {testimonials.map((testimonial, index) => (

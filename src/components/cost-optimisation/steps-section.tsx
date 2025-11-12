@@ -201,7 +201,7 @@ export default function StepsSection() {
             <button
               key={step.id}
               onClick={() => handleStepClick(step.id)}
-              className={`cursor-pointer flex items-center gap-2 px-4 py-3 text-sm border rounded-t-lg transition-all duration-300 ${
+              className={`cursor-pointer flex items-center gap-2 px-4 py-3 text-sm border rounded-t-lg hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] transition-all duration-300 ${
                 currentStep === step.id
                   ? "bg-primary/20 border-primary/30"
                   : "border-border bg-foreground/5"

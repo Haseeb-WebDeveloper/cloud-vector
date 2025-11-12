@@ -169,7 +169,7 @@ export default function HowItWorks() {
       </div>
 
       {/* Tab Content */}
-      <div className="mt-12 max-w-7xl mx-auto   px-4">
+      <div className="max-w-7xl mx-auto   px-4">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           {tabsData.map((tab) => (
             <TabsContent
@@ -177,7 +177,7 @@ export default function HowItWorks() {
               value={tab.id}
               className="mt-0 data-[state=active]:animate-in data-[state=active]:fade-in-0 data-[state=active]:duration-500"
             >
-              <div className="space-y-16 animate-in fade-in-0 duration-500">
+              <div className="space-y-8 sm:space-y-12 lg:space-y-16 animate-in fade-in-0 duration-500">
                 {/* Section Header */}
                 <div className="text-center space-y-6">
                   <h3 className="text-3xl md:text-4xl font-bold text-foreground">
@@ -189,7 +189,8 @@ export default function HowItWorks() {
                 </div>
 
                 {/* Benefits Section */}
-                <div className="max-w-6xl mx-auto px-4  lg:px-24 py-20 bg-[#332211] rounded-2xl box-shadow-large">
+                <div className="max-w-6xl mx-auto px-4 lg:px-24 py-8 bg-[#0B1220] rounded-2xl" style={{ boxShadow: "0 4px 32px 0 #3C213A" }}
+                >
                   <h4 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center mb-6 md:mb-8 lg:mb-12">
                     Unlock the Benefits of Cloud
                   </h4>

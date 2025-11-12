@@ -23,7 +23,7 @@ const CategoryButton: React.FC<CategoryButtonProps> = ({
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden px-4 py-2 rounded-full border border-foreground/20 transition-all duration-300 ease-out ${className}`}
+      className={`relative overflow-hidden px-4 py-2 rounded-full border border-foreground/20 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] transition-all duration-300 ease-out ${className}`}
     >
       {/* Background that expands on hover */}
       <div

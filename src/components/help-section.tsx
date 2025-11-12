@@ -36,7 +36,7 @@ export const HelpSection = () => {
                   href="https://wa.me/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium hover:bg-foreground/10 transition-colors"
+                  className="flex items-center justify-center cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]"
                 >
                   <MessageCircle className="h-5 w-5 mr-2 text-white" />
                   Chat on WhatsApp
@@ -64,7 +64,7 @@ export const HelpSection = () => {
                   href="https://calendly.com/your-calendly-link/aws-audit"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium hover:bg-foreground/10 transition-colors flex items-center justify-center gap-2"
+                  className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] flex items-center justify-center gap-2"
                   aria-label="Schedule a Free Audit Call"
                 >
                   <CalendarClock className="h-5 w-5 mr-2 text-white" />
@@ -93,7 +93,7 @@ export const HelpSection = () => {
                   href="https://calendly.com/your-calendly-link/aws-get-started"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900]  px-6 py-3 rounded-lg font-medium  transition-all duration-300 flex items-center justify-center gap-2"
+                  className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] flex items-center justify-center gap-2"
                   aria-label="Start Saving Today"
                 >
                   <BadgeDollarSign className="h-5 w-5 mr-2 text-white" />

@@ -67,7 +67,7 @@ export default function RichEditor({ content }: RichEditorProps) {
     },
     block: {
       h1: ({ children }) => (
-        <h1 className="editor-content text-[8vw] md:text-[4vw] font-bold mb-[8vw] md:pb-[1vw] leading-[130%]">
+        <h1 className="editor-content text-[8vw] md:text-[4vw] font-bold mb-[8vw] md:pb-[1vw] leading-[130%] text-primary">
           {children}
         </h1>
       ),
@@ -95,7 +95,7 @@ export default function RichEditor({ content }: RichEditorProps) {
           return (
             <h2
               id={id}
-              className="editor-content text-[7vw] md:text-[3.5vw] font-semibold mb-[3vw] md:mb-[0.8vw] leading-[130%]"
+              className="editor-content text-[7vw] md:text-[3.5vw] font-semibold mb-[3vw] md:mb-[0.8vw] leading-[130%] text-primary"
             >
               {children}
             </h2>
@@ -103,22 +103,22 @@ export default function RichEditor({ content }: RichEditorProps) {
         };
       })(),
       h3: ({ children }) => (
-        <h3 className="editor-content text-[6vw] md:text-[2.3vw] font-medium mb-[3vw] md:mb-[0.8vw] leading-[130%]">
+        <h3 className="editor-content text-[6vw] md:text-[2.3vw] font-medium mb-[3vw] md:mb-[0.8vw] leading-[130%] text-primary">
           {children}
         </h3>
       ),
       h4: ({ children }) => (
-        <h4 className="editor-content text-[6vw] md:text-[1.7vw] font-medium mb-[3vw] md:mb-[0.8vw]">
+        <h4 className="editor-content text-[6vw] md:text-[1.7vw] font-medium mb-[3vw] md:mb-[0.8vw] text-primary">
           {children}
         </h4>
       ),
       h5: ({ children }) => (
-        <h5 className="editor-content text-[5.5vw] md:text-[1.6vw] font-medium mb-[3vw] md:mb-[0.8vw]">
+        <h5 className="editor-content text-[5.5vw] md:text-[1.6vw] font-medium mb-[3vw] md:mb-[0.8vw] text-primary">
           {children}
         </h5>
       ),
       h6: ({ children }) => (
-        <h6 className="editor-content text-[5vw] md:text-[1.6vw] font-medium mb-[3vw] md:mb-[0.8vw]">
+        <h6 className="editor-content text-[5vw] md:text-[1.6vw] font-medium mb-[3vw] md:mb-[0.8vw] text-primary">
           {children}
         </h6>
       ),
@@ -149,7 +149,7 @@ export default function RichEditor({ content }: RichEditorProps) {
     list: {
       bullet: ({ children }) => <ul className="editor-content mb-[4vw] md:mb-[1vw] space-y-[2vw] md:space-y-[0.5vw]">{children}</ul>,
       number: ({ children }) => (
-        <ol className="editor-content list-decimal mb-[4vw] md:mb-[1vw] space-y-[2vw] md:space-y-[0.5vw]">{children}</ol>
+        <ol className="editor-content list-decimal mb-[4vw] md:mb-[1vw] space-y-[2vw] md:space-y-[0.5vw] [&>li::marker]:text-primary">{children}</ol>
       ),
     },
     listItem: {

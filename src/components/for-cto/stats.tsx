@@ -81,7 +81,7 @@ export default function Stats({ stats }: { stats: StatData[] }) {
                     key={index}
                     data-stat-id={index}
                     data-stat-left
-                    className={`opacity-0 px-4 py-5 rounded-2xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]`}
+                    className={`opacity-0 px-4 py-5 rounded-2xl border border-white bg-neutral-900 hover:border-primary hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] transition-all duration-300`}
                   >
                     <div className="flex gap-4 ">
                       <div className="flex-shrink-0">{stat.icon}</div>
@@ -115,7 +115,7 @@ export default function Stats({ stats }: { stats: StatData[] }) {
                     key={index}
                     data-stat-id={index + 4}
                     data-stat-right
-                    className="opacity-0 px-4 py-5 rounded-2xl border border-neutral-800 bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)] hover:shadow-[0_1px_6px_0_rgba(255,153,0,0.60)]"
+                    className="opacity-0 px-4 py-5 rounded-2xl border border-white bg-neutral-900 hover:border-primary hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] transition-all duration-300"
                   >
                     <div className="flex gap-4 ">
                       <div className="flex-shrink-0">{stat.icon}</div>

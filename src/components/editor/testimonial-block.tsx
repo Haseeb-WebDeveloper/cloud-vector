@@ -30,11 +30,11 @@ export default function TestimonialBlock({ value }: TestimonialBlockProps) {
             </p>
           )}
           <div className="mt-6 md:mt-[1.2vw]">
-            <p className="text-foreground font-medium text-[4.5vw] md:text-[1.3vw]">
+            <p className="text-primary font-medium text-[4.5vw] md:text-[1.3vw]">
               {personName}
             </p>
             {(designation || company) && (
-              <p className="text-foreground/80 text-[4.5vw] md:text-[1.3vw]">
+              <p className="text-primary text-[4.5vw] md:text-[1.3vw]">
                 {[designation, company].filter(Boolean).join(", ")}
               </p>
             )}

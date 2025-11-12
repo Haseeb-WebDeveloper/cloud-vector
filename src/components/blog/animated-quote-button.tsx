@@ -19,7 +19,7 @@ const AnimatedQuoteButton: React.FC<AnimatedQuoteButtonProps> = ({
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`cursor-pointer relative overflow-hidden bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 px-[1.1vw] py-[1.1vw] rounded-full text-foreground font-medium transition-all duration-300 ease-out group ${className}`}
+      className={`cursor-pointer relative overflow-hidden bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 px-[1.1vw] py-[1.1vw] rounded-full text-foreground font-medium hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] transition-all duration-300 ease-out group ${className}`}
     >
       {/* Content container */}
       <div className=" flex items-center justify-between gap-3 w-full ">

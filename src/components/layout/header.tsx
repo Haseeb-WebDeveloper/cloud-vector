@@ -145,11 +145,11 @@ export default function Header() {
   };
 
   const handleMouseLeave = () => {
-    // Add a small delay to prevent flickering when moving between nav item and dropdown
+    // Add a delay to prevent flickering when moving between nav item and dropdown
     hoverTimeoutRef.current = setTimeout(() => {
       setHoveredItem(null);
       setHoveredSubItem(null);
-    }, 150);
+    }, 500);
   };
 
   const handleDropdownMouseEnter = () => {
@@ -161,8 +161,11 @@ export default function Header() {
   };
 
   const handleDropdownMouseLeave = () => {
-    setHoveredItem(null);
-    setHoveredSubItem(null);
+    // Add a delay before hiding the dropdown when cursor leaves
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredItem(null);
+      setHoveredSubItem(null);
+    }, 500);
   };
 
   const handleSubItemHover = (subItemTitle: string) => {
@@ -205,7 +208,8 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8 flex-1">
+            <div className="flex-1"></div>
             {navigationData.map((item) => (
               <div
                 key={item.title}

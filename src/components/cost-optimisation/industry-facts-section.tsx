@@ -38,7 +38,7 @@ const industryFacts: IndustryFact[] = [
   },
   {
     id: 4,
-    fact: "More than three-quarters <span class=\"text-[#FF8703] font-semibold\">(78%)</span> of enterprises estimate that <span class=\"text-[#FF8703] font-semibold\">21–50%</span> of their cloud spend is wasted, with preventable mistakes costing some organizations over $50,000 per month.",
+    fact: "More than three-quarters <span class=\"text-[#FF8703] font-semibold\">(78%)</span> of enterprises estimate that <span class=\"text-[#FF8703] font-semibold\">21-50%</span> of their cloud spend is wasted, with preventable mistakes costing some organizations over $50,000 per month.",
     source: "Omdia",
     report: "State of Cloud Usage Optimization 2024",
     image: "/test.avif",
@@ -155,8 +155,8 @@ export default function IndustryFactsSection() {
         {/* Embla Carousel */}
         <div
           className="relative cursor-grab"
-          // onMouseEnter={handleMouseEnter}
-          // onMouseLeave={handleMouseLeave}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">

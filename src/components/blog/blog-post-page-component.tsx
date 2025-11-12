@@ -8,7 +8,6 @@ import RichEditor from "../editor/rich-editor";
 import Image from "next/image";
 import { extractH2Headings } from "@/utils/extract-heading";
 import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
 import SocialShareButtons from "./social-share-buttons";
 import AnimatedQuoteButton from "./animated-quote-button";
 
@@ -223,7 +222,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
             {/* Sticky Right Sidebar */}
             <aside 
               ref={sidebarRef}
-              className="w-full lg:w-[19vw] mt-6 lg:mt-0 flex-shrink-0 lg:self-start"
+              className="w-full lg:w-[19vw] mt-6 lg:mt-0 flex-shrink-0 lg:self-start lg:sticky lg:top-20"
               style={{
                 maxHeight: "calc(100vh - 5rem)",
                 alignSelf: "flex-start",
@@ -314,51 +313,54 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
         {/* Related Posts */}
         {blogPost.relatedPosts && blogPost.relatedPosts.length > 0 && (
           <div className="px-3 sm:px-4 md:px-[1.6vw] pb-6 sm:pb-10 md:pb-[2vw] pt-10 sm:pt-12 md:pt-[3vw] max-w-[96vw] md:max-w-[82vw] xl:max-w-[90vw] mx-auto">
-            <h4 className="text-2xl lg:text-[2vw] font-medium mb-6 md:mb-[2vw]">
+            <h4 className="text-2xl lg:text-[2vw] font-medium mb-6 md:mb-[2vw] bg-gradient-to-r from-primary via-primary/80 to-foreground/60 bg-clip-text text-transparent">
               You may also like
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[1vw] lg:gap-y-[2.7vw] gap-y-8 w-full mx-auto">
               {blogPost.relatedPosts.map((post) => (
-                <article
+                <Link
                   key={post._id}
-                  className={`group cursor-pointer relative transition-all duration-300 flex flex-col ${hoveredPostId && hoveredPostId !== post._id
+                  href={`/blog/${post.slug}`}
+                  className={`group transition-all duration-300 hover:scale-[1.02] flex flex-col h-full ${hoveredPostId && hoveredPostId !== post._id
                       ? "opacity-30"
                       : "opacity-100"
                     }`}
                   onMouseEnter={() => setHoveredPostId(post._id)}
                   onMouseLeave={() => setHoveredPostId(null)}
                 >
-                  <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
-                    <div className="w-full aspect-video overflow-hidden rounded-xl mb-3 flex-shrink-0">
+                  <div className="h-full flex flex-col">
+                    {/* Image */}
+                    <div className="relative w-full aspect-video overflow-hidden rounded-2xl mb-4 flex-shrink-0">
                       <Image
                         src={post.featuredImage.asset.url}
                         alt={post.title}
-                        width={1000}
-                        height={1000}
-                        className="w-full h-full rounded-xl object-cover transition-all ease-in-out duration-300 group-hover:scale-105"
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </div>
-                    <div className="flex flex-col flex-grow space-y-2 mt-auto">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="uppercase text-[2.3vw] lg:text-[0.92vw] font-light text-foreground truncate">
+
+                    {/* Content */}
+                    <div className="flex-1 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="uppercase text-sm font-light text-foreground/70">
                           {post.category?.name || "Uncategorized"}
                         </span>
-                        <span className="uppercase text-[2.3vw] lg:text-[0.92vw] font-light text-foreground whitespace-nowrap flex-shrink-0">
+                        <span className="uppercase text-sm font-light text-foreground/70">
                           {formatDayMonth(post._updatedAt)}
                         </span>
                       </div>
-                      <h3 className="text-[3.4vw] lg:text-[1.1vw] font-medium lg:font-semibold text-foreground leading-[150%] line-clamp-3">
+                      <h3 className="text-xl lg:text-2xl font-semibold text-foreground leading-tight line-clamp-2 group-hover:text-primary transition-colors">
                         {post.title}
                       </h3>
                     </div>
-                  </Link>
-                </article>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
         )}
       </div>
-      <Footer />
     </>
   );
 };

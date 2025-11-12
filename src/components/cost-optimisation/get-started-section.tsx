@@ -58,7 +58,7 @@ export default function GetStartedSection() {
                   <div className="p-1.5 rounded-full bg-primary group-hover:bg-foreground transition-colors duration-200">
                     <Receipt className="w-4 h-4 text-background group-hover:text-primary transition-colors duration-200" />
                   </div>
-                  Savings Verified on your AWS Bill
+                  Jumpstart your cloud native architecture
                 </div>
                 <div className="group flex items-center gap-2 border border-foreground rounded-full px-3.5 py-1.5 text-sm font-medium">
                   <div className="p-1.5 rounded-full bg-primary group-hover:bg-foreground transition-colors duration-200">
@@ -78,7 +78,7 @@ export default function GetStartedSection() {
                   </span>
                 </GradientButton>
 
-                <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70  transition-all duration-300 px-5 lg:py-2.5 py-2.5 rounded-full">
+                <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] transition-all duration-300 px-5 lg:py-2.5 py-2.5 rounded-full">
                   <MessageCircle className="w-5 h-5" />
                   Chat on WhatsApp
                 </button>

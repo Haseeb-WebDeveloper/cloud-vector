@@ -62,7 +62,7 @@ export default function ClientSectionV2({
           {stats?.map((stat, index) => (
             <div
               key={index}
-              className={`flex items-center gap-3 rounded-lg border border-gray-300/80 bg-[#0a0f1a] hover:scale-105 transition-all duration-300 px-4 py-3 ${
+              className={`flex items-center gap-3 rounded-full border border-white bg-[#0a0f1a] hover:scale-105 hover:border-primary hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] transition-all duration-300 px-4 py-3 ${
                 hoveredIndex !== null && hoveredIndex !== index
                   ? "opacity-50"
                   : "opacity-100"

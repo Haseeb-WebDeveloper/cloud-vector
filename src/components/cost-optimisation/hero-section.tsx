@@ -52,7 +52,7 @@ export default function CostOptimisationHeroSection() {
                 />
               </GradientButton>
 
-              <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
+              <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full">
                 Whatsapp Us
                 <Image
                   src="/icons/arrow-right.svg"
