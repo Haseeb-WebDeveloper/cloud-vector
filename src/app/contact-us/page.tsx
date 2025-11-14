@@ -158,8 +158,10 @@ export default function ContactUsPage() {
           {/* CTAs in One Line with Icons on Left */}
           <div className="flex flex-row flex-wrap justify-center items-center gap-4 pt-6 w-full">
             {/* Book a call - Gradient Button */}
-            <Link
-              href="#talk-to-architect"
+            <a
+              href="https://s.cloudvictor.com/meeting-web-contactus-1"
+              target="_blank"
+              rel="noopener noreferrer"
               className={`group cursor-pointer flex items-center gap-3 px-5 py-3 rounded-full border-none shadow-none text-white ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}
               style={{ textDecoration: 'none' }}
             >
@@ -167,13 +169,13 @@ export default function ContactUsPage() {
                 <VideoIcon />
               </div>
               <span className="font-medium">Book a call</span>
-            </Link>
+            </a>
 
             {/* Whatsapp - Gradient Button */}
             <a
-              href="https://wa.me/919625596336"
+              href="https://s.cloudvictor.com/whatsapp-web-contactus-1"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={`group cursor-pointer flex items-center gap-3 px-5 py-3 rounded-full border-none shadow-none text-white ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}
               style={{ textDecoration: 'none' }}
             >

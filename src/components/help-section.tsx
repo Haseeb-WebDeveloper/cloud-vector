@@ -2,8 +2,64 @@
 
 import { SpotlightCard } from "./ui/spolight-card";
 import { MessageCircle, CalendarClock, BadgeDollarSign } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export const HelpSection = () => {
+  const pathname = usePathname();
+  const isHomepage = pathname === "/" || pathname === "";
+  const isCTOPage = pathname?.includes("/for-cto");
+  const isFinOpsPage = pathname?.includes("/cost-optimisation");
+  let whatsappLink = "https://s.cloudvictor.com/whatsapp-web-home-3";
+  
+  if (isCTOPage) {
+    whatsappLink = "https://s.cloudvictor.com/whatsapp-web-cto-3";
+  } else if (isFinOpsPage) {
+    whatsappLink = "https://s.cloudvictor.com/whatsapp-website-finops-3";
+  } else if (pathname?.includes("/contact-us")) {
+    whatsappLink = "https://s.cloudvictor.com/whatsapp-web-contactus-2";
+  } else if (pathname?.includes("/blog") && pathname?.toLowerCase().includes("bolosign")) {
+    whatsappLink = "https://s.cloudvictor.com/whatsapp-web-csbolosign-1";
+  } else if (pathname?.includes("/blog") && pathname?.toLowerCase().includes("botgauge")) {
+    whatsappLink = "https://s.cloudvictor.com/whatsapp-web-csbotgauge-1";
+  } else if (pathname?.includes("/blog")) {
+    whatsappLink = "https://s.cloudvictor.com/whatsapp-web-homeblog-1";
+  }
+
+  const isContactUsPage = pathname?.includes("/contact-us");
+  const isBlogPage = pathname?.includes("/blog");
+  const isBolosignPost = pathname?.includes("/blog") && pathname?.toLowerCase().includes("bolosign");
+  const isBotGaugePost = pathname?.includes("/blog") && pathname?.toLowerCase().includes("botgauge");
+  const scheduleAuditLink = isContactUsPage
+    ? "https://s.cloudvictor.com/meeting-web-contactus-2"
+    : isBolosignPost
+    ? "https://s.cloudvictor.com/meeting-web-csbolosign-2"
+    : isBotGaugePost
+    ? "https://s.cloudvictor.com/meeting-web-csbotgauge-2"
+    : isBlogPage
+    ? "https://s.cloudvictor.com/meeting-web-homeblog-1"
+    : isFinOpsPage
+    ? "https://s.cloudvictor.com/meeting-web-finops-3"
+    : isCTOPage
+    ? "https://s.cloudvictor.com/meeting-web-cto-3"
+    : isHomepage 
+    ? "https://s.cloudvictor.com/meeting-web-home-3"
+    : "https://calendly.com/your-calendly-link/aws-audit";
+  
+  const startSavingLink = isContactUsPage
+    ? "https://s.cloudvictor.com/meeting-web-contactus-3"
+    : isBolosignPost
+    ? "https://s.cloudvictor.com/meeting-web-csbolosign-3"
+    : isBotGaugePost
+    ? "https://s.cloudvictor.com/meeting-web-csbotgauge-3"
+    : isBlogPage
+    ? "https://s.cloudvictor.com/meeting-web-homeblog-2"
+    : isFinOpsPage
+    ? "https://s.cloudvictor.com/meeting-web-finops-4"
+    : isCTOPage
+    ? "https://s.cloudvictor.com/meeting-web-cto-4"
+    : isHomepage
+    ? "https://s.cloudvictor.com/meeting-web-home-4"
+    : "https://calendly.com/your-calendly-link/aws-get-started";
   return (
     <section className="py-10  px-4 bg-background">
       <div className="max-w-7xl mx-auto">
@@ -33,7 +89,7 @@ export const HelpSection = () => {
               </div>
               <div>
                 <a
-                  href="https://wa.me/"
+                  href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]"
@@ -61,7 +117,7 @@ export const HelpSection = () => {
               </div>
               <div>
                 <a
-                  href="https://calendly.com/your-calendly-link/aws-audit"
+                  href={scheduleAuditLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] flex items-center justify-center gap-2"
@@ -90,7 +146,7 @@ export const HelpSection = () => {
               </div>
               <div>
                 <a
-                  href="https://calendly.com/your-calendly-link/aws-get-started"
+                  href={startSavingLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] flex items-center justify-center gap-2"

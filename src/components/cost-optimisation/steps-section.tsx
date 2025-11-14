@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import CheckIcon from "@/components/check";
+import { MovingBorder } from "@/components/ui/moving-border";
 
 interface Step {
   id: number;
@@ -276,13 +277,26 @@ export default function StepsSection() {
 
             {/* Right Image */}
             <div className="flex-1 flex items-center justify-center">
-              <Image
-                src={currentStepData.image}
-                alt={currentStepData.headline}
-                width={500}
-                height={500}
-                className="rounded-2xl object-contain w-full h-auto max-w-full"
-              />
+              <div className="relative w-full max-w-full rounded-2xl p-[1px] overflow-hidden">
+                <div className="absolute inset-0">
+                  <MovingBorder
+                    duration={2000}
+                    rx="1rem"
+                    ry="1rem"
+                  >
+                    <div className="h-20 w-20 opacity-[0.8] bg-[radial-gradient(var(--sky-500)_40%,transparent_60%)]" />
+                  </MovingBorder>
+                </div>
+                <div className="relative rounded-2xl overflow-hidden bg-background">
+                  <Image
+                    src={currentStepData.image}
+                    alt={currentStepData.headline}
+                    width={500}
+                    height={500}
+                    className="rounded-2xl object-contain w-full h-auto max-w-full"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

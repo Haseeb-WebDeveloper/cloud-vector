@@ -5,7 +5,12 @@ import Image from "next/image";
 import { SpotlightCard } from "../ui/spolight-card";
 import { GradientButton } from "@/components/ui/gradient-button";
 
-export default function GetStartedSection() {
+interface GetStartedSectionProps {
+  whatsappLink?: string;
+  scheduleLink?: string;
+}
+
+export default function GetStartedSection({ whatsappLink = "https://s.cloudvictor.com/whatsapp-w-home-2", scheduleLink }: GetStartedSectionProps) {
   return (
     <div>
       <div className="container mx-auto px-4 h-full">
@@ -71,17 +76,36 @@ export default function GetStartedSection() {
 
               {/* Call to Action Button */}
               <div className="  flex flex-col sm:flex-row gap-3 pt-2 pb-6 w-full justify-center items-center">
-                <GradientButton>
-                  <span className="flex items-center gap-2">
-                    <Calendar className="w-5 h-5" />
-                    Schedule a Free Audit
-                  </span>
-                </GradientButton>
+                {scheduleLink ? (
+                  <a 
+                    href={scheduleLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group cursor-pointer flex justify-center items-center gap-2 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] border border-primary/50 hover:border-primary/70 hover:pr-6 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] px-5 lg:py-2.5 py-2.5 rounded-full text-foreground"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Calendar className="w-5 h-5" />
+                      Schedule a Free Audit
+                    </span>
+                  </a>
+                ) : (
+                  <GradientButton>
+                    <span className="flex items-center gap-2">
+                      <Calendar className="w-5 h-5" />
+                      Schedule a Free Audit
+                    </span>
+                  </GradientButton>
+                )}
 
-                <button className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] transition-all duration-300 px-5 lg:py-2.5 py-2.5 rounded-full">
+                <a 
+                  href={whatsappLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] transition-all duration-300 px-5 lg:py-2.5 py-2.5 rounded-full"
+                >
                   <MessageCircle className="w-5 h-5" />
                   Chat on WhatsApp
-                </button>
+                </a>
               </div>
             </div>
           </SpotlightCard>

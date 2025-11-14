@@ -282,8 +282,22 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
                     </div>
                     <div className="mt-2">
                       <AnimatedQuoteButton
+                        href={
+                          (blogPost.slug?.toLowerCase().includes("bolosign") || 
+                          blogPost.title?.toLowerCase().includes("bolosign"))
+                            ? "https://s.cloudvictor.com/meeting-web-csbolosign-1"
+                            : (blogPost.slug?.toLowerCase().includes("botgauge") || 
+                            blogPost.title?.toLowerCase().includes("botgauge"))
+                            ? "https://s.cloudvictor.com/meeting-web-csbotgauge-1"
+                            : undefined
+                        }
                         onClick={() => {
-                          window.scrollTo({ top: 0, behavior: "smooth" });
+                          if (!blogPost.slug?.toLowerCase().includes("bolosign") && 
+                              !blogPost.title?.toLowerCase().includes("bolosign") &&
+                              !blogPost.slug?.toLowerCase().includes("botgauge") && 
+                              !blogPost.title?.toLowerCase().includes("botgauge")) {
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }
                         }}
                         className="w-full text-[0.92vw] uppercase"
                       />

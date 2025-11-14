@@ -83,7 +83,7 @@ export default function ForCTO() {
       <HowItWorks />
       <Stats stats={SocialStats} />
       <div className=" mx-auto px-6 lg:px-12 max-w-7xl">
-        <GetStartedSection />
+        <GetStartedSection whatsappLink="https://s.cloudvictor.com/whatsapp-web-cto-2" scheduleLink="https://s.cloudvictor.com/meeting-web-cto-2" />
       </div>
       <TestimonialsSection />
     </>

@@ -40,7 +40,7 @@ export default function Home() {
       <ValueProps />
       <div>
         <div className="mx-auto px-6 lg:px-8 max-w-7xl pt-20 bg-background pb-18">
-          <GetStartedSection />
+          <GetStartedSection scheduleLink="https://s.cloudvictor.com/meeting-web-home-2" />
         </div>
       </div>
       <TestimonialsSection />

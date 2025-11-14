@@ -26,7 +26,7 @@ export default function CostOptimisation() {
       <RootCaseSection />
       <TestimonialsSection />
       <OurApproachSection />
-      <GetStartedSection />
+      <GetStartedSection whatsappLink="https://s.cloudvictor.com/whatsapp-web-finops-2" scheduleLink="https://s.cloudvictor.com/meeting-web-finops-2" />
       <StepsSection />
     </div>
   );

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Briefcase,
   Users,
@@ -114,6 +115,30 @@ const footerColumns = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isHomepage = pathname === "/" || pathname === "";
+  const isCTOPage = pathname?.includes("/for-cto");
+  const isFinOpsPage = pathname?.includes("/cost-optimisation");
+  const isContactUsPage = pathname?.includes("/contact-us");
+  const isBlogPage = pathname?.includes("/blog");
+  const isBolosignPost = pathname?.includes("/blog") && pathname?.toLowerCase().includes("bolosign");
+  const isBotGaugePost = pathname?.includes("/blog") && pathname?.toLowerCase().includes("botgauge");
+  const subscribeLink = isContactUsPage
+    ? "https://s.cloudvictor.com/meeting-web-contactus-4"
+    : isBolosignPost
+    ? "https://s.cloudvictor.com/meeting-web-csbolosign-4"
+    : isBotGaugePost
+    ? "https://s.cloudvictor.com/meeting-web-csbotgauge-4"
+    : isBlogPage
+    ? "https://s.cloudvictor.com/web-homeblog-3"
+    : isFinOpsPage
+    ? "https://s.cloudvictor.com/meeting-web-finops-5"
+    : isCTOPage
+    ? "https://s.cloudvictor.com/meeting-web-cto-5"
+    : isHomepage 
+    ? "https://s.cloudvictor.com/meeting-web-home-5"
+    : "#";
+
   return (
     <footer className="pt-16 pb-8 border-t border-foreground/10">
       <div className="container mx-auto px-4">
@@ -137,9 +162,20 @@ export default function Footer() {
               <p className=" text-center mb-4">
                 Stay current with all things CloudVictor
               </p>
-              <button className="cursor-pointer w-full border bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] rounded-lg px-4 py-2 transition-all duration-300">
-                Subscribe
-              </button>
+              {(isHomepage || isCTOPage || isFinOpsPage || isContactUsPage || isBlogPage || isBolosignPost || isBotGaugePost) ? (
+                <a 
+                  href={subscribeLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="cursor-pointer w-full border bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] rounded-lg px-4 py-2 transition-all duration-300 block text-center"
+                >
+                  Subscribe
+                </a>
+              ) : (
+                <button className="cursor-pointer w-full border bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] rounded-lg px-4 py-2 transition-all duration-300">
+                  Subscribe
+                </button>
+              )}
             </div>
           </div>
 
