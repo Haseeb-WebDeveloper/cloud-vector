@@ -29,13 +29,13 @@ export default function InfoBoxesBlock({ value }: InfoBoxesBlockProps) {
           className="w-full h-full rounded-2xl border border-foreground/15 bg-secondary/10 p-5 md:p-[1.2vw] flex flex-col items-center text-center gap-3 md:gap-[0.6vw]"
         >
           {item.icon?.asset?.url && (
-            <div className="w-16 h-16 md:w-[4vw] md:h-[4vw] rounded-lg overflow-hidden bg-background/60 flex items-center justify-center">
+            <div className="flex items-center justify-center">
               <Image
                 src={item.icon.asset.url}
                 alt="Icon"
-                width={64}
-                height={64}
-                className="w-12 h-12 md:w-[3vw] md:h-[3vw] object-contain"
+                width={80}
+                height={80}
+                className="w-16 h-16 md:w-[4.5vw] md:h-[4.5vw] object-contain"
               />
             </div>
           )}

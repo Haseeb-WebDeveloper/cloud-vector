@@ -139,7 +139,7 @@ export default function ContactUsPage() {
           {/* Bullet Points with Gradient Background in One Line */}
           <ul className="flex flex-row justify-center gap-4 w-full text-center mt-4">
             {bullets.map((item) => (
-              <li key={item} className="flex items-center gap-2 border border-white rounded-full px-2 py-2 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]">
+              <li key={item} className="flex items-center gap-2 border border-white rounded-full px-2 py-2 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] hover:scale-105 cursor-default">
                 <div
                   className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
                 >

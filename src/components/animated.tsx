@@ -465,15 +465,20 @@ const AnimatedSections: React.FC = () => {
                       currentStep === step ? "opacity-100" : "opacity-0"
                     }`}
                   >
+                    {/* Background glow behind step image */}
+                    <div
+                      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full shadow-[0_0_40px_10px_rgba(255,151,0,0.85)] z-0"
+                    ></div>
                     <Image
                       src={`/home-page/${stepImages[step - 1]}`}
                       alt={`Step ${step}`}
                       width={400}
                       height={400}
-                      className="object-contain w-full h-full"
+                      className="object-contain w-full h-full relative z-10"
                     />
                   </div>
                 ))}
+                {/* Circle image container - moves from section 1 to section 2 */}
                 <div
                   ref={circleImageRef}
                   className="object-contain w-[23.5vw] h-[23.5vw] 2xl:w-[27vw] 2xl:h-[27vw] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]"

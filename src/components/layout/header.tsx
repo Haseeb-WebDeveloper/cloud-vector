@@ -195,9 +195,9 @@ export default function Header() {
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between relative">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2 z-10">
             <Image
               src="/logo/cloudVictor-horizantal-logo-text.png"
               alt="Cloud Vector"
@@ -208,8 +208,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8 flex-1">
-            <div className="flex-1"></div>
+          <nav className="hidden lg:flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 space-x-8">
             {navigationData.map((item) => (
               <div
                 key={item.title}
@@ -219,7 +218,7 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="flex items-center space-x-1 font-light text-foreground/95 hover:text-foreground transition-colors"
+                  className="flex items-center space-x-1 font-light text-foreground/95 hover:text-foreground transition-colors whitespace-nowrap"
                 >
                   <span>{item.title}</span>
                   {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
@@ -276,7 +275,7 @@ export default function Header() {
           </nav>
 
           {/* Desktop CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4 z-10">
             {/* <button className="group cursor-pointer flex items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 py-2.5 rounded-full text-sm">
               Get Started
               <Image

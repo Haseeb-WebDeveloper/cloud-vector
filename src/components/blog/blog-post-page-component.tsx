@@ -149,8 +149,8 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
     <>
       <Header />
 
-      {/* Mobile Progress Bar */}
-      <div className="lg:hidden fixed top-0 left-0 w-full h-[3px] bg-foreground/20 z-50">
+      {/* Sticky Progress Bar - Top of Page */}
+      <div className="fixed top-18 left-0 w-full h-[3px] bg-foreground/20 z-[4999]">
         <div
           className="h-full bg-primary transition-all duration-300 ease-out"
           style={{ width: `${scrollProgress}%` }}
@@ -265,14 +265,6 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
                       <div className="absolute bottom-0 left-0 w-full h-[2vw] bg-gradient-to-t from-background to-transparent pointer-events-none"></div>
                     </div>
                   )}
-
-                  {/* Desktop Progress Bar */}
-                  <div className="w-full h-[3px] rounded-full bg-foreground/40 overflow-hidden">
-                    <div
-                      className="h-full bg-primary transition-all duration-300 ease-out"
-                      style={{ width: `${scrollProgress}%` }}
-                    />
-                  </div>
 
                   {/* Static card with CTA */}
                   <div>
