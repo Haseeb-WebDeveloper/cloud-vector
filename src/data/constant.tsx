@@ -19,7 +19,7 @@ export const approachSteps: ApproachStep[] = [
       "Identify idle, misconfigured, and overprovisioned resources.",
       "Analyze workload requirements & resource configurations.",
     ],
-    image: "/test.png",
+    image: "/home-page/Exhaustive Analysis.png",
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ export const approachSteps: ApproachStep[] = [
       "EC2, RDS, Sagemaker Instance Type & Instance Size.",
       "Storage Class & Life cycle policies of your S3 data.",
     ],
-    image: "/test.png",
+    image: "/home-page/Lean Resources.png",
     isReversed: true,
   },
   {
@@ -44,7 +44,7 @@ export const approachSteps: ApproachStep[] = [
       "Calculate and deploy the optimal number of resources, not more.",
       "Consolidate clusters/machines to remove excess hardware.",
     ],
-    image: "/test.png",
+    image: "/home-page/Lean Scale your resources.png",
   },
   {
     id: 4,
@@ -55,7 +55,7 @@ export const approachSteps: ApproachStep[] = [
       "Purchase commitment strategy engineered for maximum ROI with minimum commitment risk.",
       "We analyze 1000's of Reserved Instances, Savings Plans, and Private Pricing options for you.",
     ],
-    image: "/test.png",
+    image: "/home-page/Pay the Lowest Possible Price for AWS.png",
     isReversed: true,
   },
   {
@@ -67,7 +67,7 @@ export const approachSteps: ApproachStep[] = [
       "Guardrails ensure that we (& you) are alarmed if costs are creeping back over time.",
       "100% ROI in 3 months - guaranteed.",
     ],
-    image: "/test.png",
+    image: "/home-page/Sustained Savings, Guaranteed..png",
   },
 ];
 
@@ -114,7 +114,7 @@ export const tabsData: TabData[] = [
           "Identify idle, misconfigured, and overprovisioned resources.",
           "Analyze workload requirements & resource configurations.",
         ],
-        image: "/test.png",
+        image: "/home-page/Exhaustive Analysis.png",
       },
       {
         id: 2,
@@ -126,7 +126,7 @@ export const tabsData: TabData[] = [
           "EC2, RDS, Sagemaker Instance Type & Instance Size.",
           "Storage Class & Life cycle policies of your S3 data.",
         ],
-        image: "/test.png",
+        image: "/home-page/Lean Resources.png",
         isReversed: true,
       },
       {
@@ -139,7 +139,7 @@ export const tabsData: TabData[] = [
           "Calculate and deploy the optimal number of resources, not more.",
           "Consolidate clusters/machines to remove excess hardware.",
         ],
-        image: "/test.png",
+        image: "/home-page/Lean Scale your resources.png",
       },
       {
         id: 4,
@@ -150,7 +150,7 @@ export const tabsData: TabData[] = [
           "Purchase commitment strategy engineered for maximum ROI with minimum commitment risk.",
           "We analyze 1000's of Reserved Instances, Savings Plans, and Private Pricing options for you.",
         ],
-        image: "/test.png",
+        image: "/home-page/Pay the Lowest Possible Price for AWS.png",
         isReversed: true,
       },
       {
@@ -162,7 +162,7 @@ export const tabsData: TabData[] = [
           "Guardrails ensure that we (& you) are alarmed if costs are creeping back over time.",
           "100% ROI in 3 months - guaranteed.",
         ],
-        image: "/test.png",
+        image: "/home-page/Sustained Savings, Guaranteed..png",
       },
     ],
   },
@@ -189,7 +189,7 @@ export const tabsData: TabData[] = [
           "Scans every AWS resource in your account daily across all regions.",
           "All security findings, segregated by Criticality, along with What? Why? When? Where? How to fix? sent to your AWS Security Hub.",
         ],
-        image: "/test.png",
+        image: "/home-page/Where are you in the security journey today.png",
       },
       {
         id: 2,
@@ -203,7 +203,7 @@ export const tabsData: TabData[] = [
           "Data encryption and network segmentation.",
           "Get compliant with 15+ industry-standard security compliance frameworks like CIS, GDPR, etc.",
         ],
-        image: "/test.png",
+        image: "/home-page/Build a Secure Wall & deploy a watchdog outside..png",
         isReversed: true,
       },
       {
@@ -215,7 +215,7 @@ export const tabsData: TabData[] = [
           "Any sensitive action such as Security Group change, Bucket policy change, Login without MFA, etc. will trigger alerts via SMS/Calls/Whatsapp.",
           "Alerts include all details like criticality, what? who? when? where? how to fix?",
         ],
-        image: "/test.png",
+        image: "/home-page/Deploy an Internal Watchdog to identify strangers..png",
       },
       {
         id: 4,
@@ -226,7 +226,7 @@ export const tabsData: TabData[] = [
           "Daily/Weekly reports of how many vulnerabilities were newly detected, resolved.",
           "Weekly posture reports with evidence for 15+ industry standard compliances like SOC 2 / HIPAA / PCI-DSS.",
         ],
-        image: "/test.png",
+        image: "/home-page/Compliance Reports.png",
         isReversed: true,
       },
     ],
@@ -256,7 +256,7 @@ export const tabsData: TabData[] = [
           "Tailored infrastructure plan merging current components with suggested components (Golden Paths) for improved scaling + performance + cost optimization + security + reliability + observability with audit trails.",
           "No commitment; expert guidance to set the vision + implementation plan.",
         ],
-        image: "/test.png",
+        image: "/automate-my-release/Free Architecture Plan.png",
       },
       {
         id: 2,
@@ -271,7 +271,7 @@ export const tabsData: TabData[] = [
           "Everything in your AWS account. No tool switching.",
           "Enforcing Secrets' Handling & Hygiene.",
         ],
-        image: "/test.png",
+        image: "/automate-my-release/Infrastructure Modernization (IaC).png",
         isReversed: true,
       },
       {
@@ -284,7 +284,7 @@ export const tabsData: TabData[] = [
           "Multi-account CI/CD Pipeline with IaC & complete account-level/stack-level audit trails.",
           "Repeatable, secure deployments with zero-touch releases.",
         ],
-        image: "/test.png",
+        image: "/automate-my-release/CICD Pipeline Automation.png",
       },
       {
         id: 4,
@@ -299,7 +299,7 @@ export const tabsData: TabData[] = [
           "Continuous Cost Optimization + Security Posture Review.",
           "New feature architecture review + IAC implementation + release support.",
         ],
-        image: "/test.png",
+        image: "/automate-my-release/Post-Launch & Managed DevOps.png",
         isReversed: true,
       },
     ],
@@ -326,7 +326,7 @@ export const tabsData: TabData[] = [
           "Tailored infrastructure plan merging current components with suggested components (Golden Paths) for improved reliability + recovery with audit trails.",
           "No commitment; expert guidance to set the vision + implementation plan.",
         ],
-        image: "/test.png",
+        image: "/Disasster-proof-my -infra/Free Architecture Plan (1).png",
       },
       {
         id: 2,
@@ -342,7 +342,7 @@ export const tabsData: TabData[] = [
           "Reliability patterns that protect revenue during spikes.",
           "Disaster Simulation drills to test out the entire automation + human effort.",
         ],
-        image: "/test.png",
+        image: "/Disasster-proof-my -infra/Implement & Test out Disaster Recovery.png",
         isReversed: true,
       },
       {
@@ -357,7 +357,7 @@ export const tabsData: TabData[] = [
           "24x7 first support level on-call, complete resolution for infrastructure issues + escalation for application issues",
           "New feature architecture review + IAC implementation + release support.",
         ],
-        image: "/test.png",
+        image: "/Disasster-proof-my -infra/Post-Launch & Managed DevOps (1).png",
       },
     ],
   },
@@ -383,7 +383,7 @@ export const tabsData: TabData[] = [
           "Tailored infrastructure plan merging current components with suggested components (Golden Paths) for improved customer UX performance with audit trails.",
           "No commitment; expert guidance to set the vision + implementation plan.",
         ],
-        image: "/test.png",
+        image: "/Improve-customer-ux/Free Architecture Plan (3).png",
       },
       {
         id: 2,
@@ -398,7 +398,7 @@ export const tabsData: TabData[] = [
           "Network latency & traffic optimization.",
           "Comprehensive Report showing optimization at each layer.",
         ],
-        image: "/test.png",
+        image: "/Improve-customer-ux/Implement & Test out Performance Optimization.png",
         isReversed: true,
       },
       {
@@ -413,7 +413,7 @@ export const tabsData: TabData[] = [
           "24x7 first support level on-call, complete resolution for infrastructure issues + escalation for application issues",
           "New feature architecture review + IAC implementation + release support.",
         ],
-        image: "/test.png",
+        image: "/Improve-customer-ux/Post-Launch & Managed DevOps (3).png",
       },
     ],
   },

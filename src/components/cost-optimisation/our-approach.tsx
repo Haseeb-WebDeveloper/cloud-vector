@@ -145,7 +145,7 @@ export default function OurApproachSection() {
                     </div>
                   )}
 
-                  <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                  <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
                     {/* Text Content */}
                     <div
                       className={cn(
@@ -179,21 +179,23 @@ export default function OurApproachSection() {
                     {/* Image */}
                     <div
                       className={cn(
-                        "flex-1 w-full z-10",
+                        "flex-1 w-full z-10 flex items-center justify-center",
                         step.isReversed ? "lg:order-1" : "lg:order-2"
                       )}
                       {...(step.isReversed
                         ? { "data-image-left": true }
                         : { "data-image-right": true })}
                     >
-                      <div className="relative w-full h-64 lg:h-80 rounded-2xl overflow-hidden shadow-2xl bg-muted">
-                        <Image
-                          src={step.image}
-                          alt={step.heading}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                        />
+                      <div className="relative w-full h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-3xl overflow-hidden">
+                        <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden">
+                          <Image
+                            src={step.image}
+                            alt={step.heading}
+                            fill
+                            className="object-contain rounded-2xl sm:rounded-3xl"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>

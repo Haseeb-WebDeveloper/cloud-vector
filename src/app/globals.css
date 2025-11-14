@@ -487,6 +487,57 @@ body::-webkit-scrollbar,
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
+/* Animated Border Glow Effect */
+@keyframes border-glow-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animated-border-glow {
+  position: relative;
+  border-radius: 1rem;
+  background: transparent;
+  padding: 2px;
+}
+
+.animated-border-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  padding: 2px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 50deg,
+    rgba(255, 153, 0, 0.4) 80deg,
+    rgba(255, 153, 0, 0.9) 100deg,
+    rgba(255, 153, 0, 1) 120deg,
+    rgba(255, 153, 0, 0.9) 140deg,
+    rgba(255, 153, 0, 0.4) 160deg,
+    transparent 190deg,
+    transparent 360deg
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-glow-rotate 3s linear infinite;
+  z-index: 0;
+}
+
+.animated-border-glow > * {
+  position: relative;
+  z-index: 1;
+  border-radius: calc(1rem - 2px);
+  background: transparent;
+}
+
 /* HubSpot Form Submit Button */
 .hubspot-form-container input[type="submit"],
 .hubspot-form-container .hs-button {
