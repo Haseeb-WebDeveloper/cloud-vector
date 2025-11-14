@@ -461,7 +461,7 @@ const AnimatedSections: React.FC = () => {
                 {stepImageIndices.map((step) => (
                   <div
                     key={step}
-                    className={`absolute  inset-0 z-0 flex items-center justify-center transition-opacity duration-300 ${
+                    className={`absolute  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-[35vw] h-[35vw] md:w-[37vw] md:h-[37vw] 2xl:w-[41vw] 2xl:h-[41vw] flex items-center justify-center transition-opacity duration-300 ${
                       currentStep === step ? "opacity-100" : "opacity-0"
                     }`}
                   >
@@ -476,7 +476,7 @@ const AnimatedSections: React.FC = () => {
                 ))}
                 <div
                   ref={circleImageRef}
-                  className="object-contain w-[24.2vw] h-[24.2vw] 2xl:w-[27vw] 2xl:h-[27vw] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]"
+                  className="object-contain w-[23.5vw] h-[23.5vw] 2xl:w-[27vw] 2xl:h-[27vw] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]"
                   style={{ zIndex: 100 }}
                 >
                   <Image
@@ -499,7 +499,7 @@ const AnimatedSections: React.FC = () => {
                     if (el) offersRef.current[index] = el;
                   }}
                   data-offer-id={index}
-                  className={`transition-all duration-500 ${index === 0 ? "mt-[4vw]" : ""}`}
+                  className={`transition-all duration-500  ${index === 0 ? "mt-[4vw]" : ""} ${index === offers.length - 1 ? "2xl:mb-[5vw] md:mb-[4vw] [@media(min-width:1800px)]:mb-[9vw]" : ""}`}
                 >
                   <div className="transition-all duration-300 w-full">
                     {/* Headline */}
@@ -628,8 +628,12 @@ const AnimatedSections: React.FC = () => {
                   );
                 })}
               </div>
-              <div ref={targetPositionRef} className="w-[24vw] h-[24vw]">
-                <div className="z-[-1] w-[24vw] h-[24vw] shadow-[0_0_40px_10px_rgba(255,151,0,0.35)] rounded-full bg-gradient-to-br from-[#FF9700]/50 to-[#E85409]/30"></div>
+              <div
+                ref={targetPositionRef}
+                className="flex items-center justify-center w-[29vw] h-[29vw] 2xl:w-[32vw] 2xl:h-[32vw] "
+              >
+                {/* Example: Make the shadow fill the div */}
+                <div className="w-full h-full rounded-full shadow-[0_0_40px_10px_rgba(255,151,0,0.85)]"></div>
               </div>
 
               {/* Right side stats */}
