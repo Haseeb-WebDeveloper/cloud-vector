@@ -19,6 +19,7 @@ interface Step {
   duration: string;
   points: string[];
   icon: React.ReactNode;
+  image: string;
 }
 
 const steps: Step[] = [
@@ -35,6 +36,7 @@ const steps: Step[] = [
       "Small engagement fee, adjusted against final deliverables.",
     ],
     icon: <Shield className="w-4 h-4" />,
+    image: "/How do we do it/Step 1 Confidentiality First. Access in Minutes..png",
   },
   {
     id: 2,
@@ -45,6 +47,7 @@ const steps: Step[] = [
       "For each workload, we analyze 1000+ config combination & workload' requirements to determine the most cost-effective configs + resource counts + purchase options.",
     ],
     icon: <Search className="w-4 h-4" />,
+    image: "/How do we do it/Step 2 Exhaustive Resource Audit.png",
   },
   {
     id: 3,
@@ -58,6 +61,7 @@ const steps: Step[] = [
       "This acts as a trust builder exercise between CloudVictor & customer.",
     ],
     icon: <BarChart3 className="w-4 h-4" />,
+    image: "/How do we do it/Step 3 Your Costs & Savings, Clearly Mapped.png",
   },
   {
     id: 4,
@@ -71,6 +75,7 @@ const steps: Step[] = [
       "Backed by a 100% money-back guarantee if verified savings don't match our promise.",
     ],
     icon: <DollarSign className="w-4 h-4" />,
+    image: "/How do we do it/Step 4 No Savings, No Fee - Simple..png",
   },
   {
     id: 5,
@@ -82,6 +87,7 @@ const steps: Step[] = [
       "CloudVictor supports your Dev(Ops) team with POC code + hands-on guidance at every step.",
     ],
     icon: <Settings className="w-4 h-4" />,
+    image: "/How do we do it/Step 5 Implement Data-Backed Recommendations.png",
   },
   {
     id: 6,
@@ -95,6 +101,7 @@ const steps: Step[] = [
       "Successful delivery with remaining 50% payment, completing a results-driven partnership.",
     ],
     icon: <FileCheck className="w-4 h-4" />,
+    image: "/How do we do it/Step 6 Savings Verification with your AWS Bill..png",
   },
 ];
 
@@ -251,7 +258,7 @@ export default function StepsSection() {
           />
           <div className="relative flex flex-col lg:flex-row gap-12">
             {/* Left Content */}
-            <div className="space-y-6">
+            <div className="space-y-6 flex-1">
               <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6  pl-8">
                 {currentStepData.headline}
               </h3>
@@ -267,14 +274,14 @@ export default function StepsSection() {
               </ul>
             </div>
 
-            {/* Right Image Placeholder */}
-            <div className="w-fit lg:h[500px] lg:h-[500px]">
+            {/* Right Image */}
+            <div className="flex-1 flex items-center justify-center">
               <Image
-                src="/test.png"
-                alt="Steps Section"
+                src={currentStepData.image}
+                alt={currentStepData.headline}
                 width={500}
                 height={500}
-                className="rounded-2xl object-cover w-full h-full"
+                className="rounded-2xl object-contain w-full h-auto max-w-full"
               />
             </div>
           </div>

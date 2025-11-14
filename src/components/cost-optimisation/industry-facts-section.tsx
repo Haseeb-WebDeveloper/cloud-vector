@@ -20,28 +20,28 @@ const industryFacts: IndustryFact[] = [
     fact: "Organizations waste up to <span class=\"text-[#FF8703] font-semibold\">30%</span> of their cloud spend due to underutilized resources and poor governance.",
     source: "Gartner",
     report: "How to Identify and Reduce Public Cloud Waste 2024",
-    image: "/test.avif",
+    image: "/Cloud Spending & Waste is Escalating Fast/Gartner (How to Identify and Reduce Public Cloud Waste 2024).png",
   },
   {
     id: 2,
     fact: "Approximately <span class=\"text-[#FF8703] font-semibold\">35%</span> of cloud spend is wasted due to overprovisioning, unused resources, and inefficient architecture.",
     source: "McKinsey & Company",
     report: "Cloud's trillion-dollar prize is up for grabs. Report",
-    image: "/test.avif",
+    image: "/Cloud Spending & Waste is Escalating Fast/McKinsey Company (Cloud's trillion-dollar prize is up for grabs. Report).png",
   },
   {
     id: 3,
     fact: "82% of global organizations struggle with more than <span class=\"text-[#FF8703] font-semibold\">10%</span> of their cloud spend being wasted, and 38% experience more than <span class=\"text-[#FF8703] font-semibold\">30%</span> wastage.",
     source: "Everest Group",
     report: "Cloud Waste Survey 2024",
-    image: "/test.avif",
+    image: "/Cloud Spending & Waste is Escalating Fast/Everest Group (Cloud Waste Survey 2024).png",
   },
   {
     id: 4,
     fact: "More than three-quarters <span class=\"text-[#FF8703] font-semibold\">(78%)</span> of enterprises estimate that <span class=\"text-[#FF8703] font-semibold\">21-50%</span> of their cloud spend is wasted, with preventable mistakes costing some organizations over $50,000 per month.",
     source: "Omdia",
     report: "State of Cloud Usage Optimization 2024",
-    image: "/test.avif",
+    image: "/Cloud Spending & Waste is Escalating Fast/Omdia (State of Cloud Usage Optimization 2024).jpg",
   },
   {
     id: 5,
@@ -49,7 +49,7 @@ const industryFacts: IndustryFact[] = [
     source: "McKinsey & Company",
     report:
       "Everything Is Better as Code: Using FinOps to Manage Cloud Costs 2025",
-    image: "/test.avif",
+    image: "/Cloud Spending & Waste is Escalating Fast/McKinsey  Company (Everything Is Better as Code Using FinOps to Manage Cloud Costs 2025).jpg",
   },
 ];
 
@@ -162,12 +162,12 @@ export default function IndustryFactsSection() {
             <div className="flex">
               {industryFacts.map((fact, index) => (
                 <div key={fact.id} className="flex-[0_0_100%] min-w-0 px-4 h-fit">
-                  <div className="flex flex-col md:flex-row gap-12 h-fit rounded-2xl border border-white/15 bg-background/20 p-6 md:p-8 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]"
+                  <div className="flex flex-col md:flex-row md:items-stretch gap-12 rounded-2xl border border-white/15 bg-background/20 p-6 md:p-8 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   >
                     {/* Left Side - Text Content */}
-                    <div className="flex flex-col ">
+                    <div className="flex flex-col flex-1 justify-between">
                       {/* 
                         Don't wrap a <div> inside a <p> (invalid HTML).
                         Instead, just use <p> with dangerouslySetInnerHTML.
@@ -188,14 +188,14 @@ export default function IndustryFactsSection() {
                     </div>
 
                     {/* Right Side - Image */}
-                    <div className="flex flex-col justify-center items-center  min-w-1/2 w-full h-full">
-                      <div className="relative w-full h-full overflow-hidden rounded-lg">
+                    <div className="flex flex-col flex-1 w-full h-full">
+                      <div className="relative w-full h-full min-h-[300px] md:min-h-0 overflow-hidden rounded-lg">
                         <Image
                           src={fact.image}
                           alt={`Cloud Cost Optimization - ${fact.source}`}
                           width={500}
                           height={500}
-                          className="object-cover h-full w-full rounded-lg"
+                          className="object-cover w-full h-full rounded-lg"
                           priority={index === 0}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
