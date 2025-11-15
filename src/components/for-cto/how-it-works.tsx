@@ -8,6 +8,7 @@ import { tabsData, TabData, FeatureStep } from "@/data/constant";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MovingBorder } from "@/components/ui/moving-border";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -132,9 +133,12 @@ export default function HowItWorks() {
 
   return (
     <div className="py-32">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 max-w-4xl mx-auto leading-tight bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent ">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center sm:mb-8 max-w-4xl mx-auto leading-tight bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent ">
         From Architecture to Automation - One Partner, Total Control
       </h2>
+      <h3 className="text-xl sm:text-4xl font-semibold text-center text-white mb-2">
+        I want to:
+      </h3>
 
       {/* Sticky Tabs Navigation */}
       <div
@@ -287,21 +291,32 @@ export default function HowItWorks() {
                             {/* Image */}
                             <div
                               className={cn(
-                                "flex-1 w-full z-[5] flex items-center justify-center",
+                                "flex-1 w-full z-10 h-64 sm:h-80 lg:h-96",
                                 step.isReversed ? "lg:order-1" : "lg:order-2"
                               )}
                               {...(step.isReversed
                                 ? { "data-image-left": true }
                                 : { "data-image-right": true })}
                             >
-                              <div className="relative w-full h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-3xl overflow-hidden">
-                                <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden">
+                              <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden">
+                                <div className="absolute inset-0">
+                                  <MovingBorder duration={6000} rx="30%" ry="30%">
+                                    <div
+                                      className="h-20 w-20 opacity-[0.8]"
+                                      style={{
+                                        background: `radial-gradient(circle, var(--primary) 40%, transparent 60%)`
+                                      }}
+                                    />
+                                  </MovingBorder>
+                                </div>
+                                <div className="absolute top-[1px] left-[1px] right-[1px] bottom-[1px] rounded-2xl sm:rounded-3xl w-full h-full z-0">
                                   <Image
                                     src={step.image}
-                                    alt={step.heading}
-                                    fill
-                                    className="object-contain rounded-2xl sm:rounded-3xl"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                                    alt={step.heading || "Step Image"}
+                                    width={500}
+                                    height={500}
+                                    className="rounded-2xl sm:rounded-3xl object-cover w-full h-full pr-[2px] pb-[2px]"
+                                    priority={true}
                                   />
                                 </div>
                               </div>

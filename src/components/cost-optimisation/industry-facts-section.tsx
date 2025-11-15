@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { MovingBorder } from "@/components/ui/moving-border";
 
 
 interface IndustryFact {
@@ -189,16 +190,28 @@ export default function IndustryFactsSection() {
 
                     {/* Right Side - Image */}
                     <div className="flex flex-col flex-1 w-full h-full">
-                      <div className="relative w-full h-full min-h-[300px] md:min-h-0 overflow-hidden rounded-lg">
-                        <Image
-                          src={fact.image}
-                          alt={`Cloud Cost Optimization - ${fact.source}`}
-                          width={500}
-                          height={500}
-                          className="object-cover w-full h-full rounded-lg"
-                          priority={index === 0}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
+                      <div className="relative w-full h-full min-h-[300px] md:min-h-0 p-[1px] overflow-hidden rounded-lg">
+                        <div className="absolute inset-0">
+                          <MovingBorder duration={6000} rx="30%" ry="30%">
+                            <div 
+                              className="h-20 w-20 opacity-[0.8]" 
+                              style={{
+                                background: `radial-gradient(circle, var(--primary) 40%, transparent 60%)`
+                              }}
+                            />
+                          </MovingBorder>
+                        </div>
+                        <div className="relative rounded-lg overflow-hidden w-full h-full bg-background">
+                          <Image
+                            src={fact.image}
+                            alt={`Cloud Cost Optimization - ${fact.source}`}
+                            width={500}
+                            height={500}
+                            className="object-cover w-full h-full"
+                            priority={index === 0}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>

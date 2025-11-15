@@ -76,7 +76,7 @@ const steps: Step[] = [
       "Backed by a 100% money-back guarantee if verified savings don't match our promise.",
     ],
     icon: <DollarSign className="w-4 h-4" />,
-    image: "/How do we do it/Step 4 No Savings, No Fee - Simple..png",
+    image: "/How do we do it/Step 4 No Savings, No Fee - Simple..jpg",
   },
   {
     id: 5,
@@ -112,6 +112,7 @@ export default function StepsSection() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHoveringPanel, setIsHoveringPanel] = useState(false);
+  const [isHoveringTabs, setIsHoveringTabs] = useState(false);
 
   // Get primary color from CSS variables (works with Tailwind default setup)
   function getPrimaryColor(alpha = 1) {
@@ -161,7 +162,7 @@ export default function StepsSection() {
 
   // Auto-advance timer (5 seconds per step)
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    if (!isAutoPlaying || isHoveringTabs) return;
 
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -174,7 +175,7 @@ export default function StepsSection() {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, isHoveringTabs]);
 
   const handleStepClick = (stepId: number) => {
     setCurrentStep(stepId);
@@ -204,7 +205,11 @@ export default function StepsSection() {
         </div>
 
         {/* Step Navigation */}
-        <div className="flex flex-wrap justify-center gap-2">
+        <div 
+          className="flex flex-wrap justify-center gap-2"
+          onMouseEnter={() => setIsHoveringTabs(true)}
+          onMouseLeave={() => setIsHoveringTabs(false)}
+        >
           {steps.map((step) => (
             <button
               key={step.id}

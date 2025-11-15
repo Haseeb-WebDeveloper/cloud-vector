@@ -7,6 +7,7 @@ import { approachSteps } from "@/data/constant";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MovingBorder } from "@/components/ui/moving-border";
 
 export interface ApproachStep {
   id: number;
@@ -99,8 +100,8 @@ export default function OurApproachSection() {
     <div className="bg-gradient-to-br from-background via-background to-primary/5 mb-32">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center pt-16 pb-16">
-          <h2 className="text-4xl lg:text-5xl font-semibold bg-gradient-to-r from-primary via-primary/80 to-white/60 bg-clip-text text-transparent mb-6 leading-[1.2] max-w-3xl mx-auto">
+        <div className="text-center pt-16 pb-16 max-w-3xl mx-auto space-y-2">
+          <h2 className="text-4xl lg:text-5xl font-semibold bg-gradient-to-r from-primary via-primary/80 to-white/60 bg-clip-text text-transparent leading-[1.2]">
             Our Unique Approach to Cloud Cost Optimization
           </h2>
           <p className="text-xl text-foreground/80 mx-auto leading-relaxed max-w-2xl">
@@ -112,7 +113,7 @@ export default function OurApproachSection() {
         {/* Approach Steps */}
         <div className="relative" ref={containerRef}>
           <div className="space-y-16 lg:space-y-[230px]">
-            {approachSteps.map((step, index) =>  (
+            {approachSteps.map((step, index) => (
               <div
                 key={step.id}
                 className={cn(
@@ -131,7 +132,7 @@ export default function OurApproachSection() {
                           alt=""
                           width={600}
                           height={233}
-                          // className="w-40 h-16"
+                        // className="w-40 h-16"
                         />
                       ) : (
                         <Image
@@ -139,7 +140,7 @@ export default function OurApproachSection() {
                           alt=""
                           width={617}
                           height={233}
-                          // className="w-80 h-40"
+                        // className="w-80 h-40"
                         />
                       )}
                     </div>
@@ -179,21 +180,32 @@ export default function OurApproachSection() {
                     {/* Image */}
                     <div
                       className={cn(
-                        "flex-1 w-full z-10 flex items-center justify-center",
+                        "flex-1 w-full z-10 h-64 sm:h-80 lg:h-96",
                         step.isReversed ? "lg:order-1" : "lg:order-2"
                       )}
                       {...(step.isReversed
                         ? { "data-image-left": true }
                         : { "data-image-right": true })}
                     >
-                      <div className="relative w-full h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-3xl overflow-hidden">
-                        <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden">
+                      <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden">
+                        <div className="absolute inset-0">
+                          <MovingBorder duration={6000} rx="30%" ry="30%">
+                            <div
+                              className="h-20 w-20 opacity-[0.8]"
+                              style={{
+                                background: `radial-gradient(circle, var(--primary) 40%, transparent 60%)`
+                              }}
+                            />
+                          </MovingBorder>
+                        </div>
+                        <div className="absolute top-[1px] left-[1px] right-[1px] bottom-[1px] rounded-2xl sm:rounded-3xl w-full h-full z-0">
                           <Image
                             src={step.image}
-                            alt={step.heading}
-                            fill
-                            className="object-contain rounded-2xl sm:rounded-3xl"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                            alt={step.heading || "Step Image"}
+                            width={500}
+                            height={500}
+                            className="rounded-2xl sm:rounded-3xl object-cover w-full h-full pr-[2px] pb-[2px] "
+                            priority={true}
                           />
                         </div>
                       </div>

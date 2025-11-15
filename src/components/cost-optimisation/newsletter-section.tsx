@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Mail } from "lucide-react";
@@ -10,18 +9,43 @@ export default function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    
+    if (!email || !email.includes("@")) {
+      setError("Please enter a valid email address");
+      return;
+    }
 
     setIsLoading(true);
+    setError("");
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
 
-    setIsSubmitted(true);
-    setIsLoading(false);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || data.details || "Failed to send email");
+      }
+
+      setIsSubmitted(true);
+      setEmail("");
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Failed to send email. Please try again.";
+      setError(errorMessage);
+      console.error("Newsletter subscription error:", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {
@@ -93,9 +117,13 @@ export default function NewsletterSection() {
                   type="email"
                   placeholder="Enter your email address"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError("");
+                  }}
                   className="border border-secondary flex-1 h-12 p-3 rounded-lg bg-secondary  text-white placeholder:text-[#AAAAAA] focus:outline-none focus:ring-0"
                   required
+                  disabled={isLoading}
                 />
                 <button
                   type="submit"
@@ -105,6 +133,10 @@ export default function NewsletterSection() {
                   {isLoading ? "Sending..." : "Send Me Cloud Tips →"}
                 </button>
               </div>
+
+              {error && (
+                <p className="text-sm text-red-400 text-center">{error}</p>
+              )}
 
               {/* New line under button as requested */}
               <p className="text-sm text-[#CCCCCC] mt-2">

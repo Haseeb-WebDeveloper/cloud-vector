@@ -169,11 +169,11 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="cursor-pointer w-full border bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] rounded-lg px-4 py-2 transition-all duration-300 block text-center"
                 >
-                  Subscribe
+                  Book a Call
                 </a>
               ) : (
                 <button className="cursor-pointer w-full border bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] rounded-lg px-4 py-2 transition-all duration-300">
-                  Subscribe
+                  Book a Call
                 </button>
               )}
             </div>

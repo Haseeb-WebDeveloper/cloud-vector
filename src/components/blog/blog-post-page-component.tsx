@@ -10,6 +10,7 @@ import { extractH2Headings } from "@/utils/extract-heading";
 import Header from "@/components/layout/header";
 import SocialShareButtons from "./social-share-buttons";
 import AnimatedQuoteButton from "./animated-quote-button";
+import { MovingBorder } from "@/components/ui/moving-border";
 
 interface BlogPostPageProps {
   blogPost: BlogPostType;
@@ -185,15 +186,27 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
             {/* Main Content */}
             <article className="lg:flex-1 w-full min-w-0">
               {/* Featured Image */}
-              <div className="w-full rounded-xl overflow-hidden mb-6 lg:mb-[1.7vw]">
-                <Image
-                  src={blogPost.featuredImage.asset.url}
-                  alt={blogPost.title}
-                  width={1200}
-                  height={600}
-                  className="w-full h-auto object-cover aspect-video"
-                  priority
-                />
+              <div className="w-full rounded-xl mb-6 lg:mb-[1.7vw] relative aspect-video p-[1px] overflow-hidden">
+                <div className="absolute inset-0">
+                  <MovingBorder duration={6000} rx="30%" ry="30%">
+                    <div 
+                      className="h-20 w-20 opacity-[0.8]" 
+                      style={{
+                        background: `radial-gradient(circle, var(--primary) 40%, transparent 60%)`
+                      }}
+                    />
+                  </MovingBorder>
+                </div>
+                <div className="relative rounded-xl overflow-hidden w-full h-full bg-background">
+                  <Image
+                    src={blogPost.featuredImage.asset.url}
+                    alt={blogPost.title}
+                    width={1200}
+                    height={600}
+                    className="w-full h-full object-cover"
+                    priority
+                  />
+                </div>
               </div>
 
               {/* Meta: Published Date */}
