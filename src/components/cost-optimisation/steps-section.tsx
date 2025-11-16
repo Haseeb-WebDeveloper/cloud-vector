@@ -48,7 +48,7 @@ const steps: Step[] = [
       "For each workload, we analyze 1000+ config combination & workload' requirements to determine the most cost-effective configs + resource counts + purchase options.",
     ],
     icon: <Search className="w-4 h-4" />,
-    image: "/How do we do it/Step 2 Exhaustive Resource Audit.png",
+    image: "/How do we do it/Step 2 Exhaustive Resource Audit.jpg",
   },
   {
     id: 3,
