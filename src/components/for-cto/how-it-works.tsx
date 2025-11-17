@@ -196,7 +196,7 @@ export default function HowItWorks() {
                 <div className="max-w-6xl mx-auto px-4 lg:px-24 py-8 bg-[#0B1220] rounded-2xl" style={{ boxShadow: "0 4px 32px 0 #3C213A" }}
                 >
                   <h4 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center mb-6 md:mb-8 lg:mb-12">
-                    Unlock the Benefits of Cloud
+                    Use less of cloud & pay less for it
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {tab.benefits.map((benefit, index) => (

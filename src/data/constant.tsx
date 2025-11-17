@@ -173,6 +173,7 @@ export const tabsData: TabData[] = [
     heading: "",
     oneLiner: "",
     benefits: [
+      "Not just Audit-Day, but Continuous proven Compliance.",
       "Continuous Perimeter Monitoring. What? Why? When? Where? How to fix?",
       "Continuous Breach Detection. What? When? Who? Where?",
       "Slack/Call/Email Alarms.",

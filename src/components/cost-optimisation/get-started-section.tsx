@@ -1,6 +1,6 @@
 "use client";
 
-import { BadgePercent, Receipt, ShieldCheck, Calendar, MessageCircle, TrendingUp } from "lucide-react";
+import { BadgePercent, Receipt, ShieldCheck, Calendar, MessageCircle, TrendingUp, UserPlus } from "lucide-react";
 import Image from "next/image";
 import { SpotlightCard } from "../ui/spolight-card";
 import { GradientButton } from "@/components/ui/gradient-button";
@@ -105,6 +105,18 @@ export default function GetStartedSection({ whatsappLink = "https://s.cloudvicto
                 >
                   <MessageCircle className="w-5 h-5" />
                   Chat on WhatsApp
+                </a>
+
+                <a 
+                  href="http://app.cloudvictor.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group cursor-pointer flex justify-center items-center gap-2 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] border border-primary/50 hover:border-primary/70 hover:pr-6 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] px-5 lg:py-2.5 py-2.5 rounded-full text-foreground"
+                >
+                  <span className="flex items-center gap-2">
+                    <UserPlus className="w-5 h-5" />
+                    Signup
+                  </span>
                 </a>
               </div>
             </div>

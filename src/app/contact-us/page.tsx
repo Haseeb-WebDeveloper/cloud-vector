@@ -185,6 +185,25 @@ export default function ContactUsPage() {
               <span className="font-medium">Whatsapp us</span>
             </a>
 
+            {/* Signup - Gradient Button */}
+            <a
+              href="http://app.cloudvictor.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group cursor-pointer flex items-center gap-3 px-5 py-3 rounded-full border-none shadow-none text-white ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}
+              style={{ textDecoration: 'none' }}
+            >
+              <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-foreground/10">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="9" cy="7" r="4" stroke="black" strokeWidth="2" fill="none"/>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M16 11.13a4 4 0 0 1 0 7.75" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <span className="font-medium">Signup</span>
+            </a>
+
             {/* Call - Circular Gradient Button with Text */}
             <a
               href="tel:+919625596336"

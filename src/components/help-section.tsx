@@ -45,21 +45,7 @@ export const HelpSection = () => {
     ? "https://s.cloudvictor.com/meeting-web-home-3"
     : "https://calendly.com/your-calendly-link/aws-audit";
   
-  const startSavingLink = isContactUsPage
-    ? "https://s.cloudvictor.com/meeting-web-contactus-3"
-    : isBolosignPost
-    ? "https://s.cloudvictor.com/meeting-web-csbolosign-3"
-    : isBotGaugePost
-    ? "https://s.cloudvictor.com/meeting-web-csbotgauge-3"
-    : isBlogPage
-    ? "https://s.cloudvictor.com/meeting-web-homeblog-2"
-    : isFinOpsPage
-    ? "https://s.cloudvictor.com/meeting-web-finops-4"
-    : isCTOPage
-    ? "https://s.cloudvictor.com/meeting-web-cto-4"
-    : isHomepage
-    ? "https://s.cloudvictor.com/meeting-web-home-4"
-    : "https://calendly.com/your-calendly-link/aws-get-started";
+  const startSavingLink = "https://app.cloudvictor.com/";
   return (
     <section className="py-10  px-4 bg-background">
       <div className="max-w-7xl mx-auto">

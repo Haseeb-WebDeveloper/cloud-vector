@@ -11,21 +11,20 @@ import {
 import { Calendar, DollarSign, TrendingUp } from "lucide-react";
 
 const partnerLogos = [
-  { name: "Mayo Clinic", src: "/clients/1.png", alt: "Mayo Clinic" },
-  { name: "Cisco", src: "/clients/2.png", alt: "Cisco" },
-  { name: "TIME", src: "/clients/3.png", alt: "TIME" },
-  { name: "DLA Piper", src: "/clients/4.png", alt: "DLA Piper" },
-  {
-    name: "Global Atlantic",
-    src: "/clients/5.png",
-    alt: "Global Atlantic",
-  },
-  { name: "Howard Hughes", src: "/clients/6.png", alt: "Howard Hughes" },
-  { name: "Cengage", src: "/clients/7.png", alt: "Cengage" },
+  { name: "Partner 1", src: "/Partners-logos/1.png", alt: "Partner 1" },
+  { name: "Partner 2", src: "/Partners-logos/2.png", alt: "Partner 2" },
+  { name: "Partner 3", src: "/Partners-logos/3.png", alt: "Partner 3" },
+  { name: "Partner 4", src: "/Partners-logos/4.png", alt: "Partner 4" },
+  { name: "Partner 5", src: "/Partners-logos/5.png", alt: "Partner 5" },
+  { name: "Partner 6", src: "/Partners-logos/6.png", alt: "Partner 6" },
+  { name: "Partner 7", src: "/Partners-logos/7.png", alt: "Partner 7" },
+  { name: "Partner 8", src: "/Partners-logos/8.png", alt: "Partner 8" },
+  { name: "Partner 9", src: "/Partners-logos/9.png", alt: "Partner 9" },
+  { name: "Partner 10", src: "/Partners-logos/10.png", alt: "Partner 10" },
 ];
 
 export default function ClientSectionV2({
-  title,
+  title, 
   stats,
 }: {
   title: string;
@@ -90,7 +89,7 @@ export default function ClientSectionV2({
         </div>
 
         {/* Partner Logos Marquee */}
-        <div className="relative">
+        <div className="relative bg-white rounded-lg justify-center items-center pb-4 mt-10">
           <Marquee className="pt-8">
             <MarqueeContent
               speed={60}
@@ -105,7 +104,7 @@ export default function ClientSectionV2({
                       src={logo.src}
                       alt={logo.alt}
                       width={300}
-                      height={150}
+                      height={300}
                       className="w-full h-full object-contain transition-opacity duration-300"
                     />
                   </div>

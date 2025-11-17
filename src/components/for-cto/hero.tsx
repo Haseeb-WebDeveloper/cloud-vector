@@ -10,7 +10,7 @@ export default function HomeHeroSection() {
     "ZERO Data breaches.",
     "Deploying Daily.",
     "100% Disaster Proof.",
-    "60% Snappier UX.",
+    "60% Snappier UX",
   ];
 
   return (
@@ -30,11 +30,6 @@ export default function HomeHeroSection() {
             <p className="text-xl text-foreground/90 max-w-34xl leading-relaxed">
               Savings that Sustain. Security that Proves. Speed & Reliability
               that boost revenue.
-            </p>
-            {/* Subheading */}
-            <p className="text-xl text-foreground/90 max-w-34xl leading-relaxed">
-              We stabilize infra and free your dev team - 90-day ROI or we don’t
-              charge.
             </p>
           </div>
 
@@ -75,6 +70,22 @@ export default function HomeHeroSection() {
               className="group cursor-pointer flex justify-center items-center gap-2 bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] border border-primary/50 hover:border-primary/70 hover:pr-6 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] px-5 lg:py-2.5 py-3 rounded-full text-foreground"
             >
               Book a call
+              <Image
+                src="/icons/arrow-right.svg"
+                alt="Arrow right"
+                width={150}
+                height={150}
+                className="w-fit h-6 group-hover:translate-x-2 transition-all duration-300"
+              />
+            </a>
+
+            <a 
+              href="http://app.cloudvictor.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group cursor-pointer flex justify-center items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full"
+            >
+              Signup
               <Image
                 src="/icons/arrow-right.svg"
                 alt="Arrow right"

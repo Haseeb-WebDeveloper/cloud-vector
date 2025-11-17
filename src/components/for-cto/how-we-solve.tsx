@@ -23,32 +23,32 @@ interface Solution {
 const painPoints: PainPoint[] = [
   {
     id: 1,
-    title: "Data Silos",
-    description: "Critical information trapped in isolated systems",
+    title: "Ever-Increasing AWS Monthly Bills",
+    description: "Rising cloud costs eating into your budget",
     color: "bg-[#00171F]",
   },
   {
     id: 2,
-    title: "Manual Processes",
-    description: "Time-consuming repetitive tasks slowing down operations",
+    title: "Data Breaches & Compliance Issues",
+    description: "Security risks and regulatory compliance challenges",
     color: "bg-[#0C1713]",
   },
   {
     id: 3,
-    title: "Scalability Issues",
-    description: "Systems struggling to handle growing demands",
+    title: "Time-Consuming, Once-a-month, brittle Releases",
+    description: "Infrequent deployments causing delays and instability",
     color: "bg-[#2E0E02]",
   },
   {
     id: 4,
-    title: "Security Vulnerabilities",
-    description: "Outdated security measures exposing critical data",
+    title: "Revenue Loss due to availability issues",
+    description: "Downtime impacting customer experience and revenue",
     color: "bg-[#0A2342]",
   },
   {
     id: 5,
-    title: "Integration Complexity",
-    description: "Difficult to connect and synchronize different platforms",
+    title: "Slow Performance / Downtime during peak traffic",
+    description: "System struggles during high-demand periods",
     color: "bg-[#2E2836]",
   },
 ];
@@ -56,31 +56,31 @@ const painPoints: PainPoint[] = [
 const solutions: Solution[] = [
   {
     id: 1,
-    title: "Unified Data Platform",
+    title: "One-Time Reconfiguring + Purchase Optimization",
     description: "Centralized data management with real-time synchronization",
     color: "bg-[#00171F]",
   },
   {
     id: 2,
-    title: "Automated Workflows",
+    title: "Always On Infosec team as a Service",
     description: "AI-powered automation reducing manual effort by 80%",
     color: "bg-[#0C1713]",
   },
   {
     id: 3,
-    title: "Cloud-Native Architecture",
+    title: "Deploy Daily with a 100% automated CI/CD pipeline with IaC",
     description: "Elastic scaling that grows with your business needs",
     color: "bg-[#2E0E02]",
   },
   {
     id: 4,
-    title: "Advanced Security Suite",
+    title: "Disaster-Proof Infrastructure with data backups",
     description: "Multi-layered protection with continuous monitoring",
     color: "bg-[#0A2342]",
   },
   {
     id: 5,
-    title: "Seamless Integration Hub",
+    title: "Tuned & Battle-tested architectures for planet-scale peaks",
     description: "One-click connections between all your business tools",
     color: "bg-[#2E2836]",
   },
@@ -327,9 +327,6 @@ export default function HowWeSolve() {
                   <h4 className={`font-semibold text-foreground`}>
                     {pain.title}
                   </h4>
-                  <p className={`text-xs text-muted-foreground`}>
-                    {pain.description}
-                  </p>
                 </div>
                 {/* Connection point indicator - Hidden */}
                 <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-3 h-3  rounded-full opacity-0"></div>
@@ -361,7 +358,7 @@ export default function HowWeSolve() {
 
           {/* Right Column - Solutions */}
           <div className="space-y-4 w-64 relative z-20">
-            <h3 className="text-2xl font-bold text-primary mb-6">Solutions</h3>
+            <h3 className="text-2xl font-bold text-primary mb-6 whitespace-nowrap">How Cloud Victor Solve It</h3>
             {solutions.map((solution, index) => (
               <div
                 key={solution.id}
@@ -373,9 +370,6 @@ export default function HowWeSolve() {
                   <h4 className={`font-semibold text-foreground`}>
                     {solution.title}
                   </h4>
-                  <p className={`text-xs text-muted-foreground`}>
-                    {solution.description}
-                  </p>
                 </div>
                 {/* Connection point indicator - Hidden */}
                 <div className="absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3  rounded-full opacity-0"></div>
