@@ -1,7 +1,7 @@
 "use client";
 
 import { SpotlightCard } from "./ui/spolight-card";
-import { MessageCircle, CalendarClock, BadgeDollarSign } from "lucide-react";
+import { MessageCircle, CalendarClock, BadgeDollarSign, Calendar } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export const HelpSection = () => {
@@ -61,89 +61,181 @@ export const HelpSection = () => {
 
         {/* Three Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-          {/* Column 1 - Quick Chat */}
-          <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
-            <div className="flex flex-col gap-6 justify-between h-full">
-              <div>
-                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">Quick Chat</h3>
-                <h4 className="text-2xl font-bold text-muted-foreground mb-2">
-                  Let's Talk
-                </h4>
-                <p className="mt-2 text-foreground/90 leading-relaxed">
-                  Got questions about your cloud costs, security, or scaling? Our experts are here to give you clear answers and tailored guidance.
-                </p>
-              </div>
-              <div>
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]"
-                >
-                  <MessageCircle className="h-5 w-5 mr-2 text-white" />
-                  Chat on WhatsApp
-                </a>
-              </div>
-            </div>
-          </SpotlightCard>
+          {isCTOPage ? (
+            <>
+              {/* Column 1 - Book a Strategy Call (CTO Page) */}
+              <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
+                <div className="flex flex-col gap-6 justify-between h-full">
+                  <div>
+                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                      Strategy Call
+                    </h3>
+                    <h4 className="text-2xl font-bold text-muted-foreground mb-2">
+                      Book a Strategy Call
+                    </h4>
+                    <p className="mt-2 text-foreground/90 leading-relaxed">
+                      Cut your AWS bill, boost uptime, and automate releases - Lets talk about your problems.
+                    </p>
+                  </div>
+                  <div>
+                    <a
+                      href={scheduleAuditLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] flex items-center justify-center gap-2"
+                      aria-label="Book a Call"
+                    >
+                      <Calendar className="h-5 w-5 mr-2 text-white" />
+                      Book a Call
+                    </a>
+                  </div>
+                </div>
+              </SpotlightCard>
 
-          {/* Column 2 – Free Audit Call */}
-          <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
-            <div className="flex flex-col gap-6 justify-between h-full">
-              <div>
-                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                  Free Audit Call
-                </h3>
-                <h4 className="text-2xl font-bold text-muted-foreground mb-2">
-                Schedule a Call
-                </h4>
-                <p className="mt-2 text-foreground/90 leading-relaxed">
-                Book a free call with our team to explore cost optimisation opportunities, security improvements, or architecture reviews — tailored to your cloud journey.
-                </p>
-              </div>
-              <div>
-                <a
-                  href={scheduleAuditLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] flex items-center justify-center gap-2"
-                  aria-label="Schedule a Free Audit Call"
-                >
-                  <CalendarClock className="h-5 w-5 mr-2 text-white" />
-                  Schedule a Free Audit
-                </a>
-              </div>
-            </div>
-          </SpotlightCard>
+              {/* Column 2 – Chat With an Architect (CTO Page) */}
+              <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
+                <div className="flex flex-col gap-6 justify-between h-full">
+                  <div>
+                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                      Expert Consultation
+                    </h3>
+                    <h4 className="text-2xl font-bold text-muted-foreground mb-2">
+                      Chat With an Architect
+                    </h4>
+                    <p className="mt-2 text-foreground/90 leading-relaxed">
+                      Talk directly with an ex-AWS architect who's optimized 100+ stacks, just like yours, across 300+ AWS accounts.
+                    </p>
+                  </div>
+                  <div>
+                    <a
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]"
+                    >
+                      <MessageCircle className="h-5 w-5 mr-2 text-white" />
+                      WhatsApp Us
+                    </a>
+                  </div>
+                </div>
+              </SpotlightCard>
 
-          {/* Column 3 – Risk-Free Start */}
-          <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
-            <div className="flex flex-col gap-6 justify-between h-full">
-              <div>
-                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                  Risk-Free Start
-                </h3>
-                <h4 className="text-2xl font-bold text-muted-foreground mb-2">
-                Start Smart, No Strings Attached
-                </h4>
-                <p className="mt-2 text-foreground/90 leading-relaxed">
-                Experience Cloud Victor with zero risk. Begin with a free audit and see how we can help you save, secure, and scale your cloud - with results verified on your AWS bill.
-                </p>
-              </div>
-              <div>
-                <a
-                  href={startSavingLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] flex items-center justify-center gap-2"
-                  aria-label="Start Saving Today"
-                >
-                  <BadgeDollarSign className="h-5 w-5 mr-2 text-white" />
-                  Start Saving Today.
-                </a>
-              </div>
-            </div>
-          </SpotlightCard>
+              {/* Column 3 – Start Risk-Free (CTO Page) */}
+              <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
+                <div className="flex flex-col gap-6 justify-between h-full">
+                  <div>
+                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                      Risk-Free Start
+                    </h3>
+                    <h4 className="text-2xl font-bold text-muted-foreground mb-2">
+                      Start Risk-Free
+                    </h4>
+                    <p className="mt-2 text-foreground/90 leading-relaxed">
+                      Let's discuss your problems and we show you a free POC of what we can deliver for you.
+                    </p>
+                  </div>
+                  <div>
+                    <a
+                      href={scheduleAuditLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] flex items-center justify-center gap-2"
+                      aria-label="Book a Call"
+                    >
+                      <Calendar className="h-5 w-5 mr-2 text-white" />
+                      Book a Call
+                    </a>
+                  </div>
+                </div>
+              </SpotlightCard>
+            </>
+          ) : (
+            <>
+              {/* Column 1 - Quick Chat */}
+              <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
+                <div className="flex flex-col gap-6 justify-between h-full">
+                  <div>
+                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">Quick Chat</h3>
+                    <h4 className="text-2xl font-bold text-muted-foreground mb-2">
+                      Let's Talk
+                    </h4>
+                    <p className="mt-2 text-foreground/90 leading-relaxed">
+                      Got questions about your cloud costs, security, or scaling? Our experts are here to give you clear answers and tailored guidance.
+                    </p>
+                  </div>
+                  <div>
+                    <a
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]"
+                    >
+                      <MessageCircle className="h-5 w-5 mr-2 text-white" />
+                      Chat on WhatsApp
+                    </a>
+                  </div>
+                </div>
+              </SpotlightCard>
+
+              {/* Column 2 – Free Audit Call */}
+              <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
+                <div className="flex flex-col gap-6 justify-between h-full">
+                  <div>
+                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                      Free Audit Call
+                    </h3>
+                    <h4 className="text-2xl font-bold text-muted-foreground mb-2">
+                    Schedule a Call
+                    </h4>
+                    <p className="mt-2 text-foreground/90 leading-relaxed">
+                    Book a free call with our team to explore cost optimisation opportunities, security improvements, or architecture reviews — tailored to your cloud journey.
+                    </p>
+                  </div>
+                  <div>
+                    <a
+                      href={scheduleAuditLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] flex items-center justify-center gap-2"
+                      aria-label="Schedule a Free Audit Call"
+                    >
+                      <CalendarClock className="h-5 w-5 mr-2 text-white" />
+                      Schedule a Free Audit
+                    </a>
+                  </div>
+                </div>
+              </SpotlightCard>
+
+              {/* Column 3 – Risk-Free Start */}
+              <SpotlightCard className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8">
+                <div className="flex flex-col gap-6 justify-between h-full">
+                  <div>
+                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                      Risk-Free Start
+                    </h3>
+                    <h4 className="text-2xl font-bold text-muted-foreground mb-2">
+                    Start Smart, No Strings Attached
+                    </h4>
+                    <p className="mt-2 text-foreground/90 leading-relaxed">
+                    Experience Cloud Victor with zero risk. Begin with a free audit and see how we can help you save, secure, and scale your cloud - with results verified on your AWS bill.
+                    </p>
+                  </div>
+                  <div>
+                    <a
+                      href={startSavingLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-pointer w-full bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] flex items-center justify-center gap-2"
+                      aria-label="Start Saving Today"
+                    >
+                      <BadgeDollarSign className="h-5 w-5 mr-2 text-white" />
+                      Start Saving Today.
+                    </a>
+                  </div>
+                </div>
+              </SpotlightCard>
+            </>
+          )}
         </div>
       </div>
     </section>

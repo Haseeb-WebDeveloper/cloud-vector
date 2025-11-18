@@ -187,24 +187,33 @@ export default function HowItWorks() {
                   <h3 className="text-3xl md:text-4xl font-bold text-foreground">
                     {tab.heading}
                   </h3>
-                  <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-                    {tab.oneLiner}
-                  </p>
                 </div>
 
                 {/* Benefits Section */}
                 <div className="max-w-6xl mx-auto px-4 lg:px-24 py-8 bg-[#0B1220] rounded-2xl" style={{ boxShadow: "0 4px 32px 0 #3C213A" }}
                 >
                   <h4 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center mb-6 md:mb-8 lg:mb-12">
-                    Use less of cloud & pay less for it
+                    {tab.benefitsHeading || "Use less of cloud & pay less for it"}
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    {tab.oneLiner && (
+                      <div className="flex items-start gap-3 p-3 sm:p-4 bg-foreground/5 rounded-lg">
+                        <div className="flex-shrink-0 mt-1">
+                          <CheckIcon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                        </div>
+                        <span className="text-xs sm:text-sm leading-relaxed">
+                          {tab.oneLiner}
+                        </span>
+                      </div>
+                    )}
                     {tab.benefits.map((benefit, index) => (
                       <div
                         key={index}
                         className="flex items-start gap-3 p-3 sm:p-4 bg-foreground/5 rounded-lg"
                       >
-                        <CheckIcon className="w-4 h-4 sm:w-5 sm:h-5 mt-1 flex-shrink-0 text-primary" />
+                        <div className="flex-shrink-0 mt-1">
+                          <CheckIcon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                        </div>
                         <span className="text-xs sm:text-sm leading-relaxed">
                           {benefit}
                         </span>

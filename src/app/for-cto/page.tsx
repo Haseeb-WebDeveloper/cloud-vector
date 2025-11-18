@@ -16,6 +16,7 @@ import {
 import HowWeSolve from "@/components/for-cto/how-we-solve";
 import HowItWorks from "@/components/for-cto/how-it-works";
 import GetStartedSection from "@/components/cost-optimisation/get-started-section";
+import CaseStudySection from "@/components/home/case-study-section";
 
 export default function ForCTO() {
   const LogoStats = [
@@ -86,6 +87,7 @@ export default function ForCTO() {
         <GetStartedSection whatsappLink="https://s.cloudvictor.com/whatsapp-web-cto-2" scheduleLink="https://s.cloudvictor.com/meeting-web-cto-2" />
       </div>
       <TestimonialsSection />
+      <CaseStudySection />
     </>
   );
 }

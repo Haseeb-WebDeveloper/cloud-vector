@@ -77,6 +77,7 @@ export interface TabData {
   icon: React.ReactNode;
   heading: string;
   oneLiner: string;
+  benefitsHeading?: string;
   benefits: string[];
   features: FeatureStep[];
 }
@@ -98,6 +99,7 @@ export const tabsData: TabData[] = [
     heading: "",
     oneLiner: "",
     benefits: [
+      "Deliver the same customer experience with fewer, fully-utilised resources.",
       "Bill-Verified Savings.",
       "Data-backed resource-level proof.",
       "Identify & eliminate zombies.",
@@ -173,6 +175,7 @@ export const tabsData: TabData[] = [
     heading: "",
     oneLiner: "",
     benefits: [
+      "Get Instant alert of suspicious activity. Act fast.",
       "Not just Audit-Day, but Continuous proven Compliance.",
       "Continuous Perimeter Monitoring. What? Why? When? Where? How to fix?",
       "Continuous Breach Detection. What? When? Who? Where?",
@@ -238,7 +241,10 @@ export const tabsData: TabData[] = [
     icon: <Zap className="w-5 h-5" />,
     heading: "",
     oneLiner: "",
+    benefitsHeading: "Free up Dev team bandwidth & Lower Risk",
     benefits: [
+      "Codify your foundation so envs are consistent, and provisioning is automated.",
+      "Multi-account CI/CD Pipeline with IaC, Integ Tests & audit trails",
       "Paved Roads (IaC): Reusable components (VPC, IAM, DNS, DBs).",
       "System & Business Metrics Dashboards inside your AWS account.",
       "No tool sprawl.",
@@ -311,7 +317,10 @@ export const tabsData: TabData[] = [
     icon: <AlertTriangle className="w-5 h-5" />,
     heading: "",
     oneLiner: "",
+    benefitsHeading: "Infrastructure that works. No matter what happens!",
     benefits: [
+      "Multiple layers of redundancy.",
+      "Multi-AZ architecture ensures 100% uptime.",
       "Automated Database & ElasticSearch Backups & Recovery.",
       "Automated Cross Account S3 backups.",
       "(Semi) Automated Disaster Recovery Plans.",
@@ -334,6 +343,7 @@ export const tabsData: TabData[] = [
         heading: "Implement & Test out Disaster Recovery",
         oneLiner: "Multiple layers of redundancy.",
         details: [
+          "Multiple layers of redundancy.",
           "Minimal changes to the infrastructure to Disaster-proof your application layer.",
           "Data replication at the Persistence layer for Disaster Recovery.",
           "Cross-account/Cross-region replication for increased isolation & reliability.",
@@ -368,7 +378,10 @@ export const tabsData: TabData[] = [
     icon: <Users className="w-5 h-5" />,
     heading: "",
     oneLiner: "",
+    benefitsHeading: "Customer UX that delights & boosts revenue!",
     benefits: [
+      "Establish multi-layer telemetry to measure & establish baseline performance.",
+      "57% improved page/app loads.",
       "Increased Customer Retention & Revenue Boosts",
       "Auto-scaling that responds in seconds.",
       "Architectures that survive planet-scale peaks.",

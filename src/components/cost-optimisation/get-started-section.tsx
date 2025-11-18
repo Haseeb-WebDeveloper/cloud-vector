@@ -1,6 +1,6 @@
 "use client";
 
-import { BadgePercent, Receipt, ShieldCheck, Calendar, MessageCircle, TrendingUp, UserPlus } from "lucide-react";
+import { Calendar, MessageCircle, UserPlus, BarChart3, CheckCircle, Users, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { SpotlightCard } from "../ui/spolight-card";
 import { GradientButton } from "@/components/ui/gradient-button";
@@ -43,35 +43,40 @@ export default function GetStartedSection({ whatsappLink = "https://s.cloudvicto
 
               {/* Heading */}
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-                Make your Cloud Work Smarter for you.
+                Turn Your AWS infrastructure from Cost Center to Secret Growth Engine.
               </h2>
 
               {/* Body Text */}
               <p className="text-base lg:text-lg mb-6 max-w-2xl mx-auto">
-                Helping You Win Every Cloud Battle.
+                We optimize, automate, and secure your cloud - so your team can focus on building, not firefighting.
               </p>
 
               {/* Chips */}
               <div className="flex flex-wrap justify-center gap-2.5 mb-6">
                 <div className="group flex items-center gap-2 border border-foreground rounded-full px-3.5 py-1.5 text-sm font-medium">
                   <div className="p-1.5 rounded-full bg-primary group-hover:bg-foreground transition-colors duration-200">
-                    <BadgePercent className="w-4 h-4 text-background group-hover:text-primary transition-colors duration-200" />
+                    <BarChart3 className="w-4 h-4 text-background group-hover:text-primary transition-colors duration-200" />
                   </div>
-                  No Savings, No Fee
+                  Metric-Driven, Verified Results
                 </div>
                 <div className="group flex items-center gap-2 border border-foreground rounded-full px-3.5 py-1.5 text-sm font-medium">
                   <div className="p-1.5 rounded-full bg-primary group-hover:bg-foreground transition-colors duration-200">
-                    <Receipt className="w-4 h-4 text-background group-hover:text-primary transition-colors duration-200" />
+                    <CheckCircle className="w-4 h-4 text-background group-hover:text-primary transition-colors duration-200" />
                   </div>
-                  Jumpstart your cloud native architecture
+                  100% ROI Guarantee
                 </div>
                 <div className="group flex items-center gap-2 border border-foreground rounded-full px-3.5 py-1.5 text-sm font-medium">
                   <div className="p-1.5 rounded-full bg-primary group-hover:bg-foreground transition-colors duration-200">
-                    <TrendingUp className="w-4 h-4 text-background group-hover:text-primary transition-colors duration-200" />
+                    <Users className="w-4 h-4 text-background group-hover:text-primary transition-colors duration-200" />
                   </div>
-                  3-Month ROI Guarantee
+                  Built by Amazon Veterans
                 </div>
-                
+                <div className="group flex items-center gap-2 border border-foreground rounded-full px-3.5 py-1.5 text-sm font-medium">
+                  <div className="p-1.5 rounded-full bg-primary group-hover:bg-foreground transition-colors duration-200">
+                    <Sparkles className="w-4 h-4 text-background group-hover:text-primary transition-colors duration-200" />
+                  </div>
+                  Tailored Service
+                </div>
               </div>
 
               {/* Call to Action Button */}
