@@ -9,7 +9,11 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy"
+    "deploy-graphql": "sanity graphql deploy",
+    "seed:testimonials": "sanity exec scripts/seed-homepage.ts --with-user-token",
+    "seed:homepage": "sanity exec scripts/seed-homepage.ts --with-user-token",
+    "seed:cto-page": "sanity exec scripts/seed-cto-page.ts --with-user-token",
+    "seed:contact-us-page": "sanity exec scripts/seed-contact-us-page.ts --with-user-token"
   },
   "keywords": [
     "sanity"

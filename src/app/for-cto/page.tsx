@@ -17,9 +17,26 @@ import HowWeSolve from "@/components/for-cto/how-we-solve";
 import HowItWorks from "@/components/for-cto/how-it-works";
 import GetStartedSection from "@/components/cost-optimisation/get-started-section";
 import CaseStudySection from "@/components/home/case-study-section";
+import { getCTOPageData } from "@/lib/sanity/fetch";
 
-export default function ForCTO() {
-  const LogoStats = [
+// Icon mapping for stats
+const iconMap: Record<string, React.ReactNode> = {
+  PiggyBank: <PiggyBank size={40} className="text-primary" />,
+  Percent: <Percent size={40} className="text-primary" />,
+  Rocket: <Rocket size={40} className="text-primary" />,
+  ShieldCheck: <ShieldCheck size={40} className="text-primary" />,
+  TrendingUp: <TrendingUp size={40} className="text-primary" />,
+  Users: <Users size={40} className="text-primary" />,
+  BarChart3: <BarChart3 size={40} className="text-primary" />,
+  Server: <Server size={40} className="text-primary" />,
+};
+
+export default async function ForCTO() {
+  // Fetch CTO page data from Sanity
+  const ctoPageData = await getCTOPageData();
+
+  // Fallback stats for client section
+  const LogoStats = ctoPageData?.clientSection?.stats || [
     { title: "12+", description: "Years in Amazon/AWS" },
     { title: "10+", description: "Companies" },
     { title: "80+", description: "AWS accounts under Management" },
@@ -30,7 +47,15 @@ export default function ForCTO() {
     { title: "$60M+", description: "Annual Savings" },
   ];
 
-  const SocialStats: StatData[] = [
+  // Transform stats from Sanity to component format
+  const SocialStats: StatData[] = (ctoPageData?.statsSection?.stats || []).map((stat: any) => ({
+    value: stat.value,
+    label: stat.label,
+    icon: iconMap[stat.icon] || <BarChart3 size={40} className="text-primary" />,
+  }));
+
+  // Fallback stats if Sanity data is not available
+  const fallbackStats: StatData[] = [
     {
       value: "$362k+",
       label: "Savings delivered",
@@ -75,18 +100,52 @@ export default function ForCTO() {
 
   return (
     <>
-      <HomeHeroSection />
-      <ClientSectionV2
-        title="Real Impact. Don’t take it from us. Hear it from them."
-        stats={LogoStats}
+      <HomeHeroSection
+        mainHeading={ctoPageData?.heroSection?.mainHeading}
+        animatedTexts={ctoPageData?.heroSection?.animatedTexts}
+        subheading={ctoPageData?.heroSection?.subheading}
+        animatedTextLabel={ctoPageData?.heroSection?.animatedTextLabel}
+        ctaButtons={ctoPageData?.heroSection?.ctaButtons}
       />
-      <HowWeSolve />
-      <HowItWorks />
-      <Stats stats={SocialStats} />
+      <ClientSectionV2
+        title={ctoPageData?.clientSection?.title || "Real Impact. Don't take it from us. Hear it from them."}
+        stats={LogoStats}
+        partnerLogos={ctoPageData?.clientSection?.partnerLogos}
+      />
+      <HowWeSolve
+        title={ctoPageData?.howWeSolveSection?.title}
+        subtitle={ctoPageData?.howWeSolveSection?.subtitle}
+        painPoints={ctoPageData?.howWeSolveSection?.painPoints}
+        solutions={ctoPageData?.howWeSolveSection?.solutions}
+        videoUrl={ctoPageData?.howWeSolveSection?.videoUrl || ctoPageData?.howWeSolveSection?.video?.asset?.url}
+      />
+      <HowItWorks
+        mainTitle={ctoPageData?.howItWorksSection?.mainTitle}
+        subtitle={ctoPageData?.howItWorksSection?.subtitle}
+        tabs={ctoPageData?.howItWorksSection?.tabs}
+      />
+      <Stats
+        title={ctoPageData?.statsSection?.title}
+        subtitle={ctoPageData?.statsSection?.subtitle}
+        stats={SocialStats.length > 0 ? SocialStats : fallbackStats}
+        centerImage={ctoPageData?.statsSection?.centerImage?.asset?.url}
+      />
       <div className=" mx-auto px-6 lg:px-12 max-w-7xl">
-        <GetStartedSection whatsappLink="https://s.cloudvictor.com/whatsapp-web-cto-2" scheduleLink="https://s.cloudvictor.com/meeting-web-cto-2" />
+        <GetStartedSection
+          whatsappLink={ctoPageData?.getStartedSection?.whatsappLink || "https://s.cloudvictor.com/whatsapp-web-cto-2"}
+          scheduleLink={ctoPageData?.getStartedSection?.scheduleLink || "https://s.cloudvictor.com/meeting-web-cto-2"}
+          logo={ctoPageData?.getStartedSection?.logo?.asset?.url}
+          heading={ctoPageData?.getStartedSection?.heading}
+          bodyText={ctoPageData?.getStartedSection?.bodyText}
+          chips={ctoPageData?.getStartedSection?.chips}
+          ctaButtons={ctoPageData?.getStartedSection?.ctaButtons}
+          backgroundImage={ctoPageData?.getStartedSection?.backgroundImage?.asset?.url}
+        />
       </div>
-      <TestimonialsSection />
+      <TestimonialsSection
+        title={ctoPageData?.testimonialsSection?.title}
+        testimonials={ctoPageData?.testimonialsSection?.testimonials}
+      />
       <CaseStudySection />
     </>
   );

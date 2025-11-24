@@ -9,13 +9,86 @@ import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MovingBorder } from "@/components/ui/moving-border";
+import {
+  Search,
+  Settings,
+  Server,
+  DollarSign,
+  Shield,
+  Zap,
+  AlertTriangle,
+  Users,
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function HowItWorks() {
-  const [activeTab, setActiveTab] = useState("cost");
+// Icon mapping utility
+const iconMap: Record<string, React.ReactNode> = {
+  DollarSign: <DollarSign className="w-5 h-5" />,
+  Shield: <Shield className="w-5 h-5" />,
+  Zap: <Zap className="w-5 h-5" />,
+  AlertTriangle: <AlertTriangle className="w-5 h-5" />,
+  Users: <Users className="w-5 h-5" />,
+  Search: <Search className="w-5 h-5" />,
+  Settings: <Settings className="w-5 h-5" />,
+  Server: <Server className="w-5 h-5" />,
+};
+
+interface HowItWorksProps {
+  mainTitle?: string;
+  subtitle?: string;
+  tabs?: Array<{
+    id: string;
+    label: string;
+    iconName: string;
+    heading?: string;
+    oneLiner?: string;
+    benefitsHeading?: string;
+    benefits: string[];
+    features: Array<{
+      heading: string;
+      oneLiner: string;
+      details: string[];
+      image: {
+        asset?: {
+          url: string;
+        };
+        url?: string;
+      };
+      isReversed?: boolean;
+    }>;
+  }>;
+}
+
+export default function HowItWorks({
+  mainTitle = "From Architecture to Automation - One Partner, Total Control",
+  subtitle = "I want to:",
+  tabs,
+}: HowItWorksProps) {
+  const [activeTab, setActiveTab] = useState(tabs?.[0]?.id || "cost");
   const [isSticky, setIsSticky] = useState(false);
   const tabContainerRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+
+  // Transform Sanity tabs to component format
+  const transformedTabs: TabData[] = tabs
+    ? tabs.map((tab) => ({
+        id: tab.id,
+        label: tab.label,
+        icon: iconMap[tab.iconName] || <DollarSign className="w-5 h-5" />,
+        heading: tab.heading || "",
+        oneLiner: tab.oneLiner || "",
+        benefitsHeading: tab.benefitsHeading,
+        benefits: tab.benefits,
+        features: tab.features.map((feature, index) => ({
+          id: index + 1,
+          heading: feature.heading,
+          oneLiner: feature.oneLiner,
+          details: feature.details,
+          image: feature.image?.asset?.url || feature.image?.url || "",
+          isReversed: feature.isReversed || false,
+        })),
+      }))
+    : tabsData;
 
   // Handle sticky behavior
   useEffect(() => {
@@ -129,15 +202,15 @@ export default function HowItWorks() {
   }, [activeTab]);
 
   const currentTabData =
-    tabsData.find((tab) => tab.id === activeTab) || tabsData[0];
+    transformedTabs.find((tab) => tab.id === activeTab) || transformedTabs[0];
 
   return (
     <div className="py-32">
       <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center sm:mb-8 max-w-4xl mx-auto leading-tight bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent ">
-        From Architecture to Automation - One Partner, Total Control
+        {mainTitle}
       </h2>
       <h3 className="text-xl sm:text-4xl font-semibold text-center text-white mb-2">
-        I want to:
+        {subtitle}
       </h3>
 
       {/* Sticky Tabs Navigation */}
@@ -150,7 +223,7 @@ export default function HowItWorks() {
       >
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className=" w-fit mx-auto flex flex-wrap h-auto bg-transparent gap-4 justify-center items-center">
-            {tabsData.map((tab) => (
+            {transformedTabs.map((tab) => (
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
@@ -175,7 +248,7 @@ export default function HowItWorks() {
       {/* Tab Content */}
       <div className="max-w-7xl mx-auto   px-4">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          {tabsData.map((tab) => (
+          {transformedTabs.map((tab) => (
             <TabsContent
               key={tab.id}
               value={tab.id}

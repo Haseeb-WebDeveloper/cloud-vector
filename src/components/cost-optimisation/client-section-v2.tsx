@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/marquee";
 import { Calendar, DollarSign, TrendingUp } from "lucide-react";
 
-const partnerLogos = [
+const defaultPartnerLogos = [
   { name: "Partner 1", src: "/Partners-logos/1.png", alt: "Partner 1" },
   { name: "Partner 2", src: "/Partners-logos/2.png", alt: "Partner 2" },
   { name: "Partner 3", src: "/Partners-logos/3.png", alt: "Partner 3" },
@@ -26,10 +26,28 @@ const partnerLogos = [
 export default function ClientSectionV2({
   title, 
   stats,
+  partnerLogos,
 }: {
   title: string;
   stats: { title: string; description: string }[];
+  partnerLogos?: Array<{
+    name: string;
+    alt?: string;
+    logo?: {
+      asset?: {
+        url?: string;
+      };
+    };
+  }>;
 }) {
+  // Convert Sanity partner logos to component format
+  const logosToDisplay = partnerLogos && partnerLogos.length > 0
+    ? partnerLogos.map((logo) => ({
+        name: logo.name,
+        src: logo.logo?.asset?.url || `/Partners-logos/${logo.name.toLowerCase().replace(/\s+/g, '-')}.png`,
+        alt: logo.alt || logo.name,
+      }))
+    : defaultPartnerLogos;
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   // Function to get icon based on title and description
@@ -97,7 +115,7 @@ export default function ClientSectionV2({
               loop={0}
               autoFill={true}
             >
-              {partnerLogos.map((logo, index) => (
+              {logosToDisplay.map((logo, index) => (
                 <MarqueeItem key={index} className="mx-8">
                   <div className="flex items-center justify-center w-32 h-16 lg:w-40 lg:h-20">
                     <Image

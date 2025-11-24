@@ -28,7 +28,7 @@ const footerColumns = [
     items: [
       {
         icon: Shield,
-        href: "/solutions/ctos",
+        href: "/for-cto",
         label: "For CTOs",
         desc: "Cost Efficiency, Performance, 24x7 Security, Monitoring, Disaster Recovery.",
       },
@@ -52,7 +52,7 @@ const footerColumns = [
       },
       {
         icon: BarChart3,
-        href: "/products/finops",
+        href: "/cost-optimisation",
         label: "FINOPS",
         desc: "Automated cost leak detection & one-click fixes.",
       },
@@ -88,7 +88,7 @@ const footerColumns = [
     items: [
       {
         icon: Info,
-        href: "/about",
+        href: "/about-us",
         label: "About Us",
         desc: "Built by ex-Amazon veteran to help you run your infra the Amazon way.",
       },

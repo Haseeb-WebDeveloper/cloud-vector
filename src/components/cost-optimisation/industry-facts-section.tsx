@@ -15,46 +15,76 @@ interface IndustryFact {
   image: string;
 }
 
-const industryFacts: IndustryFact[] = [
-  {
-    id: 1,
-    fact: "Organizations waste up to <span class=\"text-[#FF8703] font-semibold\">30%</span> of their cloud spend due to underutilized resources and poor governance.",
-    source: "Gartner",
-    report: "How to Identify and Reduce Public Cloud Waste 2024",
-    image: "/Cloud Spending & Waste is Escalating Fast/Gartner (How to Identify and Reduce Public Cloud Waste 2024).png",
-  },
-  {
-    id: 2,
-    fact: "Approximately <span class=\"text-[#FF8703] font-semibold\">35%</span> of cloud spend is wasted due to overprovisioning, unused resources, and inefficient architecture.",
-    source: "McKinsey & Company",
-    report: "Cloud's trillion-dollar prize is up for grabs. Report",
-    image: "/Cloud Spending & Waste is Escalating Fast/McKinsey Company (Cloud's trillion-dollar prize is up for grabs. Report).png",
-  },
-  {
-    id: 3,
-    fact: "82% of global organizations struggle with more than <span class=\"text-[#FF8703] font-semibold\">10%</span> of their cloud spend being wasted, and 38% experience more than <span class=\"text-[#FF8703] font-semibold\">30%</span> wastage.",
-    source: "Everest Group",
-    report: "Cloud Waste Survey 2024",
-    image: "/Cloud Spending & Waste is Escalating Fast/Everest Group (Cloud Waste Survey 2024).png",
-  },
-  {
-    id: 4,
-    fact: "More than three-quarters <span class=\"text-[#FF8703] font-semibold\">(78%)</span> of enterprises estimate that <span class=\"text-[#FF8703] font-semibold\">21-50%</span> of their cloud spend is wasted, with preventable mistakes costing some organizations over $50,000 per month.",
-    source: "Omdia",
-    report: "State of Cloud Usage Optimization 2024",
-    image: "/Cloud Spending & Waste is Escalating Fast/Omdia (State of Cloud Usage Optimization 2024).jpg",
-  },
-  {
-    id: 5,
-    fact: "Integrating cloud cost management practices (FinOps) into engineering processes could unlock nearly <span class=\"text-[#FF8703] font-semibold\">$120 billion</span> in value.",
-    source: "McKinsey & Company",
-    report:
-      "Everything Is Better as Code: Using FinOps to Manage Cloud Costs 2025",
-    image: "/Cloud Spending & Waste is Escalating Fast/McKinsey  Company (Everything Is Better as Code Using FinOps to Manage Cloud Costs 2025).jpg",
-  },
-];
+interface IndustryFactsSectionProps {
+  title?: string;
+  subtitle?: string;
+  facts?: Array<{
+    fact: string;
+    source: string;
+    report: string;
+    image?: {
+      asset?: {
+        url?: string;
+      };
+    };
+  }>;
+}
 
-export default function IndustryFactsSection() {
+export default function IndustryFactsSection({
+  title = "Cloud Spending & Waste is Escalating Fast",
+  subtitle = "Industry Facts quantifying the problem.",
+  facts,
+}: IndustryFactsSectionProps) {
+  // Default facts if not provided
+  const defaultFacts: IndustryFact[] = [
+    {
+      id: 1,
+      fact: "Organizations waste up to <span class=\"text-[#FF8703] font-semibold\">30%</span> of their cloud spend due to underutilized resources and poor governance.",
+      source: "Gartner",
+      report: "How to Identify and Reduce Public Cloud Waste 2024",
+      image: "/Cloud Spending & Waste is Escalating Fast/Gartner (How to Identify and Reduce Public Cloud Waste 2024).png",
+    },
+    {
+      id: 2,
+      fact: "Approximately <span class=\"text-[#FF8703] font-semibold\">35%</span> of cloud spend is wasted due to overprovisioning, unused resources, and inefficient architecture.",
+      source: "McKinsey & Company",
+      report: "Cloud's trillion-dollar prize is up for grabs. Report",
+      image: "/Cloud Spending & Waste is Escalating Fast/McKinsey Company (Cloud's trillion-dollar prize is up for grabs. Report).png",
+    },
+    {
+      id: 3,
+      fact: "82% of global organizations struggle with more than <span class=\"text-[#FF8703] font-semibold\">10%</span> of their cloud spend being wasted, and 38% experience more than <span class=\"text-[#FF8703] font-semibold\">30%</span> wastage.",
+      source: "Everest Group",
+      report: "Cloud Waste Survey 2024",
+      image: "/Cloud Spending & Waste is Escalating Fast/Everest Group (Cloud Waste Survey 2024).png",
+    },
+    {
+      id: 4,
+      fact: "More than three-quarters <span class=\"text-[#FF8703] font-semibold\">(78%)</span> of enterprises estimate that <span class=\"text-[#FF8703] font-semibold\">21-50%</span> of their cloud spend is wasted, with preventable mistakes costing some organizations over $50,000 per month.",
+      source: "Omdia",
+      report: "State of Cloud Usage Optimization 2024",
+      image: "/Cloud Spending & Waste is Escalating Fast/Omdia (State of Cloud Usage Optimization 2024).jpg",
+    },
+    {
+      id: 5,
+      fact: "Integrating cloud cost management practices (FinOps) into engineering processes could unlock nearly <span class=\"text-[#FF8703] font-semibold\">$120 billion</span> in value.",
+      source: "McKinsey & Company",
+      report:
+        "Everything Is Better as Code: Using FinOps to Manage Cloud Costs 2025",
+      image: "/Cloud Spending & Waste is Escalating Fast/McKinsey  Company (Everything Is Better as Code Using FinOps to Manage Cloud Costs 2025).jpg",
+    },
+  ];
+
+  // Convert Sanity facts to component format
+  const industryFacts: IndustryFact[] = facts && facts.length > 0
+    ? facts.map((fact, index) => ({
+        id: index + 1,
+        fact: fact.fact,
+        source: fact.source,
+        report: fact.report,
+        image: fact.image?.asset?.url || defaultFacts[index]?.image || "",
+      }))
+    : defaultFacts;
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     duration: 20,
@@ -138,14 +168,12 @@ export default function IndustryFactsSection() {
       <div className="container mx-auto px-4 relative">
         {/* Section Header */}
         <div className="text-center pb-16">
-          <h2 className="text-4xl lg:text-6xl font-semibold text-foreground pt-18">
-            {"Cloud Spending & "}
-            <span className="bg-gradient-to-r from-[#FF8703] via-amber-300 to-[#deb2b2] bg-clip-text text-transparent">
-              Waste is Escalating Fast
-            </span>
-          </h2>
+          <h2 
+            className="text-4xl lg:text-6xl font-semibold text-foreground pt-18"
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
           <p className="text-2xl text-foreground/90 max-w-3xl mx-auto pt-6">
-            Industry Facts quantifying the problem.
+            {subtitle}
           </p>
         </div>
 

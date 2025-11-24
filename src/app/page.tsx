@@ -7,10 +7,17 @@ import GetStartedSection from "@/components/cost-optimisation/get-started-sectio
 import AnimatedSections from "@/components/animated";
 import CaseStudySection from "@/components/home/case-study-section";
 import { ChartPieDonutText } from "@/components/ui/pie-chart";
-  
-export default function Home() {
-  const stats = [
+import { getHomePageData } from "@/lib/sanity/fetch";
 
+export default async function Home() {
+  // Fetch homepage data from Sanity
+  const homePageData = await getHomePageData();
+
+  // Debug: Log the fetched data
+  console.log("Homepage data from Sanity:", JSON.stringify(homePageData, null, 2));
+
+  // Fallback to static data if Sanity data is not available
+  const stats = homePageData?.clientSection?.stats || [
     {
       title: "10+",
       description: "Companies",
@@ -19,23 +26,32 @@ export default function Home() {
       title: "12+",
       description: "Years in Amazon/AWS",
     },
-
     {
       title: "$60M+",
       description: "Annual Savings",
     },
-
     {
       title: "68%",
       description: "Annual Savings",
     },
+
   ];
 
   return (
     <>
-      <HomeHeroSection />
+
+      <HomeHeroSection
+        mainHeading={homePageData?.heroSection?.mainHeading}
+        animatedTexts={homePageData?.heroSection?.animatedTexts}
+        subheading={homePageData?.heroSection?.subheading}
+        ctaButtons={homePageData?.heroSection?.ctaButtons}
+      />
       {/* <ChartPieDonutText /> */}
-      <ClientSectionV2 title="Proven Savings. Real Impact" stats={stats} />
+      <ClientSectionV2
+        title={homePageData?.clientSection?.title || "Proven Savings. Real Impact"}
+        stats={stats}
+        partnerLogos={homePageData?.clientSection?.partnerLogos}
+      />
       <AnimatedSections />
       <ValueProps />
       <div>
@@ -43,7 +59,10 @@ export default function Home() {
           <GetStartedSection scheduleLink="https://s.cloudvictor.com/meeting-web-home-2" />
         </div>
       </div>
-      <TestimonialsSection />
+      <TestimonialsSection 
+        title={homePageData?.testimonialsSection?.title}
+        testimonials={homePageData?.testimonialsSection?.testimonials}
+      />
       <CaseStudySection />
       <FAQSection />
     </>

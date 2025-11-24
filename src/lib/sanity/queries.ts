@@ -191,3 +191,446 @@ export const getAllBlogPostsSlugsQuery = () => `
   "slug": slug.current
 }
 `;
+
+// Homepage query
+export const getHomePageQuery = () => `
+*[_type == "homePage"][0] {
+  _id,
+  heroSection {
+    mainHeading,
+    animatedTexts,
+    subheading,
+    ctaButtons[] {
+      label,
+      url,
+      openInNewTab,
+      buttonType
+    }
+  },
+  clientSection {
+    title,
+    stats[] {
+      title,
+      description
+    },
+    partnerLogos[] {
+      name,
+      alt,
+      logo {
+        asset-> {
+          url
+        }
+      }
+    }
+  },
+  animatedSections {
+    mainTitle,
+    offers[] {
+      title,
+      headline,
+      tagline,
+      subTagline,
+      features[] {
+        icon,
+        text
+      },
+      afterFeaturesText
+    },
+    statsTitle,
+    statsSubtitle,
+    stats[] {
+      value,
+      label,
+      icon
+    },
+    centerImage {
+      asset-> {
+        url
+      }
+    },
+    stepImages[] {
+      asset-> {
+        url
+      }
+    }
+  },
+  valuePropsSection {
+    title,
+    cards[] {
+      icon,
+      title,
+      description
+    }
+  },
+  getStartedSection {
+    logo {
+      asset-> {
+        url
+      }
+    },
+    heading,
+    bodyText,
+    chips[] {
+      icon,
+      text
+    },
+    ctaButtons[] {
+      label,
+      url,
+      openInNewTab,
+      buttonType
+    },
+    backgroundImage {
+      asset-> {
+        url
+      }
+    }
+  },
+  testimonialsSection {
+    title,
+    testimonials[] {
+      quote,
+      name,
+      title,
+      company,
+      image {
+        asset-> {
+          url
+        }
+      },
+      savings
+    }
+  },
+  faqSection {
+    title,
+    faqs[] {
+      question,
+      answer
+    }
+  },
+  metaTitle,
+  metaDescription,
+  ogImage {
+    asset-> {
+      url
+    }
+  }
+}
+`;
+
+// CTO Page query
+export const getCTOPageQuery = () => `
+*[_type == "ctoPage"][0] {
+  _id,
+  heroSection {
+    mainHeading,
+    animatedTexts,
+    subheading,
+    animatedTextLabel,
+    ctaButtons[] {
+      label,
+      url,
+      openInNewTab,
+      buttonType
+    }
+  },
+  clientSection {
+    title,
+    stats[] {
+      title,
+      description
+    },
+    partnerLogos[] {
+      name,
+      alt,
+      logo {
+        asset-> {
+          url
+        }
+      }
+    }
+  },
+  howWeSolveSection {
+    title,
+    subtitle,
+    painPoints[] {
+      title,
+      description,
+      color
+    },
+    solutions[] {
+      title,
+      description,
+      color
+    },
+    video {
+      asset-> {
+        url
+      }
+    },
+    videoUrl
+  },
+  howItWorksSection {
+    mainTitle,
+    subtitle,
+    tabs[] {
+      id,
+      label,
+      iconName,
+      heading,
+      oneLiner,
+      benefitsHeading,
+      benefits,
+      features[] {
+        heading,
+        oneLiner,
+        details,
+        image {
+          asset-> {
+            url
+          }
+        },
+        isReversed
+      }
+    }
+  },
+  statsSection {
+    title,
+    subtitle,
+    stats[] {
+      value,
+      label,
+      icon
+    },
+    centerImage {
+      asset-> {
+        url
+      }
+    }
+  },
+  getStartedSection {
+    logo {
+      asset-> {
+        url
+      }
+    },
+    heading,
+    bodyText,
+    chips[] {
+      icon,
+      text
+    },
+    ctaButtons[] {
+      label,
+      url,
+      openInNewTab,
+      buttonType
+    },
+    backgroundImage {
+      asset-> {
+        url
+      }
+    },
+    whatsappLink,
+    scheduleLink
+  },
+  testimonialsSection {
+    title,
+    testimonials[] {
+      quote,
+      name,
+      title,
+      company,
+      image {
+        asset-> {
+          url
+        }
+      },
+      savings
+    }
+  },
+  metaTitle,
+  metaDescription,
+  ogImage {
+    asset-> {
+      url
+    }
+  }
+}
+`;
+
+// Cost Optimisation Page query
+export const getCostOptimisationPageQuery = () => `
+*[_type == "costOptimisationPage"][0] {
+  _id,
+  heroSection {
+    mainHeading,
+    subheading,
+    animatedTexts,
+    animatedTextPrefix,
+    animatedTextSuffix,
+    ctaButtons[] {
+      label,
+      url,
+      openInNewTab,
+      buttonType
+    },
+    heroImage {
+      asset-> {
+        url
+      }
+    }
+  },
+  clientSection {
+    title,
+    stats[] {
+      title,
+      description
+    },
+    partnerLogos[] {
+      name,
+      alt,
+      logo {
+        asset-> {
+          url
+        }
+      }
+    }
+  },
+  industryFactsSection {
+    title,
+    subtitle,
+    facts[] {
+      fact,
+      source,
+      report,
+      image {
+        asset-> {
+          url
+        }
+      }
+    }
+  },
+  rootCaseSection {
+    title,
+    video {
+      asset-> {
+        url
+      }
+    },
+    videoUrl
+  },
+  testimonialsSection {
+    title,
+    testimonials[] {
+      quote,
+      name,
+      title,
+      company,
+      image {
+        asset-> {
+          url
+        }
+      },
+      savings
+    }
+  },
+  ourApproachSection {
+    title,
+    subtitle,
+    steps[] {
+      heading,
+      oneLiner,
+      details,
+      image {
+        asset-> {
+          url
+        }
+      },
+      isReversed
+    }
+  },
+  getStartedSection {
+    logo {
+      asset-> {
+        url
+      }
+    },
+    heading,
+    bodyText,
+    chips[] {
+      icon,
+      text
+    },
+    ctaButtons[] {
+      label,
+      url,
+      openInNewTab,
+      buttonType
+    },
+    backgroundImage {
+      asset-> {
+        url
+      }
+    },
+    whatsappLink,
+    scheduleLink
+  },
+  stepsSection {
+    title,
+    subtitle,
+    steps[] {
+      headline,
+      duration,
+      points,
+      iconName,
+      image {
+        asset-> {
+          url
+        }
+      }
+    }
+  },
+  metaTitle,
+  metaDescription,
+  ogImage {
+    asset-> {
+      url
+    }
+  }
+}
+`;
+
+// Contact Us Page query
+export const getContactUsPageQuery = () => `
+*[_type == "contactUsPage"][0] {
+  _id,
+  heroSection {
+    mainHeading,
+    subheading,
+    description,
+    bullets,
+    ctaButtons[] {
+      label,
+      url,
+      openInNewTab,
+      buttonType
+    },
+    phoneNumber,
+    phoneLink,
+    emailAddress,
+    emailLink
+  },
+  formSection {
+    title,
+    description
+  },
+  metaTitle,
+  metaDescription,
+  ogImage {
+    asset-> {
+      url
+    }
+  }
+}
+`;

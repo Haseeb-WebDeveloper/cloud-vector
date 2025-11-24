@@ -23,90 +23,132 @@ interface Step {
   image: string;
 }
 
-const steps: Step[] = [
-  {
-    id: 1,
-    headline: "Confidentiality First. Access in Minutes.",
-    duration: "30 mins",
-    points: [
-      "E-sign a NDA to protect your company's confidentiality.",
-      "Single-Click Deploy our CloudFormation stack.",
-      "Grants Read-only access to your infrastructure metadata.",
-      "No access to your actual data/instances/files.",
-      "Zero disruption to production workloads.",
-      "Small engagement fee, adjusted against final deliverables.",
-    ],
-    icon: <Shield className="w-4 h-4" />,
-    image: "/How do we do it/Step 1 Confidentiality First. Access in Minutes..png",
-  },
-  {
-    id: 2,
-    headline: "Exhaustive Resource Audit",
-    duration: "12-15 days",
-    points: [
-      "Every $ traced to actual resource and classified as idle/ misconfigured/ overprovisioned.",
-      "For each workload, we analyze 1000+ config combination & workload' requirements to determine the most cost-effective configs + resource counts + purchase options.",
-    ],
-    icon: <Search className="w-4 h-4" />,
-    image: "/How do we do it/Step 2 Exhaustive Resource Audit.jpg",
-  },
-  {
-    id: 3,
-    headline: "Your Costs & Savings, Clearly Mapped",
-    duration: "2-3 days",
-    points: [
-      "Summary report shared: Service-wise spends & guaranteed saving % possible.",
-      "One cost-saving area detailed with impact, metrics, root cause and step-by-step solution.",
-      "Summary Report with in-depth research, data-backed insights, and transparent solutions for a key cost-saving area",
-      "Implementation with your DevOps team, showing verified savings in AWS Cost Explorer within 2–3 days",
-      "This acts as a trust builder exercise between CloudVictor & customer.",
-    ],
-    icon: <BarChart3 className="w-4 h-4" />,
-    image: "/How do we do it/Step 3 Your Costs & Savings, Clearly Mapped.png",
-  },
-  {
-    id: 4,
-    headline: "No Savings, No Fee - Simple.",
-    duration: "Immediate",
-    points: [
-      "Our model is 100% success-based: If you don't see savings in your bill, you don't pay.",
-      "Total fee = 25% of annual savings visible in your bill (one-time, no recurring charges).",
-      "Split into 2 installments: first 50% now, balance after final verification of delivered savings in your AWS bill.",
-      "Every dollar you pay is recovered within 3 months of optimisation.",
-      "Backed by a 100% money-back guarantee if verified savings don't match our promise.",
-    ],
-    icon: <DollarSign className="w-4 h-4" />,
-    image: "/How do we do it/Step 4 No Savings, No Fee - Simple..jpg",
-  },
-  {
-    id: 5,
-    headline: "Implement Data-Backed Recommendations",
-    duration: "Ongoing",
-    points: [
-      "Review all the cost saving areas between both the teams.",
-      "Your Dev(Ops) team executes all approved right-configure/right-sizing recommendation.",
-      "CloudVictor supports your Dev(Ops) team with POC code + hands-on guidance at every step.",
-    ],
-    icon: <Settings className="w-4 h-4" />,
-    image: "/How do we do it/Step 5 Implement Data-Backed Recommendations.png",
-  },
-  {
-    id: 6,
-    headline: "Savings Verification with your AWS Bill.",
-    duration: "Final",
-    points: [
-      "Final verification report with before/after data from AWS CUR, Cost Explorer & Bill.",
-      "Guaranteed 100% ROI in 3 months — or your money back.",
-      "Alarms set up to alert both teams of cost creeps.",
-      "Savings achieved scale as your AWS usage expands since unit level efficiency is maximized.",
-      "Successful delivery with remaining 50% payment, completing a results-driven partnership.",
-    ],
-    icon: <FileCheck className="w-4 h-4" />,
-    image: "/How do we do it/Step 6 Savings Verification with your AWS Bill..png",
-  },
-];
+// Icon mapping
+const iconMap: Record<string, React.ReactNode> = {
+  Shield: <Shield className="w-4 h-4" />,
+  Search: <Search className="w-4 h-4" />,
+  BarChart3: <BarChart3 className="w-4 h-4" />,
+  DollarSign: <DollarSign className="w-4 h-4" />,
+  Settings: <Settings className="w-4 h-4" />,
+  FileCheck: <FileCheck className="w-4 h-4" />,
+};
 
-export default function StepsSection() {
+interface StepsSectionProps {
+  title?: string;
+  subtitle?: string;
+  steps?: Array<{
+    headline: string;
+    duration: string;
+    points: string[];
+    iconName: string;
+    image?: {
+      asset?: {
+        url?: string;
+      };
+    };
+  }>;
+}
+
+export default function StepsSection({
+  title = "How do we do it?",
+  subtitle = "Six steps that transform hidden costs into sustained savings.",
+  steps,
+}: StepsSectionProps) {
+  // Default steps if not provided
+  const defaultSteps: Step[] = [
+    {
+      id: 1,
+      headline: "Confidentiality First. Access in Minutes.",
+      duration: "30 mins",
+      points: [
+        "E-sign a NDA to protect your company's confidentiality.",
+        "Single-Click Deploy our CloudFormation stack.",
+        "Grants Read-only access to your infrastructure metadata.",
+        "No access to your actual data/instances/files.",
+        "Zero disruption to production workloads.",
+        "Small engagement fee, adjusted against final deliverables.",
+      ],
+      icon: <Shield className="w-4 h-4" />,
+      image: "/How do we do it/Step 1 Confidentiality First. Access in Minutes..png",
+    },
+    {
+      id: 2,
+      headline: "Exhaustive Resource Audit",
+      duration: "12-15 days",
+      points: [
+        "Every $ traced to actual resource and classified as idle/ misconfigured/ overprovisioned.",
+        "For each workload, we analyze 1000+ config combination & workload' requirements to determine the most cost-effective configs + resource counts + purchase options.",
+      ],
+      icon: <Search className="w-4 h-4" />,
+      image: "/How do we do it/Step 2 Exhaustive Resource Audit.jpg",
+    },
+    {
+      id: 3,
+      headline: "Your Costs & Savings, Clearly Mapped",
+      duration: "2-3 days",
+      points: [
+        "Summary report shared: Service-wise spends & guaranteed saving % possible.",
+        "One cost-saving area detailed with impact, metrics, root cause and step-by-step solution.",
+        "Summary Report with in-depth research, data-backed insights, and transparent solutions for a key cost-saving area",
+        "Implementation with your DevOps team, showing verified savings in AWS Cost Explorer within 2–3 days",
+        "This acts as a trust builder exercise between CloudVictor & customer.",
+      ],
+      icon: <BarChart3 className="w-4 h-4" />,
+      image: "/How do we do it/Step 3 Your Costs & Savings, Clearly Mapped.png",
+    },
+    {
+      id: 4,
+      headline: "No Savings, No Fee - Simple.",
+      duration: "Immediate",
+      points: [
+        "Our model is 100% success-based: If you don't see savings in your bill, you don't pay.",
+        "Total fee = 25% of annual savings visible in your bill (one-time, no recurring charges).",
+        "Split into 2 installments: first 50% now, balance after final verification of delivered savings in your AWS bill.",
+        "Every dollar you pay is recovered within 3 months of optimisation.",
+        "Backed by a 100% money-back guarantee if verified savings don't match our promise.",
+      ],
+      icon: <DollarSign className="w-4 h-4" />,
+      image: "/How do we do it/Step 4 No Savings, No Fee - Simple..jpg",
+    },
+    {
+      id: 5,
+      headline: "Implement Data-Backed Recommendations",
+      duration: "Ongoing",
+      points: [
+        "Review all the cost saving areas between both the teams.",
+        "Your Dev(Ops) team executes all approved right-configure/right-sizing recommendation.",
+        "CloudVictor supports your Dev(Ops) team with POC code + hands-on guidance at every step.",
+      ],
+      icon: <Settings className="w-4 h-4" />,
+      image: "/How do we do it/Step 5 Implement Data-Backed Recommendations.png",
+    },
+    {
+      id: 6,
+      headline: "Savings Verification with your AWS Bill.",
+      duration: "Final",
+      points: [
+        "Final verification report with before/after data from AWS CUR, Cost Explorer & Bill.",
+        "Guaranteed 100% ROI in 3 months — or your money back.",
+        "Alarms set up to alert both teams of cost creeps.",
+        "Savings achieved scale as your AWS usage expands since unit level efficiency is maximized.",
+        "Successful delivery with remaining 50% payment, completing a results-driven partnership.",
+      ],
+      icon: <FileCheck className="w-4 h-4" />,
+      image: "/How do we do it/Step 6 Savings Verification with your AWS Bill..png",
+    },
+  ];
+
+  // Convert Sanity steps to component format
+  const stepsData: Step[] = steps && steps.length > 0
+    ? steps.map((step, index) => ({
+        id: index + 1,
+        headline: step.headline,
+        duration: step.duration,
+        points: step.points,
+        icon: iconMap[step.iconName] || <Shield className="w-4 h-4" />,
+        image: step.image?.asset?.url || "",
+      }))
+    : defaultSteps;
   const [currentStep, setCurrentStep] = useState(1);
   const [progress, setProgress] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -167,7 +209,7 @@ export default function StepsSection() {
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          setCurrentStep((prev) => (prev === 6 ? 1 : prev + 1));
+          setCurrentStep((prev) => (prev === stepsData.length ? 1 : prev + 1));
           return 0;
         }
         return prev + 2; // 2% every 100ms = 5 seconds total
@@ -175,7 +217,7 @@ export default function StepsSection() {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying, isHoveringTabs]);
+  }, [isAutoPlaying, isHoveringTabs, stepsData.length]);
 
   const handleStepClick = (stepId: number) => {
     setCurrentStep(stepId);
@@ -189,7 +231,7 @@ export default function StepsSection() {
   };
 
   const currentStepData =
-    steps.find((step) => step.id === currentStep) || steps[0];
+    stepsData.find((step) => step.id === currentStep) || stepsData[0];
 
   return (
     <section>
@@ -197,10 +239,10 @@ export default function StepsSection() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl pt-16 md:text-5xl font-bold mb-4">
-            How do we do it?
+            {title}
           </h2>
           <p className="text-xl max-w-3xl mx-auto">
-            Six steps that transform hidden costs into sustained savings.
+            {subtitle}
           </p>
         </div>
 
@@ -210,7 +252,7 @@ export default function StepsSection() {
           onMouseEnter={() => setIsHoveringTabs(true)}
           onMouseLeave={() => setIsHoveringTabs(false)}
         >
-          {steps.map((step) => (
+          {stepsData.map((step) => (
             <button
               key={step.id}
               onClick={() => handleStepClick(step.id)}

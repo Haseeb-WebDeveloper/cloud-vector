@@ -2,12 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { GradientButton } from "@/components/ui/gradient-button";
 import HubSpotForm from "@/components/contact-us/hubspot-form";
+import { getContactUsPageData } from "@/lib/sanity/fetch";
 
-export const metadata = {
-  title: "Contact Us | CloudVictor",
-  description:
-    "Talk to an AWS Architect. Free consultation, WhatsApp, call, or email CloudVictor.",
-};
+export async function generateMetadata() {
+  const contactUsPageData = await getContactUsPageData();
+  
+  return {
+    title: contactUsPageData?.metaTitle || "Contact Us | CloudVictor",
+    description: contactUsPageData?.metaDescription || "Talk to an AWS Architect. Free consultation, WhatsApp, call, or email CloudVictor.",
+  };
+}
 
 // Icon Components
 const VideoIcon = () => (
@@ -101,13 +105,30 @@ const CheckIcon = () => (
   </svg>
 );
 
-export default function ContactUsPage() {
-  const bullets = [
+export default async function ContactUsPage() {
+  // Fetch Contact Us page data from Sanity
+  const contactUsPageData = await getContactUsPageData();
+
+  // Fallback data if Sanity data is not available
+  const bullets = contactUsPageData?.heroSection?.bullets || [
     "Free Consultation Call",
     "Any AWS issue in any service",
     "10+ YoE AWS Architect",
     "Upto 69% Monthly Bill Reduction",
   ];
+
+  const mainHeading = contactUsPageData?.heroSection?.mainHeading || "We want to hear from you!";
+  const subheading = contactUsPageData?.heroSection?.subheading || "Be it a complaint or a suggestion or a praise! We are all ears!";
+  const description = contactUsPageData?.heroSection?.description || "Talk to an AWS architect with 10+ YoE about your AWS issues to get free actionable advice & a 20-min audit of your AWS account.";
+  
+  const ctaButtons = contactUsPageData?.heroSection?.ctaButtons || [];
+  const phoneNumber = contactUsPageData?.heroSection?.phoneNumber || "+91-96255-96336";
+  const phoneLink = contactUsPageData?.heroSection?.phoneLink || "tel:+919625596336";
+  const emailAddress = contactUsPageData?.heroSection?.emailAddress || "prateek@cloudvictor.com";
+  const emailLink = contactUsPageData?.heroSection?.emailLink || "mailto:prateek@cloudvictor.com";
+
+  const formTitle = contactUsPageData?.formSection?.title || "Get in Touch";
+  const formDescription = contactUsPageData?.formSection?.description || "Fill out the form below and we'll get back to you as soon as possible.";
 
   // Gradient classes for the CTA buttons
   const gradientButtonClass =
@@ -122,23 +143,21 @@ export default function ContactUsPage() {
             style={{
               backgroundImage: "linear-gradient(90deg, var(--primary) 70%, #fff 100%)",
             }}
-          >
-            We want to hear from you!
-          </h1>
+            dangerouslySetInnerHTML={{ __html: mainHeading }}
+          />
 
           <div className="space-y-4 text-foreground/90">
             <p className="text-lg lg:text-xl leading-relaxed">
-              Be it a complaint or a suggestion or a praise! We are all ears!
+              {subheading}
             </p>
             <p className="text-base lg:text-lg leading-relaxed">
-              Talk to an AWS architect with 10+ YoE about your AWS issues to get
-              free actionable advice & a 20-min audit of your AWS account.
+              {description}
             </p>
           </div>
 
           {/* Bullet Points with Gradient Background in One Line */}
           <ul className="flex flex-row justify-center gap-4 w-full text-center mt-4">
-            {bullets.map((item) => (
+            {bullets.map((item: string) => (
               <li key={item} className="flex items-center gap-2 border border-white rounded-full px-2 py-2 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] hover:scale-105 cursor-default">
                 <div
                   className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
@@ -157,77 +176,66 @@ export default function ContactUsPage() {
 
           {/* CTAs in One Line with Icons on Left */}
           <div className="flex flex-row flex-wrap justify-center items-center gap-4 pt-6 w-full">
-            {/* Book a call - Gradient Button */}
-            <a
-              href="https://s.cloudvictor.com/meeting-web-contactus-1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group cursor-pointer flex items-center gap-3 px-5 py-3 rounded-full border-none shadow-none text-white ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}
-              style={{ textDecoration: 'none' }}
-            >
-              <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-foreground/10">
-                <VideoIcon />
-              </div>
-              <span className="font-medium">Book a call</span>
-            </a>
+            {/* CTA Buttons from Sanity */}
+            {ctaButtons.map((button: any, index: number) => {
+              // Determine icon based on button label or URL
+              let IconComponent = null;
+              if (button.label?.toLowerCase().includes('call') || button.url?.includes('meeting')) {
+                IconComponent = <VideoIcon />;
+              } else if (button.label?.toLowerCase().includes('whatsapp') || button.url?.includes('whatsapp')) {
+                IconComponent = <WhatsAppIcon />;
+              } else if (button.label?.toLowerCase().includes('signup') || button.url?.includes('app.cloudvictor')) {
+                IconComponent = (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="9" cy="7" r="4" stroke="black" strokeWidth="2" fill="none"/>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16 11.13a4 4 0 0 1 0 7.75" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                );
+              }
 
-            {/* Whatsapp - Gradient Button */}
-            <a
-              href="https://s.cloudvictor.com/whatsapp-web-contactus-1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group cursor-pointer flex items-center gap-3 px-5 py-3 rounded-full border-none shadow-none text-white ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}
-              style={{ textDecoration: 'none' }}
-            >
-              <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-foreground/10">
-                <WhatsAppIcon />
-              </div>
-              <span className="font-medium">Whatsapp us</span>
-            </a>
-
-            {/* Signup - Gradient Button */}
-            <a
-              href="http://app.cloudvictor.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group cursor-pointer flex items-center gap-3 px-5 py-3 rounded-full border-none shadow-none text-white ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}
-              style={{ textDecoration: 'none' }}
-            >
-              <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-foreground/10">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="9" cy="7" r="4" stroke="black" strokeWidth="2" fill="none"/>
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M16 11.13a4 4 0 0 1 0 7.75" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <span className="font-medium">Signup</span>
-            </a>
+              return (
+                <a
+                  key={index}
+                  href={button.url}
+                  target={button.openInNewTab ? "_blank" : "_self"}
+                  rel={button.openInNewTab ? "noopener noreferrer" : undefined}
+                  className={`group cursor-pointer flex items-center gap-3 px-5 py-3 rounded-full border-none shadow-none text-white ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  {IconComponent && (
+                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-foreground/10">
+                      {IconComponent}
+                    </div>
+                  )}
+                  <span className="font-medium">{button.label}</span>
+                </a>
+              );
+            })}
 
             {/* Call - Circular Gradient Button with Text */}
             <a
-              href="tel:+919625596336"
+              href={phoneLink}
               className="group cursor-pointer flex items-center gap-3 text-white"
               style={{ textDecoration: "none" }}
             >
               <div className={`w-12 h-12 rounded-full flex items-center justify-center border-none shadow-none ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}>
-                {/* Ensure icon is white */}
                 <PhoneIcon color="white" />
               </div>
-              <span className="underline font-medium text-white">+91-96255-96336</span>
+              <span className="underline font-medium text-white">{phoneNumber}</span>
             </a>
 
             {/* Email - Circular Gradient Button with Text */}
             <a
-              href="mailto:prateek@cloudvictor.com"
+              href={emailLink}
               className="group cursor-pointer flex items-center gap-3 text-white"
               style={{ textDecoration: "none" }}
             >
               <div className={`w-12 h-12 rounded-full flex items-center justify-center border-none shadow-none ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}>
-                {/* Ensure icon is white */}
                 <EmailIcon color="white" />
               </div>
-              <span className="underline font-medium text-white">prateek@cloudvictor.com</span>
+              <span className="underline font-medium text-white">{emailAddress}</span>
             </a>
           </div>
         </div>
@@ -240,10 +248,10 @@ export default function ContactUsPage() {
             <h2
               className="text-3xl lg:text-4xl font-semibold mb-4 bg-gradient-to-r from-primary via-primary/80 to-white/60 text-transparent bg-clip-text"
             >
-              Get in Touch
+              {formTitle}
             </h2>
             <p className="text-base lg:text-lg text-foreground/90 max-w-2xl">
-              Fill out the form below and we'll get back to you as soon as possible.
+              {formDescription}
             </p>
           </div>
           <div className="w-full max-w-2xl">

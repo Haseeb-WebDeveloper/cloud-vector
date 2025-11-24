@@ -5,7 +5,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 
-export default function VideoAnimation() {
+interface VideoAnimationProps {
+  videoUrl?: string;
+}
+
+export default function VideoAnimation({ videoUrl = "/videos/root-case.mp4" }: VideoAnimationProps) {
   const [isPlaying, setIsPlaying] = useState(false); // Start as false - video won't autoplay
   const [isMuted, setIsMuted] = useState(true); // Must start muted for autoplay
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -204,7 +208,7 @@ export default function VideoAnimation() {
             aspectRatio: "16/9",
           }}
         >
-          <source src="/videos/root-case.mp4" type="video/mp4" />
+          <source src={videoUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>

@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 interface Testimonial {
-  id: number;
+  id?: number;
   quote: string;
   name: string;
   title: string;
@@ -15,7 +15,7 @@ interface Testimonial {
   savings?: string;
 }
 
-const testimonials: Testimonial[] = [
+const defaultTestimonials: Testimonial[] = [
   {
     id: 1,
     quote:
@@ -78,7 +78,40 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-export default function TestimonialsSection() {
+interface TestimonialsSectionProps {
+  title?: string;
+  testimonials?: Array<{
+    quote: string;
+    name: string;
+    title: string;
+    company: string;
+    image?: {
+      asset?: {
+        url?: string;
+      };
+    };
+    savings?: string;
+  }>;
+}
+
+export default function TestimonialsSection({
+  title,
+  testimonials: sanityTestimonials,
+}: TestimonialsSectionProps = {}) {
+  // Convert Sanity testimonials to component format
+  const testimonials: Testimonial[] = sanityTestimonials && sanityTestimonials.length > 0
+    ? sanityTestimonials.map((testimonial, index) => ({
+        id: index + 1,
+        quote: testimonial.quote,
+        name: testimonial.name,
+        title: testimonial.title,
+        company: testimonial.company,
+        image: testimonial.image?.asset?.url || `/testimonials/${testimonial.name.replace(/\s+/g, '-')}.png`,
+        savings: testimonial.savings,
+      }))
+    : [];
+
+  const sectionTitle = title || "Results Our Customers Count On, Month After Month";
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     duration: 20,
@@ -163,7 +196,7 @@ export default function TestimonialsSection() {
         {/* Section Header */}
         <div className="text-center pb-8">
           <h2 className="text-4xl lg:text-5xl font-semibold max-w-3xl mx-auto leading-[1.2] bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent pt-18 ">
-            Results Our Customers Count On, Month After Month
+            {sectionTitle}
           </h2>
         </div>
 

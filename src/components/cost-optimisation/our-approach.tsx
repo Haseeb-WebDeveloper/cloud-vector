@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import CheckIcon from "@/components/check";
-import { approachSteps } from "@/data/constant";
+// import { approachSteps } from "@/data/constant"; // Now using Sanity data
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -18,12 +18,105 @@ export interface ApproachStep {
   isReversed?: boolean;
 }
 
-export default function OurApproachSection() {
+interface OurApproachSectionProps {
+  title?: string;
+  subtitle?: string;
+  steps?: Array<{
+    heading: string;
+    oneLiner: string;
+    details: string[];
+    image?: {
+      asset?: {
+        url?: string;
+      };
+    };
+    isReversed?: boolean;
+  }>;
+}
+
+export default function OurApproachSection({
+  title = "Our Unique Approach to Cloud Cost Optimization",
+  subtitle = "Our method optimizes efficiency at every level so that your savings scale with your business, not your costs.",
+  steps,
+}: OurApproachSectionProps) {
   // Register plugin once
   gsap.registerPlugin(ScrollTrigger);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const scrollTriggerRefs = useRef<gsap.core.Tween[]>([]);
+
+  // Default steps from constant file
+  const defaultSteps: ApproachStep[] = [
+    {
+      id: 1,
+      heading: "Exhaustive Analysis",
+      oneLiner: "Across every AWS service to surface hidden waste",
+      details: [
+        "Identify idle, misconfigured, and overprovisioned resources.",
+        "Analyze workload requirements & resource configurations.",
+      ],
+      image: "/home-page/Exhaustive Analysis.png",
+    },
+    {
+      id: 2,
+      heading: "Lean Resources",
+      oneLiner: "Right Size/Optimally Configure each resource",
+      details: [
+        "Align resource configuration with workload requirement.",
+        "Configuration/Size optimized at individual resource level. E.g.",
+        "EC2, RDS, Sagemaker Instance Type & Instance Size.",
+        "Storage Class & Life cycle policies of your S3 data.",
+      ],
+      image: "/home-page/Lean Resources.png",
+      isReversed: true,
+    },
+    {
+      id: 3,
+      heading: "Lean Scale your resources",
+      oneLiner: "Deliver the same customer experience with fewer, fully-utilised resources.",
+      details: [
+        "Adjust your auto-scaling policies to minimum required while maintaining the same level of customer experience.",
+        "Calculate and deploy the optimal number of resources, not more.",
+        "Consolidate clusters/machines to remove excess hardware.",
+      ],
+      image: "/home-page/Lean Scale your resources.png",
+    },
+    {
+      id: 4,
+      heading: "Pay the Lowest Possible Price for AWS",
+      oneLiner: "Balance commitment & discount for best price.",
+      details: [
+        "Analyse every purchase option & your planned usage.",
+        "Purchase commitment strategy engineered for maximum ROI with minimum commitment risk.",
+        "We analyze 1000's of Reserved Instances, Savings Plans, and Private Pricing options for you.",
+      ],
+      image: "/home-page/Pay the Lowest Possible Price for AWS.png",
+      isReversed: true,
+    },
+    {
+      id: 5,
+      heading: "Sustained Savings, Guaranteed.",
+      oneLiner: "Sustained monthly savings verified on Your Bill.",
+      details: [
+        "Transparent verification with your AWS account's Cost Explorer and CUR data.",
+        "Guardrails ensure that we (& you) are alarmed if costs are creeping back over time.",
+        "100% ROI in 3 months - guaranteed.",
+      ],
+      image: "/home-page/Sustained Savings, Guaranteed..png",
+    },
+  ];
+
+  // Convert Sanity steps to component format
+  const approachSteps: ApproachStep[] = steps && steps.length > 0
+    ? steps.map((step, index) => ({
+        id: index + 1,
+        heading: step.heading,
+        oneLiner: step.oneLiner,
+        details: step.details,
+        image: step.image?.asset?.url || "",
+        isReversed: step.isReversed || false,
+      }))
+    : defaultSteps;
 
   const initializeAnimations = (container: HTMLDivElement) => {
     const leftImages = container.querySelectorAll("[data-image-left]");
@@ -102,11 +195,10 @@ export default function OurApproachSection() {
         {/* Section Header */}
         <div className="text-center pt-16 pb-16 max-w-3xl mx-auto space-y-2">
           <h2 className="text-4xl lg:text-5xl font-semibold bg-gradient-to-r from-primary via-primary/80 to-white/60 bg-clip-text text-transparent leading-[1.2]">
-            Our Unique Approach to Cloud Cost Optimization
+            {title}
           </h2>
           <p className="text-xl text-foreground/80 mx-auto leading-relaxed max-w-2xl">
-            Our method optimizes efficiency at every level so that your savings
-            scale with your business, not your costs.
+            {subtitle}
           </p>
         </div>
 

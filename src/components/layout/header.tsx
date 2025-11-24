@@ -87,7 +87,7 @@ const navigationData = [
         title: "Case Studies",
         description: "Real-world success stories and implementation examples",
         icon: BarChart3,
-        href: "#case-studies",
+        href: "/case-studies",
       },
       {
         title: "Community",

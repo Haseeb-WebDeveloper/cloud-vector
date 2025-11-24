@@ -4,7 +4,11 @@ import {
   getBlogPageQuery, 
   getAllBlogCategoriesQuery,
   getBlogPostBySlugQuery,
-  getAllBlogPostsSlugsQuery 
+  getAllBlogPostsSlugsQuery,
+  getHomePageQuery,
+  getCTOPageQuery,
+  getCostOptimisationPageQuery,
+  getContactUsPageQuery
 } from "./queries";
 
 const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
@@ -76,6 +80,84 @@ export async function getAllBlogPostsSlugs(): Promise<any> {
     return data;
   } catch (error) {
     console.error("Error fetching all blog posts slugs:", error);
+    return null;
+  }
+}
+
+// Homepage function
+export async function getHomePageData(): Promise<any> {
+  try {
+    const data = await fetchSanityData<any>(
+      getHomePageQuery(),
+      {},
+      { revalidate: IS_DEVELOPMENT ? 10 : 60 }
+    );
+    console.log("Sanity homepage data fetched:", data ? "Success" : "No data");
+    return data;
+  } catch (error) {
+    console.error("Error fetching homepage data:", error);
+    return null;
+  }
+}
+
+// CTO Page function
+export async function getCTOPageData(): Promise<any> {
+  try {
+    const data = await fetchSanityData<any>(
+      getCTOPageQuery(),
+      {},
+      { revalidate: IS_DEVELOPMENT ? 10 : 60 }
+    );
+    console.log("Sanity CTO page data fetched:", data ? "Success" : "No data");
+    return data;
+  } catch (error) {
+    console.error("Error fetching CTO page data:", error);
+    return null;
+  }
+}
+
+// Cost Optimisation Page function
+export async function getCostOptimisationPageData(): Promise<any> {
+  try {
+    const data = await fetchSanityData<any>(
+      getCostOptimisationPageQuery(),
+      {},
+      { revalidate: IS_DEVELOPMENT ? 10 : 60 }
+    );
+    
+    if (IS_DEVELOPMENT && data) {
+      console.log("✅ Sanity Cost Optimisation page data fetched successfully");
+      console.log("📊 Data summary:", {
+        hasHeroSection: !!data.heroSection,
+        hasClientSection: !!data.clientSection,
+        hasIndustryFacts: !!data.industryFactsSection?.facts?.length,
+        hasTestimonials: !!data.testimonialsSection?.testimonials?.length,
+        hasApproachSteps: !!data.ourApproachSection?.steps?.length,
+        hasSteps: !!data.stepsSection?.steps?.length,
+      });
+    } else if (!data) {
+      console.warn("⚠️  No Cost Optimisation page data found in Sanity. Make sure to run the seed script or create the document in Sanity Studio.");
+    }
+    
+    return data;
+  } catch (error) {
+    console.error("❌ Error fetching Cost Optimisation page data:", error);
+    return null;
+  }
+}
+
+// Contact Us Page function
+export async function getContactUsPageData(): Promise<any> {
+  try {
+    const data = await fetchSanityData<any>(
+      getContactUsPageQuery(),
+      {},
+      { revalidate: IS_DEVELOPMENT ? 10 : 60 }
+    );
+    console.log("Sanity Contact Us page data fetched:", data ? "Success" : "No data");
+    return data;
+  } catch (error) {
+    console.error("Error fetching Contact Us page data:", error);
     return null;
   }
 }

@@ -20,7 +20,7 @@ interface Solution {
   color: string;
 }
 
-const painPoints: PainPoint[] = [
+const defaultPainPoints: PainPoint[] = [
   {
     id: 1,
     title: "Ever-Increasing AWS Monthly Bills",
@@ -53,7 +53,7 @@ const painPoints: PainPoint[] = [
   },
 ];
 
-const solutions: Solution[] = [
+const defaultSolutions: Solution[] = [
   {
     id: 1,
     title: "One-Time Reconfiguring + Purchase Optimization",
@@ -86,6 +86,22 @@ const solutions: Solution[] = [
   },
 ];
 
+interface HowWeSolveProps {
+  title?: string;
+  subtitle?: string;
+  painPoints?: Array<{
+    title: string;
+    description: string;
+    color: string;
+  }>;
+  solutions?: Array<{
+    title: string;
+    description: string;
+    color: string;
+  }>;
+  videoUrl?: string;
+}
+
 // Function to calculate position on quadratic Bézier curve
 const getQuadraticBezierPoint = (t: number, startX: number, startY: number, controlX: number, controlY: number, endX: number, endY: number) => {
   const x = Math.pow(1 - t, 2) * startX + 2 * (1 - t) * t * controlX + Math.pow(t, 2) * endX;
@@ -93,7 +109,13 @@ const getQuadraticBezierPoint = (t: number, startX: number, startY: number, cont
   return { x, y };
 };
 
-export default function HowWeSolve() {
+export default function HowWeSolve({
+  title = "How We Solve Your Challenges",
+  subtitle = "Watch how we transform your pain points into powerful solutions through our innovative approach",
+  painPoints = defaultPainPoints,
+  solutions = defaultSolutions,
+  videoUrl = "/videos/root-case.mp4",
+}: HowWeSolveProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const painPointRefs = useRef<(HTMLDivElement | null)[]>([]);
   const solutionRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -301,12 +323,10 @@ export default function HowWeSolve() {
       <div className="container mx-auto px-4 w-full">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 pt-16">
-            How We Solve Your
-            <span className="text-primary"> Challenges</span>
+            {title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Watch how we transform your pain points into powerful solutions
-            through our innovative approach
+            {subtitle}
           </p>
         </div>
 
@@ -316,22 +336,25 @@ export default function HowWeSolve() {
             <h3 className="text-2xl font-bold text-primary mb-6">
               Pain Points
             </h3>
-            {painPoints.map((pain, index) => (
+            {painPoints.map((pain, index) => {
+              const painPoint = typeof pain === 'object' && 'id' in pain ? pain : { id: index + 1, ...pain };
+              return (
               <div
                 key={pain.id}
                 ref={(el) => { painPointRefs.current[index] = el; }}
                 className={`p-4 rounded-xl border border-border transition-all duration-500 relative group ${pain.color}`}
-                id={`pain-point-${pain.id}`}
+                id={`pain-point-${painPoint.id}`}
               >
                 <div className="space-y-1">
                   <h4 className={`font-semibold text-foreground`}>
-                    {pain.title}
+                    {painPoint.title}
                   </h4>
                 </div>
                 {/* Connection point indicator - Hidden */}
                 <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-3 h-3  rounded-full opacity-0"></div>
               </div>
-            ))}
+            );
+            })}
           </div>
 
           {/* Center Box - Video */}
@@ -346,7 +369,7 @@ export default function HowWeSolve() {
                   playsInline
                   controls
                 >
-                  <source src="/videos/root-case.mp4" type="video/mp4" />
+                  <source src={videoUrl} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -359,22 +382,25 @@ export default function HowWeSolve() {
           {/* Right Column - Solutions */}
           <div className="space-y-4 w-64 relative z-20">
             <h3 className="text-2xl font-bold text-primary mb-6 whitespace-nowrap">How Cloud Victor Solve It</h3>
-            {solutions.map((solution, index) => (
+            {solutions.map((solution, index) => {
+              const solutionItem = typeof solution === 'object' && 'id' in solution ? solution : { id: index + 1, ...solution };
+              return (
               <div
-                key={solution.id}
+                key={solutionItem.id}
                 ref={(el) => { solutionRefs.current[index] = el; }}
-                className={`p-4 rounded-xl border border-border transition-all duration-500 relative group ${solution.color}`}
-                id={`solution-${solution.id}`}
+                className={`p-4 rounded-xl border border-border transition-all duration-500 relative group ${solutionItem.color}`}
+                id={`solution-${solutionItem.id}`}
               >
                 <div className="space-y-1">
                   <h4 className={`font-semibold text-foreground`}>
-                    {solution.title}
+                    {solutionItem.title}
                   </h4>
                 </div>
                 {/* Connection point indicator - Hidden */}
                 <div className="absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3  rounded-full opacity-0"></div>
               </div>
-            ))}
+            );
+            })}
           </div>
 
           {/* Dynamic SVG Lines - Hidden on mobile, visible on desktop */}

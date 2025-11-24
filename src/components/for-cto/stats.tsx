@@ -7,7 +7,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Stats({ stats }: { stats: StatData[] }) {
+interface StatsProps {
+  title?: string;
+  subtitle?: string;
+  stats: StatData[];
+  centerImage?: string;
+}
+
+export default function Stats({
+  title = "Results That Speak Volumes",
+  subtitle = "Numbers don't lie — here's the impact we've delivered",
+  stats,
+  centerImage = "/home-page/middle-center-one.png",
+}: StatsProps) {
   const statsContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,10 +76,10 @@ export default function Stats({ stats }: { stats: StatData[] }) {
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center">
           <h2 className="text-5xl font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent pb-4">
-            Results That Speak Volumes
+            {title}
           </h2>
           <p className="text-xl text-gray-300">
-            Numbers don't lie — here's the impact we've delivered
+            {subtitle}
           </p>
         </div>
         {/* Stats arranged around center */}
@@ -98,7 +110,7 @@ export default function Stats({ stats }: { stats: StatData[] }) {
             </div>
             <div id="stats-center-target" className="w-[400px] h-[400px] ">
               <Image
-                src="/home-page/middle-center-one.png"
+                src={centerImage}
                 alt="circle"
                 width={320}
                 height={320}
