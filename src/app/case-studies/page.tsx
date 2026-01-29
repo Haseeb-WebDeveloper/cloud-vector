@@ -1,14 +1,44 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { getBlogPageData, getAllBlogCategoriesData } from "@/lib/sanity/fetch";
 import { BlogPostType, BlogCategoryType } from "@/types/blog";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDayMonth } from "@/utils/date";
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.cloudvictor.com";
+
 export const metadata: Metadata = {
   title: "Case Studies | CloudVictor",
   description:
     "Real-world success stories and implementation examples. Explore how tech-driven businesses cut costs & scaled better with CloudVictor.",
+  alternates: {
+    canonical: `${SITE_URL}/case-studies`,
+  },
+  openGraph: {
+    title: "AWS Cost Optimisation Case Studies | CloudVictor",
+    description:
+      "See how CloudVictor helped engineering-led teams cut AWS bills, improve performance and strengthen security with Amazon-grade FinOps.",
+    url: `${SITE_URL}/case-studies`,
+    siteName: "CloudVictor",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: `${SITE_URL}/og-case-studies.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "CloudVictor Case Studies",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Case Studies | CloudVictor",
+    description:
+      "Real-world success stories and implementation examples. Explore how tech-driven businesses cut costs & scaled better with CloudVictor.",
+    images: [`${SITE_URL}/og-case-studies.jpg`],
+  },
 };
 
 export default async function CaseStudiesPage() {

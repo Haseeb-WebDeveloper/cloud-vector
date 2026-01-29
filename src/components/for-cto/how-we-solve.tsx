@@ -337,12 +337,15 @@ export default function HowWeSolve({
               Pain Points
             </h3>
             {painPoints.map((pain, index) => {
-              const painPoint = typeof pain === 'object' && 'id' in pain ? pain : { id: index + 1, ...pain };
+              const painPoint: PainPoint =
+                typeof pain === "object" && "id" in pain
+                  ? (pain as PainPoint)
+                  : { id: index + 1, ...(pain as Omit<PainPoint, "id">) };
               return (
               <div
-                key={pain.id}
+                key={painPoint.id}
                 ref={(el) => { painPointRefs.current[index] = el; }}
-                className={`p-4 rounded-xl border border-border transition-all duration-500 relative group ${pain.color}`}
+                className={`p-4 rounded-xl border border-border transition-all duration-500 relative group ${painPoint.color}`}
                 id={`pain-point-${painPoint.id}`}
               >
                 <div className="space-y-1">
@@ -383,7 +386,10 @@ export default function HowWeSolve({
           <div className="space-y-4 w-64 relative z-20">
             <h3 className="text-2xl font-bold text-primary mb-6 whitespace-nowrap">How Cloud Victor Solve It</h3>
             {solutions.map((solution, index) => {
-              const solutionItem = typeof solution === 'object' && 'id' in solution ? solution : { id: index + 1, ...solution };
+              const solutionItem: Solution =
+                typeof solution === "object" && "id" in solution
+                  ? (solution as Solution)
+                  : { id: index + 1, ...(solution as Omit<Solution, "id">) };
               return (
               <div
                 key={solutionItem.id}

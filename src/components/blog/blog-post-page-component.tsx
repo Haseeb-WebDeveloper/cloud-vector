@@ -16,6 +16,9 @@ interface BlogPostPageProps {
   blogPost: BlogPostType;
 }
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.cloudvictor.com";
+
 const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
   const [activeHeading, setActiveHeading] = useState<string | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -146,6 +149,35 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
     }
   };
 
+  const postUrl = `${SITE_URL}/blog/${blogPost.slug}`;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: blogPost.metaTitle || blogPost.title,
+    description: blogPost.metaDescription || undefined,
+    image: blogPost.ogImage?.asset.url || blogPost.featuredImage.asset.url,
+    datePublished: blogPost._createdAt,
+    dateModified: blogPost._updatedAt,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": postUrl,
+    },
+    author: {
+      "@type": "Organization",
+      name: "CloudVictor",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "CloudVictor",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.svg`,
+      },
+    },
+  };
+
   return (
     <>
       <Header />
@@ -159,6 +191,10 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ blogPost }) => {
       </div>
 
       <div className="min-h-screen bg-background mb-[5vw]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
         {/* Hero Section */}
         <div className="relative px-6 md:px-[2vw] pb-7 md:pb-[2vw] pt-32 md:pt-[8vw] bg-gradient-to-b from-primary/20 to-background rounded-b-[3vw] md:rounded-b-[2vw]">
           <div className="mx-auto flex flex-col justify-between">

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import ClientSectionV2 from "@/components/cost-optimisation/client-section-v2";
 import TestimonialsSection from "@/components/cost-optimisation/testimonials";
 import HomeHeroSection from "@/components/home/hero";
@@ -8,6 +9,53 @@ import AnimatedSections from "@/components/animated";
 import CaseStudySection from "@/components/home/case-study-section";
 import { ChartPieDonutText } from "@/components/ui/pie-chart";
 import { getHomePageData } from "@/lib/sanity/fetch";
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.cloudvictor.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const homePageData = await getHomePageData();
+
+  const title =
+    homePageData?.metaTitle ||
+    "AWS Cost Optimisation & FinOps Automation for Engineering Teams | CloudVictor";
+  const description =
+    homePageData?.metaDescription ||
+    "Cut AWS costs by up to 68% while improving reliability and security. CloudVictor brings Amazon-grade FinOps, observability and infrastructure operations to your team.";
+
+  const ogImage =
+    homePageData?.ogImage?.asset?.url || `${SITE_URL}/og-default.jpg`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: SITE_URL,
+    },
+    openGraph: {
+      title,
+      description,
+      url: SITE_URL,
+      siteName: "CloudVictor",
+      type: "website",
+      locale: "en_US",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
 
 export default async function Home() {
   // Fetch homepage data from Sanity

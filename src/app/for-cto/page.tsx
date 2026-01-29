@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import ClientSectionV2 from "@/components/cost-optimisation/client-section-v2";
 import HomeHeroSection from "@/components/for-cto/hero";
 import TestimonialsSection from "@/components/cost-optimisation/testimonials";
@@ -18,6 +19,56 @@ import HowItWorks from "@/components/for-cto/how-it-works";
 import GetStartedSection from "@/components/cost-optimisation/get-started-section";
 import CaseStudySection from "@/components/home/case-study-section";
 import { getCTOPageData } from "@/lib/sanity/fetch";
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.cloudvictor.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const ctoPageData = await getCTOPageData();
+
+  const title =
+    ctoPageData?.metaTitle ||
+    "For CTOs | Operate AWS Like Amazon Without Extra Headcount | CloudVictor";
+  const description =
+    ctoPageData?.metaDescription ||
+    "Designed for engineering-led teams: Amazon-grade AWS operations, FinOps, reliability and security without growing your internal platform team.";
+
+  const ogImage =
+    ctoPageData?.ogImage?.asset?.url ||
+    `${SITE_URL}/og-for-cto.jpg`;
+
+  const url = `${SITE_URL}/for-cto`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "CloudVictor",
+      type: "website",
+      locale: "en_US",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
 
 // Icon mapping for stats
 const iconMap: Record<string, React.ReactNode> = {

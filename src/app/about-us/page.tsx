@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import AboutHeroSection from "@/components/about-us/hero-section";
 import ClientSectionV2 from "@/components/cost-optimisation/client-section-v2";
 import FounderLetterSection from "@/components/about-us/founder-letter";
@@ -8,10 +9,40 @@ import AboutValuesSection from "@/components/about-us/values-section";
 import AwsPartnerSection from "@/components/about-us/aws-partner-section";
 import TeamGridSection from "@/components/about-us/team-grid-section";
 
-export const metadata = {
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.cloudvictor.com";
+
+export const metadata: Metadata = {
   title: "About Us | CloudVictor",
   description:
-    "Learn about CloudVictor's mission to empower teams with automated FinOps solutions and optimize cloud resources.",
+    "Learn about CloudVictor's mission, Amazon-native operating principles and the team behind our AWS cost optimisation and FinOps platform.",
+  alternates: {
+    canonical: `${SITE_URL}/about-us`,
+  },
+  openGraph: {
+    title: "About CloudVictor",
+    description:
+      "Meet the team of ex-Amazon/AWS engineers helping companies operate AWS the way Amazon operates theirs.",
+    url: `${SITE_URL}/about-us`,
+    siteName: "CloudVictor",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: `${SITE_URL}/og-about-us.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "About CloudVictor",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | CloudVictor",
+    description:
+      "Learn about CloudVictor's mission, Amazon-native operating principles and the team behind our AWS cost optimisation and FinOps platform.",
+    images: [`${SITE_URL}/og-about-us.jpg`],
+  },
 };
 
 export default function AboutUsPage() {

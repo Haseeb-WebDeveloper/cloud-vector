@@ -1,15 +1,56 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { GradientButton } from "@/components/ui/gradient-button";
 import HubSpotForm from "@/components/contact-us/hubspot-form";
 import { getContactUsPageData } from "@/lib/sanity/fetch";
 
-export async function generateMetadata() {
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.cloudvictor.com";
+
+export async function generateMetadata(): Promise<Metadata> {
   const contactUsPageData = await getContactUsPageData();
-  
+
+  const title =
+    contactUsPageData?.metaTitle || "Contact Us | CloudVictor";
+  const description =
+    contactUsPageData?.metaDescription ||
+    "Talk to an AWS Architect. Free consultation, WhatsApp, call, or email CloudVictor.";
+
+  const ogImage =
+    contactUsPageData?.ogImage?.asset?.url ||
+    `${SITE_URL}/og-contact-us.jpg`;
+
+  const url = `${SITE_URL}/contact-us`;
+
   return {
-    title: contactUsPageData?.metaTitle || "Contact Us | CloudVictor",
-    description: contactUsPageData?.metaDescription || "Talk to an AWS Architect. Free consultation, WhatsApp, call, or email CloudVictor.",
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "CloudVictor",
+      type: "website",
+      locale: "en_US",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
   };
 }
 

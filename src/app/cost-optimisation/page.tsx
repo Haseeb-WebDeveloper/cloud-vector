@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import CostOptimisationHeroSection from "@/components/cost-optimisation/hero-section";
 import ClientSectionV2 from "@/components/cost-optimisation/client-section-v2";
 import IndustryFactsSection from "@/components/cost-optimisation/industry-facts-section";
@@ -7,6 +8,56 @@ import OurApproachSection from "@/components/cost-optimisation/our-approach";
 import TestimonialsSection from "@/components/cost-optimisation/testimonials";
 import GetStartedSection from "@/components/cost-optimisation/get-started-section";
 import { getCostOptimisationPageData } from "@/lib/sanity/fetch";
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.cloudvictor.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const costOptimisationPageData = await getCostOptimisationPageData();
+
+  const title =
+    costOptimisationPageData?.metaTitle ||
+    "AWS Cost Optimisation Services | CloudVictor";
+  const description =
+    costOptimisationPageData?.metaDescription ||
+    "Slash AWS costs without slowing down product delivery. CloudVictor finds and fixes waste across EC2, EKS, RDS, S3 and more with Amazon-grade FinOps.";
+
+  const ogImage =
+    costOptimisationPageData?.ogImage?.asset?.url ||
+    `${SITE_URL}/og-cost-optimisation.jpg`;
+
+  const url = `${SITE_URL}/cost-optimisation`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "CloudVictor",
+      type: "website",
+      locale: "en_US",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
 
 export default async function CostOptimisation() {
   // Fetch Cost Optimisation page data from Sanity

@@ -1,7 +1,10 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { getBlogPageData, getAllBlogCategoriesData } from "@/lib/sanity/fetch";
 import { BlogPageType, BlogPostType, BlogCategoryType } from "@/types/blog";
 import BlogPageComponent from "@/components/blog/blog-page-component";
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.cloudvictor.com";
 
 export default async function BlogCategory({
   params,
@@ -51,59 +54,67 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({}: {}): Promise<Metadata> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.figmenta.com";
-  const blogUrl = `${baseUrl}/blog`;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const blogData = await getBlogPageData();
+  const allCategories = await getAllBlogCategoriesData();
 
-  const metadata = {
-    title: "",
-    description: "",
-    authors: [{ name: "" }],
-    creator: "Figmenta Studio",
-    publisher: "",
+  const url = `${SITE_URL}/blog/category/${slug}`;
+
+  const category = allCategories?.find(
+    (cat: BlogCategoryType) => cat.slug === slug
+  );
+
+  const baseTitle =
+    blogData?.metaTitle || "AWS & FinOps Blog | CloudVictor";
+  const baseDescription =
+    blogData?.metaDescription ||
+    "Insights from running AWS at scale: FinOps, cost optimisation, reliability and security best practices from ex-Amazon/AWS engineers.";
+
+  const title = category
+    ? `${category.name} | CloudVictor Blog`
+    : baseTitle;
+  const description = baseDescription;
+
+  const ogImage =
+    blogData?.ogImage?.asset?.url || `${SITE_URL}/og-blog.jpg`;
+
+  return {
+    title,
+    description,
+    metadataBase: new URL(SITE_URL),
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
-      title: "",
-      description: "",
-      url: blogUrl,
-      siteName: "",
-      locale: "en",
+      title,
+      description,
+      url,
+      siteName: "CloudVictor",
+      locale: "en_US",
       type: "website",
       images: [
         {
-          url: `${baseUrl}/logo.webp`,
+          url: ogImage,
           width: 1200,
           height: 630,
-          alt: "",
+          alt: title,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "",
-      description: "",
-      creator: "",
-      images: [`/logo.webp`],
-    },
-    formatDetection: {
-      telephone: false,
-      date: false,
-      email: false,
-      address: false,
-    },
-    metadataBase: new URL(baseUrl),
-    alternates: {
-      canonical: blogUrl,
+      title,
+      description,
+      images: [ogImage],
     },
     robots: {
       follow: true,
       index: true,
-      nocache: true,
-      googleBot:
-        "index, follow, nocache, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
     },
-    manifest: "/site.webmanifest",
   };
-
-  return metadata;
 }
