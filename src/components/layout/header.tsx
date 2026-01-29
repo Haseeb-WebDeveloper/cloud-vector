@@ -18,6 +18,7 @@ import {
   BookOpen,
   Settings,
   Monitor,
+  AlignJustify,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -124,6 +125,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [hoveredSubItem, setHoveredSubItem] = useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -188,27 +190,27 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[5000] transition-all duration-300 border-b-[1px] border-foreground/10 bg-background/95 backdrop-blur-md  ",
+        "fixed top-0 left-0 right-0 z-[5000] transition-all duration-300 border-b-[1px] border-foreground/10 bg-background/95 backdrop-blur-md",
         isScrolled
-          ? "py-5"
-          : "py-6 "
+          ? "py-3 md:py-5"
+          : "py-4 md:py-6"
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between relative">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 z-10">
+        <div className="flex items-center justify-between lg:relative">
+          {/* Logo - Left aligned on mobile, positioned on desktop */}
+          <Link href="/" className="flex items-center space-x-2 z-10 lg:z-0 flex-shrink-0 cursor-pointer">
             <Image
               src="/logo/cloudVictor-horizantal-logo-text.png"
               alt="Cloud Vector"
               width={400}
               height={400}
-              className="h-8 w-full object-cover"
+              className="h-8 sm:h-9 md:h-10 lg:h-8 w-auto object-contain max-w-[180px] sm:max-w-[220px] md:max-w-none"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 space-x-8">
+          <nav className="hidden lg:flex items-center justify-center absolute left-1/2 transform -translate-x-60 space-x-8"> 
             {navigationData.map((item) => (
               <div
                 key={item.title}
@@ -288,44 +290,50 @@ export default function Header() {
             </button> */}
           </div>
 
-          {/* Mobile Menu Button */}
-          <Sheet>
-            <SheetTrigger asChild className="lg:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-full h-full">
-              <div className="flex flex-col space-y-6 mt-20 px-4">
+          {/* Mobile Menu Button - Right aligned */}
+          <div className="lg:hidden flex items-center justify-end flex-shrink-0 z-10">
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-12 w-12 sm:h-14 sm:w-14 p-0">
+                  <AlignJustify className="h-10 w-10 sm:h-12 sm:w-12" strokeWidth={2.5} />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
+            <SheetContent side="right" className="w-full h-full overflow-y-auto p-0">
+              <div className="flex flex-col space-y-4 sm:space-y-6 mt-16 sm:mt-20 px-4 sm:px-6">
                 {/* Mobile Navigation */}
-                <div className="w-full space-y-2">
-                  {navigationData.map((item) =>
-                    item.hasDropdown ? (
+                <div className="w-full space-y-0">
+                  {navigationData.map((item, index) => {
+                    const isLastItem = index === navigationData.length - 1;
+                    return item.hasDropdown ? (
                       <Accordion
                         key={item.title}
                         type="single"
                         collapsible
                         className="w-full"
                       >
-                        <AccordionItem value={item.title}>
-                          <AccordionTrigger className="text-left">
+                        <AccordionItem 
+                          value={item.title} 
+                          className={!isLastItem ? "border-b border-foreground/10" : "border-b-0"}
+                        >
+                          <AccordionTrigger className="text-left text-base sm:text-lg py-4 sm:py-5 px-0 hover:no-underline">
                             {item.title}
                           </AccordionTrigger>
-                          <AccordionContent>
-                            <div className="space-y-2">
+                          <AccordionContent className="px-0 pb-4">
+                            <div className="space-y-2 sm:space-y-3 pt-2">
                               {item.submenu?.map((subItem) => (
                                 <Link
                                   key={subItem.title}
                                   href={subItem.href}
-                                  className="flex items-start space-x-3 p-3 rounded-md hover:bg-muted/50 transition-colors group"
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                  className="flex items-start space-x-3 p-3 sm:p-4 rounded-md hover:bg-muted/50 active:bg-muted/70 transition-colors group"
                                 >
-                                  <subItem.icon className="w-5 h-5 mt-0.5 group-hover:text-primary group-hover:scale-110 transition-all" />
-                                  <div>
-                                    <div className="font-medium tracking-widest text-sm group-hover:text-primary transition-colors">
+                                  <subItem.icon className="w-5 h-5 sm:w-6 sm:h-6 mt-0.5 flex-shrink-0 group-hover:text-primary group-hover:scale-110 transition-all" />
+                                  <div className="min-w-0 flex-1">
+                                    <div className="font-medium tracking-widest text-sm sm:text-base group-hover:text-primary transition-colors">
                                       {subItem.title}
                                     </div>
-                                    <div className="text-xs mt-1">
+                                    <div className="text-xs sm:text-sm mt-1.5 text-foreground/70 leading-relaxed">
                                       {subItem.description}
                                     </div>
                                   </div>
@@ -339,16 +347,17 @@ export default function Header() {
                       <Link
                         key={item.title}
                         href={item.href}
-                        className="flex items-center p-3 rounded-md hover:bg-muted/50 transition-colors group font-medium text-base"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`flex items-center p-4 sm:p-5 rounded-md hover:bg-muted/50 active:bg-muted/70 transition-colors group font-medium text-base sm:text-lg ${!isLastItem ? "border-b border-foreground/10" : ""}`}
                       >
                         {item.title}
                       </Link>
-                    )
-                  )}
+                    );
+                  })}
                 </div>
 
                 {/* Mobile CTA Buttons */}
-                <div className="flex flex-col space-y-3 pt-4 border-t">
+                <div className="flex flex-col space-y-3 pt-6 sm:pt-8 border-t border-foreground/10 mt-4">
                   {/* <button className="group cursor-pointer flex items-center gap-2 bg-background text-foreground border border-foreground/50 hover:pr-6 hover:border-foreground/70 hover:bg-foreground/20 transition-all duration-300 px-5 py-2.5 rounded-full text-sm">
                     Get Started
                     <Image
@@ -361,8 +370,9 @@ export default function Header() {
                   </button> */}
                 </div>
               </div>
-            </SheetContent>
-          </Sheet>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>

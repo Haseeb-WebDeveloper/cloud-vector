@@ -5,47 +5,45 @@ import { ArrowRight } from "lucide-react";
 
 export default function JoinTeamSection() {
   return (
-    <section className="relative w-full min-h-[600px] lg:min-h-[700px] overflow-hidden">
-      {/* Background Image - Full Width */}
+    <section className="relative w-full min-h-[520px] lg:min-h-[620px] overflow-visible mb-0 z-[20]">
+      {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
-          src="/home-page/images team.jpeg"
-          alt="CloudVictor Team"
+          src="/group-photo.png"
+          alt="CloudVictor team group photo"
           fill
           className="object-cover"
           priority
           sizes="100vw"
         />
-        {/* Fallback gradient overlay for contrast (optional) */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-700/60 via-slate-800/50 to-slate-900/70"></div>
+        {/* Dark gradient for text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
       </div>
 
-      {/* Dark Blue Overlay Banner - Covers lower portion of image */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[50%] lg:h-[55%] w-full max-w-5xl bg-[#1e3a5f] flex items-center justify-center rounded-t-3xl shadow-xl">
-        <div className="w-full text-center space-y-6 px-6 lg:px-8 py-12 lg:py-16">
-          {/* Headline */}
-          <h2 className="text-4xl lg:text-6xl font-bold text-white">
-            Join Our Team
+      {/* Bottom-anchored content card (overflows onto next section) */}
+      <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-[60%] w-full flex justify-center pointer-events-none z-[30]">
+        <div className="w-full max-w-3xl bg-[#0B1020]/95 border border-white/10 rounded-3xl shadow-2xl px-6 py-8 sm:px-10 sm:py-10 text-center pointer-events-auto">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            Join our team
           </h2>
-
-          {/* Paragraph Text */}
-          <p className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto">
-            Want to do work that matters? We're changing the way businesses optimize their cloud infrastructure. Join us today to become part of something greater than yourself.
+          <p className="text-base sm:text-lg text-white/85 leading-relaxed max-w-2xl mx-auto mb-6">
+            Be part of a team that values innovation, ownership, and real-world results.
           </p>
-
-          {/* CTA Button */}
-          <div className="pt-4">
+          <div className="pt-2">
             <a
-              href="#careers"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#FF9900] to-[#E85409] hover:from-[#FF9900]/90 hover:to-[#E85409]/90 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              href="https://s.cloudvictor.com/LI-web-as"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-[#FF9900] to-[#E85409] text-white font-semibold text-sm sm:text-base shadow-lg hover:shadow-xl hover:scale-[1.03] transition-transform transition-shadow duration-300"
             >
-              <span>View Openings</span>
-              <ArrowRight className="w-5 h-5" />
+              <span>Reach Out (Tech)</span>
+              <ArrowRight className="w-4 h-4" />
             </a>
           </div>
         </div>
       </div>
+      {/* Add bottom padding to the section to make space for the overhanging card */}
+      <div className="h-[110px] sm:h-[140px] lg:h-[190px]" aria-hidden="true"></div>
     </section>
   );
 }
-

@@ -147,9 +147,15 @@ export default function RichEditor({ content }: RichEditorProps) {
       ),
     },
     list: {
-      bullet: ({ children }) => <ul className="editor-content mb-[4vw] md:mb-[1vw] space-y-[2vw] md:space-y-[0.5vw]">{children}</ul>,
+      bullet: ({ children }) => (
+        <ul className="editor-content mb-[4vw] md:mb-[1vw] space-y-[2vw] md:space-y-[0.5vw]">
+          {children}
+        </ul>
+      ),
       number: ({ children }) => (
-        <ol className="editor-content list-decimal list-inside mb-[4vw] md:mb-[1vw] space-y-[2vw] md:space-y-[0.5vw] [&>li::marker]:text-primary">{children}</ol>
+        <ol className="editor-content list-decimal mb-[4vw] md:mb-[1vw] space-y-[2vw] md:space-y-[0.5vw] [&>li::marker]:text-primary ml-[5vw] md:ml-[1.5vw]">
+          {children}
+        </ol>
       ),
     },
     listItem: {

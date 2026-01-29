@@ -2,9 +2,11 @@ import AboutHeroSection from "@/components/about-us/hero-section";
 import ClientSectionV2 from "@/components/cost-optimisation/client-section-v2";
 import FounderLetterSection from "@/components/about-us/founder-letter";
 import CaseStudySection from "@/components/home/case-study-section";
-import TeamSection from "@/components/about-us/team-section";
 import JoinTeamSection from "@/components/about-us/join-team-section";
 import GetStartedSection from "@/components/cost-optimisation/get-started-section";
+import AboutValuesSection from "@/components/about-us/values-section";
+import AwsPartnerSection from "@/components/about-us/aws-partner-section";
+import TeamGridSection from "@/components/about-us/team-grid-section";
 
 export const metadata = {
   title: "About Us | CloudVictor",
@@ -37,36 +39,54 @@ export default function AboutUsPage() {
       <AboutHeroSection />
       
       {/* Paragraph Section */}
-      <section className="py-8 bg-background">
+      <section className="py-20 bg-background">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
+        <h2 className="text-3xl lg:text-5xl font-semibold text-center mb-4 leading-tight">
+            <span 
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: 'linear-gradient(to right, #FF9900 0%, #FF9900 75%, #FFB84D 90%, white 100%)'
+              }}
+            >
+                    <h2 className="text-3xl lg:text-4xl font-semibold mb-4 leading-tight">
+            <span 
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: 'linear-gradient(to right, #FF9900 0%, #FF9900 75%, #FFB84D 90%, white 100%)'
+              }}
+            >
+            We operate your AWS Infra the way Amazon operates theirs.
+
+            </span>
+          </h2>
+            </span>
+          </h2>
           <p className="text-base lg:text-lg text-White text-center leading-relaxed">
-            CloudVictor integrates and automates infrastructure monitoring, application performance monitoring, log management, real-user monitoring, and other capabilities to provide unified, real-time observability and security for customers' entire technology stacks. CloudVictor is used by organizations of all sizes and across various industries to enable digital transformation and cloud migration, drive collaboration among development, operations, security, and business teams, accelerate time to market for applications, reduce time to problem resolution, secure applications and infrastructure, understand user behavior, and track key business metrics.
+            Founded by ex-Amazon/AWS engineer with a proven track record of driving $50M+ in annual business impact, $60M+ in annual AWS savings & managing 80+ AWS accounts with enterprise-grade security, CloudVictor brings the same real-world rigor to your team with a <b> success-based model</b>and a 100% ROI guarantee.
+Whether you're scaling up, battling ballooning cloud bills, or squashing those holes in your security posture, if you want your AWS infrastructure run the Amazon way - lean, secure, fast - we are here to help.
+Whether you're scaling up, battling ballooning cloud bills, or squashing those holes in your security posture, if you want your AWS infrastructure run the Amazon way - lean, secure, fast - we are here to help.
           </p>
         </div>
       </section>
+
+      <AboutValuesSection />
 
       {/* Proven Savings. Real Impact Section */}
       <div className="bg-background">
       <ClientSectionV2 title="Proven Savings. Real Impact" stats={stats} />
       </div>
 
+      <AwsPartnerSection />
+      <TeamGridSection />
+
       {/* Founder Letter Section */}
-      <FounderLetterSection />
-
-      {/* Case Study Section */}
-      <CaseStudySection />
-
-      {/* Team Section */}
-      <TeamSection />
-
+      {/* <FounderLetterSection /> */}
       {/* Join Our Team Section */}
-      <JoinTeamSection />
-
+      <JoinTeamSection /> 
       {/* Get Started Section */}
-      <div className="bg-background py-16 px-">
-        <GetStartedSection />
-      </div>
+      <CaseStudySection />
+      <GetStartedSection />
+     
     </main>
   );
 }
-

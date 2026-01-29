@@ -38,7 +38,7 @@ export default async function CaseStudySection() {
   }
 
   return (
-    <section className="pt-10 bg-background">
+    <section className="pt-10 mt-50 bg-background">
       <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">

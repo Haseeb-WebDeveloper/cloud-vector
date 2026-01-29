@@ -87,7 +87,7 @@ export default function GetStartedSection({
   };
   return (
     <div>
-      <div className="container mx-auto px-4 h-full">
+      <div className="container  mt-30 mb-10 mx-auto px-4 h-full">
         <div className="mx-auto max-w-7xl h-full">
           {/* Main Banner */}
           <SpotlightCard

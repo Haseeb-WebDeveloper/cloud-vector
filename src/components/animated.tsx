@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { SpotlightCard } from "./ui/spolight-card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "./ui/tabs";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -58,6 +59,7 @@ const AnimatedSections: React.FC = () => {
   const circleImageRef = useRef<HTMLDivElement>(null);
   const targetPositionRef = useRef<HTMLDivElement>(null);
   const [currentStep, setCurrentStep] = useState(1);
+  const [mobileActiveTab, setMobileActiveTab] = useState("1");
 
   const offers: OfferData[] = [
     {
@@ -258,6 +260,10 @@ const AnimatedSections: React.FC = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    
+    // Disable animations on mobile (screens smaller than lg breakpoint)
+    const isMobile = window.innerWidth < 1024;
+    if (isMobile) return;
 
     const ctx = gsap.context(() => {
       // Pin the left column
@@ -443,14 +449,17 @@ const AnimatedSections: React.FC = () => {
   ];
 
   return (
-    <div className="relative  bg-foreground/5 pt-[6vw] mt-[6vw]">
-      <h2 className="text-center max-w-[70vw] mx-auto text-[3.3vw] font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent  mb-6 tracking-normal leading-tight">
-        Optimize. Secure. Accelerate, Disaster-proof, Scale — AWS Done Right.
+    <div className="relative bg-foreground/5 pt-6 sm:pt-8 md:pt-[6vw] mt-6 sm:mt-8 md:mt-[6vw] w-full">
+      <h2 className="text-center w-full max-w-full sm:max-w-[85vw] md:max-w-[70vw] mx-auto px-4 text-2xl sm:text-3xl md:text-4xl lg:text-[3.3vw] font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent mb-0 sm:mb-4 md:mb-6 tracking-normal leading-tight">
+        Optimize. Secure. Accelerate,<br className="lg:hidden" />
+        Disaster-proof, Scale<br className="lg:hidden" />
+        — AWS Done Right.
       </h2>
       {/* Section 1 - What We Offer */}
       <section ref={sectionRef} className="min-h-screen py-20 ">
         <div className="max-w-[90vw] 2xl:max-w-[90vw] mx-auto ">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[2vw] items-start justify-between w-full">
+          {/* Desktop Version - Hidden on Mobile */}
+          <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-[2vw] items-start justify-between w-full">
             {/* Left Column - Circle Image with Step Images - PINNED */}
             <div
               ref={leftColumnRef}
@@ -591,25 +600,167 @@ const AnimatedSections: React.FC = () => {
               ))}
             </div>
           </div>
+
+          {/* Mobile Version - Tabs Design - Hidden on Desktop */}
+          <div className="lg:hidden w-full -mt-12 sm:mt-2">
+            <Tabs value={mobileActiveTab} onValueChange={setMobileActiveTab} className="w-full">
+              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 gap-2 mb-4 sm:mb-6 h-auto p-1 bg-muted/50">
+                {offers.map((offer, index) => (
+                  <TabsTrigger
+                    key={offer.id}
+                    value={String(offer.id)}
+                    className="text-xs sm:text-sm px-2 py-2 sm:px-3 sm:py-3 whitespace-normal break-words text-center"
+                  >
+                    {offer.title}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+
+              {offers.map((offer, index) => (
+                <TabsContent key={offer.id} value={String(offer.id)} className="mt-6 space-y-6">
+                  {/* Image Section - Same as desktop left side */}
+                  <div className="flex items-center justify-center w-full aspect-square max-w-md mx-auto">
+                    <div className="relative flex items-center justify-center w-full h-full">
+                      {/* Step Image */}
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[300px] h-full max-h-[300px] flex items-center justify-center">
+                          {/* Background glow */}
+                          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full shadow-[0_0_40px_10px_rgba(255,151,0,0.85)] z-0"></div>
+                          <Image
+                            src={`/home-page/${stepImages[index]}`}
+                            alt={offer.title}
+                            width={400}
+                            height={400}
+                            className="object-contain w-full h-full relative z-10"
+                          />
+                        </div>
+                        {/* Circle image in center */}
+                        {/* <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] z-20">
+                          <Image
+                            src="/home-page/"
+                            alt="circle"
+                            width={320}
+                            height={320}
+                            className="object-contain w-full h-full"
+                            quality={100}
+                          />
+                        </div> */}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="space-y-4 px-4">
+                    {/* Headline */}
+                    <h3 className="text-lg sm:text-3xl font-bold text-center">
+                      {offer.headline}
+                    </h3>
+
+                    {/* Tagline */}
+                    {offer.tagline && (
+                      <p className="text-base sm:text-lg leading-relaxed text-foreground/90 text-center">
+                        {offer.tagline}
+                      </p>
+                    )}
+
+                    {/* SubTagline if exists */}
+                    {offer.subTagline && (
+                      <p className="text-sm sm:text-base text-foreground/80">
+                        {offer.subTagline}
+                      </p>
+                    )}
+
+                    {/* Features as boxes */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                      {offer.features.map((feature, featureIndex) => (
+                        <SpotlightCard
+                          key={featureIndex}
+                          className="h-full rounded-lg border border-neutral-800 bg-neutral-900 overflow-hidden p-4 sm:p-5"
+                        >
+                          <div className="space-y-2">
+                            {(() => {
+                              const raw = String(feature.text ?? "");
+                              const parts = raw.split("→");
+                              const heading = parts[0]?.trim();
+                              const descriptionRaw = parts
+                                .slice(1)
+                                .join("→")
+                                .trim();
+                              const lines = descriptionRaw
+                                ? descriptionRaw
+                                    .split(/\n+/)
+                                    .map((l) => l.trim())
+                                    .filter(Boolean)
+                                : [];
+                              const hasList = lines.length > 1;
+                              return (
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-2 sm:gap-3">
+                                    <div className="bg-primary/30 rounded-full p-2 sm:p-3 w-fit h-fit flex-shrink-0">
+                                      {React.cloneElement(feature.icon as React.ReactElement<any>, {
+                                        className: "w-5 h-5 sm:w-6 sm:h-6"
+                                      })}
+                                    </div>
+                                    {heading && (
+                                      <p className=" text-sm sm:text-base font-bold text-primary">
+                                        {heading}
+                                      </p>
+                                    )}
+                                  </div>
+                                  {hasList ? (
+                                    <ul className="text-xs sm:text-sm leading-relaxed text-foreground/90 list-disc pl-4 sm:pl-5 space-y-1">
+                                      {lines.map((line, i) => (
+                                        <li key={i}>{line}</li>
+                                      ))}
+                                    </ul>
+                                  ) : (
+                                    descriptionRaw && (
+                                      <p className="text-xs sm:text-sm leading-relaxed text-foreground/90">
+                                        {descriptionRaw}
+                                      </p>
+                                    )
+                                  )}
+                                </div>
+                              );
+                            })()}
+                          </div>
+                        </SpotlightCard>
+                      ))}
+                    </div>
+                    {offer.afterFeaturesText && (
+                      <p className="mt-4 text-sm sm:text-base leading-relaxed text-foreground/90 text-center">
+                        {offer.afterFeaturesText}
+                      </p>
+                    )}
+                  </div>
+                </TabsContent>
+              ))}
+            </Tabs>
+          </div>
         </div>
       </section>
       {/* Section 2 - Stats */}
-      <section ref={statsSectionRef} className="relative pb-[12vw] pt-[4vw] z-10 min-h-[100vh]">
-        <div className="max-w-[80vw] 2xl:max-w-[80vw] mx-auto w-full ">
+      <section
+        ref={statsSectionRef}
+        className="relative pb-[12vw] pt-[0vw] z-10 min-h-[100vh] 
+          -mt-5 sm:-mt-56 lg:mt-0"
+      >
+        <div className="max-w-[90vw] 2xl:max-w-[80vw] mx-auto w-full">
           <div className="text-center mt-20 w-full">
-            <h2 className="text-[3.3vw] font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent z-[-100]">
+            <h2 className="font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent z-[-100] text-3xl sm:text-3xl md:text-[3.5vw]">
               Results That Speak Volumes
             </h2>
-            <p className="text-[1.2vw] text-gray-300 z-[-10]">
+            <p className="text-base sm:text-lg md:text-[2vw] text-gray-300 z-[-10]">
               Numbers don't lie — here's the impact we've delivered
             </p>
           </div>
           {/* Stats arranged around center */}
           <div
             ref={statsContainerRef}
-            className="relative h-full  w-full mt-[4vw]"
+            className="relative h-full w-full mt-[4vw]"
           >
-            <div className="flex gap-10 justify-between items-center w-full">
+            {/* Desktop Version - Stats with center image */}
+            <div className="hidden lg:flex gap-10 justify-between items-center w-full">
               {/* Left side stats */}
               <div className="flex flex-col gap-[1vw]">
                 {stats.slice(0, 4).map((stat, index) => {
@@ -623,7 +774,7 @@ const AnimatedSections: React.FC = () => {
                       <div className="flex gap-[0.8vw] ">
                         <div className="flex-shrink-0">{stat.icon}</div>
                         <div className="flex flex-col gap-[0.4vw]">
-                          <p className="text-[6vw] md:text-[2vw] font-bold leading-[100%]">
+                          <p className="text-[4vw] md:text-[1.3vw] font-bold leading-[100%]">
                             {stat.value}
                           </p>
                           <p className="text-[1vw] font-medium">{stat.label}</p>
@@ -654,7 +805,7 @@ const AnimatedSections: React.FC = () => {
                       <div className="flex gap-[0.8vw] ">
                         <div className="flex-shrink-0">{stat.icon}</div>
                         <div className="flex flex-col gap-[0.2vw]">
-                          <p className="text-[6vw] md:text-[2vw] font-bold leading-[100%]">
+                          <p className="text-[4vw] md:text-[1.3vw] font-bold leading-[100%]">
                             {stat.value}
                           </p>
                           <p className="text-[1vw] font-medium">{stat.label}</p>
@@ -664,6 +815,32 @@ const AnimatedSections: React.FC = () => {
                   );
                 })}
               </div>
+            </div>
+
+            {/* Mobile Version - Stats Grid without center image */}
+            <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 px-4">
+              {stats.map((stat, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="px-4 py-5 rounded-xl border border-foreground bg-neutral-900 shadow-[0_1px_5px_0_rgba(255,153,0,0.23)]"
+                  >
+                    <div className="flex gap-3 items-start">
+                      <div className="flex-shrink-0">
+                        {React.cloneElement(stat.icon as React.ReactElement<any>, {
+                          className: "w-8 h-8 sm:w-10 sm:h-10 text-primary"
+                        })}
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <p className="text-2xl sm:text-3xl font-bold leading-[100%]">
+                          {stat.value}
+                        </p>
+                        <p className="text-sm sm:text-base font-medium">{stat.label}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Invisible target position marker at center */}

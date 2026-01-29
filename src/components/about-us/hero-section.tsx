@@ -58,7 +58,7 @@ export default function AboutHeroSection() {
               Our Mission
             </h2>
             <p className="text-lg lg:text-xl text-white leading-relaxed max-w-3xl mx-auto">
-              Our mission at CloudVictor is to empower teams with automated FinOps solutions to create an effortless experience to optimize cloud resources, giving them the freedom to focus on innovation, growth, and customer experience.
+              To empower teams with automated solutions for their most common cloud challenges - Cost, Security, Performance, Disaster Recovery, Operations, giving them the freedom & time to focus on their customer experience & growth.
             </p>
           </div>
         </div>
