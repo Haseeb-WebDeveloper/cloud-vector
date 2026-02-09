@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GradientButton } from "@/components/ui/gradient-button";
 import HubSpotForm from "@/components/contact-us/hubspot-form";
+import ContactHeroSection from "@/components/contact-us/hero-section";
 import { getContactUsPageData } from "@/lib/sanity/fetch";
 
 const SITE_URL =
@@ -11,15 +12,13 @@ const SITE_URL =
 export async function generateMetadata(): Promise<Metadata> {
   const contactUsPageData = await getContactUsPageData();
 
-  const title =
-    contactUsPageData?.metaTitle || "Contact Us | CloudVictor";
+  const title = contactUsPageData?.metaTitle || "Contact Us | CloudVictor";
   const description =
     contactUsPageData?.metaDescription ||
     "Talk to an AWS Architect. Free consultation, WhatsApp, call, or email CloudVictor.";
 
   const ogImage =
-    contactUsPageData?.ogImage?.asset?.url ||
-    `${SITE_URL}/og-contact-us.jpg`;
+    contactUsPageData?.ogImage?.asset?.url || `${SITE_URL}/og-contact-us.jpg`;
 
   const url = `${SITE_URL}/contact-us`;
 
@@ -63,8 +62,24 @@ const VideoIcon = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect x="2" y="6" width="14" height="12" rx="2" stroke="black" strokeWidth="2" fill="none" />
-    <path d="M16 10L20 7V17L16 14" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    <rect
+      x="2"
+      y="6"
+      width="14"
+      height="12"
+      rx="2"
+      stroke="black"
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M16 10L20 7V17L16 14"
+      stroke="black"
+      strokeWidth="2"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -158,137 +173,60 @@ export default async function ContactUsPage() {
     "Upto 69% Monthly Bill Reduction",
   ];
 
-  const mainHeading = contactUsPageData?.heroSection?.mainHeading || "We want to hear from you!";
-  const subheading = contactUsPageData?.heroSection?.subheading || "Be it a complaint or a suggestion or a praise! We are all ears!";
-  const description = contactUsPageData?.heroSection?.description || "Talk to an AWS architect with 10+ YoE about your AWS issues to get free actionable advice & a 20-min audit of your AWS account.";
-  
+  const mainHeading =
+    contactUsPageData?.heroSection?.mainHeading || "We want to hear from you!";
+  const subheading =
+    contactUsPageData?.heroSection?.subheading ||
+    "Be it a complaint or a suggestion or a praise! We are all ears!";
+  const description =
+    contactUsPageData?.heroSection?.description ||
+    "Talk to an AWS architect with 10+ YoE about your AWS issues to get free actionable advice & a 20-min audit of your AWS account.";
+
   const ctaButtons = contactUsPageData?.heroSection?.ctaButtons || [];
-  const phoneNumber = contactUsPageData?.heroSection?.phoneNumber || "+91-96255-96336";
-  const phoneLink = contactUsPageData?.heroSection?.phoneLink || "tel:+919625596336";
-  const emailAddress = contactUsPageData?.heroSection?.emailAddress || "prateek@cloudvictor.com";
-  const emailLink = contactUsPageData?.heroSection?.emailLink || "mailto:prateek@cloudvictor.com";
+  const phoneNumber =
+    contactUsPageData?.heroSection?.phoneNumber || "+91-96255-96336";
+  const phoneLink =
+    contactUsPageData?.heroSection?.phoneLink || "tel:+919625596336";
+  const emailAddress =
+    contactUsPageData?.heroSection?.emailAddress || "prateek@cloudvictor.com";
+  const emailLink =
+    contactUsPageData?.heroSection?.emailLink ||
+    "mailto:prateek@cloudvictor.com";
 
   const formTitle = contactUsPageData?.formSection?.title || "Get in Touch";
-  const formDescription = contactUsPageData?.formSection?.description || "Fill out the form below and we'll get back to you as soon as possible.";
-
-  // Gradient classes for the CTA buttons
-  const gradientButtonClass =
-    "bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] text-white border-0 shadow-none";
+  const formDescription =
+    contactUsPageData?.formSection?.description ||
+    "Fill out the form below and we'll get back to you as soon as possible.";
 
   return (
-    <main className="pt-28 bg-background">
-      <section className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
-        <div className="flex flex-col items-center text-center gap-8 max-w-4xl mx-auto">
-          <h1
-            className="text-4xl lg:text-6xl font-semibold bg-gradient-to-r from-primary via-primary to-white bg-clip-text text-transparent"
-            style={{
-              backgroundImage: "linear-gradient(90deg, var(--primary) 70%, #fff 100%)",
-            }}
-            dangerouslySetInnerHTML={{ __html: mainHeading }}
-          />
-
-          <div className="space-y-4 text-foreground/90">
-            <p className="text-lg lg:text-xl leading-relaxed">
-              {subheading}
-            </p>
-            <p className="text-base lg:text-lg leading-relaxed">
-              {description}
-            </p>
-          </div>
-
-          {/* Bullet Points with Gradient Background in One Line */}
-          <ul className="flex flex-row justify-center gap-4 w-full text-center mt-4">
-            {bullets.map((item: string) => (
-              <li key={item} className="flex items-center gap-2 border border-white rounded-full px-2 py-2 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)] hover:scale-105 cursor-default">
-                <div
-                  className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
-                >
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center"
-                       style={{
-                         background: 'var(--primary)',
-                       }}>
-                    <CheckIcon />
-                  </div>
-                </div>
-                <span className="text-foreground/90 text-base whitespace-nowrap">{item}</span>
-              </li>
-            ))}
-          </ul>
-
-          {/* CTAs in One Line with Icons on Left */}
-          <div className="flex flex-row flex-wrap justify-center items-center gap-4 pt-6 w-full">
-            {/* CTA Buttons from Sanity */}
-            {ctaButtons.map((button: any, index: number) => {
-              // Determine icon based on button label or URL
-              let IconComponent = null;
-              if (button.label?.toLowerCase().includes('call') || button.url?.includes('meeting')) {
-                IconComponent = <VideoIcon />;
-              } else if (button.label?.toLowerCase().includes('whatsapp') || button.url?.includes('whatsapp')) {
-                IconComponent = <WhatsAppIcon />;
-              } else if (button.label?.toLowerCase().includes('signup') || button.url?.includes('app.cloudvictor')) {
-                IconComponent = (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                    <circle cx="9" cy="7" r="4" stroke="black" strokeWidth="2" fill="none"/>
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M16 11.13a4 4 0 0 1 0 7.75" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                );
-              }
-
-              return (
-                <a
-                  key={index}
-                  href={button.url}
-                  target={button.openInNewTab ? "_blank" : "_self"}
-                  rel={button.openInNewTab ? "noopener noreferrer" : undefined}
-                  className={`group cursor-pointer flex items-center gap-3 px-5 py-3 rounded-full border-none shadow-none text-white ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}
-                  style={{ textDecoration: 'none' }}
-                >
-                  {IconComponent && (
-                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-foreground/10">
-                      {IconComponent}
-                    </div>
-                  )}
-                  <span className="font-medium">{button.label}</span>
-                </a>
-              );
-            })}
-
-            {/* Call - Circular Gradient Button with Text */}
-            <a
-              href={phoneLink}
-              className="group cursor-pointer flex items-center gap-3 text-white"
-              style={{ textDecoration: "none" }}
-            >
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center border-none shadow-none ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}>
-                <PhoneIcon color="white" />
-              </div>
-              <span className="underline font-medium text-white">{phoneNumber}</span>
-            </a>
-
-            {/* Email - Circular Gradient Button with Text */}
-            <a
-              href={emailLink}
-              className="group cursor-pointer flex items-center gap-3 text-white"
-              style={{ textDecoration: "none" }}
-            >
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center border-none shadow-none ${gradientButtonClass} transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,153,0,0.6),0_0_40px_rgba(255,153,0,0.4)]`}>
-                <EmailIcon color="white" />
-              </div>
-              <span className="underline font-medium text-white">{emailAddress}</span>
-            </a>
-          </div>
-        </div>
-      </section>
+    <main className="relative pt-28 overflow-hidden min-h-screen">
+      <ContactHeroSection
+        mainHeading={
+          contactUsPageData?.heroSection?.mainHeading ||
+          "We want to hear from you!"
+        }
+        subheading={
+          contactUsPageData?.heroSection?.subheading ||
+          "Be it a complaint or a suggestion or a praise! We are all ears!"
+        }
+        description={
+          contactUsPageData?.heroSection?.description ||
+          "Talk to an AWS architect with 10+ YoE about your AWS issues to get free actionable advice & a 20-min audit of your AWS account."
+        }
+        bullets={bullets}
+        ctaButtons={ctaButtons}
+        phoneLink={phoneLink}
+        phoneNumber={phoneNumber}
+        emailLink={emailLink}
+        emailAddress={emailAddress}
+        heroImage={contactUsPageData?.heroSection?.heroImage?.asset?.url}
+      />
 
       {/* HubSpot Form Section */}
       <section className="mx-auto max-w-4xl px-6 lg:px-8 py-16">
         <div className="bg-foreground/5 rounded-2xl p-8 lg:p-12 flex flex-col items-center gap-8">
           <div className="text-center">
-            <h2
-              className="text-3xl lg:text-4xl font-semibold mb-4 bg-gradient-to-r from-primary via-primary/80 to-white/60 text-transparent bg-clip-text"
-            >
+            <h2 className="text-3xl lg:text-4xl font-semibold mb-4 bg-gradient-to-r from-primary via-primary/80 to-white/60 text-transparent bg-clip-text">
               {formTitle}
             </h2>
             <p className="text-base lg:text-lg text-foreground/90 max-w-2xl">
@@ -303,4 +241,3 @@ export default async function ContactUsPage() {
     </main>
   );
 }
-

@@ -1,4 +1,3 @@
-
 {
   "name": "cloud-vector",
   "version": "0.1.0",
@@ -6,7 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "seed:homepage": "cd studio-cloud-consulting && bun run seed:homepage",
+    "seed:cto-page": "cd studio-cloud-consulting && bun run seed:cto-page",
+    "seed:contact-us-page": "cd studio-cloud-consulting && bun run seed:contact-us-page",
+    "seed:about-us": "cd studio-cloud-consulting && bun run seed:about-us",
+    "seed:case-studies": "cd studio-cloud-consulting && bun run seed:case-studies",
+    "seed:cost-optimisation-page": "cd studio-cloud-consulting && bun run seed:cost-optimisation-page"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

@@ -34,8 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
     "Designed for engineering-led teams: Amazon-grade AWS operations, FinOps, reliability and security without growing your internal platform team.";
 
   const ogImage =
-    ctoPageData?.ogImage?.asset?.url ||
-    `${SITE_URL}/og-for-cto.jpg`;
+    ctoPageData?.ogImage?.asset?.url || `${SITE_URL}/og-for-cto.jpg`;
 
   const url = `${SITE_URL}/for-cto`;
 
@@ -99,11 +98,15 @@ export default async function ForCTO() {
   ];
 
   // Transform stats from Sanity to component format
-  const SocialStats: StatData[] = (ctoPageData?.statsSection?.stats || []).map((stat: any) => ({
-    value: stat.value,
-    label: stat.label,
-    icon: iconMap[stat.icon] || <BarChart3 size={40} className="text-primary" />,
-  }));
+  const SocialStats: StatData[] = (ctoPageData?.statsSection?.stats || []).map(
+    (stat: any) => ({
+      value: stat.value,
+      label: stat.label,
+      icon: iconMap[stat.icon] || (
+        <BarChart3 size={40} className="text-primary" />
+      ),
+    })
+  );
 
   // Fallback stats if Sanity data is not available
   const fallbackStats: StatData[] = [
@@ -157,9 +160,13 @@ export default async function ForCTO() {
         subheading={ctoPageData?.heroSection?.subheading}
         animatedTextLabel={ctoPageData?.heroSection?.animatedTextLabel}
         ctaButtons={ctoPageData?.heroSection?.ctaButtons}
+        heroImage={ctoPageData?.heroSection?.heroImage?.asset?.url}
       />
       <ClientSectionV2
-        title={ctoPageData?.clientSection?.title || "Real Impact. Don't take it from us. Hear it from them."}
+        title={
+          ctoPageData?.clientSection?.title ||
+          "Real Impact. Don't take it from us. Hear it from them."
+        }
         stats={LogoStats}
         partnerLogos={ctoPageData?.clientSection?.partnerLogos}
       />
@@ -168,7 +175,10 @@ export default async function ForCTO() {
         subtitle={ctoPageData?.howWeSolveSection?.subtitle}
         painPoints={ctoPageData?.howWeSolveSection?.painPoints}
         solutions={ctoPageData?.howWeSolveSection?.solutions}
-        videoUrl={ctoPageData?.howWeSolveSection?.videoUrl || ctoPageData?.howWeSolveSection?.video?.asset?.url}
+        videoUrl={
+          ctoPageData?.howWeSolveSection?.videoUrl ||
+          ctoPageData?.howWeSolveSection?.video?.asset?.url
+        }
       />
       <HowItWorks
         mainTitle={ctoPageData?.howItWorksSection?.mainTitle}
@@ -183,14 +193,22 @@ export default async function ForCTO() {
       />
       <div className=" mx-auto px-6 lg:px-12 max-w-7xl">
         <GetStartedSection
-          whatsappLink={ctoPageData?.getStartedSection?.whatsappLink || "https://s.cloudvictor.com/whatsapp-web-cto-2"}
-          scheduleLink={ctoPageData?.getStartedSection?.scheduleLink || "https://s.cloudvictor.com/meeting-web-cto-2"}
+          whatsappLink={
+            ctoPageData?.getStartedSection?.whatsappLink ||
+            "https://s.cloudvictor.com/whatsapp-web-cto-2"
+          }
+          scheduleLink={
+            ctoPageData?.getStartedSection?.scheduleLink ||
+            "https://s.cloudvictor.com/meeting-web-cto-2"
+          }
           logo={ctoPageData?.getStartedSection?.logo?.asset?.url}
           heading={ctoPageData?.getStartedSection?.heading}
           bodyText={ctoPageData?.getStartedSection?.bodyText}
           chips={ctoPageData?.getStartedSection?.chips}
           ctaButtons={ctoPageData?.getStartedSection?.ctaButtons}
-          backgroundImage={ctoPageData?.getStartedSection?.backgroundImage?.asset?.url}
+          backgroundImage={
+            ctoPageData?.getStartedSection?.backgroundImage?.asset?.url
+          }
         />
       </div>
       <TestimonialsSection

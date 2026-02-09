@@ -76,9 +76,7 @@ export default function RootLayout({
     name: "CloudVictor",
     url: SITE_URL,
     logo: `${SITE_URL}/logo.svg`,
-    sameAs: [
-      "https://www.linkedin.com/company/cloudvictor",
-    ],
+    sameAs: ["https://www.linkedin.com/company/cloudvictor"],
   };
 
   const websiteJsonLd = {
@@ -94,11 +92,13 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
         />
         <script
           type="application/ld+json"

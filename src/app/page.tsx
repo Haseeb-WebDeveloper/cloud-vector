@@ -62,7 +62,10 @@ export default async function Home() {
   const homePageData = await getHomePageData();
 
   // Debug: Log the fetched data
-  console.log("Homepage data from Sanity:", JSON.stringify(homePageData, null, 2));
+  console.log(
+    "Homepage data from Sanity:",
+    JSON.stringify(homePageData, null, 2)
+  );
 
   // Fallback to static data if Sanity data is not available
   const stats = homePageData?.clientSection?.stats || [
@@ -82,21 +85,22 @@ export default async function Home() {
       title: "68%",
       description: "Annual Savings",
     },
-
   ];
 
   return (
     <>
-
       <HomeHeroSection
         mainHeading={homePageData?.heroSection?.mainHeading}
         animatedTexts={homePageData?.heroSection?.animatedTexts}
         subheading={homePageData?.heroSection?.subheading}
         ctaButtons={homePageData?.heroSection?.ctaButtons}
+        heroImage={homePageData?.heroSection?.heroImage?.asset?.url}
       />
       {/* <ChartPieDonutText /> */}
       <ClientSectionV2
-        title={homePageData?.clientSection?.title || "Proven Savings. Real Impact"}
+        title={
+          homePageData?.clientSection?.title || "Proven Savings. Real Impact"
+        }
         stats={stats}
         partnerLogos={homePageData?.clientSection?.partnerLogos}
       />
@@ -107,7 +111,7 @@ export default async function Home() {
           <GetStartedSection scheduleLink="https://s.cloudvictor.com/meeting-web-home-2" />
         </div>
       </div>
-      <TestimonialsSection 
+      <TestimonialsSection
         title={homePageData?.testimonialsSection?.title}
         testimonials={homePageData?.testimonialsSection?.testimonials}
       />

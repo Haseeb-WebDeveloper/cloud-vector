@@ -5,8 +5,6 @@ export const getAllDigitalProductsSolutionsSlugQuery = () => `
 }
 `;
 
-
-
 // Blog queries
 export const getBlogPageQuery = () => `
 *[_type == "blogPage"][0] {
@@ -205,6 +203,11 @@ export const getHomePageQuery = () => `
       url,
       openInNewTab,
       buttonType
+    },
+    heroImage {
+      asset-> {
+        url
+      }
     }
   },
   clientSection {
@@ -332,6 +335,11 @@ export const getCTOPageQuery = () => `
       url,
       openInNewTab,
       buttonType
+    },
+    heroImage {
+      asset-> {
+        url
+      }
     }
   },
   clientSection {
@@ -619,11 +627,68 @@ export const getContactUsPageQuery = () => `
     phoneNumber,
     phoneLink,
     emailAddress,
-    emailLink
+    emailLink,
+    heroImage {
+      asset-> {
+        url
+      }
+    }
   },
   formSection {
     title,
     description
+  },
+  metaTitle,
+  metaDescription,
+  ogImage {
+    asset-> {
+      url
+    }
+  }
+}
+`;
+
+// About Us Page query
+export const getAboutUsPageQuery = () => `
+*[_type == "aboutUsPage"][0] {
+  _id,
+  heroSection {
+    mainHeading,
+    description,
+    heroImage {
+      asset-> {
+        url
+      }
+    }
+  },
+  metaTitle,
+  metaDescription,
+  ogImage {
+    asset-> {
+      url
+    }
+  }
+}
+`;
+
+// Case Studies Page query
+export const getCaseStudiesPageQuery = () => `
+*[_type == "caseStudiesPage"][0] {
+  _id,
+  heroSection {
+    mainHeading,
+    subheading,
+    ctaButtons[] {
+      label,
+      url,
+      openInNewTab,
+      buttonType
+    },
+    heroImage {
+      asset-> {
+        url
+      }
+    }
   },
   metaTitle,
   metaDescription,

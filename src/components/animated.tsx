@@ -449,7 +449,7 @@ const AnimatedSections: React.FC = () => {
   ];
 
   return (
-    <div className="relative bg-foreground/5 pt-6 sm:pt-8 md:pt-[6vw] mt-6 sm:mt-8 md:mt-[6vw] w-full">
+    <div className="relative bg-foreground/5 pt-6 sm:pt-8 md:pt-[6vw]  w-full">
       <h2 className="text-center w-full max-w-full sm:max-w-[85vw] md:max-w-[70vw] mx-auto px-4 text-2xl sm:text-3xl md:text-4xl lg:text-[3.3vw] font-bold bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent mb-0 sm:mb-4 md:mb-6 tracking-normal leading-tight">
         Optimize. Secure. Accelerate,<br className="lg:hidden" />
         Disaster-proof, Scale<br className="lg:hidden" />

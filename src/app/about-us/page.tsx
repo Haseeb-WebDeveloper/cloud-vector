@@ -8,44 +8,65 @@ import GetStartedSection from "@/components/cost-optimisation/get-started-sectio
 import AboutValuesSection from "@/components/about-us/values-section";
 import AwsPartnerSection from "@/components/about-us/aws-partner-section";
 import TeamGridSection from "@/components/about-us/team-grid-section";
+import { getAboutUsPageData } from "@/lib/sanity/fetch";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.cloudvictor.com";
 
-export const metadata: Metadata = {
-  title: "About Us | CloudVictor",
-  description:
-    "Learn about CloudVictor's mission, Amazon-native operating principles and the team behind our AWS cost optimisation and FinOps platform.",
-  alternates: {
-    canonical: `${SITE_URL}/about-us`,
-  },
-  openGraph: {
-    title: "About CloudVictor",
-    description:
-      "Meet the team of ex-Amazon/AWS engineers helping companies operate AWS the way Amazon operates theirs.",
-    url: `${SITE_URL}/about-us`,
-    siteName: "CloudVictor",
-    type: "website",
-    locale: "en_US",
-    images: [
-      {
-        url: `${SITE_URL}/og-about-us.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "About CloudVictor",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Us | CloudVictor",
-    description:
-      "Learn about CloudVictor's mission, Amazon-native operating principles and the team behind our AWS cost optimisation and FinOps platform.",
-    images: [`${SITE_URL}/og-about-us.jpg`],
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getAboutUsPageData();
 
-export default function AboutUsPage() {
+  return {
+    title: data?.metaTitle || "About Us | CloudVictor",
+    description:
+      data?.metaDescription ||
+      "Learn about CloudVictor's mission, Amazon-native operating principles and the team behind our AWS cost optimisation and FinOps platform.",
+    alternates: {
+      canonical: `${SITE_URL}/about-us`,
+    },
+    openGraph: {
+      title: data?.metaTitle || "About CloudVictor",
+      description:
+        data?.metaDescription ||
+        "Meet the team of ex-Amazon/AWS engineers helping companies operate AWS the way Amazon operates theirs.",
+      url: `${SITE_URL}/about-us`,
+      siteName: "CloudVictor",
+      type: "website",
+      locale: "en_US",
+      images: data?.ogImage
+        ? [
+            {
+              url: data.ogImage.asset.url,
+              width: 1200,
+              height: 630,
+              alt: data?.metaTitle || "About CloudVictor",
+            },
+          ]
+        : [
+            {
+              url: `${SITE_URL}/og-about-us.jpg`,
+              width: 1200,
+              height: 630,
+              alt: "About CloudVictor",
+            },
+          ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data?.metaTitle || "About Us | CloudVictor",
+      description:
+        data?.metaDescription ||
+        "Learn about CloudVictor's mission, Amazon-native operating principles and the team behind our AWS cost optimisation and FinOps platform.",
+      images: data?.ogImage
+        ? [data.ogImage.asset.url]
+        : [`${SITE_URL}/og-about-us.jpg`],
+    },
+  };
+}
+
+export default async function AboutUsPage() {
+  const data = await getAboutUsPageData();
+
   const stats = [
     {
       title: "10+",
@@ -67,35 +88,41 @@ export default function AboutUsPage() {
 
   return (
     <main className="pt-24 bg-background">
-      <AboutHeroSection />
-      
+      <AboutHeroSection
+        mainHeading={data?.heroSection?.mainHeading}
+        description={data?.heroSection?.description}
+        heroImage={data?.heroSection?.heroImage?.asset?.url}
+      />
+
       {/* Paragraph Section */}
       <section className="py-20 bg-background">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        <h2 className="text-3xl lg:text-5xl font-semibold text-center mb-4 leading-tight">
-            <span 
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: 'linear-gradient(to right, #FF9900 0%, #FF9900 75%, #FFB84D 90%, white 100%)'
-              }}
-            >
-                    <h2 className="text-3xl lg:text-4xl font-semibold mb-4 leading-tight">
-            <span 
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: 'linear-gradient(to right, #FF9900 0%, #FF9900 75%, #FFB84D 90%, white 100%)'
-              }}
-            >
-            We operate your AWS Infra the way Amazon operates theirs.
-
-            </span>
-          </h2>
-            </span>
+          <h2 className="text-3xl lg:text-5xl font-semibold text-center mb-4 leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-semibold mb-4 leading-tight">
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to right, #FF9900 0%, #FF9900 75%, #FFB84D 90%, white 100%)",
+                }}
+              >
+                We operate your AWS Infra the way Amazon operates theirs.
+              </span>
+            </h2>
           </h2>
           <p className="text-base lg:text-lg text-White text-center leading-relaxed">
-            Founded by ex-Amazon/AWS engineer with a proven track record of driving $50M+ in annual business impact, $60M+ in annual AWS savings & managing 80+ AWS accounts with enterprise-grade security, CloudVictor brings the same real-world rigor to your team with a <b> success-based model</b>and a 100% ROI guarantee.
-Whether you're scaling up, battling ballooning cloud bills, or squashing those holes in your security posture, if you want your AWS infrastructure run the Amazon way - lean, secure, fast - we are here to help.
-Whether you're scaling up, battling ballooning cloud bills, or squashing those holes in your security posture, if you want your AWS infrastructure run the Amazon way - lean, secure, fast - we are here to help.
+            Founded by ex-Amazon/AWS engineer with a proven track record of
+            driving $50M+ in annual business impact, $60M+ in annual AWS savings
+            & managing 80+ AWS accounts with enterprise-grade security,
+            CloudVictor brings the same real-world rigor to your team with a{" "}
+            <b> success-based model</b>and a 100% ROI guarantee. Whether you're
+            scaling up, battling ballooning cloud bills, or squashing those
+            holes in your security posture, if you want your AWS infrastructure
+            run the Amazon way - lean, secure, fast - we are here to help.
+            Whether you're scaling up, battling ballooning cloud bills, or
+            squashing those holes in your security posture, if you want your AWS
+            infrastructure run the Amazon way - lean, secure, fast - we are here
+            to help.
           </p>
         </div>
       </section>
@@ -104,7 +131,7 @@ Whether you're scaling up, battling ballooning cloud bills, or squashing those h
 
       {/* Proven Savings. Real Impact Section */}
       <div className="bg-background">
-      <ClientSectionV2 title="Proven Savings. Real Impact" stats={stats} />
+        <ClientSectionV2 title="Proven Savings. Real Impact" stats={stats} />
       </div>
 
       <AwsPartnerSection />
@@ -113,11 +140,10 @@ Whether you're scaling up, battling ballooning cloud bills, or squashing those h
       {/* Founder Letter Section */}
       {/* <FounderLetterSection /> */}
       {/* Join Our Team Section */}
-      <JoinTeamSection /> 
+      <JoinTeamSection />
       {/* Get Started Section */}
       <CaseStudySection />
       <GetStartedSection />
-     
     </main>
   );
 }

@@ -24,19 +24,12 @@ import {
   chip,
   faqItem,
 } from './home-page-types'
-import {
-  painPoint,
-  solution,
-  ctoTab,
-  ctoFeatureStep,
-} from './cto-page-types'
-import {
-  industryFact,
-  approachStep,
-  costOptimisationStep,
-} from './cost-optimisation-page-types'
+import {painPoint, solution, ctoTab, ctoFeatureStep} from './cto-page-types'
+import {industryFact, approachStep, costOptimisationStep} from './cost-optimisation-page-types'
 import {costOptimisationPage} from './cost-optimisation-page'
 import {contactUsPage} from './contact-us-page'
+import {aboutUsPage} from './about-us-page'
+import {caseStudiesPage} from './case-studies-page'
 
 export const schemaTypes = [
   blogPost,
@@ -80,4 +73,8 @@ export const schemaTypes = [
   costOptimisationPage,
   // Contact Us Page document
   contactUsPage,
+  // About Us Page document
+  aboutUsPage,
+  // Case Studies Page document
+  caseStudiesPage,
 ]

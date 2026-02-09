@@ -49,6 +49,21 @@ export const ctoPage = defineType({
           of: [{type: 'button'}],
           validation: (Rule) => Rule.required().min(1),
         }),
+        defineField({
+          name: 'heroImage',
+          title: 'Hero Image',
+          type: 'image',
+          options: {hotspot: true},
+          description: 'Hero section background image',
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+              description: 'Alternative text for the image',
+            },
+          ],
+        }),
       ],
     }),
 
@@ -339,7 +354,8 @@ export const ctoPage = defineType({
                   name: 'title',
                   title: 'Person Title',
                   type: 'string',
-                  description: 'e.g., "Chief Technical Officer", "Founder & CEO", "Co-founder & CEO"',
+                  description:
+                    'e.g., "Chief Technical Officer", "Founder & CEO", "Co-founder & CEO"',
                   validation: (Rule) => Rule.required(),
                 }),
                 defineField({
@@ -393,7 +409,7 @@ export const ctoPage = defineType({
                   }
                 },
               },
-            })
+            }),
           ],
           description: 'Testimonials to display on the CTO page',
           validation: (Rule) => Rule.required().min(1),
@@ -445,4 +461,3 @@ export const ctoPage = defineType({
     }),
   },
 })
-

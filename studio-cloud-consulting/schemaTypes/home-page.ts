@@ -41,6 +41,21 @@ export const homePage = defineType({
           of: [{type: 'button'}],
           validation: (Rule) => Rule.required().min(1),
         }),
+        defineField({
+          name: 'heroImage',
+          title: 'Hero Image',
+          type: 'image',
+          options: {hotspot: true},
+          description: 'Hero section background image',
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+              description: 'Alternative text for the image',
+            },
+          ],
+        }),
       ],
     }),
 
@@ -135,24 +150,26 @@ export const homePage = defineType({
           name: 'stepImages',
           title: 'Step Images',
           type: 'array',
-          of: [{
-            type: 'image',
-            options: {hotspot: true},
-            fields: [
-              {
-                name: 'alt',
-                type: 'string',
-                title: 'Alt Text',
-                description: 'Alternative text for the image (for accessibility)',
-              },
-              {
-                name: 'title',
-                type: 'string',
-                title: 'Image Title/Name',
-                description: 'Custom name/title for this image (for organization)',
-              },
-            ],
-          }],
+          of: [
+            {
+              type: 'image',
+              options: {hotspot: true},
+              fields: [
+                {
+                  name: 'alt',
+                  type: 'string',
+                  title: 'Alt Text',
+                  description: 'Alternative text for the image (for accessibility)',
+                },
+                {
+                  name: 'title',
+                  type: 'string',
+                  title: 'Image Title/Name',
+                  description: 'Custom name/title for this image (for organization)',
+                },
+              ],
+            },
+          ],
           description: 'Images that change based on scroll position',
         }),
       ],
@@ -296,7 +313,8 @@ export const homePage = defineType({
                   name: 'title',
                   title: 'Person Title',
                   type: 'string',
-                  description: 'e.g., "Chief Technical Officer", "Founder & CEO", "Co-founder & CEO"',
+                  description:
+                    'e.g., "Chief Technical Officer", "Founder & CEO", "Co-founder & CEO"',
                   validation: (Rule) => Rule.required(),
                 }),
                 defineField({
@@ -350,7 +368,7 @@ export const homePage = defineType({
                   }
                 },
               },
-            })
+            }),
           ],
           description: 'Testimonials to display on the homepage',
           validation: (Rule) => Rule.required().min(1),
@@ -424,4 +442,3 @@ export const homePage = defineType({
     }),
   },
 })
-

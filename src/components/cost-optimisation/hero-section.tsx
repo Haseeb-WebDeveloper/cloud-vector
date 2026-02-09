@@ -20,13 +20,13 @@ interface CostOptimisationHeroSectionProps {
 }
 
 export default function CostOptimisationHeroSection({
-  mainHeading = "Stop Overpaying AWS Unlock <span className=\"text-primary\"> Savings Up to 68%</span>",
+  mainHeading = 'Stop Overpaying AWS Unlock <span className="text-primary"> Savings Up to 68%</span>',
   subheading = "All-in-one cloud cost optimisation",
   animatedTexts = ["Cost", "Size", "Configuration", "Purchase Plan"],
   animatedTextPrefix = "Optimize",
   animatedTextSuffix = "of your AWS Infrastructure",
   ctaButtons,
-  heroImage = "/images/cost-optimisation-hero-section.png",
+  heroImage = "/hero-images/Cost%20Optimisation.png",
 }: CostOptimisationHeroSectionProps) {
   // Default CTA buttons if not provided
   const defaultCtaButtons = [
@@ -53,24 +53,32 @@ export default function CostOptimisationHeroSection({
   const displayCtaButtons = ctaButtons || defaultCtaButtons;
 
   const getButtonClassName = (buttonType?: string) => {
-    const baseClasses = "group cursor-pointer flex justify-center items-center gap-2 hover:pr-6 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full";
-    
+    const baseClasses =
+      "group cursor-pointer flex justify-start items-start gap-2 hover:pr-6 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full";
+
     if (buttonType === "primary") {
       return `${baseClasses} bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] border border-primary/50 hover:border-primary/70 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] text-foreground`;
     }
-    
+
     return `${baseClasses} bg-background text-foreground border border-foreground/50 hover:border-foreground/70 hover:bg-foreground/20 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)]`;
   };
 
   return (
-    <div className="min-h-screen pt-24 bg-gradient-to-b from-background to-primary/5">
+    <div className="relative min-h-[125vh] overflow-hidden pt-24">
+      <Image
+        src={heroImage}
+        alt="Cost Optimisation Hero Background"
+        fill
+        priority
+        className="object-cover object-bottom -z-10"
+      />
       <div className="container mx-auto px-4 py-16">
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
-          {/* Left Side - Text Content */}
-          <div className="space-y-8 w-full max-w-3xl">
+        <div className="flex flex-col items-start text-left max-w-4xl gap-10">
+          {/* Text Content */}
+          <div className="space-y-8 w-full">
             {/* Main Heading */}
             <div className="space-y-4">
-              <h1 
+              <h1
                 className="text-4xl lg:text-6xl text-foreground leading-tight font-semibold"
                 dangerouslySetInnerHTML={{ __html: mainHeading }}
               />
@@ -80,8 +88,8 @@ export default function CostOptimisationHeroSection({
             <p className="text-3xl text-foreground/90">{subheading}</p>
 
             {/* Animated Text Section */}
-            <div className="space-y-2">
-              <div className="flex flex-wrap items-center gap-2 text-3xl ">
+            <div className="space-y-2 flex justify-start">
+              <div className="flex flex-wrap items-center justify-start gap-2 text-3xl ">
                 <span>{animatedTextPrefix}</span>
                 <AnimatedTextCycle
                   words={animatedTexts}
@@ -94,7 +102,7 @@ export default function CostOptimisationHeroSection({
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row justify-start gap-4 pt-4">
               {displayCtaButtons.map((button, index) => (
                 <a
                   key={index}
@@ -115,20 +123,8 @@ export default function CostOptimisationHeroSection({
               ))}
             </div>
           </div>
-
-          {/* Right Side - Image Placeholder */}
-          <div className="h-full">
-            <Image
-              src={heroImage}
-              alt="Cost Optimisation Hero Section"
-              width={500}
-              height={500}
-            />
-          </div>
         </div>
       </div>
-
-      <CarAnimation />
     </div>
   );
 }

@@ -40,10 +40,20 @@ export default function AboutValuesSection() {
   return (
     <section className="px-6 lg:px-8 pb-20 bg-background">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-10 md:mb-16">
-        Principles We Don’t Bend
 
-        </h2>
+     <h2 className="text-3xl  text-center lg:text-4xl font-semibold mb-4 leading-tight">
+            <span 
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: 'linear-gradient(to right, #FF9900 0%, #FF9900 75%, #FFB84D 90%, white 100%)'
+              }}
+            >
+Principles We Don’t Bend
+            </span>
+          </h2>
+
+
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {values.map((value, idx) => {
             const Icon = value.icon;

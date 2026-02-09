@@ -14,6 +14,7 @@ interface HomeHeroSectionProps {
     openInNewTab?: boolean;
     buttonType?: "primary" | "secondary";
   }>;
+  heroImage?: string;
 }
 
 export default function HomeHeroSection({
@@ -47,19 +48,28 @@ export default function HomeHeroSection({
       buttonType: "secondary" as const,
     },
   ],
+  heroImage = "/hero-images/Homepage(1).png",
 }: HomeHeroSectionProps) {
   const getButtonClassName = (buttonType?: string) => {
-    const baseClasses = "group cursor-pointer flex justify-center items-center gap-2 hover:pr-6 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full";
-    
+    const baseClasses =
+      "group cursor-pointer flex justify-center items-center gap-2 hover:pr-6 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full";
+
     if (buttonType === "primary") {
       return `${baseClasses} bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] border border-primary/50 hover:border-primary/70 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] text-foreground`;
     }
-    
+
     return `${baseClasses} bg-background text-foreground border border-foreground/50 hover:border-foreground/70 hover:bg-foreground/20 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)]`;
   };
 
   return (
-    <div className="min-h-screen pt-24 bg-background">
+    <div className="relative min-h-screen pt-24 pb-40">
+      <Image
+        src={heroImage}
+        alt="Hero Background"
+        fill
+        priority
+        className="object-cover object-center -z-10"
+      />
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="flex flex-col items-center text-center space-y-8 max-w-5xl mx-auto">
           {/* Main Heading with Animated Text */}

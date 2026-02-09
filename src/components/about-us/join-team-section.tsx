@@ -5,24 +5,23 @@ import { ArrowRight } from "lucide-react";
 
 export default function JoinTeamSection() {
   return (
-    <section className="relative w-full min-h-[520px] lg:min-h-[620px] overflow-visible mb-0 z-[20]">
+    <section className="relative w-full container mx-auto lg:min-h-[620px] h-full overflow-visible mb-0 z-[20]">
       {/* Background Image */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="w-full h-full">
         <Image
           src="/group-photo.png"
           alt="CloudVictor team group photo"
-          fill
-          className="object-cover"
+          width={1000}
+          height={1000}
+          className="object-cover h-full w-full"
           priority
           sizes="100vw"
         />
-        {/* Dark gradient for text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
       </div>
 
       {/* Bottom-anchored content card (overflows onto next section) */}
-      <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-[60%] w-full flex justify-center pointer-events-none z-[30]">
-        <div className="w-full max-w-3xl bg-[#0B1020]/95 border border-white/10 rounded-3xl shadow-2xl px-6 py-8 sm:px-10 sm:py-10 text-center pointer-events-auto">
+      <div className="absolute left-1/2 bottom-60 -translate-x-1/2 translate-y-[60%] w-full flex justify-center pointer-events-none z-[30]">
+        <div className="w-full max-w-3xl bg-[#0B1020] border border-white/10 rounded-3xl shadow-2xl px-6 py-8 sm:px-10 sm:py-10 text-center pointer-events-auto">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             Join our team
           </h2>

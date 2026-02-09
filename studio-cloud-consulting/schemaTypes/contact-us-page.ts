@@ -79,6 +79,21 @@ export const contactUsPage = defineType({
           description: 'Email link (mailto: URL)',
           validation: (Rule) => Rule.required(),
         }),
+        defineField({
+          name: 'heroImage',
+          title: 'Hero Image',
+          type: 'image',
+          options: {hotspot: true},
+          description: 'Hero section background image',
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+              description: 'Alternative text for the image',
+            },
+          ],
+        }),
       ],
     }),
 
@@ -149,4 +164,3 @@ export const contactUsPage = defineType({
     }),
   },
 })
-

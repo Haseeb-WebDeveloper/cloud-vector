@@ -15,10 +15,11 @@ interface CTOHeroSectionProps {
     openInNewTab?: boolean;
     buttonType?: "primary" | "secondary";
   }>;
+  heroImage?: string;
 }
 
 export default function HomeHeroSection({
-  mainHeading = "You focus on <span className=\"bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent\">innovation,</span>\n<br /> we take care of the <span className=\"bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent\">cloud</span>",
+  mainHeading = 'You focus on <span className="bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent">innovation,</span>\n<br /> we take care of the <span className="bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent">cloud</span>',
   animatedTexts = [
     "68% lower costs.",
     "ZERO Data breaches.",
@@ -48,41 +49,48 @@ export default function HomeHeroSection({
       buttonType: "secondary" as const,
     },
   ],
+  heroImage = "/hero-images/CTO.png",
 }: CTOHeroSectionProps) {
   const getButtonClassName = (buttonType?: string) => {
-    const baseClasses = "group cursor-pointer flex justify-center items-center gap-2 hover:pr-6 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full";
-    
+    const baseClasses =
+      "group cursor-pointer flex justify-center items-center gap-2 hover:pr-6 transition-all duration-300 px-5 lg:py-2.5 py-3 rounded-full";
+
     if (buttonType === "primary") {
       return `${baseClasses} bg-gradient-to-r from-[#FF9900]/90 to-[#E85409]/90 hover:from-[#FF9900] hover:to-[#E85409] border border-primary/50 hover:border-primary/70 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)] text-foreground`;
     }
-    
+
     return `${baseClasses} bg-background text-foreground border border-foreground/50 hover:border-foreground/70 hover:bg-foreground/20 hover:shadow-[0_0_20px_rgba(255,153,0,0.6)]`;
   };
 
   // Parse mainHeading to handle HTML-like structure
   const parseMainHeading = (heading: string) => {
     if (!heading) return null;
-    
+
     // Split by <br /> first
     const lines = heading.split(/<br\s*\/?>/i);
-    
+
     return lines.map((line, lineIndex) => {
       // Split by span tags
       const parts = line.split(/(<span[^>]*>.*?<\/span>)/g);
       const elements = parts.map((part, partIndex) => {
-        if (part.startsWith('<span')) {
+        if (part.startsWith("<span")) {
           const match = part.match(/<span[^>]*>(.*?)<\/span>/);
           if (match) {
             return (
-              <span key={`${lineIndex}-${partIndex}`} className="bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent">
+              <span
+                key={`${lineIndex}-${partIndex}`}
+                className="bg-gradient-to-r from-[#FF9700] to-[#E85409] bg-clip-text text-transparent"
+              >
                 {match[1]}
               </span>
             );
           }
         }
-        return part ? <span key={`${lineIndex}-${partIndex}`}>{part}</span> : null;
+        return part ? (
+          <span key={`${lineIndex}-${partIndex}`}>{part}</span>
+        ) : null;
       });
-      
+
       return (
         <span key={lineIndex}>
           {elements}
@@ -93,7 +101,14 @@ export default function HomeHeroSection({
   };
 
   return (
-    <div className="min-h-screen pt-24 bg-background">
+    <div className="relative pt-24 overflow-hidden min-h-[130vh]">
+      <Image
+        src={heroImage}
+        alt="CTO Hero Background"
+        fill
+        priority
+        className="object-cover object-center -z-10"
+      />
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
           {/* Main Heading with Animated Text */}

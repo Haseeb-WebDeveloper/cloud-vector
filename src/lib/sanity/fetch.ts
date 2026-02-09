@@ -1,14 +1,16 @@
 import { client } from "./client";
 import { type QueryParams } from "next-sanity";
-import { 
-  getBlogPageQuery, 
+import {
+  getBlogPageQuery,
   getAllBlogCategoriesQuery,
   getBlogPostBySlugQuery,
   getAllBlogPostsSlugsQuery,
   getHomePageQuery,
   getCTOPageQuery,
   getCostOptimisationPageQuery,
-  getContactUsPageQuery
+  getContactUsPageQuery,
+  getAboutUsPageQuery,
+  getCaseStudiesPageQuery,
 } from "./queries";
 
 const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
@@ -124,7 +126,7 @@ export async function getCostOptimisationPageData(): Promise<any> {
       {},
       { revalidate: IS_DEVELOPMENT ? 10 : 60 }
     );
-    
+
     if (IS_DEVELOPMENT && data) {
       console.log("✅ Sanity Cost Optimisation page data fetched successfully");
       console.log("📊 Data summary:", {
@@ -136,9 +138,11 @@ export async function getCostOptimisationPageData(): Promise<any> {
         hasSteps: !!data.stepsSection?.steps?.length,
       });
     } else if (!data) {
-      console.warn("⚠️  No Cost Optimisation page data found in Sanity. Make sure to run the seed script or create the document in Sanity Studio.");
+      console.warn(
+        "⚠️  No Cost Optimisation page data found in Sanity. Make sure to run the seed script or create the document in Sanity Studio."
+      );
     }
-    
+
     return data;
   } catch (error) {
     console.error("❌ Error fetching Cost Optimisation page data:", error);
@@ -154,10 +158,51 @@ export async function getContactUsPageData(): Promise<any> {
       {},
       { revalidate: IS_DEVELOPMENT ? 10 : 60 }
     );
-    console.log("Sanity Contact Us page data fetched:", data ? "Success" : "No data");
+    console.log(
+      "Sanity Contact Us page data fetched:",
+      data ? "Success" : "No data"
+    );
     return data;
   } catch (error) {
     console.error("Error fetching Contact Us page data:", error);
+    return null;
+  }
+}
+
+// About Us Page function
+export async function getAboutUsPageData(): Promise<any> {
+  try {
+    const data = await fetchSanityData<any>(
+      getAboutUsPageQuery(),
+      {},
+      { revalidate: IS_DEVELOPMENT ? 10 : 60 }
+    );
+    console.log(
+      "Sanity About Us page data fetched:",
+      data ? "Success" : "No data"
+    );
+    return data;
+  } catch (error) {
+    console.error("Error fetching About Us page data:", error);
+    return null;
+  }
+}
+
+// Case Studies Page function
+export async function getCaseStudiesPageData(): Promise<any> {
+  try {
+    const data = await fetchSanityData<any>(
+      getCaseStudiesPageQuery(),
+      {},
+      { revalidate: IS_DEVELOPMENT ? 10 : 60 }
+    );
+    console.log(
+      "Sanity Case Studies page data fetched:",
+      data ? "Success" : "No data"
+    );
+    return data;
+  } catch (error) {
+    console.error("Error fetching Case Studies page data:", error);
     return null;
   }
 }
