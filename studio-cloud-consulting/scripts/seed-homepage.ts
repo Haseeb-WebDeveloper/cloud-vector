@@ -426,6 +426,7 @@ async function seedHomePage() {
       // Structure matches the schema: array of objects with quote, name, title, company, image, savings
       // For inline objects in arrays, Sanity auto-generates _key, but we can provide it for better control
       return {
+        _type: 'testimonial',
         _key: `testimonial-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
         quote: testimonial.quote,
         name: testimonial.name,
@@ -571,41 +572,35 @@ async function seedHomePage() {
 
   try {
     if (existing) {
-      // Update existing homepage - specifically update only testimonialsSection
-      console.log('Updating existing homepage testimonials section...')
+      // Update existing homepage - update ALL sections to ensure full data sync
+      console.log('Updating existing homepage with full data...')
       console.log(`Current homepage ID: ${existing._id}`)
-      console.log(`Testimonials to add: ${testimonialsSection.testimonials.length}`)
 
-      // Use path-based setting for nested objects with arrays
-      // This ensures Sanity properly handles the array structure
-      const patch = client.patch(existing._id)
+      // Create a clean document for updating
+      const cleanDoc = {...homePageDoc}
+      delete cleanDoc._type // Don't try to change the type
 
-      // First ensure the testimonialsSection object exists
-      patch.setIfMissing({
-        testimonialsSection: {},
-      })
-
-      // Set the title
-      patch.set({
-        'testimonialsSection.title': testimonialsSection.title,
-      })
-
-      // Replace the entire testimonials array using path notation
-      patch.set({
-        'testimonialsSection.testimonials': testimonialsSection.testimonials,
-      })
-
-      // Update hero section
-      patch.set({
-        heroSection: homePageDoc.heroSection,
-      })
-
+      const patch = client.patch(existing._id).set(cleanDoc)
       const result = await patch.commit()
 
-      console.log(
-        'Testimonials structure sent:',
-        JSON.stringify(testimonialsSection.testimonials[0], null, 2),
-      )
+      console.log(`✅ Updated homepage document (${result._id})`)
+      
+      // Also check if there's a draft and update it too if it exists
+      // This ensures the user sees the changes in Sanity Studio immediately
+      if (!existing._id.startsWith('drafts.')) {
+        const draftId = `drafts.${existing._id}`
+        try {
+          console.log(`Checking for draft document: ${draftId}...`)
+          const draft = await client.fetch(`*[_id == $draftId][0]`, {draftId})
+          if (draft) {
+            console.log('Updating existing draft to match...')
+            await client.patch(draftId).set(cleanDoc).commit()
+            console.log('✅ Updated draft document')
+          }
+        } catch (e) {
+          console.log('No draft to update or error updating draft.')
+        }
+      }
 
       console.log(`✅ Updated homepage content (${result._id})`)
       console.log(`   Testimonials count: ${testimonialsSection.testimonials.length}`)

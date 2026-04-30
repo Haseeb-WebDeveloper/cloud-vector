@@ -102,14 +102,14 @@ export default function TestimonialsSection({
   const testimonials: Testimonial[] = sanityTestimonials && sanityTestimonials.length > 0
     ? sanityTestimonials.map((testimonial, index) => ({
         id: index + 1,
-        quote: testimonial.quote,
-        name: testimonial.name,
-        title: testimonial.title,
-        company: testimonial.company,
-        image: testimonial.image?.asset?.url || `/testimonials/${testimonial.name.replace(/\s+/g, '-')}.png`,
-        savings: testimonial.savings,
+        quote: testimonial.quote || "",
+        name: testimonial.name || "Anonymous",
+        title: testimonial.title || "",
+        company: testimonial.company || "",
+        image: testimonial.image?.asset?.url || (testimonial.name ? `/testimonials/${testimonial.name.replace(/\s+/g, '-')}.png` : "/testimonials/default.png"),
+        savings: testimonial.savings || "",
       }))
-    : [];
+    : defaultTestimonials;
 
   const sectionTitle = title || "Results Our Customers Count On, Month After Month";
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -251,18 +251,21 @@ export default function TestimonialsSection({
                       </div>
 
                       {/* Right Side - Savings Card */}
-                      <div className="flex flex-col items-center justify-center space-y-6">
-                        <div className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-8 text-center text-primary-foreground shadow-xl">
-                          <div className="text-6xl lg:text-7xl font-bold mb-2">
-                            {testimonial.savings}
-                          </div>
-                          <div className="text-xl font-medium opacity-90 text-nowrap">
-                            Cost Reduction
-                          </div>
-                          <div className="text-sm opacity-75 mt-2">
-                            Monthly AWS Bill
+                      {testimonial.savings && (
+                        <div className="flex flex-col items-center justify-center space-y-6">
+                          <div className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-8 text-center text-primary-foreground shadow-xl">
+                            <div className="text-6xl lg:text-7xl font-bold mb-2">
+                              {testimonial.savings}
+                            </div>
+                            <div className="text-xl font-medium opacity-90 text-nowrap">
+                              Cost Reduction
+                            </div>
+                            <div className="text-sm opacity-75 mt-2">
+                              Monthly AWS Bill
+                            </div>
                           </div>
                         </div>
+                      )}
 
                         {/* Progress Indicators */}
                         <div className="flex justify-center space-x-2">
@@ -295,7 +298,6 @@ export default function TestimonialsSection({
                             {selectedIndex + 1} of {testimonials.length}
                           </span>
                         </div>
-                      </div>
                     </div>
                   </div>
                 </div>
