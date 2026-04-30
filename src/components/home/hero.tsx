@@ -18,7 +18,7 @@ interface HomeHeroSectionProps {
 }
 
 export default function HomeHeroSection({
-  mainHeading = "Turn your AWS into your growth engine With",
+  mainHeading = "Turn your AWS into your Growth Engine With",
   animatedTexts = [
     "40-70% Cost Savings",
     "Always-On Security",

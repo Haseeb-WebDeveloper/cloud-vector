@@ -60,7 +60,7 @@ async function seedHomePage() {
 
   // Hero Section
   const heroSection = {
-    mainHeading: 'Turn your AWS into your weapon With',
+    mainHeading: 'Turn your AWS into your Growth Engine With',
     animatedTexts: [
       '40-70% Cost Savings',
       'Always-On Security',
